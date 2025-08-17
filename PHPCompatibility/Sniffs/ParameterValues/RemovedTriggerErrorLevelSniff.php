@@ -79,7 +79,7 @@ final class RemovedTriggerErrorLevelSniff extends AbstractFunctionCallParameterS
             return;
         }
 
-        $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
+        $firstNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $targetParam['start'], ($targetParam['end'] + 1), true);
 
         $phpcsFile->addWarning(
             'Passing E_USER_ERROR to trigger_error() is deprecated since 8.4. Throw an exception or call exit with a string message instead.',

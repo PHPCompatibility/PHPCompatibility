@@ -319,7 +319,7 @@ final class NewAttributesSniff extends Sniff
             );
         }
 
-        $nextAfter = $phpcsFile->findNext(Tokens::$emptyTokens, ($closer + 1), null, true);
+        $nextAfter = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($closer + 1), null, true);
         if ($nextAfter !== false
             && $tokens[$nextAfter]['code'] !== \T_ATTRIBUTE
             && $tokens[$closer]['line'] === $tokens[$nextAfter]['line']
@@ -356,7 +356,7 @@ final class NewAttributesSniff extends Sniff
         $startsAt       = null;
 
         for ($i = ($opener + 1); $i <= $closer; $i++) {
-            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
+            if (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']])) {
                 continue;
             }
 

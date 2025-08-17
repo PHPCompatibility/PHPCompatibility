@@ -42,7 +42,7 @@ final class ForbiddenToStringParametersSniff extends Sniff
      */
     public function register()
     {
-        return Tokens::$ooScopeTokens;
+        return Tokens::OO_SCOPE_TOKENS;
     }
 
     /**

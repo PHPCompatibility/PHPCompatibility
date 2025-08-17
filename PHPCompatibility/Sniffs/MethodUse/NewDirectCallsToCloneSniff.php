@@ -65,7 +65,7 @@ final class NewDirectCallsToCloneSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_STRING) {
             /*
              * Not a method call.
@@ -83,13 +83,13 @@ final class NewDirectCallsToCloneSniff extends Sniff
             return;
         }
 
-        $nextNextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), null, true);
+        $nextNextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($nextNonEmpty + 1), null, true);
         if ($nextNextNonEmpty === false || $tokens[$nextNextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS) {
             // Not a method call.
             return;
         }
 
-        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
         if ($prevNonEmpty === false
             || isset(Collections::ooHierarchyKeywords()[$tokens[$prevNonEmpty]['code']])
         ) {

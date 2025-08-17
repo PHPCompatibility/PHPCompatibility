@@ -226,7 +226,7 @@ final class NewExitAsFunctionCallSniff extends AbstractFunctionCallParameterSnif
         $total   = 0;
 
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
-            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
+            if (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']])) {
                 continue;
             }
 
@@ -307,13 +307,13 @@ final class NewExitAsFunctionCallSniff extends AbstractFunctionCallParameterSnif
                 continue;
             }
 
-            if (isset(Tokens::$arithmeticTokens[$tokens[$i]['code']])) {
+            if (isset(Tokens::ARITHMETIC_TOKENS[$tokens[$i]['code']])) {
                 ++$arithm;
                 continue;
             }
 
-            if (isset(Tokens::$textStringTokens[$tokens[$i]['code']])
-                || isset(Tokens::$heredocTokens[$tokens[$i]['code']])
+            if (isset(Tokens::TEXT_STRING_TOKENS[$tokens[$i]['code']])
+                || isset(Tokens::HEREDOC_TOKENS[$tokens[$i]['code']])
             ) {
                 ++$string;
                 continue;

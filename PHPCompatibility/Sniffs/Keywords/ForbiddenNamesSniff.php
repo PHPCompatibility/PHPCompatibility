@@ -207,7 +207,7 @@ final class ForbiddenNamesSniff extends Sniff
      *
      * @var array<int|string, int|string>
      */
-    private $allowedModifiers = [];
+    private $allowedModifiers = Tokens::SCOPE_MODIFIERS + [\T_FINAL => \T_FINAL];
 
     /**
      * Targeted tokens.
@@ -239,9 +239,6 @@ final class ForbiddenNamesSniff extends Sniff
      */
     public function register()
     {
-        $this->allowedModifiers           = Tokens::$scopeModifiers;
-        $this->allowedModifiers[\T_FINAL] = \T_FINAL;
-
         // Do the "other reserved keywords" list merge only once.
         $this->allOtherForbiddenNames = \array_merge($this->otherForbiddenNames, $this->softReservedNames);
 
@@ -293,7 +290,7 @@ final class ForbiddenNamesSniff extends Sniff
                  * handle this.
                  */
                 if (\strtolower($tokens[$stackPtr]['content']) === 'enum') {
-                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
                     if ($tokens[$prevNonEmpty]['code'] === \T_DOUBLE_COLON
                         || $tokens[$prevNonEmpty]['code'] === \T_OBJECT_OPERATOR
                         || $tokens[$prevNonEmpty]['code'] === \T_NULLSAFE_OBJECT_OPERATOR
@@ -313,7 +310,7 @@ final class ForbiddenNamesSniff extends Sniff
                         return;
                     }
 
-                    $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+                    $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
                     if ($nextNonEmpty === false) {
                         return;
                     }
@@ -362,7 +359,7 @@ final class ForbiddenNamesSniff extends Sniff
                  * and the 'conditions' aren't always correctly set, so we need to do an additional check for
                  * the last condition potentially being a previous trait T_USE.
                  */
-                $traitScopes = Tokens::$ooScopeTokens;
+                $traitScopes = Tokens::OO_SCOPE_TOKENS;
                 unset($traitScopes[\T_INTERFACE]);
 
                 if (Conditions::hasCondition($phpcsFile, $stackPtr, $traitScopes) === false) {
@@ -388,13 +385,13 @@ final class ForbiddenNamesSniff extends Sniff
                  * Deal with anonymous classes - `class` before a reserved keyword is sometimes
                  * misidentified as `T_ANON_CLASS`.
                  */
-                $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+                $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
                 if ($prevNonEmpty !== false && $tokens[$prevNonEmpty]['code'] === \T_NEW) {
                     return;
                 }
 
                 // Ok, so this isn't really an anonymous class.
-                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+                $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
                 if ($nextNonEmpty === false) {
                     return;
                 }
@@ -424,7 +421,7 @@ final class ForbiddenNamesSniff extends Sniff
         }
 
         $tokens = $phpcsFile->getTokens();
-        $next   = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), ($endOfStatement + 1), true);
+        $next   = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), ($endOfStatement + 1), true);
         if ($next === $endOfStatement) {
             // Declaration of global namespace. I.e.: namespace {}.
             return;
@@ -446,7 +443,7 @@ final class ForbiddenNamesSniff extends Sniff
         }
 
         for ($i = $next; $i < $endOfStatement; $i++) {
-            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === true) {
+            if (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']]) === true) {
                 continue;
             }
 
@@ -621,7 +618,7 @@ final class ForbiddenNamesSniff extends Sniff
 
         if ($isOOConstant === false) {
             // Non-class constant declared using the "const" keyword.
-            $namePtr = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $namePtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
             if ($namePtr === false) {
                 // Live coding or parse error.
                 return;
@@ -718,7 +715,7 @@ final class ForbiddenNamesSniff extends Sniff
         }
 
         $checkOther   = true;
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), $endOfStatement, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), $endOfStatement, true);
         if (isset($this->validUseNames[$tokens[$nextNonEmpty]['content']]) === true) {
             $checkOther = false;
         }
@@ -757,7 +754,7 @@ final class ForbiddenNamesSniff extends Sniff
 
                 $checkOtherLocal = true;
 
-                $nextPtr = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextPtr + 1), $endOfStatement, true);
+                $nextPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($nextPtr + 1), $endOfStatement, true);
                 if ($nextPtr === false) {
                     // Group use with trailing comma.
                     break;
@@ -775,7 +772,7 @@ final class ForbiddenNamesSniff extends Sniff
             }
 
             // Ok, so this must be an T_AS token.
-            $nextPtr = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextPtr + 1), $endOfStatement, true);
+            $nextPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($nextPtr + 1), $endOfStatement, true);
             if ($nextPtr === false) {
                 break;
             }
@@ -822,7 +819,7 @@ final class ForbiddenNamesSniff extends Sniff
                 break;
             }
 
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($asPtr + 1), $closer, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($asPtr + 1), $closer, true);
             if ($nextNonEmpty === false) {
                 break;
             }
@@ -833,7 +830,7 @@ final class ForbiddenNamesSniff extends Sniff
              * - `use HelloWorld { sayHello as private myPrivateHello; }` => move to the next token to verify.
              */
             if (isset($this->allowedModifiers[$tokens[$nextNonEmpty]['code']]) === true) {
-                $maybeUseNext = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), $closer, true);
+                $maybeUseNext = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($nextNonEmpty + 1), $closer, true);
                 if ($maybeUseNext === false) {
                     // Reached the end of the use statement.
                     break;

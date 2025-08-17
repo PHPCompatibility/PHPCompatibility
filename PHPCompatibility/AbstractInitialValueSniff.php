@@ -187,7 +187,7 @@ abstract class AbstractInitialValueSniff extends Sniff
 
         // Filter out late static binding, class properties, static closures and arrow function and static return types.
         if ($tokens[$stackPtr]['code'] === \T_STATIC) {
-            $next = $phpcsFile->findNext(Tokens::$emptyTokens, $start, null, true);
+            $next = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $start, null, true);
             if ($next === false || $tokens[$next]['code'] !== \T_VARIABLE) {
                 // Not a static variable declaration. Bow out.
                 return;
@@ -205,7 +205,7 @@ abstract class AbstractInitialValueSniff extends Sniff
         // Examine each variable/constant in multi-declarations.
         do {
             $end   = $this->findEndOfCurrentDeclaration($phpcsFile, $start, $endOfStatement);
-            $start = $phpcsFile->findNext(Tokens::$emptyTokens, $start, $end, true);
+            $start = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $start, $end, true);
             if ($start === false
                 || ($tokens[$stackPtr]['code'] === \T_CONST && $tokens[$start]['code'] !== \T_STRING)
                 || ($tokens[$stackPtr]['code'] === \T_STATIC && $tokens[$start]['code'] !== \T_VARIABLE)
@@ -291,7 +291,7 @@ abstract class AbstractInitialValueSniff extends Sniff
     protected function processSubStatement(File $phpcsFile, $stackPtr, $end, $type)
     {
         $tokens = $phpcsFile->getTokens();
-        $next   = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), $end, true);
+        $next   = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), $end, true);
         if ($next === false || $tokens[$next]['code'] !== \T_EQUAL) {
             // No value assigned.
             return;

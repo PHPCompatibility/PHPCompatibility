@@ -34,13 +34,11 @@ final class NewExceptionsFromToStringSniff extends Sniff
      * Tokens which should be ignored when they preface a function declaration
      * when trying to find the docblock (if any).
      *
-     * Array will be added to in the register() method.
-     *
      * @since 9.3.0
      *
      * @var array<int|string, int|string>
      */
-    private $docblockIgnoreTokens = [
+    private $docblockIgnoreTokens = Tokens::METHOD_MODIFIERS + Tokens::PHPCS_ANNOTATION_TOKENS + [
         \T_WHITESPACE => \T_WHITESPACE,
     ];
 
@@ -53,11 +51,7 @@ final class NewExceptionsFromToStringSniff extends Sniff
      */
     public function register()
     {
-        // Enhance the array of tokens to ignore for finding the docblock.
-        $this->docblockIgnoreTokens += Tokens::$methodPrefixes;
-        $this->docblockIgnoreTokens += Tokens::$phpcsCommentTokens;
-
-        return Tokens::$ooScopeTokens;
+        return Tokens::OO_SCOPE_TOKENS;
     }
 
     /**

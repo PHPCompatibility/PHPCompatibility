@@ -89,7 +89,7 @@ final class NewNullableTypesSniff extends Sniff
          */
         $properties = FunctionDeclarations::getProperties($phpcsFile, $stackPtr);
         if ($properties['nullable_return_type'] === true) {
-            $nullPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($properties['return_type_token'] - 1), null, true);
+            $nullPtr = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($properties['return_type_token'] - 1), null, true);
             $phpcsFile->addError(
                 'Nullable return types are not supported in PHP 7.0 or earlier. Found: %s',
                 $nullPtr,

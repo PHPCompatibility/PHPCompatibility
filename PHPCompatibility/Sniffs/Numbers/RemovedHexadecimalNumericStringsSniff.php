@@ -141,7 +141,7 @@ final class RemovedHexadecimalNumericStringsSniff extends Sniff
          */
         $nested = Parentheses::getLastOpener($phpcsFile, $stackPtr);
         if ($nested !== false) {
-            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($nested - 1), null, true);
+            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($nested - 1), null, true);
             if ($tokens[$prevNonEmpty]['code'] === \T_STRING
                 || $tokens[$prevNonEmpty]['code'] === \T_NAME_FULLY_QUALIFIED
             ) {
@@ -204,7 +204,7 @@ final class RemovedHexadecimalNumericStringsSniff extends Sniff
     private function isCallToGlobalFunction(File $phpcsFile, $stackPtr)
     {
         $tokens       = $phpcsFile->getTokens();
-        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
 
         if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === true) {
             // Method call.

@@ -81,7 +81,7 @@ final class NewFunctionCallTrailingCommaSniff extends Sniff
         if (isset($tokens[$stackPtr]['parenthesis_opener']) === true) {
             $opener = $tokens[$stackPtr]['parenthesis_opener'];
         } else {
-            $opener = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $opener = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
             if ($tokens[$opener]['code'] !== \T_OPEN_PARENTHESIS
                 || isset($tokens[$opener]['parenthesis_closer']) === false
             ) {
@@ -98,7 +98,7 @@ final class NewFunctionCallTrailingCommaSniff extends Sniff
         }
 
         $closer            = $tokens[$opener]['parenthesis_closer'];
-        $lastInParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closer - 1), $opener, true);
+        $lastInParenthesis = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($closer - 1), $opener, true);
 
         if ($tokens[$lastInParenthesis]['code'] !== \T_COMMA) {
             return;

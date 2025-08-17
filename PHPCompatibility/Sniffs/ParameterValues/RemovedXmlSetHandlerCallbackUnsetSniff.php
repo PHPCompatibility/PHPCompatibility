@@ -106,7 +106,7 @@ final class RemovedXmlSetHandlerCallbackUnsetSniff extends AbstractFunctionCallP
 
             $callback = '';
             for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
-                if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
+                if (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']])) {
                     continue;
                 }
 
@@ -141,7 +141,7 @@ final class RemovedXmlSetHandlerCallbackUnsetSniff extends AbstractFunctionCallP
                 continue;
             }
 
-            $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
+            $firstNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $targetParam['start'], ($targetParam['end'] + 1), true);
 
             $msg  = 'Passing an empty string to reset the $%s for %s() is deprecated since PHP 8.4. Pass `null` instead.';
             $code = 'Deprecated';

@@ -94,7 +94,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
             return;
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false) {
             // Live coding or parse error.
             return;
@@ -109,7 +109,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
             $searchStart = ($nextNonEmpty + 1);
             $searchEnd   = $tokens[$nextNonEmpty]['bracket_closer'];
 
-            $hasNonEmptyTokens = $phpcsFile->findNext(Tokens::$emptyTokens, $searchStart, $searchEnd, true);
+            $hasNonEmptyTokens = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $searchStart, $searchEnd, true);
             if ($hasNonEmptyTokens === false) {
                 // Assigning to a new array key.
                 $phpcsFile->addError(
@@ -120,7 +120,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
                 return;
             }
 
-            $allowedNumeric             = Tokens::$emptyTokens;
+            $allowedNumeric             = Tokens::EMPTY_TOKENS;
             $allowedNumeric[\T_LNUMBER] = \T_LNUMBER;
             $allowedNumeric[\T_DNUMBER] = \T_DNUMBER;
 
@@ -142,7 +142,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
              * Also doesn't allow for T_DOUBLE_QUOTED_STRING as that means there is variable interpolation
              * and that would never result in a match anyway.
              */
-            $allowedText = Tokens::$emptyTokens;
+            $allowedText = Tokens::EMPTY_TOKENS;
             $allowedText[\T_CONSTANT_ENCAPSED_STRING] = \T_CONSTANT_ENCAPSED_STRING;
 
             $hasNonText = $phpcsFile->findNext($allowedText, $searchStart, $searchEnd, true);
@@ -198,7 +198,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
             }
         }
 
-        if (isset(Tokens::$assignmentTokens[$tokens[$nextNonEmpty]['code']]) === true) {
+        if (isset(Tokens::ASSIGNMENT_TOKENS[$tokens[$nextNonEmpty]['code']]) === true) {
             $phpcsFile->addError(
                 \sprintf(self::WRITE_ERROR, 'assignment to $GLOBALS'),
                 $stackPtr,
@@ -207,7 +207,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
             return;
         }
 
-        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
         if ($tokens[$prevNonEmpty]['code'] === \T_BITWISE_AND
             && Operators::isReference($phpcsFile, $prevNonEmpty) === true
         ) {
@@ -269,7 +269,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
             return false;
         }
 
-        $maybeLabel = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($lastOpenParens - 1), null, true);
+        $maybeLabel = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($lastOpenParens - 1), null, true);
         if ($maybeLabel === false
             || ($tokens[$maybeLabel]['code'] !== \T_STRING
             && $tokens[$maybeLabel]['code'] !== \T_NAME_FULLY_QUALIFIED)
@@ -295,7 +295,7 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
             return false;
         }
 
-        $beforeLabel = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($maybeLabel - 1), null, true);
+        $beforeLabel = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($maybeLabel - 1), null, true);
         if ($beforeLabel !== false
             && (isset(Collections::objectOperators()[$tokens[$beforeLabel]['code']]) === true
             || $tokens[$beforeLabel]['code'] === \T_NEW)

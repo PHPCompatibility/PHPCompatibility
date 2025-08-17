@@ -59,24 +59,7 @@ final class RemovedAssertStringAssertionSniff extends AbstractFunctionCallParame
      *
      * @var array<int|string, int|string>
      */
-    private $targetTokens = [];
-
-    /**
-     * Returns an array of tokens this test wants to listen for.
-     *
-     * @since 10.0.0
-     *
-     * @return array<int|string>
-     */
-    public function register()
-    {
-        // Set $targetTokens only once.
-        $this->targetTokens                   = Tokens::$emptyTokens;
-        $this->targetTokens                  += Tokens::$stringTokens + Tokens::$heredocTokens;
-        $this->targetTokens[\T_STRING_CONCAT] = \T_STRING_CONCAT;
-
-        return parent::register();
-    }
+    private $targetTokens = Tokens::EMPTY_TOKENS + Tokens::STRING_TOKENS + Tokens::HEREDOC_TOKENS + [\T_STRING_CONCAT => \T_STRING_CONCAT];
 
     /**
      * Do a version check to determine if this sniff needs to run at all.

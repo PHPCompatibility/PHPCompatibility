@@ -96,11 +96,11 @@ final class RemovedVersionCompareOperatorsSniff extends AbstractFunctionCallPara
 
         $tokens = $phpcsFile->getTokens();
 
-        $textStartTokens  = Tokens::$stringTokens;
-        $textStartTokens += Tokens::$heredocTokens;
+        $textStartTokens  = Tokens::STRING_TOKENS;
+        $textStartTokens += Tokens::HEREDOC_TOKENS;
 
         $accepted  = $textStartTokens;
-        $accepted += Tokens::$emptyTokens;
+        $accepted += Tokens::EMPTY_TOKENS;
 
         $hasNonText = $phpcsFile->findNext($accepted, $targetParam['start'], ($targetParam['end'] + 1), true);
         if ($hasNonText !== false) {

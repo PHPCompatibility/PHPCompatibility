@@ -122,7 +122,7 @@ final class NewFunctionArrayDereferencingSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         // Next non-empty token should be the open parenthesis.
-        $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
+        $openParenthesis = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true, null, true);
         if ($openParenthesis === false || $tokens[$openParenthesis]['code'] !== \T_OPEN_PARENTHESIS) {
             return [];
         }
@@ -134,13 +134,13 @@ final class NewFunctionArrayDereferencingSniff extends Sniff
 
         // Is this token really a function or method call ?
         if ($tokens[$stackPtr]['code'] === \T_STRING) {
-            $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            $prevToken = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
             if ($prevToken !== false
                 && isset(Collections::objectOperators()[$tokens[$prevToken]['code']]) === false
             ) {
                 if ($tokens[$prevToken]['code'] === \T_BITWISE_AND) {
                     // This may be a function declared by reference.
-                    $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true);
+                    $prevToken = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($prevToken - 1), null, true);
                 }
 
                 $ignore = [
@@ -163,7 +163,7 @@ final class NewFunctionArrayDereferencingSniff extends Sniff
         $braces  = [];
 
         do {
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($current + 1), null, true, null, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($current + 1), null, true, null, true);
             if ($nextNonEmpty === false) {
                 break;
             }

@@ -71,7 +71,7 @@ final class NewNamedParametersSniff extends Sniff
             return;
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS
             || isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false
         ) {
@@ -85,7 +85,7 @@ final class NewNamedParametersSniff extends Sniff
                 \T_USE      => true,
             ];
 
-            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
             if (isset($ignore[$tokens[$prevNonEmpty]['code']]) === true) {
                 // Not a function call.
                 return;

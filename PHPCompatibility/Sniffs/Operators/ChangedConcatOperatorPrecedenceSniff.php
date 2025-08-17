@@ -174,8 +174,8 @@ final class ChangedConcatOperatorPrecedenceSniff extends Sniff
             }
 
             // Check for chain being broken by a token with a lower precedence.
-            if (isset(Tokens::$booleanOperators[$tokens[$i]['code']]) === true
-                || isset(Tokens::$assignmentTokens[$tokens[$i]['code']]) === true
+            if (isset(Tokens::BOOLEAN_OPERATORS[$tokens[$i]['code']]) === true
+                || isset(Tokens::ASSIGNMENT_TOKENS[$tokens[$i]['code']]) === true
             ) {
                 return;
             }

@@ -166,7 +166,7 @@ final class NewClosureSniff extends Sniff
                 /*
                  * Closures only have access to $this if used within a class context.
                  */
-                elseif (Conditions::hasCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens) === false) {
+                elseif (Conditions::hasCondition($phpcsFile, $stackPtr, Tokens::OO_SCOPE_TOKENS) === false) {
                     $phpcsFile->addWarning(
                         'Closures / anonymous functions only have access to $this if used within a class or when bound to an object using bindTo(). Please verify.',
                         $thisFound,
@@ -195,7 +195,7 @@ final class NewClosureSniff extends Sniff
     protected function isClosureStatic(File $phpcsFile, $stackPtr)
     {
         $tokens    = $phpcsFile->getTokens();
-        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true, null, true);
 
         return ($prevToken !== false && $tokens[$prevToken]['code'] === \T_STATIC);
     }
@@ -303,7 +303,7 @@ final class NewClosureSniff extends Sniff
             }
 
             // T_STATIC, make sure it is used as a class reference.
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($found + 1), $endToken, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($found + 1), $endToken, true);
             if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_DOUBLE_COLON) {
                 return false;
             }

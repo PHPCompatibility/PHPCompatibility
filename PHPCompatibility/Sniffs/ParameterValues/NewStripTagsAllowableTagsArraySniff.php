@@ -76,7 +76,7 @@ final class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallPara
         }
 
         $tokens       = $phpcsFile->getTokens();
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], $targetParam['end'], true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $targetParam['start'], $targetParam['end'], true);
 
         if ($nextNonEmpty === false) {
             // Shouldn't be possible.
@@ -119,7 +119,7 @@ final class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallPara
                         break;
                     }
 
-                    if (isset(Tokens::$textStringTokens[$tokens[$i]['code']]) === true
+                    if (isset(Tokens::TEXT_STRING_TOKENS[$tokens[$i]['code']]) === true
                         && \strpos($tokens[$i]['content'], '>') !== false
                     ) {
                         $phpcsFile->addWarning(

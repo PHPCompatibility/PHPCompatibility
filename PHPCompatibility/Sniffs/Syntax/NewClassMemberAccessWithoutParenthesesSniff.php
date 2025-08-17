@@ -65,7 +65,7 @@ final class NewClassMemberAccessWithoutParenthesesSniff extends Sniff
             return;
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false) {
             // Live coding/parse error.
             return;
@@ -87,7 +87,7 @@ final class NewClassMemberAccessWithoutParenthesesSniff extends Sniff
 
         $endOfStatement = $phpcsFile->findEndOfStatement($stackPtr);
 
-        $ignore              = Tokens::$emptyTokens;
+        $ignore              = Tokens::EMPTY_TOKENS;
         $ignore             += Collections::namespacedNameTokens();
         $ignore[\T_READONLY] = \T_READONLY; // PHP 8.3 readonly anonymous classes.
         $ignore[\T_VARIABLE] = \T_VARIABLE;

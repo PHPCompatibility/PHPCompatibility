@@ -122,7 +122,7 @@ final class NewArrayUnpackingSniff extends Sniff
             }
 
             // Ok, found one.
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), null, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($i + 1), null, true);
             $snippet      = GetTokensAsString::compact($phpcsFile, $i, $nextNonEmpty, true);
             $phpcsFile->addError(
                 'Array unpacking within array declarations using the spread operator is not supported in PHP 7.3 or earlier. Found: %s',

@@ -73,13 +73,13 @@ final class ForbiddenClassAliasSniff extends AbstractFunctionCallParameterSniff
     /**
      * Tokens which we are looking for in the parameter.
      *
-     * This property is set in the register() method.
+     * This property is updated from the register() method.
      *
      * @since 10.0.0
      *
      * @var array<int|string, int|string>
      */
-    private $targetTokens = [];
+    private $targetTokens = Tokens::EMPTY_TOKENS + Tokens::HEREDOC_TOKENS + Tokens::STRING_TOKENS;
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -90,10 +90,6 @@ final class ForbiddenClassAliasSniff extends AbstractFunctionCallParameterSniff
      */
     public function register()
     {
-        // Only set the $targetTokens property once.
-        $this->targetTokens  = Tokens::$emptyTokens;
-        $this->targetTokens += Tokens::$heredocTokens;
-        $this->targetTokens += Tokens::$stringTokens;
         unset($this->targetTokens[\T_DOUBLE_QUOTED_STRING]);
 
         return parent::register();
@@ -131,7 +127,7 @@ final class ForbiddenClassAliasSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        $firstNonEmpty   = $phpcsFile->findNext(Tokens::$emptyTokens, $param['start'], ($param['end'] + 1), true);
+        $firstNonEmpty   = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $param['start'], ($param['end'] + 1), true);
         $hasNonTextToken = $phpcsFile->findNext($this->targetTokens, $firstNonEmpty, ($param['end'] + 1), true);
         if ($hasNonTextToken !== false) {
             // Non text string token found.

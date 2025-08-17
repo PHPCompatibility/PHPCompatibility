@@ -79,7 +79,7 @@ trait PCRERegexTrait
             );
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $paramInfo['start'], ($paramInfo['end'] + 1), true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $paramInfo['start'], ($paramInfo['end'] + 1), true);
         if ($nextNonEmpty === false) {
             // Shouldn't be possible.
             return [];

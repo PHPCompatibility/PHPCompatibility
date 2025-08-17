@@ -149,7 +149,7 @@ final class NewClassMemberAccessSniff extends Sniff
 
         $parenthesisCloser = $tokens[$parenthesisOpener]['parenthesis_closer'];
 
-        $prevBeforeParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($parenthesisOpener - 1), null, true);
+        $prevBeforeParenthesis = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($parenthesisOpener - 1), null, true);
         if ($prevBeforeParenthesis !== false
             && isset(Tokens::NAME_TOKENS[$tokens[$prevBeforeParenthesis]['code']]) === true
         ) {
@@ -161,7 +161,7 @@ final class NewClassMemberAccessSniff extends Sniff
         $end    = $parenthesisCloser;
 
         do {
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($end + 1), null, true, null, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($end + 1), null, true, null, true);
             if ($nextNonEmpty === false) {
                 break;
             }

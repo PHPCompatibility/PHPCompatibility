@@ -83,7 +83,7 @@ final class ForbiddenStripTagsSelfClosingXHTMLSniff extends AbstractFunctionCall
                 return;
             }
 
-            if (isset(Tokens::$textStringTokens[$tokens[$i]['code']]) === true
+            if (isset(Tokens::TEXT_STRING_TOKENS[$tokens[$i]['code']]) === true
                 && \strpos($tokens[$i]['content'], '/>') !== false
             ) {
                 $phpcsFile->addError(

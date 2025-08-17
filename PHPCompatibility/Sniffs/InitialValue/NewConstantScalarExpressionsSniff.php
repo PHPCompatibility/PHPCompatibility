@@ -59,7 +59,7 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
      *
      * @var array<int|string, int|string>
      */
-    protected $safeOperands = [
+    protected $safeOperands = Tokens::HEREDOC_TOKENS + Tokens::MAGIC_CONSTANTS + Tokens::EMPTY_TOKENS + Tokens::NAME_TOKENS + [
         \T_LNUMBER                  => \T_LNUMBER,
         \T_DNUMBER                  => \T_DNUMBER,
         \T_CONSTANT_ENCAPSED_STRING => \T_CONSTANT_ENCAPSED_STRING,
@@ -78,29 +78,7 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
      */
     public function register()
     {
-        // Set the properties up only once.
-        $this->setProperties();
-
         return parent::register();
-    }
-
-    /**
-     * Make some adjustments to the $safeOperands property.
-     *
-     * @since 8.2.0
-     *
-     * @return void
-     */
-    public function setProperties()
-    {
-        $this->safeOperands += Tokens::$heredocTokens;
-        $this->safeOperands += Tokens::$magicConstants;
-        $this->safeOperands += Tokens::$emptyTokens;
-        /*
-         * This can be neigh anything, but for any usage except constants,
-         * the namespaced name will be combined with non-allowed tokens, so we should be good.
-         */
-        $this->safeOperands += Tokens::NAME_TOKENS;
     }
 
     /**
@@ -184,7 +162,7 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
             case \T_PARENT:
             case \T_SELF:
             case \T_DOUBLE_COLON:
-                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonSimple + 1), ($end + 1), true);
+                $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($nextNonSimple + 1), ($end + 1), true);
 
                 if ($tokens[$nextNonSimple]['code'] === \T_PARENT
                     || $tokens[$nextNonSimple]['code'] === \T_SELF
@@ -199,7 +177,7 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
                         return false;
                     }
 
-                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($nextNonSimple - 1), null, true);
+                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($nextNonSimple - 1), null, true);
                     // No need to worry about parent/self, that's handled above and
                     // the double colon is skipped over in that case.
                     if ($prevNonEmpty === false
@@ -253,7 +231,7 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
                 ) {
                     $closer = $tokens[$nextNonSimple]['bracket_closer'];
                 } else {
-                    $maybeOpener = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonSimple + 1), ($end + 1), true);
+                    $maybeOpener = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($nextNonSimple + 1), ($end + 1), true);
                     if ($tokens[$maybeOpener]['code'] === \T_OPEN_PARENTHESIS) {
                         $opener = $maybeOpener;
                         if (isset($tokens[$opener]['parenthesis_closer']) === true) {

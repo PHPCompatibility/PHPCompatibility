@@ -203,7 +203,7 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
             }
 
             // Make sure there is something between the braces, otherwise it's still not curly brace array access.
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($open + 1), $close, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($open + 1), $close, true);
             if ($nextNonEmpty === false) {
                 // Nothing between the brackets. Parse error. Ignore.
                 continue;
@@ -248,7 +248,7 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
         $braces  = [];
 
         do {
-            $current = $phpcsFile->findNext(Tokens::$emptyTokens, ($current + 1), null, true);
+            $current = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($current + 1), null, true);
             if ($current === false) {
                 break;
             }
@@ -266,7 +266,7 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
             if ($tokens[$current]['code'] === \T_OBJECT_OPERATOR
                 || $tokens[$current]['code'] === \T_NULLSAFE_OBJECT_OPERATOR
             ) {
-                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($current + 1), null, true);
+                $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($current + 1), null, true);
                 if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_STRING) {
                     // Live coding or parse error.
                     break;
@@ -318,9 +318,9 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
     protected function isConstantArrayAccess(File $phpcsFile, $stackPtr)
     {
         $tokens       = $phpcsFile->getTokens();
-        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false) {
             return [];
         }
@@ -336,7 +336,7 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
         $braces  = [];
 
         do {
-            $current = $phpcsFile->findNext(Tokens::$emptyTokens, ($current + 1), null, true);
+            $current = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($current + 1), null, true);
             if ($current === false) {
                 break;
             }

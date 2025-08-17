@@ -64,7 +64,7 @@ final class RemovedOrphanedParentSniff extends Sniff
         }
 
         $tokens   = $phpcsFile->getTokens();
-        $classPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
+        $classPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, Tokens::OO_SCOPE_TOKENS);
         if ($classPtr === false || $tokens[$classPtr]['code'] === \T_TRAIT) {
             // Use outside of a class scope. Not our concern.
             return;

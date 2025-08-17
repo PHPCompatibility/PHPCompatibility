@@ -60,7 +60,7 @@ final class NewDynamicClassConstantFetchSniff extends Sniff
         }
 
         $tokens       = $phpcsFile->getTokens();
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $stackPtr + 1, null, true);
         if ($nextNonEmpty === false) {
             return;
         }
@@ -77,13 +77,13 @@ final class NewDynamicClassConstantFetchSniff extends Sniff
         }
 
         $bracketCloser = $tokens[$bracketOpener]['bracket_closer'];
-        $nextNonEmpty  = $phpcsFile->findNext(Tokens::$emptyTokens, $bracketCloser + 1, null, true);
+        $nextNonEmpty  = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $bracketCloser + 1, null, true);
         // Prevent false positive for syntax which has been supported since PHP 5.4: `Foo::{$bar}()`.
         if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_OPEN_PARENTHESIS) {
             return;
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $bracketOpener + 1, $bracketCloser, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $bracketOpener + 1, $bracketCloser, true);
         // Example: `Foo::{{$bar->name}()}` is a parse error that might seem like a valid constant fetch due to `Foo::{...}`.
         if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_OPEN_CURLY_BRACKET) {
             return;

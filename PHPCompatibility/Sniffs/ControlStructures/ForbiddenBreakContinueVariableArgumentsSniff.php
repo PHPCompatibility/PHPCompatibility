@@ -100,7 +100,7 @@ final class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
             if (isset(Tokens::NAME_TOKENS[$tokens[$curToken]['code']]) === true) {
                 // If the next non-whitespace token after the (potentially namespaced) name
                 // is an opening parenthesis then it's a function call.
-                $openBracket = $phpcsFile->findNext(Tokens::$emptyTokens, $curToken + 1, null, true);
+                $openBracket = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $curToken + 1, null, true);
                 if ($tokens[$openBracket]['code'] === \T_OPEN_PARENTHESIS) {
                     $errorType = 'variableArgument';
                     break;

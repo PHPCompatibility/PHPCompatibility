@@ -105,8 +105,8 @@ final class ChangedIntToBoolParamTypeSniff extends AbstractFunctionCallParameter
                 \T_LNUMBER => \T_LNUMBER,
                 \T_DNUMBER => \T_DNUMBER,
             ];
-            $search += Tokens::$arithmeticTokens;
-            $search += Tokens::$emptyTokens;
+            $search += Tokens::ARITHMETIC_TOKENS;
+            $search += Tokens::EMPTY_TOKENS;
         }
 
         $functionLC   = \strtolower($functionName);

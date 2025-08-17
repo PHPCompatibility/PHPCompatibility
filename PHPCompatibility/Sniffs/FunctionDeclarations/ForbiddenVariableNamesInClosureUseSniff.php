@@ -89,7 +89,7 @@ final class ForbiddenVariableNamesInClosureUseSniff extends Sniff
          * UseStatements::isClosureUse() check.
          */
         $tokens        = $phpcsFile->getTokens();
-        $prevNonEmpty  = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevNonEmpty  = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
         $closureParams = FunctionDeclarations::getParameters($phpcsFile, $tokens[$prevNonEmpty]['parenthesis_owner']);
 
         /*

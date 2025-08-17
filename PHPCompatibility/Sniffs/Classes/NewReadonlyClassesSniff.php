@@ -84,7 +84,7 @@ final class NewReadonlyClassesSniff extends Sniff
                 return;
             }
 
-            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
             if ($tokens[$prevNonEmpty]['code'] === \T_READONLY) {
                 $phpcsFile->addError(
                     'Readonly anonymous classes are not supported in PHP 8.2 or earlier.',

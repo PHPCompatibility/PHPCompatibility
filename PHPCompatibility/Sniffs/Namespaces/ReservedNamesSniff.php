@@ -171,7 +171,7 @@ final class ReservedNamesSniff extends Sniff
             }
 
             // Throw the message on the first part of the namespace name.
-            $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $firstNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
 
             // Special case "PHP" to a warning with a custom message.
             if ($firstPart === 'php') {
@@ -208,7 +208,7 @@ final class ReservedNamesSniff extends Sniff
             }
 
             // Throw the message on the first part of the namespace name.
-            $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $firstNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
 
             $warning = 'The top-level namespace name "%s" is reserved for, and in use by, a PECL extension%s. Found: %s';
             $code    = MessageHelper::stringToErrorCode($firstPart, true) . 'PeclReserved';

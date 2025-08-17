@@ -1168,7 +1168,7 @@ final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSnif
             $targetParam = PassedParameters::getParameterFromStack($parameters, $offset, $parameterDetails['name']);
 
             if ($targetParam !== false && $targetParam['clean'] !== '') {
-                $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
+                $firstNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $targetParam['start'], ($targetParam['end'] + 1), true);
 
                 $itemInfo = [
                     'name'   => $functionName,

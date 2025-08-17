@@ -79,7 +79,7 @@ final class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
         }
 
         $tokens       = $phpcsFile->getTokens();
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], $targetParam['end'], true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $targetParam['start'], $targetParam['end'], true);
 
         if ($nextNonEmpty === false) {
             // Shouldn't be possible.

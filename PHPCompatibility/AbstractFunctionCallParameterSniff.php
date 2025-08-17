@@ -113,7 +113,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
             return;
         }
 
-        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextToken = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($nextToken === false
             || $tokens[$nextToken]['code'] !== \T_OPEN_PARENTHESIS
             || (isset($tokens[$nextToken]['parenthesis_owner']) === true
@@ -129,7 +129,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
         }
 
         if ($tokens[$stackPtr]['code'] === \T_STRING) {
-            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
 
             if ($this->isMethod === true) {
                 if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === false) {

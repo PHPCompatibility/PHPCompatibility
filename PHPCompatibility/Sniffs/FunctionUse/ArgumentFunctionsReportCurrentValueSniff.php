@@ -145,7 +145,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
         $prevNonEmpty = $scopeOpener;
         for ($i = ($scopeOpener + 1);
             $i < $scopeCloser;
-            $prevNonEmpty = (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) ? $prevNonEmpty : $i), $i++
+            $prevNonEmpty = (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']]) ? $prevNonEmpty : $i), $i++
         ) {
             if ((isset(Collections::closedScopes()[$tokens[$i]['code']]) || $tokens[$i]['code'] === \T_FN)
                 && isset($tokens[$i]['scope_closer'])
@@ -171,7 +171,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
             /*
              * Ok, so is this really a function call to one of the PHP native functions ?
              */
-            $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), null, true);
+            $next = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($i + 1), null, true);
             if ($next === false || $tokens[$next]['code'] !== \T_OPEN_PARENTHESIS) {
                 // Live coding, parse error or not a function call.
                 continue;
@@ -188,9 +188,9 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              * Allowed for the debug_*backtrace() functions, but please don't do this....
              */
             if (isset($tokens[$next]['parenthesis_closer'])) {
-                $hasEllipsis = $phpcsFile->findNext(Tokens::$emptyTokens, ($next + 1), null, true);
+                $hasEllipsis = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($next + 1), null, true);
                 if ($hasEllipsis !== false && $tokens[$hasEllipsis]['code'] === \T_ELLIPSIS) {
-                    $isFirstClassCallable = $phpcsFile->findNext(Tokens::$emptyTokens, ($hasEllipsis + 1), null, true);
+                    $isFirstClassCallable = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($hasEllipsis + 1), null, true);
                     if ($isFirstClassCallable !== false && $isFirstClassCallable === $tokens[$next]['parenthesis_closer']) {
                         if ($foundFunctionName === 'debug_backtrace' || $foundFunctionName === 'debug_print_backtrace') {
                             $error = 'Since PHP 7.0, functions inspecting arguments, like %1$s(), no longer report the original value as passed to a parameter, but will instead provide the current value. Using this function as a first class callable is a really bad idea.';
@@ -263,7 +263,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 $lastParenthesesOpener = Parentheses::getLastOpener($phpcsFile, $i);
                 if ($lastParenthesesOpener !== false) {
 
-                    $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($lastParenthesesOpener - 1), null, true);
+                    $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($lastParenthesesOpener - 1), null, true);
                     if (($tokens[$maybeFunctionCall]['code'] === \T_STRING
                         || $tokens[$maybeFunctionCall]['code'] === \T_NAME_FULLY_QUALIFIED)
                         && $this->isCallToGlobalFunction($phpcsFile, $maybeFunctionCall) === true
@@ -318,7 +318,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              */
             if ($foundFunctionName === 'debug_backtrace' && isset($tokens[$next]['parenthesis_closer'])) {
                 $afterParenthesis = $phpcsFile->findNext(
-                    Tokens::$emptyTokens,
+                    Tokens::EMPTY_TOKENS,
                     ($tokens[$next]['parenthesis_closer'] + 1),
                     null,
                     true
@@ -328,7 +328,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     && isset($tokens[$afterParenthesis]['bracket_closer'])
                 ) {
                     $afterStackFrame = $phpcsFile->findNext(
-                        Tokens::$emptyTokens,
+                        Tokens::EMPTY_TOKENS,
                         ($tokens[$afterParenthesis]['bracket_closer'] + 1),
                         null,
                         true
@@ -461,7 +461,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     }
                 }
 
-                $beforeVar                = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($j - 1), null, true);
+                $beforeVar                = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($j - 1), null, true);
                 $startOfVariableStatement = BCFile::findStartOfStatement(
                     $phpcsFile,
                     $j,
@@ -499,7 +499,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
                     $endOfVariableStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($j + 1));
                     $lastAssignmentOperator = $phpcsFile->findPrevious(
-                        Tokens::$assignmentTokens,
+                        Tokens::ASSIGNMENT_TOKENS,
                         ($endOfVariableStatement - 1),
                         $startOfVariableStatement
                     );
@@ -540,7 +540,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     break;
                 }
 
-                $afterVar              = $phpcsFile->findNext(Tokens::$emptyTokens, ($j + 1), null, true);
+                $afterVar              = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($j + 1), null, true);
                 $lastParenthesesOpener = Parentheses::getLastOpener($phpcsFile, $j);
                 if ($lastParenthesesOpener !== false
                     && isset($tokens[$lastParenthesesOpener]['parenthesis_closer']) === true
@@ -553,7 +553,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
                 // Check for $obj::class, which can be safely ignored.
                 if ($tokens[$afterVar]['code'] === \T_DOUBLE_COLON) {
-                    $nextAfterAfterVar = $phpcsFile->findNext(Tokens::$emptyTokens, ($afterVar + 1), null, true);
+                    $nextAfterAfterVar = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($afterVar + 1), null, true);
                     if ($tokens[$nextAfterAfterVar]['code'] === \T_STRING
                         && \strtolower($tokens[$nextAfterAfterVar]['content']) === 'class'
                     ) {
@@ -601,7 +601,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     && isset($tokens[$afterVar]['bracket_closer'])
                 ) {
                     // Skip past array access on the variable.
-                    while (($afterVar = $phpcsFile->findNext(Tokens::$emptyTokens, ($tokens[$afterVar]['bracket_closer'] + 1), null, true)) !== false) {
+                    while (($afterVar = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($tokens[$afterVar]['bracket_closer'] + 1), null, true)) !== false) {
                         if ($tokens[$afterVar]['code'] !== \T_OPEN_SQUARE_BRACKET
                             || isset($tokens[$afterVar]['bracket_closer']) === false
                         ) {
@@ -610,7 +610,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     }
                 }
 
-                if (isset(Tokens::$assignmentTokens[$tokens[$afterVar]['code']])
+                if (isset(Tokens::ASSIGNMENT_TOKENS[$tokens[$afterVar]['code']])
                     && $tokens[$afterVar]['code'] !== \T_COALESCE_EQUAL
                 ) {
                     // Variable is being assigned something.
@@ -667,7 +667,7 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
         }
 
         $tokens       = $phpcsFile->getTokens();
-        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
 
         if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === true) {
             // Method call.

@@ -64,13 +64,13 @@ final class NewLateStaticBindingSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true, null, true);
         if ($nextNonEmpty === false) {
             return;
         }
 
         if ($tokens[$nextNonEmpty]['code'] !== \T_DOUBLE_COLON) {
-            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true, null, true);
             if ($tokens[$prevNonEmpty]['code'] !== \T_NEW
                 && $tokens[$prevNonEmpty]['code'] !== \T_INSTANCEOF
             ) {
@@ -78,7 +78,7 @@ final class NewLateStaticBindingSniff extends Sniff
             }
         }
 
-        $inClass = Conditions::hasCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
+        $inClass = Conditions::hasCondition($phpcsFile, $stackPtr, Tokens::OO_SCOPE_TOKENS);
 
         if ($inClass === true && ScannedCode::shouldRunOnOrBelow('5.2') === true) {
             $phpcsFile->addError(

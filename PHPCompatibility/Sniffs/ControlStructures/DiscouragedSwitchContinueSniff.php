@@ -67,13 +67,11 @@ final class DiscouragedSwitchContinueSniff extends Sniff
     /**
      * Token codes which are accepted to determine the level for the continue.
      *
-     * This array is enriched with the arithmetic operators in the register() method.
-     *
      * @since 8.2.0
      *
      * @var array<int|string, int|string>
      */
-    protected $acceptedLevelTokens = [
+    protected $acceptedLevelTokens = Tokens::ARITHMETIC_TOKENS + Tokens::EMPTY_TOKENS + [
         \T_LNUMBER           => \T_LNUMBER,
         \T_OPEN_PARENTHESIS  => \T_OPEN_PARENTHESIS,
         \T_CLOSE_PARENTHESIS => \T_CLOSE_PARENTHESIS,
@@ -89,9 +87,6 @@ final class DiscouragedSwitchContinueSniff extends Sniff
      */
     public function register()
     {
-        $this->acceptedLevelTokens += Tokens::$arithmeticTokens;
-        $this->acceptedLevelTokens += Tokens::$emptyTokens;
-
         return [\T_SWITCH];
     }
 
@@ -191,7 +186,7 @@ final class DiscouragedSwitchContinueSniff extends Sniff
                         $i          = $numberInfo['last_token'];
                     }
 
-                    if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === true) {
+                    if (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']]) === true) {
                         continue;
                     }
 

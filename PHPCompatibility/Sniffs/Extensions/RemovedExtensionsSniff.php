@@ -242,7 +242,7 @@ final class RemovedExtensionsSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         // Find the next non-empty token.
-        $openBracket = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $openBracket = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
 
         if ($tokens[$openBracket]['code'] !== \T_OPEN_PARENTHESIS) {
             // Not a function call.
@@ -255,7 +255,7 @@ final class RemovedExtensionsSniff extends Sniff
         }
 
         // Find the previous non-empty token.
-        $search   = Tokens::$emptyTokens;
+        $search   = Tokens::EMPTY_TOKENS;
         $search[] = \T_BITWISE_AND;
         $previous = $phpcsFile->findPrevious($search, ($stackPtr - 1), null, true);
         if ($tokens[$previous]['code'] === \T_FUNCTION) {

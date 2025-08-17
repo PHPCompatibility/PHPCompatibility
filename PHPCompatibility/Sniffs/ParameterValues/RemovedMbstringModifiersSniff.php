@@ -110,7 +110,7 @@ final class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterS
                 return;
             }
 
-            if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === false) {
+            if (isset(Tokens::STRING_TOKENS[$tokens[$i]['code']]) === false) {
                 continue;
             }
 
