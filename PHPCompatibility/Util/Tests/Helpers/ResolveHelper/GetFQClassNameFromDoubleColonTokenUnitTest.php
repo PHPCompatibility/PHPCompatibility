@@ -22,6 +22,7 @@ use PHPCSUtils\TestUtils\UtilityMethodTestCase;
  * @since 7.0.5
  *
  * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQClassNameFromDoubleColonToken
+ * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQName
  */
 final class GetFQClassNameFromDoubleColonTokenUnitTest extends UtilityMethodTestCase
 {

@@ -26,7 +26,7 @@ namespace Testing {
     /* test 11 */
     DateTime::$static_property;
     /* test 12 */
-    DateTime::static_function();
+    namespace\DateTime::static_function();
 
     class MyClass extends Foo {
         function test() {
