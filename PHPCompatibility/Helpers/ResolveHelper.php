@@ -165,11 +165,7 @@ final class ResolveHelper
         $find  = Collections::namespacedNameTokens();
         $find += Tokens::$emptyTokens;
 
-        $start = $phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true);
-        if ($start === false || isset($tokens[($start + 1)]) === false) {
-            return '';
-        }
-
+        $start     = $phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true);
         $start     = ($start + 1);
         $className = GetTokensAsString::noEmpties($phpcsFile, $start, ($stackPtr - 1));
         $className = \trim($className);
