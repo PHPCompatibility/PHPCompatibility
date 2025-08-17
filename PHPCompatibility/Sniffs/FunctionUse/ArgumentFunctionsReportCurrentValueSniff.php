@@ -16,6 +16,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCFile;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Operators;
 use PHPCSUtils\Utils\PassedParameters;
@@ -463,19 +464,11 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     break;
                 }
 
-                if (empty($tokens[$j]['nested_parenthesis']) === false) {
-                    $parentheses = $tokens[$j]['nested_parenthesis'];
-                    \end($parentheses);
-                    $openParens   = \key($parentheses);
-                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($openParens - 1), null, true);
-                    if ($prevNonEmpty !== false
-                        && $tokens[$prevNonEmpty]['code'] === \T_UNSET
-                    ) {
-                        // Variable is being unset.
-                        $scanResult    = 'error';
-                        $variableToken = $j;
-                        break;
-                    }
+                if (Context::inUnset($phpcsFile, $j)) {
+                    // Variable is being unset.
+                    $scanResult    = 'error';
+                    $variableToken = $j;
+                    break;
                 }
 
                 if ($tokens[$afterVar]['code'] === \T_OPEN_SQUARE_BRACKET
