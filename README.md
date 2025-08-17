@@ -42,7 +42,7 @@ Requirements
 -------
 
 * PHP 5.4+
-* PHP CodeSniffer: 3.13.3+.
+* PHP CodeSniffer: 3.13.3+ / 4.0.0+.
 
 The sniffs are designed to give the same results regardless of which PHP version you are using to run PHP CodeSniffer. You should get consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on a recent PHP version in combination with a recent PHP_CodeSniffer version.
 
