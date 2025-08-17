@@ -39,16 +39,12 @@ final class NewLateStaticBindingSniff extends Sniff
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 7.0.3
-     * @since 10.0.0 Now also sniffs for `T_STRING`.
      *
      * @return array<int|string>
      */
     public function register()
     {
-        return [
-            \T_STATIC,
-            \T_STRING,
-        ];
+        return [\T_STATIC];
     }
 
 
@@ -68,38 +64,18 @@ final class NewLateStaticBindingSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        switch ($tokens[$stackPtr]['code']) {
-            case \T_STRING:
-                // PHPCS 3.x changes T_STATIC to T_STRING when used with instanceof.
-                if ($tokens[$stackPtr]['content'] !== 'static') {
-                    return;
-                }
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
+        if ($nextNonEmpty === false) {
+            return;
+        }
 
-                $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-                if ($prevNonEmpty === false
-                    || $tokens[$prevNonEmpty]['code'] !== \T_INSTANCEOF
-                ) {
-                    return;
-                }
-
-                break;
-
-            case \T_STATIC:
-                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
-                if ($nextNonEmpty === false) {
-                    return;
-                }
-
-                if ($tokens[$nextNonEmpty]['code'] !== \T_DOUBLE_COLON) {
-                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
-                    if ($tokens[$prevNonEmpty]['code'] !== \T_NEW
-                        && $tokens[$prevNonEmpty]['code'] !== \T_INSTANCEOF // PHPCS 4.x.
-                    ) {
-                        return;
-                    }
-                }
-
-                break;
+        if ($tokens[$nextNonEmpty]['code'] !== \T_DOUBLE_COLON) {
+            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+            if ($tokens[$prevNonEmpty]['code'] !== \T_NEW
+                && $tokens[$prevNonEmpty]['code'] !== \T_INSTANCEOF
+            ) {
+                return;
+            }
         }
 
         $inClass = Conditions::hasCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
