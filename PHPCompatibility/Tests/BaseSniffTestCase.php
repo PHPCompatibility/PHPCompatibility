@@ -154,7 +154,6 @@ abstract class BaseSniffTestCase extends TestCase
         // Set up the Config and tokenize the test case file only once.
         if (isset(self::$sniffFiles[$pathToFile]['only_parsed']) === false) {
             try {
-                // PHPCS 3.x, 4.x.
                 $config            = new Config();
                 $config->cache     = false;
                 $config->standards = [self::STANDARD_NAME];

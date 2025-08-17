@@ -16,7 +16,7 @@ if (defined('PHP_CODESNIFFER_IN_TESTS') === false) {
     define('PHP_CODESNIFFER_IN_TESTS', true);
 }
 
-// The below two defines are needed for PHPCS 3.x.
+// The below two defines are needed for PHPCS > 2.x.
 if (defined('PHP_CODESNIFFER_CBF') === false) {
     define('PHP_CODESNIFFER_CBF', false);
 }
@@ -61,7 +61,6 @@ if ($phpcsUtilsDir !== false) {
 
 // Try and load the PHPCS autoloader.
 if ($phpcsDir !== false && file_exists($phpcsDir . '/autoload.php')) {
-    // PHPCS 3.x.
     require_once $phpcsDir . '/autoload.php';
 
     /*

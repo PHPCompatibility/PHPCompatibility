@@ -13,10 +13,8 @@
  */
 
 /*
- * Alias a number of PHPCS 3.x classes to their PHPCS 2.x equivalents.
- *
- * This file is auto-loaded by PHPCS 3.x before any sniffs are loaded
- * through the PHPCS 3.x `<autoload>` ruleset directive.
+ * This file is auto-loaded by PHPCS before any sniffs are loaded
+ * through the PHPCS `<autoload>` ruleset directive.
  */
 if (defined('PHPCOMPATIBILITY_PHPCS_ALIASES_SET') === false) {
     define('PHPCOMPATIBILITY_PHPCS_ALIASES_SET', true);
