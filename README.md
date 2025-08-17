@@ -236,8 +236,6 @@ Projects extending PHPCompatibility
 --------------------------------------
 There are hundreds of public projects using PHPCompatibility or extending on top of it. A short list of some that you might know or have a look at :
 * [adamculp/php-code-quality](https://github.com/adamculp/php-code-quality) - a Docker image doing a lot of code quality checks
-* [VFAC/PHP7Compatibility](https://vfac.fr/projects/php7compatibility) - a Docker container to check PHP7 Compatibility
-* [grumphp-php-compatibility](https://github.com/wunderio/grumphp-php-compatibility) - A plugin for [GrumPHP](https://github.com/phpro/grumphp)
 * PHPCompatibility Checker WordPress plugin : [Wordpress site](https://wordpress.org/plugins/php-compatibility-checker/) and [Github](https://github.com/wpengine/phpcompat/)
 * [WordPress Tide project](https://wptide.org/)
 * [PHPStorm has built-in support for PHPCompatibility](https://www.jetbrains.com/help/phpstorm/using-php-code-sniffer.html#788c81b6)
