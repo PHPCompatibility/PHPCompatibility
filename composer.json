@@ -27,7 +27,7 @@
     "security": "https://github.com/PHPCompatibility/PHPCompatibility/security/policy"
   },
   "require": {
-    "php": ">=5.4",
+    "php": ">=7.2",
     "squizlabs/php_codesniffer": "^3.13.3 || ^4.0",
     "phpcsstandards/phpcsutils": "^1.1.2"
   },

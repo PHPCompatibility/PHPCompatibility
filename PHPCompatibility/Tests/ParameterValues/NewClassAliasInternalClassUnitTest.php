@@ -59,14 +59,11 @@ final class NewClassAliasInternalClassUnitTest extends BaseSniffTestCase
             [75],
             [76],
             [82],
+            [88],
         ];
 
         if (\extension_loaded('mysqli')) {
             $data[] = [85];
-        }
-
-        if (\PHP_VERSION_ID >= 70200) {
-            $data[] = [88];
         }
 
         if (\PHP_VERSION_ID >= 80000) {
