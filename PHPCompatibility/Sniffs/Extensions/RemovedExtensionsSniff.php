@@ -52,7 +52,10 @@ class RemovedExtensionsSniff extends Sniff
      * This property can be set from the ruleset, like so:
      * <rule ref="PHPCompatibility.Extensions.RemovedExtensions">
      *   <properties>
-     *     <property name="functionWhitelist" type="array" value="mysql_to_rfc3339,mysql_another_function" />
+     *     <property name="functionWhitelist" type="array">
+     *       <element value="mysql_to_rfc3339"/>
+     *       <element value="mysql_another_function"/>
+     *     </property>
      *   </properties>
      * </rule>
      *
