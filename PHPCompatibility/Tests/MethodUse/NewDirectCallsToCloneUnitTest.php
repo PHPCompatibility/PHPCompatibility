@@ -87,6 +87,10 @@ final class NewDirectCallsToCloneUnitTest extends BaseSniffTestCase
             $cases[] = [$line];
         }
 
+        $cases[] = [38];
+        $cases[] = [39];
+        $cases[] = [40];
+
         return $cases;
     }
 

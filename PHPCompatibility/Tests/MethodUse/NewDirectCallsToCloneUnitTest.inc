@@ -33,3 +33,8 @@ class DEF {
 $a = (new ABC()) ->  /* comment */ __clone();
 StaticClass::__clone();
 $obj?->__clone();
+
+// Irrelevant, not the magic method.
+echo __clone($param);
+echo \Some\NameSp\__clone($param);
+echo namespace\__clone($param);
