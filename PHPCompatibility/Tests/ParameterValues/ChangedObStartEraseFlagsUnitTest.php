@@ -58,6 +58,10 @@ class ChangedObStartEraseFlagsUnitTest extends BaseSniffTestCase
             [13],
             [14],
             [26],
+            [40],
+            [41],
+            [45],
+            [46],
         ];
     }
 
@@ -100,6 +104,8 @@ class ChangedObStartEraseFlagsUnitTest extends BaseSniffTestCase
             [22],
             [23],
             [27],
+            [49],
+            [50],
         ];
     }
 

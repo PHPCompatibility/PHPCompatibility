@@ -77,12 +77,13 @@ class ChangedObStartEraseFlagsSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        $cleanValueLc = \strtolower($targetParam['clean']);
-
         $error = 'The third parameter of ob_start() changed from the boolean $erase to the integer $flags in PHP 5.4. Found: %s';
         $data  = [$targetParam['clean']];
 
-        if ($cleanValueLc === 'true' || $cleanValueLc === 'false') {
+        $cleanValueLc = \strtolower($targetParam['clean']);
+        if ($cleanValueLc === 'true' || $cleanValueLc === 'false'
+            || $cleanValueLc === '\true' || $cleanValueLc === '\false'
+        ) {
             if (ScannedCode::shouldRunOnOrAbove('5.4') === true) {
                 $phpcsFile->addError($error, $targetParam['start'], 'BooleanFound', $data);
             }

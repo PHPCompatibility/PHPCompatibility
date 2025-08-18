@@ -34,3 +34,17 @@ $obj?->ob_start($output_callback, $chunk_size, true);
 namespace\ob_start($output_callback, $chunk_size, PHP_OUTPUT_HANDLER_STDFLAGS);
 \Fully\Qualified\ob_start($output_callback, $chunk_size, true);
 Partially\Qualified\ob_start($output_callback, $chunk_size, PHP_OUTPUT_HANDLER_STDFLAGS);
+
+// Handle uppercase true/false.
+// Not OK - error PHP >= 5.4.
+ob_start($output_callback, $chunk_size, TRUE);
+ob_start($output_callback, $chunk_size, FALSE);
+
+// Handle fully qualified parameter contents.
+// Not OK - error PHP >= 5.4.
+\ob_start($output_callback, $chunk_size, \true);
+ob_start($output_callback, $chunk_size, \false);
+
+// Not OK - error PHP < 5.4.
+ob_start($output_callback, $chunk_size, \PHP_OUTPUT_HANDLER_STDFLAGS);
+\ob_start($output_callback, $chunk_size, \PHP_OUTPUT_HANDLER_STDFLAGS | \PHP_OUTPUT_HANDLER_FLUSHABLE);
