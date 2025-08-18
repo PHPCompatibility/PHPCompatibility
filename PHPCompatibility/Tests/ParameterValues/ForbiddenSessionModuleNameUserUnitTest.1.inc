@@ -6,16 +6,16 @@
 // OK.
 session_module_name(module: $module);
 session_module_name();
-session_module_name('user' . $something);
+\session_module_name('user' . $something);
 session_module_name(<<<EOD
 user-nonsense
 EOD
 );
 
 // Not OK.
-session_module_name('user',);
+\session_module_name('user',);
 session_module_name(module: "USER");
-session_module_name(<<<'EOD'
+Session_Module_name(<<<'EOD'
 user
 EOD
 );
@@ -34,3 +34,8 @@ session_module_name(name: 'user'); // Wrong param name.
 // Safeguard against false positives when this name is used as an attribute class.
 #[Session_Module_Name('user')]
 function do_something() {}
+
+// Safeguard against false positives on namespaced function calls.
+namespace\session_module_name('user');
+\Fully\Qualified\session_module_name('user');
+Partially\Qualified\session_module_name('user');
