@@ -14,6 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -45,18 +46,33 @@ final class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameter
      * Tokens which, for the purposes of this sniff, indicate that there is
      * a variable element to the value passed.
      *
+     * {@internal This token array gets enriched from within the register() method.}
+     *
      * @since 9.0.0
      *
      * @var array<int|string>
      */
     private $variableValueTokens = [
-        \T_VARIABLE,
-        \T_STRING,
-        \T_SELF,
-        \T_PARENT,
-        \T_STATIC,
-        \T_DOUBLE_QUOTED_STRING,
+        \T_VARIABLE             => \T_VARIABLE,
+        \T_DOUBLE_QUOTED_STRING => \T_DOUBLE_QUOTED_STRING,
     ];
+
+
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @since 10.0.0
+     *
+     * @return array<int|string>
+     */
+    public function register()
+    {
+        // Enrich the variable value tokens array only once.
+        $this->variableValueTokens += Collections::namespacedNameTokens();
+        $this->variableValueTokens += Collections::ooHierarchyKeywords();
+
+        return parent::register();
+    }
 
 
     /**
