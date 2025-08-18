@@ -79,7 +79,13 @@ class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
             return;
         }
 
-        $tokens        = $phpcsFile->getTokens();
+        $tokens = $phpcsFile->getTokens();
+
+        if (isset($tokens[$ooMethodsLC['__construct']]['scope_opener'], $tokens[$ooMethodsLC['__construct']]['scope_closer']) === false) {
+            // Abstract method. Bow out.
+            return;
+        }
+
         $constructPtr  = $ooMethodsLC['__construct'];
         $functionOpen  = $tokens[$constructPtr]['scope_opener'];
         $functionClose = $tokens[$constructPtr]['scope_closer'];
