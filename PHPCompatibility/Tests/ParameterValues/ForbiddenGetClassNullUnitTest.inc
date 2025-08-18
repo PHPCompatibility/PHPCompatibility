@@ -24,3 +24,7 @@ $obj?->get_class(null);
 namespace\get_class(null);
 \Fully\Qualified\get_class(null);
 Partially\Qualified\get_class(null);
+
+// Handle fully qualified and uppercase null, not OK.
+get_class(NULL);
+\get_class(\null);

@@ -53,6 +53,8 @@ class ForbiddenGetClassNullUnitTest extends BaseSniffTestCase
             [11],
             [12],
             [15],
+            [29],
+            [30],
         ];
     }
 

@@ -74,7 +74,8 @@ class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
             return;
         }
 
-        if ($target['clean'] !== 'null') {
+        $cleanValueLc = \strtolower($target['clean']);
+        if ($cleanValueLc !== 'null' && $cleanValueLc !== '\null') {
             return;
         }
 
