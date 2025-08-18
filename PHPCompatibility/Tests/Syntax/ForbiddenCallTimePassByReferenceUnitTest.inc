@@ -19,7 +19,7 @@ preg_replace($a, $b, trim(&$a));
 // Ok: Bitwise operations as parameter.
 foobar(3 & $a); // LNUMBER + &
 foobar($a & $b); // variable + &
-foobar($b[0] & $a); // square bracket + &
+\foobar($b[0] & $a); // square bracket + &
 foobar(($a) & $b); // parenthesis + &
 foobar(intval(3) & $b); // function + &
 foobar(& $b); // Bad: pass by reference with space.
@@ -46,7 +46,7 @@ class MoreRefs
     }
 }
 
-abcd(&$x, &$y, $z, &$aa = false); // Bad: multiple pass by reference.
+\abcd(&$x, &$y, $z, &$aa = false); // Bad: multiple pass by reference.
 
 bcd(10, true, MYCONST); // OK: does not contain variables.
 
@@ -61,7 +61,7 @@ def( $dummy -= &$b );
 def( $dummy *= &$b );
 def( $dummy /= &$b );
 def( $dummy %= &$b );
-def( $dummy **= &$b );
+\def( $dummy **= &$b );
 def( $dummy &= &$b );
 def( $dummy |= &$b );
 def( $dummy ^= &$b );
@@ -102,3 +102,10 @@ Hooks::run( 'SecondaryDataUpdates', [ $title, $old,
 $d = fn ( &$a ) => $a;
 abc(fn ($a, &$b, $c) => array($a,$b,$c));
 abc(fn ($a, $b, $c) => array($a,$b,&$c));
+
+$wrong = new FooBar(&$a); // Bad: pass by reference.
+$wrong = namespace\abc(&$a); // Bad: pass by reference.
+$wrong = \Fully\Qualified\abc(&$a); // Bad: pass by reference.
+$wrong = Partially\Qualified\abc(&$a); // Bad: pass by reference.
+namespace\foobar(3 & $a); // OK.
+\Fully\Qualified\efg( true == &$b ); // OK.

@@ -62,6 +62,10 @@ final class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTestCase
             [49], // Bad: multiple call time pass by reference.
             [71], // Bad: call time pass by reference.
             [93], // Bad: call time pass by reference.
+            [106], // Bad: call time pass by reference.
+            [107], // Bad: call time pass by reference.
+            [108], // Bad: call time pass by reference.
+            [109], // Bad: call time pass by reference.
         ];
     }
 
@@ -146,6 +150,10 @@ final class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTestCase
             [102],
             [103],
             [104],
+
+            // Namespaced names.
+            [110],
+            [111],
         ];
     }
 
