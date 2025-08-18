@@ -103,8 +103,9 @@ class NewFopenModesUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
-        $data[] = [15];
-        $data[] = [16];
+        for ($line = 15; $line <= 27; $line++) {
+            $data[] = [$line];
+        }
 
         return $data;
     }
