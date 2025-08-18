@@ -4,7 +4,7 @@
  * These should all be fine.
  */
 hash_file(algo: "something"); // Not one of the targetted algorithms.
-hash("1st param", "md2"); // Not the right parameter.
+\hash("1st param", "md2"); // Not the right parameter.
 hash_init; // Not a function call.
 
 /**
@@ -12,15 +12,15 @@ hash_init; // Not a function call.
  */
 hash_file('md2');
 hash_file('ripemd256');
-hash_file("ripemd320");
+\hash_file("ripemd320");
 hash_file( "salsa10" );
 
 hash_hmac(     "salsa20"      );
 hash_hmac_file("snefru256" /*comment*/);
-hash_init(   'sha224'  );
+Hash_Init(   'sha224'  );
 
 hash(/*comment*/ "joaat");
-hash("fnv132", "2nd param", 3, false);
+Hash("fnv132", "2nd param", 3, false);
 hash("fnv164");
 
 hash_pbkdf2(algo: 'gost-crypto');
@@ -29,12 +29,12 @@ hash_file('sha512/224');
 hash_hmac_file('sha512/256');
 hash_hmac('sha3-224');
 hash_init('sha3-256');
-hash_pbkdf2('sha3-384');
+\hash_pbkdf2('sha3-384');
 hash('sha3-512');
 hash('crc32c');
 
 hash_file('murmur3a');
-hash('murmur3c');
+HASH('murmur3c');
 hash_init('murmur3f');
 hash('xxh32');
 hash_init('xxh64');
@@ -45,3 +45,11 @@ hash('xxh128');
 hash_init();
 hash_hmac( data: 'salsa20', key: $key ); // Missing $algo param.
 hash_pbkdf2(algorithm: 'salsa20'); // Incorrect param name.
+
+// Safeguard against false positives on method calls and namespaced function calls.
+ClassName::hash_file('md2');
+$obj->hash("fnv164");
+$obj?->hash_hmac_file('sha512/256');
+namespace\hash('sha3-512');
+\Fully\Qualified\hash_init('xxh64');
+Partially\Qualified\hash('xxh128');
