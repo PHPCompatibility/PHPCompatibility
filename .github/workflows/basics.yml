@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
@@ -109,7 +109,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Updating the lists can fail intermittently, typically after Microsoft has released a new package.
       # This should not be blocking for this job, so ignore any errors from this step.
@@ -133,7 +133,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
