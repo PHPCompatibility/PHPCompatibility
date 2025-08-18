@@ -111,9 +111,9 @@ class NewPackFormatUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
-        $data[] = [23];
-        $data[] = [24];
-        $data[] = [27];
+        for ($line = 22; $line <= 40; $line++) {
+            $data[] = [$line];
+        }
 
         return $data;
     }
