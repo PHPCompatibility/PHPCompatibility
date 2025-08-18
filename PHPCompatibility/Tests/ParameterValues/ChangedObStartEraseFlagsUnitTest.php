@@ -137,6 +137,10 @@ class ChangedObStartEraseFlagsUnitTest extends BaseSniffTestCase
 
         $data[] = [28];
 
+        for ($line = 30; $line <= 36; $line++) {
+            $data[] = [$line];
+        }
+
         return $data;
     }
 
