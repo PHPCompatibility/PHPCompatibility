@@ -64,18 +64,41 @@ class NewIDNVariantDefaultUnitTest extends BaseSniffTestCase
 
 
     /**
-     * testNoFalsePositives
+     * Test that there are no false positives.
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number.
      *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '7.3-');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array<array<int>>
+     */
+    public static function dataNoFalsePositives()
+    {
+        $data = [];
 
         // No errors expected on the first 8 lines.
         for ($line = 1; $line <= 8; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        for ($line = 17; $line <= 23; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
