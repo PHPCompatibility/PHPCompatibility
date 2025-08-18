@@ -88,6 +88,9 @@ final class NewArrayMergeRecursiveWithGlobalsVarUnitTest extends BaseSniffTestCa
             $cases[] = [$line];
         }
 
+        $cases[] = [32];
+        $cases[] = [33];
+
         return $cases;
     }
 
