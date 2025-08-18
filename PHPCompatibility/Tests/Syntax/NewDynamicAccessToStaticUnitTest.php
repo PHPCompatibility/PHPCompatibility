@@ -102,6 +102,9 @@ final class NewDynamicAccessToStaticUnitTest extends BaseSniffTestCase
             [53],
             [54],
             [57],
+            [69],
+            [70],
+            [71],
         ];
     }
 
