@@ -67,23 +67,50 @@ class NewArrayReduceInitialTypeUnitTest extends BaseSniffTestCase
             [23, false],
 
             [26],
+
+            [37, false],
+            [38, false],
+            [39, false],
         ];
     }
 
 
     /**
-     * testNoFalsePositives
+     * Test the sniff doesn't throw false positives for valid code.
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
      *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '5.2');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public static function dataNoFalsePositives()
+    {
+        $data = [];
 
         // No errors expected on the first 14 lines.
         for ($line = 1; $line <= 14; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        for ($line = 29; $line <= 34; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
