@@ -105,6 +105,15 @@ class RemovedMbstringModifiersUnitTest extends BaseSniffTestCase
             [21],
             [33],
             [34],
+            [37],
+            [38],
+            [39],
+            [40],
+            [41],
+            [42],
+            [45],
+            [46],
+            [47],
         ];
     }
 
