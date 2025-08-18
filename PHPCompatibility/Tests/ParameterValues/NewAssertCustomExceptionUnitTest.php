@@ -61,16 +61,39 @@ class NewAssertCustomExceptionUnitTest extends BaseSniffTestCase
     /**
      * Verify there are no false positives on code this sniff should ignore.
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '5.6');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public static function dataNoFalsePositives()
+    {
+        $cases = [];
 
         // No errors expected on the first 15 lines.
         for ($line = 1; $line <= 15; $line++) {
-            $this->assertNoViolation($file, $line);
+            $cases[] = [$line];
         }
+
+        for ($line = 21; $line <= 28; $line++) {
+            $cases[] = [$line];
+        }
+
+        return $cases;
     }
 
     /**
