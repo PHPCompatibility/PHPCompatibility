@@ -50,6 +50,24 @@ final class NewLanguageConstructsSniff extends Sniff
             '5.3'         => true,
             'description' => 'The \ operator (for namespaces)',
         ],
+
+        // The namespace separator won't be tokenized as a separate token as of PHPCS 4.0 (except for in group use).
+        'T_NAME_QUALIFIED' => [
+            '5.2'         => false,
+            '5.3'         => true,
+            'description' => 'The \ operator (for namespaces)',
+        ],
+        'T_NAME_FULLY_QUALIFIED' => [
+            '5.2'         => false,
+            '5.3'         => true,
+            'description' => 'The \ operator (for namespaces)',
+        ],
+        'T_NAME_RELATIVE' => [
+            '5.2'         => false,
+            '5.3'         => true,
+            'description' => 'The \ operator (for namespaces)',
+        ],
+
         'T_ELLIPSIS' => [
             '5.5'         => false,
             '5.6'         => true,
