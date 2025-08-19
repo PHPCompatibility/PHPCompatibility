@@ -18,3 +18,7 @@ $obj?->get_defined_functions(false);
 namespace\get_defined_functions(false);
 \Fully\Qualified\get_defined_functions(false);
 Partially\Qualified\get_defined_functions(false);
+
+// Handle fully qualified and uppercase false, not OK.
+get_defined_functions(FALSE);
+\get_defined_functions(\false);

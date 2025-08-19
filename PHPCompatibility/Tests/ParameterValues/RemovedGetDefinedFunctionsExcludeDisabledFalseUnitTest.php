@@ -52,6 +52,8 @@ class RemovedGetDefinedFunctionsExcludeDisabledFalseUnitTest extends BaseSniffTe
         return [
             [11],
             [12],
+            [23],
+            [24],
         ];
     }
 
