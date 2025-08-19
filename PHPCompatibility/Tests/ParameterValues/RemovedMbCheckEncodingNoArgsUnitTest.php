@@ -59,16 +59,39 @@ class RemovedMbCheckEncodingNoArgsUnitTest extends BaseSniffTestCase
     /**
      * Test that there are no false positives for valid code.
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '8.1');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array<array<int>>
+     */
+    public static function dataNoFalsePositives()
+    {
+        $data = [];
 
         // No errors expected on the first 11 lines.
         for ($line = 1; $line <= 11; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        for ($line = 15; $line <= 21; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
