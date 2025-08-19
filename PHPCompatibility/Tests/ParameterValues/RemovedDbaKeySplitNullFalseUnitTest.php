@@ -63,6 +63,8 @@ final class RemovedDbaKeySplitNullFalseUnitTest extends BaseSniffTestCase
             [38],
             [39],
             [42],
+            [50],
+            [51],
         ];
     }
 

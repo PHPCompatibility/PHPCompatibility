@@ -45,3 +45,7 @@ dba_key_split(
 // Safeguard against false positives on namespaced function calls.
 namespace\dba_key_split(false);
 \Fully\Qualified\dba_key_split(false);
+
+// Handle fully qualified false and null, not OK.
+\dba_key_split(\false);
+dba_key_split(\null);
