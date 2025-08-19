@@ -4,7 +4,7 @@
  * These should all be fine.
  */
 hash_file("something"); // Not one of the targetted algorithms.
-hash(algo: "1st param", "salsa10"); // Not the right parameter.
+\hash(algo: "1st param", "salsa10"); // Not the right parameter.
 hash_hmac; // Not a function call.
 
 /**
@@ -12,12 +12,12 @@ hash_hmac; // Not a function call.
  */
 hash_file("salsa10");
 hash_file("salsa20");
-hash_file('salsa10');
+Hash_File('salsa10');
 hash_file('salsa20');
 
 hash_hmac_file(algo: "salsa10");
 hash_hmac( "salsa20" /*comment*/ );
-hash_init(   'salsa10'  );
+\hash_init(   'salsa10'  );
 
 hash(/*comment*/ "salsa10");
 hash("salsa10", "2nd param", 3, false);
@@ -28,3 +28,11 @@ hash_pbkdf2('salsa20');
 hash_init();
 hash_hmac( data: 'salsa20', key: $key ); // Missing $algo param.
 hash_pbkdf2(algorithm: 'salsa20'); // Incorrect param name.
+
+// Safeguard against false positives on method calls and namespaced function calls.
+ClassName::hash_file("salsa20");
+$obj->hash_init("salsa20");
+$obj?->hash_pbkdf2('salsa10');
+namespace\hash("salsa10");
+\Fully\Qualified\hash_init('salsa10');
+Partially\Qualified\hash_pbkdf2('salsa20');
