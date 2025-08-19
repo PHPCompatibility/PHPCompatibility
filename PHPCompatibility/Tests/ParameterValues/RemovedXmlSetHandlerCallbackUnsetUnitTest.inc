@@ -73,3 +73,7 @@ xml_set_start_namespace_decl_handler($parser, <<<'EOD'
 
 EOD
 );
+
+// Safeguard against false positives on namespaced function calls.
+namespace\xml_set_character_data_handler($parser, '');
+\Fully\Qualified\xml_set_character_data_handler($parser, '');
