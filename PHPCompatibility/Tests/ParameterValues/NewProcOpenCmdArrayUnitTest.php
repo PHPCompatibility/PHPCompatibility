@@ -91,7 +91,7 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTestCase
         return [
             [30, 'escapeshellarg($echo)'],
             [34, '\'--standard=\' . \escapeshellarg($standard)'],
-            [35, '\'./path/to/\' . escapeshellarg($file)'],
+            [35, '\'./path/to/\' . EscapeShellArg($file)'],
             [61, '\escapeshellarg($echo)'],
         ];
     }

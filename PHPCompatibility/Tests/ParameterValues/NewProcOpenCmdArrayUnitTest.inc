@@ -32,7 +32,7 @@ $proc = proc_open(
     array(
         'phpcs',
         '--standard=' . \escapeshellarg($standard), // Escaping.
-        './path/to/' . escapeshellarg($file),
+        './path/to/' . EscapeShellArg($file),
     ),
     $descriptors,
     $pipes

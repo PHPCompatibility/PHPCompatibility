@@ -101,7 +101,7 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
         }
 
         if (ScannedCode::shouldRunOnOrAbove('7.4') === true) {
-            if (\strpos($targetParam['clean'], 'escapeshellarg(') === false) {
+            if (\strpos(\strtolower($targetParam['clean']), 'escapeshellarg(') === false) {
                 // Efficiency: prevent needlessly walking the array.
                 return;
             }
@@ -115,7 +115,7 @@ class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
             foreach ($items as $item) {
                 for ($i = $item['start']; $i <= $item['end']; $i++) {
                     if ($tokens[$i]['code'] !== \T_STRING
-                        || $tokens[$i]['content'] !== 'escapeshellarg'
+                        || \strtolower($tokens[$i]['content']) !== 'escapeshellarg'
                     ) {
                         continue;
                     }
