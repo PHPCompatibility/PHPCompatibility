@@ -94,7 +94,7 @@ final class NewPasswordAlgoConstantValuesUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
-        for ($line = 30; $line <= 36; $line++) {
+        for ($line = 30; $line <= 46; $line++) {
             $data[] = [$line];
         }
 
