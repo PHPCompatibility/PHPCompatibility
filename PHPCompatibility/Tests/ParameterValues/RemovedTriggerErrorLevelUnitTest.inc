@@ -13,7 +13,7 @@ trigger_error($message, level: false); // Typo in param name.
 // OK.
 trigger_error($message, E_USER_WARNING);
 trigger_error($message, /*comment*/ E_USER_NOTICE /*comment*/);
-trigger_error($message, \E_USER_DEPRECATED);
+\trigger_error($message, \E_USER_DEPRECATED);
 trigger_error($message, 1024);
 
 // Invalid, but not our concern.
@@ -27,10 +27,15 @@ trigger_error($message, \get_error_level());
 
 // Not OK - deprecated in PHP >= 8.4.
 trigger_error($message, E_USER_ERROR);
-trigger_error($message, 256);
+\trigger_error($message, 256);
 trigger_error(
     $message,
     // Comment.
     \E_USER_ERROR // phpcs:ignore Stnd.Cat.Sniff -- for (testing) reasons.
 );
-trigger_error(error_level: E_USER_ERROR, message: $message);
+Trigger_Error(error_level: E_USER_ERROR, message: $message);
+trigger_error($message, \E_USER_ERROR);
+
+// Safeguard against false positives on namespaced function calls.
+namespace\trigger_error($message, E_USER_ERROR);
+\Fully\Qualified\trigger_error($message, E_USER_ERROR);
