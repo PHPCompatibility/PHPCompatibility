@@ -116,8 +116,13 @@ final class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
             foreach ($items as $item) {
                 for ($i = $item['start']; $i <= $item['end']; $i++) {
                     if ($tokens[$i]['code'] !== \T_STRING
-                        || \strtolower($tokens[$i]['content']) !== 'escapeshellarg'
+                        && $tokens[$i]['code'] !== \T_NAME_FULLY_QUALIFIED
                     ) {
+                        continue;
+                    }
+
+                    $contentLc = \strtolower($tokens[$i]['content']);
+                    if ($contentLc !== 'escapeshellarg' && $contentLc !== '\escapeshellarg') {
                         continue;
                     }
 
