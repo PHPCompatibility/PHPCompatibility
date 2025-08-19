@@ -12,7 +12,7 @@ $text = preg_match_all(
     $text
   );
 
-preg_split(
+preg_Split(
     [
         'be' => '/single-quoted/J',
         'ce' => '#hash-chars (common)#j',
@@ -20,7 +20,7 @@ preg_split(
     ], $subject, 2
 );
 
-preg_replace_callback_array(
+\preg_replace_callback_array(
     [
         '~[a]+~J' => function ($match) {
             echo strlen($match[0]), ' matches for "a" found', PHP_EOL;
@@ -47,12 +47,12 @@ EOD
 
 // Safeguard support for PHP 8 named parameters.
 preg_grep(array: $input, pattern: '#some text#i'); // OK.
-preg_grep(array: $input, pattern: '#some text#Ji', flags: $flags); // Error.
+PREG_grep(array: $input, pattern: '#some text#Ji', flags: $flags); // Error.
 
 // Recognize use of the PHP 8.2 "n" modifier.
 preg_match('/.(.)./n', 'abc', $m);
 preg_match('`.(?P<test>.).`n', 'abc', $m);
-preg_match('{.(?P<test>.).}n', 'abc', $m);
+\preg_match('{.(?P<test>.).}n', 'abc', $m);
 
 // Recognize use of the PHP 8.4 "r" modifier.
 preg_match('/.(.)./ri', 'abc', $m);
@@ -60,5 +60,15 @@ preg_match('`.(?P<test>.).`r', 'abc', $m);
 preg_match('{A\x{17f}\x{212a}Z}xr', 'abc', $m);
 
 // Issue #1764 - safeguard against false positives for text within brackets.
-preg_match_all( $my->get_regex('_regexp'), $text, $matches );
-preg_match_all( $regexes[ $type . '_regexp' ], $text, $matches );
+preg_match_all( $my->get_regex('#regexp#J'), $text, $matches );
+preg_match_all( $regexes[ $type . '#regexp#n' ], $text, $matches );
+\Preg_Match_ALL( namespace\get_regex('#regexp#r'), $text, $matches );
+preg_match_all( \get_regex('#regexp#J'), $text, $matches );
+
+// Safeguard against false positives on method calls and namespaced function calls.
+ClassName::preg_match_all('/some text/J', $subject);
+$obj->preg_match('/some text/n', $subject);
+$obj?->preg_replace_callback_array('/some text/r', $subject);
+namespace\preg_match_all('/some text/r', $subject);
+\Fully\Qualified\preg_match('/some text/n', $subject);
+Partially\Qualified\preg_split('/some text/J', $subject);
