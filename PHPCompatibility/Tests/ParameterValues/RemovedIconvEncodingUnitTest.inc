@@ -15,4 +15,11 @@ iconv_set_encoding('internal_encoding', 'UTF-8');
 \iconv_set_encoding( 'input_encoding', 'ISO-8859-1' );
 iconv_set_encoding("output_encoding", "ISO-8859-1");
 iconv_set_encoding( encoding: "ISO-8859-1", type: $type );
-iconv_set_encoding('all', 'UTF-8'); // Not a valid $type value.
+ICONV_Set_Encoding('all', 'UTF-8'); // Not a valid $type value.
+
+// Safeguard against false positives on method calls and namespaced function calls.
+ClassName::iconv_set_encoding('internal_encoding', 'UTF-8');
+$obj->iconv_set_encoding('internal_encoding', 'UTF-8');
+$obj?->iconv_set_encoding('internal_encoding', 'UTF-8');
+namespace\iconv_set_encoding('internal_encoding', 'UTF-8');
+\Fully\Qualified\iconv_set_encoding('internal_encoding', 'UTF-8');
