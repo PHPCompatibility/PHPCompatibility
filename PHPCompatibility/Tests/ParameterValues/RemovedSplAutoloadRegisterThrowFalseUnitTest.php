@@ -52,6 +52,8 @@ class RemovedSplAutoloadRegisterThrowFalseUnitTest extends BaseSniffTestCase
         return [
             [14],
             [15],
+            [26],
+            [27],
         ];
     }
 

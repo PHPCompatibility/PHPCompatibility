@@ -74,7 +74,8 @@ class RemovedSplAutoloadRegisterThrowFalseSniff extends AbstractFunctionCallPara
             return;
         }
 
-        if ($targetParam['clean'] !== 'false') {
+        $cleanValueLc = \strtolower($targetParam['clean']);
+        if ($cleanValueLc !== 'false' && $cleanValueLc !== '\false') {
             return;
         }
 

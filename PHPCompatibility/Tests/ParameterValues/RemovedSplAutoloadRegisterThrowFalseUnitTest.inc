@@ -21,3 +21,7 @@ $obj?->spl_autoload_register($autoload_function, false);
 namespace\spl_autoload_register($autoload_function, false);
 \Fully\Qualified\spl_autoload_register($autoload_function, false);
 Partially\Qualified\spl_autoload_register($autoload_function, false);
+
+// Handle fully qualified and uppercase false, not OK.
+spl_autoload_register($autoload_function, FALSE);
+\spl_autoload_register($autoload_function, \false);
