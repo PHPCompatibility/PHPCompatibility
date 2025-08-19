@@ -62,7 +62,7 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTestCase
             [54],
             [55],
             [58],
-            [59],
+            [59, 'Preg_Replace'],
             [60],
             [72],
             [80],
@@ -197,6 +197,15 @@ class RemovedPCREModifiersUnitTest extends BaseSniffTestCase
             // Issue #1764 - text within brackets should be ignored.
             [238],
             [239],
+            [240],
+            [241],
+
+            [244],
+            [245],
+            [246],
+            [247],
+            [248],
+            [249],
         ];
     }
 
