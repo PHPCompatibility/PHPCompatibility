@@ -59,6 +59,14 @@ final class NewPasswordAlgoConstantValuesUnitTest extends BaseSniffTestCase
             [26],
             [27],
             [28],
+            [49],
+            [50],
+            [51],
+            [52],
+            [53],
+            [54],
+            [55],
+            [56],
         ];
     }
 
