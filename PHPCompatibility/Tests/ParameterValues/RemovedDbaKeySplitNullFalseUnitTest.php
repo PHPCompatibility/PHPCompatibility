@@ -97,6 +97,9 @@ final class RemovedDbaKeySplitNullFalseUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        $data[] = [46];
+        $data[] = [47];
+
         return $data;
     }
 

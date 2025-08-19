@@ -36,8 +36,12 @@ dba_key_split(
 // is queried).
 dba_key_split(dba_firstkey($dba));
 dba_key_split(key: dba_nextkey($obj->get_dba()));
-dba_key_split(\dba_firstkey($this->dba));
+\dba_key_split(\dba_firstkey($this->dba));
 dba_key_split(
     // Comment.
     \dba_NextKey($dba)
 );
+
+// Safeguard against false positives on namespaced function calls.
+namespace\dba_key_split(false);
+\Fully\Qualified\dba_key_split(false);
