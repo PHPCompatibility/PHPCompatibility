@@ -130,6 +130,9 @@ final class RemovedProprietaryCSVEscapingUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        $data[] = [47];
+        $data[] = [48];
+
         return $data;
     }
 
@@ -215,6 +218,9 @@ final class RemovedProprietaryCSVEscapingUnitTest extends BaseSniffTestCase
         for ($line = 35; $line <= 44; $line++) {
             $data[] = [$line];
         }
+
+        $data[] = [47];
+        $data[] = [48];
 
         return $data;
     }
