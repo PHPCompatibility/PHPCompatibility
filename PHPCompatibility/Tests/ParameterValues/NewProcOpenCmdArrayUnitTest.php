@@ -90,9 +90,9 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTestCase
     {
         return [
             [30, 'escapeshellarg($echo)'],
-            [34, '\'--standard=\' . escapeshellarg($standard)'],
+            [34, '\'--standard=\' . \escapeshellarg($standard)'],
             [35, '\'./path/to/\' . escapeshellarg($file)'],
-            [61, 'escapeshellarg($echo)'],
+            [61, '\escapeshellarg($echo)'],
         ];
     }
 
@@ -117,6 +117,10 @@ class NewProcOpenCmdArrayUnitTest extends BaseSniffTestCase
 
         // Nor on line 41 to 51.
         for ($line = 41; $line <= 51; $line++) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        for ($line = 64; $line <= 70; $line++) {
             $this->assertNoViolation($file, $line);
         }
     }
