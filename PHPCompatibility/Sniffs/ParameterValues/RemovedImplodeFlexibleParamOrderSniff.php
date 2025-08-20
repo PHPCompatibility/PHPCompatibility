@@ -168,7 +168,10 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
                 continue;
             }
 
-            if ($tokenCode === \T_STRING && isset($this->constantStrings[$tokens[$i]['content']])) {
+            if ($tokenCode === \T_NS_SEPARATOR
+                || ($tokenCode === \T_STRING && isset($this->constantStrings[$tokens[$i]['content']]))
+                || ($tokenCode === \T_NAME_FULLY_QUALIFIED && isset($this->constantStrings[\ltrim($tokens[$i]['content'], '\\')]))
+            ) {
                 continue;
             }
 
@@ -185,7 +188,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
                 return;
             }
 
-            if ($tokenCode === \T_STRING) {
+            if ($tokenCode === \T_STRING || $tokenCode === \T_NAME_FULLY_QUALIFIED) {
                 /*
                  * Check for specific functions which return an array (i.e. $pieces).
                  */
@@ -195,6 +198,10 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
                 }
 
                 $nameLc = \strtolower($tokens[$i]['content']);
+                if ($tokenCode === \T_NAME_FULLY_QUALIFIED) {
+                    $nameLc = \ltrim($nameLc, '\\');
+                }
+
                 if (isset($this->arrayFunctions[$nameLc]) === false
                     && (\strpos($nameLc, 'array_') !== 0
                     || isset($this->arrayFunctionExceptions[$nameLc]) === true)
@@ -202,18 +209,20 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
                     continue;
                 }
 
-                // Now make sure it's the PHP native function being called.
-                $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($i - 1), $start, true);
-                if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === true) {
-                    // Method call, not a call to the PHP native function.
-                    continue;
-                }
+                if ($tokenCode === \T_STRING) {
+                    // Now make sure it's the PHP native function being called.
+                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($i - 1), $start, true);
+                    if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === true) {
+                        // Method call, not a call to the PHP native function.
+                        continue;
+                    }
 
-                if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR
-                    && $tokens[$prevNonEmpty - 1]['code'] === \T_STRING
-                ) {
-                    // Namespaced function.
-                    continue;
+                    if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR
+                        && $tokens[$prevNonEmpty - 1]['code'] === \T_STRING
+                    ) {
+                        // Namespaced function.
+                        continue;
+                    }
                 }
 
                 // Ok, so we know that there is an array function in the first param.
@@ -258,7 +267,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
         for ($i = $start; $i < $end; $i++) {
             $tokenCode = $tokens[$i]['code'];
 
-            if (isset(Tokens::$emptyTokens[$tokenCode])) {
+            if (isset(Tokens::$emptyTokens[$tokenCode]) || $tokenCode === \T_NS_SEPARATOR) {
                 continue;
             }
 
@@ -267,13 +276,15 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
                 return;
             }
 
-            if ($tokenCode === \T_STRING && isset($this->constantStrings[$tokens[$i]['content']])) {
+            if (($tokenCode === \T_STRING && isset($this->constantStrings[$tokens[$i]['content']]))
+                || ($tokenCode === \T_NAME_FULLY_QUALIFIED && isset($this->constantStrings[\ltrim($tokens[$i]['content'], '\\')]))
+            ) {
                 // One of the special cased, PHP native string constants found.
                 $this->throwNotice($phpcsFile, $stackPtr, $functionName);
                 return;
             }
 
-            if ($tokenCode === \T_STRING || $tokenCode === \T_VARIABLE) {
+            if (isset(Collections::nameTokens()[$tokenCode]) || $tokenCode === \T_VARIABLE) {
                 // Function call, constant or variable encountered.
                 // No matter what this is combined with, we won't be able to reliably determine the value.
                 return;
