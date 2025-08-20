@@ -58,6 +58,8 @@ final class RemovedImplicitlyNullableParamUnitTest extends BaseSniffTestCase
             [49],
             [50],
             [54],
+            [68],
+            [69],
         ];
     }
 
@@ -95,9 +97,11 @@ final class RemovedImplicitlyNullableParamUnitTest extends BaseSniffTestCase
         $cases[] = [51];
         $cases[] = [60];
         $cases[] = [61];
+        $cases[] = [66];
+        $cases[] = [67];
 
         // Parse error test case.
-        $cases[] = [66];
+        $cases[] = [72];
 
         return $cases;
     }
