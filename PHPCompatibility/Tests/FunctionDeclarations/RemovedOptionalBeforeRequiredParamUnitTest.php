@@ -140,13 +140,15 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         $cases['line 61 - new in initializers'] = [61];
 
         // Not deprecated, false positive checks for PHP 8.1 deprecation.
-        $cases['line 67 - related to PHP 8.1 deprecation'] = [67];
-        $cases['line 68 - related to PHP 8.1 deprecation'] = [68];
+        $cases['line 67 - related to PHP 8.1 deprecation']  = [67];
+        $cases['line 68 - related to PHP 8.1 deprecation']  = [68];
+        $cases['line 139 - related to PHP 8.1 deprecation'] = [139];
 
         // Deprecated, but only flagged as of PHP 8.1.
         $cases['line 71 - deprecated in PHP 8.1']  = [71];
         $cases['line 75 - deprecated in PHP 8.1']  = [75];
         $cases['line 125 - deprecated in PHP 8.1'] = [125];
+        $cases['line 140 - deprecated in PHP 8.1'] = [140];
 
         // Not deprecated, false positive checks for PHP 8.3 deprecation.
         $cases['line 81 - related to PHP 8.3 deprecation']  = [81];
@@ -184,6 +186,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         $cases['line 117 - deprecated in PHP 8.4'] = [117];
         $cases['line 118 - deprecated in PHP 8.4'] = [118];
         $cases['line 123 - deprecated in PHP 8.4'] = [123];
+        $cases['line 141 - deprecated in PHP 8.4'] = [141];
 
         // Add parse error test case.
         $cases['line 139 - parse error'] = [139];
@@ -221,6 +224,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         $data[] = [71, self::PHP81_MSG];
         $data[] = [75, self::PHP81_MSG];
         $data[] = [125, self::PHP81_MSG];
+        $data[] = [140, self::PHP81_MSG];
         return $data;
     }
 
@@ -253,7 +257,8 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         unset(
             $cases['line 71 - deprecated in PHP 8.1'],
             $cases['line 75 - deprecated in PHP 8.1'],
-            $cases['line 125 - deprecated in PHP 8.1']
+            $cases['line 125 - deprecated in PHP 8.1'],
+            $cases['line 140 - deprecated in PHP 8.1']
         );
 
         return $cases;
@@ -376,6 +381,7 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         $data[] = [117, self::PHP84_MSG];
         $data[] = [118, self::PHP84_MSG];
         $data[] = [123, self::PHP84_MSG];
+        $data[] = [141, self::PHP84_MSG];
         return $data;
     }
 
@@ -413,7 +419,8 @@ class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
             $cases['line 116 - deprecated in PHP 8.4'],
             $cases['line 117 - deprecated in PHP 8.4'],
             $cases['line 118 - deprecated in PHP 8.4'],
-            $cases['line 123 - deprecated in PHP 8.4']
+            $cases['line 123 - deprecated in PHP 8.4'],
+            $cases['line 141 - deprecated in PHP 8.4']
         );
 
         return $cases;

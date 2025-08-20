@@ -11,11 +11,11 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\GetTokensAsString;
 
 /**
  * Declaring an optional function parameter before a required parameter is deprecated since PHP 8.0.
@@ -85,19 +85,6 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
     const MSG_DETAILS = ' Parameter %1$s is optional, while parameter %2$s is required. The %1$s parameter is implicitly treated as a required parameter.';
 
     /**
-     * Tokens allowed in the default value (until PHP 8.4).
-     *
-     * This property will be enriched in the register() method.
-     *
-     * @since 10.0.0
-     *
-     * @var array<int|string, int|string>
-     */
-    private $allowedInDefault = [
-        \T_NULL => \T_NULL,
-    ];
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 10.0.0
@@ -106,8 +93,6 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
      */
     public function register()
     {
-        $this->allowedInDefault += Tokens::$emptyTokens;
-
         return Collections::functionDeclarationTokens();
     }
 
@@ -160,8 +145,9 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
 
             // Okay, so we have an optional parameter before a required one.
             // Note: as this will never be the _last_ parameter, we can be sure the 'comma_token' will be set to a token and not `false`.
-            $hasNull    = $phpcsFile->findNext(\T_NULL, $param['default_token'], $param['comma_token']);
-            $hasNonNull = $phpcsFile->findNext($this->allowedInDefault, $param['default_token'], $param['comma_token'], true);
+            $cleanDefaultValue  = GetTokensAsString::noEmpties($phpcsFile, $param['default_token'], ($param['comma_token'] - 1));
+            $cleanDefaultValue  = \strtolower($cleanDefaultValue);
+            $defaultValueIsNull = ($cleanDefaultValue === 'null' || $cleanDefaultValue === '\null');
 
             // Check for union types which include null, mixed types and stand-alone null types.
             $hasNullType = false;
@@ -182,7 +168,7 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
                 $requiredParam,
             ];
 
-            if ($hasNull !== false && $hasNonNull === false) {
+            if ($defaultValueIsNull === true) {
                 if ($param['nullable_type'] === true) {
                     // Skip flagging the issue if the codebase doesn't need to run on PHP 8.1+.
                     if (ScannedCode::shouldRunOnOrAbove('8.1') === false) {

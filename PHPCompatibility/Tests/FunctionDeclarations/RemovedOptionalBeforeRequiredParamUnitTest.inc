@@ -135,5 +135,10 @@ $uppercaseNullInDNFTypeWithNullDefaultValueBeforeRequired = function ( (Foo&NotO
 function uppercaseMixedTypedWithNullDefaultValueBeforeRequired(Okay $a, MIXED /*comment*/ $b = null, Required $c) {} // Warning PHP 8.3.
 function explicitNullableTypeUppercaseMixed(MIXED $var = null, callable $call = null) {} // OK.
 
+// Safeguard handling of FQN null as default value.
+$nullableTypedWithFqnNullDefaultValueBeforeOptional = function (T1 $a, ?T2 $b = \null, T3 $c = \NULL) {}; // This is fine, even on PHP 8.4.
+function fqnNullableTypedOptionalBeforeRequired(Okay $a, ?NotOkay $b = \NULL, Required $c) {} // PHP 8.1.
+function implicitNullableTypeClass(T $var = \null, $c) {} // Warning PHP 8.4.
+
 // Intentional parse error. This has to be the last test in the file.
 $closure = function( $a = [], $b
