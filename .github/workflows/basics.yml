@@ -101,6 +101,10 @@ jobs:
       - name: Check sniff feature completeness
         run: composer check-complete
 
+      # While this won't catch everything, it should catch any serious XML errors and exit with a non-zero exit code in that case.
+      - name: Check the docs can be displayed without errors
+        run: vendor/bin/phpcs --generator=Text --standard=PHPCompatibility
+
   xml-cs:
     name: 'XML Code style'
     runs-on: ubuntu-latest
