@@ -109,3 +109,10 @@ $wrong = \Fully\Qualified\abc(&$a); // Bad: pass by reference.
 $wrong = Partially\Qualified\abc(&$a); // Bad: pass by reference.
 namespace\foobar(3 & $a); // OK.
 \Fully\Qualified\efg( true == &$b ); // OK.
+
+$obj = new self(&$a);
+$obj = new parent(&$a);
+$obj = new static(&$a);
+$anon = new class(&$a) {};
+exit(&$status); // PHP 8.4 exit as a function call.
+\die(&$status); // PHP 8.4 exit as a function call.
