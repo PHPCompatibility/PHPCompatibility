@@ -74,3 +74,7 @@ namespace\ldap_connect($host, $port);
 ldap_connect($uri, namespace\get_port(), $wallet, $password, $auth_mode); // Port value undetermined, so ignore for PHP 8.3 deprecation check.
 ldap_connect($uri, \Fully\Qualified\get_port(), $wallet, $password, $auth_mode); // Port value undetermined, so ignore for PHP 8.3 deprecation check.
 ldap_connect($uri, \Partially\Qualified\get_port(), $wallet, $password, $auth_mode); // Port value undetermined, so ignore for PHP 8.3 deprecation check.
+
+// Safeguard handling of uppercase and fully qualified null.
+ldap_connect($uri, NULL, $wallet, $password, $auth_mode);
+ldap_connect($uri, \null, $wallet, $password, $auth_mode);

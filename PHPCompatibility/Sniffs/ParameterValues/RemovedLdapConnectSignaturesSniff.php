@@ -123,14 +123,15 @@ final class RemovedLdapConnectSignaturesSniff extends AbstractFunctionCallParame
 
         // Check for the, still supported, 3+ param signature and if found, check the second param is `null`.
         if (\count($parameters) > 2) {
-            $hasVariableContent = $phpcsFile->findNext([\T_VARIABLE, \T_STRING], $portParam['start'], ($portParam['end'] + 1));
-            if ($hasVariableContent !== false) {
-                // We don't have access to the contents of the parameter. Bow out.
+            $cleanPort = \strtolower($portParam['clean']);
+            if ($cleanPort === 'null' || $cleanPort === '\null') {
+                // This is the correct value to still use the 3+ param signature. Bow out.
                 return;
             }
 
-            if ($portParam['clean'] === 'null') {
-                // This is the correct value to still use the 3+ param signature. Bow out.
+            $hasVariableContent = $phpcsFile->findNext([\T_VARIABLE, \T_STRING], $portParam['start'], ($portParam['end'] + 1));
+            if ($hasVariableContent !== false) {
+                // We don't have access to the contents of the parameter. Bow out.
                 return;
             }
 
