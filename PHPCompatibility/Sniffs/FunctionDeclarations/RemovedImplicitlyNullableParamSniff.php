@@ -109,9 +109,10 @@ final class RemovedImplicitlyNullableParamSniff extends Sniff
                 continue;
             }
 
-            if ($param['type_hint'] === 'null'
-                || $param['type_hint'] === 'mixed'
-                || TypeString::isNullable($param['type_hint'])
+            $typeHint = \strtolower($param['type_hint']);
+            if ($typeHint === 'null'
+                || $typeHint === 'mixed'
+                || TypeString::isNullable($typeHint)
             ) {
                 // Type is nullable, no issue.
                 continue;

@@ -11,11 +11,11 @@ function noNullDefaultValueButContainsNull(Type $var = new Type(null)) {}
 
 function nullDefaultNoType($var = null) {}
 function nullDefaultWithNullableType(?T $var = null) {}
-function nullDefaultWithNullInUnionType(Countable|null $var = null) {}
+function nullDefaultWithNullInUnionType(Countable|NULL $var = null) {}
 function nullDefaultWithNullInDNFType((Foo&Bar)|null $var = /*comment*/ null) {}
-function nullDefaultWithNullType(null $var = null /*comment*/ ) {}
+function nullDefaultWithNullType(NULL $var = null /*comment*/ ) {}
 function nullDefaultWithMixedType(mixed $var = null) {}
-function nullDefaultWithMixedTypeAndComments( /*comment*/ mixed /*comment*/ $var = null) {}
+function nullDefaultWithMixedTypeAndComments( /*comment*/ MIXED /*comment*/ $var = null) {}
 
 // Fatal error on all versions.
 // The old exception did not apply to properties. A non-nullable typed property with a non-null default value
