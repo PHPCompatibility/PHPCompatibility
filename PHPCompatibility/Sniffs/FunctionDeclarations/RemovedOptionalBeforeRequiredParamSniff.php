@@ -166,7 +166,8 @@ class RemovedOptionalBeforeRequiredParamSniff extends Sniff
             // Check for union types which include null, mixed types and stand-alone null types.
             $hasNullType = false;
             if ($param['type_hint_token'] !== false) {
-                if ($param['type_hint'] === 'mixed' || $param['type_hint'] === 'null') {
+                $typeHint = \strtolower($param['type_hint']);
+                if ($typeHint === 'mixed' || $typeHint === 'null') {
                     $hasNullType = $param['type_hint_token'];
                 } else {
                     $hasNullType = $phpcsFile->findNext(\T_NULL, $param['type_hint_token'], ($param['type_hint_end_token'] + 1));

@@ -127,5 +127,13 @@ function combinationOfAllDeprecations(
     Required $f,
 ) {}
 
+// Safeguard handling of uppercase null or mixed in type declarations.
+$uppercaseNullFirstUnionTypedWithNullDefaultValueBeforeOptional = fn(T1 $a, NULL|T2 $b = null, T3 $c = null) => dosomething(); // OK.
+function explicitlyUppercaseNullableUnionWithDefaultValue(T|NULL $var = null, int $var2 = 10) {} // OK.
+$uppercaseNullInDNFTypeWithNullDefaultValueBeforeRequired = function ( (Foo&NotOkay)|NULL $e = null, $f) {}; // Warning PHP 8.3.
+
+function uppercaseMixedTypedWithNullDefaultValueBeforeRequired(Okay $a, MIXED /*comment*/ $b = null, Required $c) {} // Warning PHP 8.3.
+function explicitNullableTypeUppercaseMixed(MIXED $var = null, callable $call = null) {} // OK.
+
 // Intentional parse error. This has to be the last test in the file.
 $closure = function( $a = [], $b
