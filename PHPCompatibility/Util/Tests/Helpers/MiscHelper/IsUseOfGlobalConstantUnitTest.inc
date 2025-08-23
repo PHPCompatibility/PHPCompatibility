@@ -360,3 +360,6 @@ function HasAttribute() {}
 attributeNestedInParenthesis2(
     new #[MyAttribute(PHP_VERSION_ID)] class () {}
 );
+
+/* test A16 */
+\exit(PHP_VERSION_ID);

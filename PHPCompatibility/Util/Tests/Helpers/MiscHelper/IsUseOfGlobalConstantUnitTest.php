@@ -187,6 +187,7 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
             ['/* test A13 */', true],
             ['/* test A14 */', true],
             ['/* test A15 */', true],
+            ['/* test A16 */', true],
         ];
     }
 }
