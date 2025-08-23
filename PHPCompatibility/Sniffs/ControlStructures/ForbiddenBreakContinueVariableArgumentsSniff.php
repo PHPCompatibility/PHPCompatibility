@@ -14,6 +14,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Numbers;
 
 /**
@@ -97,8 +98,8 @@ final class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
         $nextSemicolonToken = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($stackPtr), null, false);
         $errorType          = '';
         for ($curToken = $stackPtr + 1; $curToken < $nextSemicolonToken; $curToken++) {
-            if ($tokens[$curToken]['code'] === \T_STRING) {
-                // If the next non-whitespace token after the string
+            if (isset(Collections::nameTokens()[$tokens[$curToken]['code']]) === true) {
+                // If the next non-whitespace token after the (potentially namespaced) name
                 // is an opening parenthesis then it's a function call.
                 $openBracket = $phpcsFile->findNext(Tokens::$emptyTokens, $curToken + 1, null, true);
                 if ($tokens[$openBracket]['code'] === \T_OPEN_PARENTHESIS) {
