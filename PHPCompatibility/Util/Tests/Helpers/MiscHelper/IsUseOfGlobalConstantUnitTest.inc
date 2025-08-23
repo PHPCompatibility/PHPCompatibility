@@ -252,6 +252,11 @@ enum AllowsConstants: string {
     public const PHP_VERSION_ID = true;
 }
 
+trait ConstantInTrait {
+    /* test 80 */
+    final const PHP_VERSION_ID = true;
+}
+
 /*
  * Make sure that global constants are correctly identified.
  *
