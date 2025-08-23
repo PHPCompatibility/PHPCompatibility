@@ -149,6 +149,85 @@ use SomeNamespace\{
     CONST PHP_VERSION_ID,
 };
 
+class EverythingTyped {
+    /* test 43 */
+    final PHP_VERSION_ID $typedPropA = 'Type is class name, not constant';
+
+    /* test 44 */
+    public ?PHP_VERSION_ID $typedPropB = 'Type is class name, not constant';
+
+    /* test 45 */
+    protected PHP_VERSION_ID|false $typedPropC = 'Type is class name, not constant';
+
+    /* test 46 */
+    private false|PHP_VERSION_ID $typedPropD = 'Type is class name, not constant';
+
+    /* test 47 */
+    var string|PHP_VERSION_ID|false $typedPropE = 'Type is class name, not constant';
+
+    /* test 48 */
+    static PHP_VERSION_ID&Something $typedPropF = 'Type is class name, not constant';
+
+    /* test 49 */
+    readonly Something&PHP_VERSION_ID $typedPropG = 'Type is class name, not constant';
+
+    /* test 50 */
+    public(set) Something&PHP_VERSION_ID&SomethingElse $typedPropH = 'Type is class name, not constant';
+
+    /* test 51 */
+    protected(set) (Something&PHP_VERSION_ID)|null $typedPropI = 'Type is class name, not constant';
+
+    /* test 52 */
+    private(set) false|(PHP_VERSION_ID&Something) $typedPropJ = 'Type is class name, not constant';
+
+    public function paramTypes(
+        /* test 53 */
+        PHP_VERSION_ID $typedParamA,
+        /* test 54 */
+        ?PHP_VERSION_ID $typedParamB,
+        /* test 55 */
+        PHP_VERSION_ID|false $typedParamC,
+        /* test 56 */
+        false|PHP_VERSION_ID $typedParamD,
+        /* test 57 */
+        string|PHP_VERSION_ID|false $typedParamE,
+        /* test 58 */
+        PHP_VERSION_ID&Something $typedParamF,
+        /* test 59 */
+        Something&PHP_VERSION_ID $typedParamG,
+        /* test 60 */
+        Something&PHP_VERSION_ID&SomethingElse $typedParamH,
+        /* test 61 */
+        (Something&PHP_VERSION_ID)|null $typedParamI,
+        /* test 62 */
+        false|(PHP_VERSION_ID&Something) $typedParamJ,
+    ) {}
+
+    /* test 63 */
+    public function returnTypeA(): PHP_VERSION_ID {}
+    /* test 64 */
+    public function returnTypeB(): ?PHP_VERSION_ID {}
+    /* test 65 */
+    public function returnTypeC(): PHP_VERSION_ID|false {}
+    /* test 66 */
+    public function returnTypeD(): false|PHP_VERSION_ID {}
+    /* test 67 */
+    public function returnTypeE(): string|PHP_VERSION_ID|false {}
+    /* test 68 */
+    public function returnTypeF(): PHP_VERSION_ID&Something {}
+    /* test 69 */
+    public function returnTypeG(): Something&PHP_VERSION_ID {}
+    /* test 70 */
+    public function returnTypeH(): Something&PHP_VERSION_ID&SomethingElse {}
+    /* test 71 */
+    public function returnTypeI(): (Something&PHP_VERSION_ID)|null {}
+    /* test 72 */
+    public function returnTypeJ(): false|(PHP_VERSION_ID&Something) {}
+
+    /* test 73 */
+    abstract public function returnTypeK(): PHP_VERSION_ID;
+}
+
 /*
  * Make sure that global constants are correctly identified.
  *

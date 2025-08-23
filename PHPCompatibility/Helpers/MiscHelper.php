@@ -59,23 +59,31 @@ final class MiscHelper
         if ($next !== false
             && ($tokens[$next]['code'] === \T_OPEN_PARENTHESIS
                 || $tokens[$next]['code'] === \T_DOUBLE_COLON
-                || $tokens[$next]['code'] === \T_EQUAL)
+                || $tokens[$next]['code'] === \T_EQUAL
+                || $tokens[$next]['code'] === \T_TYPE_UNION
+                || $tokens[$next]['code'] === \T_TYPE_INTERSECTION
+                || $tokens[$next]['code'] === \T_TYPE_CLOSE_PARENTHESIS
+                || $tokens[$next]['code'] === \T_VARIABLE)
         ) {
-            // Function call, function declaration or constant/property assignment.
+            // Function call, function declaration, type declaration or constant/property assignment.
             return false;
         }
 
         // Array of tokens which if found preceding the $stackPtr indicate that a T_STRING is not a global constant.
         $tokensToIgnore  = [
-            \T_NAMESPACE  => true,
-            \T_USE        => true,
-            \T_EXTENDS    => true,
-            \T_IMPLEMENTS => true,
-            \T_NEW        => true,
-            \T_INSTANCEOF => true,
-            \T_INSTEADOF  => true,
-            \T_GOTO       => true,
-            \T_AS         => true,
+            \T_NAMESPACE             => true,
+            \T_USE                   => true,
+            \T_EXTENDS               => true,
+            \T_IMPLEMENTS            => true,
+            \T_NEW                   => true,
+            \T_INSTANCEOF            => true,
+            \T_INSTEADOF             => true,
+            \T_GOTO                  => true,
+            \T_AS                    => true,
+            \T_NULLABLE              => true,
+            \T_TYPE_UNION            => true,
+            \T_TYPE_INTERSECTION     => true,
+            \T_TYPE_OPEN_PARENTHESIS => true,
         ];
         $tokensToIgnore += Tokens::$ooScopeTokens;
         $tokensToIgnore += Collections::objectOperators();
@@ -94,6 +102,26 @@ final class MiscHelper
             ) {
                 // Namespaced constant.
                 return false;
+            }
+        }
+
+        // Handle plain return types.
+        if ($tokens[$prev]['code'] === \T_COLON) {
+            if ($tokens[$next]['code'] === \T_OPEN_CURLY_BRACKET
+                && isset($tokens[$next]['scope_condition'])
+            ) {
+                // Return type declaration.
+                return false;
+            }
+
+            if ($tokens[$next]['code'] === \T_SEMICOLON) {
+                $prevPrev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
+                if ($tokens[$prevPrev]['code'] === \T_CLOSE_PARENTHESIS
+                    && isset($tokens[$prevPrev]['parenthesis_owner'])
+                ) {
+                    // Return type declaration.
+                    return false;
+                }
             }
         }
 
