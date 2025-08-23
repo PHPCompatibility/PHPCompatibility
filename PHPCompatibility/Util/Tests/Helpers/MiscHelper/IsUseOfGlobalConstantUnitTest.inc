@@ -363,3 +363,23 @@ attributeNestedInParenthesis2(
 
 /* test A16 */
 \exit(PHP_VERSION_ID);
+
+class UseOfGlobalConstantsWithinAClass {
+    /* test A17 */
+    const int FOO = PHP_VERSION_ID;
+
+    /* test A18 */
+    const int BAR = \PHP_VERSION_ID;
+
+    /* test A19 */
+    public $property = PHP_VERSION_ID;
+
+    /* test A20 */
+    protected function name(string $defaultValue = \PHP_VERSION_ID) {
+        /* test A21 */
+        echo PHP_VERSION_ID;
+
+        /* test A22 */
+        $var = $a + PHP_VERSION_ID;
+    }
+}
