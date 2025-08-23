@@ -65,8 +65,8 @@ $test = ini_get('session.upload_progress.cleanup');
 ini_set('session.upload_progress.name', 1);
 $test = ini_get('session.upload_progress.name');
 
-ini_set('session.upload_progress.freq', 1);
-$test = ini_get('session.upload_progress.freq');
+\ini_set('session.upload_progress.freq', 1);
+$test = \ini_get('session.upload_progress.freq');
 
 ini_set('enable_post_data_reading', 1);
 $test = ini_get('enable_post_data_reading');
@@ -137,8 +137,8 @@ $test = ini_get('session.hash_bits_per_character');
 ini_set('session.hash_function', 1);
 $test = ini_get('session.hash_function');
 
-ini_set('soap.wsdl_cache_dir', 1);
-$test = ini_get('soap.wsdl_cache_dir');
+INI_SET('soap.wsdl_cache_dir', 1);
+$test = INI_GET('soap.wsdl_cache_dir');
 
 ini_set('soap.wsdl_cache_enabled', 1);
 $test = ini_get('soap.wsdl_cache_enabled');
@@ -308,8 +308,8 @@ $test = ini_get('session.sid_length');
 ini_set('session.sid_bits_per_character', 1);
 $test = ini_get('session.sid_bits_per_character');
 
-ini_set('syslog.facility', 1);
-$test = ini_get('syslog.facility');
+\ini_set('syslog.facility', 1);
+$test = \ini_get('syslog.facility');
 
 ini_set('syslog.ident', 1);
 $test = ini_get('syslog.ident');
@@ -482,8 +482,8 @@ $test = ini_get('phar.extract_list');
 ini_set('openssl.cafile', 1);
 $test = ini_get('openssl.cafile');
 
-ini_set('openssl.capath', 1);
-$test = ini_get('openssl.capath');
+\INI_SET('openssl.capath', 1);
+$test = \INI_GET('openssl.capath');
 
 ini_set('pdo_odbc.connection_pooling', 1);
 $test = ini_get('pdo_odbc.connection_pooling');
@@ -626,3 +626,10 @@ $test = ini_get('zend.reserved_stack_size');
 
 ini_set('opcache.jit_max_trace_length', 10);
 $test = ini_get('opcache.jit_max_trace_length');
+
+// More safeguard against false positives on method calls and namespaced function calls.
+ClassName::ini_set('auto_globals_jit', 1);
+$obj->ini_get('opcache.jit_hot_func');
+namespace\ini_set('max_file_uploads', 1);
+\Fully\Qualified\ini_get('exit_on_timeout');
+Partially\Qualified\ini_set('soap.wsdl_cache_dir', 1);
