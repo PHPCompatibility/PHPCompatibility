@@ -19,7 +19,6 @@ use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\Constants;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
-use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\Scopes;
@@ -303,7 +302,6 @@ final class ForbiddenNamesSniff extends Sniff
                         || $tokens[$prevNonEmpty]['code'] === \T_TRAIT
                         || $tokens[$prevNonEmpty]['code'] === \T_EXTENDS
                         || $tokens[$prevNonEmpty]['code'] === \T_IMPLEMENTS
-                        || $tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR
                     ) {
                         // Use of a construct named `enum`, not an enum declaration.
                         return;
@@ -419,18 +417,6 @@ final class ForbiddenNamesSniff extends Sniff
      */
     protected function processNamespaceDeclaration(File $phpcsFile, $stackPtr)
     {
-        /*
-         * Note: explicitly only excluding use of the keyword as an operator, not the "undetermined"
-         * type, as the "undetermined" cases are often exactly the type of errors this sniff is trying to detect.
-         *
-         * Also note: that is also the reason to determine the namespace name within this method and
-         * not to use the `Namespaces::getDeclaredName()` method.
-         */
-        $type = Namespaces::getType($phpcsFile, $stackPtr);
-        if ($type === 'operator') {
-            return;
-        }
-
         $endOfStatement = $phpcsFile->findNext(Collections::namespaceDeclarationClosers(), ($stackPtr + 1));
         if ($endOfStatement === false) {
             // Live coding or parse error.
@@ -439,8 +425,8 @@ final class ForbiddenNamesSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
         $next   = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), ($endOfStatement + 1), true);
-        if ($next === $endOfStatement || $tokens[$next]['code'] === \T_NS_SEPARATOR) {
-            // Declaration of global namespace. I.e.: namespace {} or use as non-scoped operator.
+        if ($next === $endOfStatement) {
+            // Declaration of global namespace. I.e.: namespace {}.
             return;
         }
 
@@ -454,16 +440,13 @@ final class ForbiddenNamesSniff extends Sniff
          */
         $nextContentLC = \strtolower($tokens[$next]['content']);
         if (ScannedCode::shouldRunOnOrBelow('7.4') === false
-            && $nextContentLC !== 'namespace'
-            && \strpos($nextContentLC, 'namespace\\') !== 0 // PHPCS 4.x.
+            && \strpos($nextContentLC, 'namespace\\') !== 0
         ) {
             return;
         }
 
         for ($i = $next; $i < $endOfStatement; $i++) {
-            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === true
-                || $tokens[$i]['code'] === \T_NS_SEPARATOR
-            ) {
+            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === true) {
                 continue;
             }
 
@@ -489,6 +472,7 @@ final class ForbiddenNamesSniff extends Sniff
                     }
                 }
             } elseif ($this->isKeywordReservedPriorToPHP8($tokens[$i]['content']) === true) {
+                // Namespace name interlaced with whitespace/comments, not supported on PHP >= 8.0.
                 $this->checkName($phpcsFile, $i, $tokens[$i]['content']);
                 $this->checkOtherName($phpcsFile, $i, $tokens[$i]['content'], 'namespace declaration');
             }
