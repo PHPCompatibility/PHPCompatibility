@@ -83,7 +83,7 @@ final class MiscHelper
         $tokensToIgnore += Tokens::$scopeModifiers;
 
         $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prev !== false && isset($tokensToIgnore[$tokens[$prev]['code']]) === true) {
+        if (isset($tokensToIgnore[$tokens[$prev]['code']]) === true) {
             // Not the use of a constant.
             return false;
         }
@@ -96,8 +96,7 @@ final class MiscHelper
             return false;
         }
 
-        if ($prev !== false
-            && $tokens[$prev]['code'] === \T_CONST
+        if ($tokens[$prev]['code'] === \T_CONST
             && Scopes::isOOConstant($phpcsFile, $prev) === true
         ) {
             // Class constant declaration.
