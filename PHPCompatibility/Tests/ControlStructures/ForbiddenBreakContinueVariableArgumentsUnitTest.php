@@ -87,6 +87,9 @@ final class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTes
             [160, self::ERROR_TYPE_ZERO],
             [172, self::ERROR_TYPE_VARIABLE],
             [176, self::ERROR_TYPE_VARIABLE],
+            [203, self::ERROR_TYPE_VARIABLE],
+            [206, self::ERROR_TYPE_VARIABLE],
+            [211, self::ERROR_TYPE_VARIABLE],
         ];
 
         return $data;
@@ -94,7 +97,7 @@ final class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTes
 
 
     /**
-     * testNoFalsePositives
+     * Test that there are no false positives for valid code.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -117,23 +120,24 @@ final class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTes
      */
     public static function dataNoFalsePositives()
     {
-        return [
-            [8],
-            [12],
-            [17],
-            [21],
-            [26],
-            [30],
-            [35],
-            [39],
-            [44],
-            [48],
-            [126],
-            [137],
-            [145],
-            [153],
-            [164],
-        ];
+        $data = [];
+
+        // No errors expected on the first 50 lines.
+        for ($line = 1; $line <= 50; $line++) {
+            $data[] = [$line];
+        }
+
+        $data[] = [126];
+        $data[] = [137];
+        $data[] = [145];
+        $data[] = [153];
+        $data[] = [164];
+
+        for ($line = 180; $line <= 200; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 

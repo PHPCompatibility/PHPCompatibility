@@ -99,7 +99,7 @@ for ($i = 0; $i < 20; $i++) {
         }
 
         if ($i < 10) {
-            continue MyNamespace\myFunction(); // Bad.
+            continue \MyNamespace\myFunction(); // Bad.
         }
 
         // Bad: Break/continue with zero value.
@@ -174,5 +174,40 @@ for ($z = 0; $z < 8; $z++) {
 
     if ($z < 11) {
         continue (fn () => 1)(); // Bad.
+    }
+}
+
+// More tests with namespaced names.
+for ($a = 0; $a < 5; $a++) {
+	// OK: Namespaced name for constant.
+    if ($a < 5) {
+        continue namespace\E_WARNING;
+    }
+    if ($a < 10) {
+        break \Fully\Qualified\E_WARNING;
+    }
+    if ($a < 15) {
+        continue Partially\Qualified\E_WARNING;
+    }
+
+    // OK: Break/continue with cast and a (namespaced) constant.
+    if ($a == 9) {
+        break (int) namespace\E_WARNING;
+    }
+    if ($a < 12) {
+        continue (int) \Fully\Qualified\E_WARNING;
+    }
+
+    // Bad: Break/continue with FQN function call to global function.
+    if ($a == 4) {
+        break \rand(); // Bad.
+    }
+    if ($a < 17) {
+        continue \rand(); // Bad.
+    }
+
+    // Bad: Break/continue with a namespaced function call.
+    if ($i == 11) {
+        break namespace\myFunction(); // Bad.
     }
 }
