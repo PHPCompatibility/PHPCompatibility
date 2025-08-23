@@ -15,6 +15,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\MessageHelper;
@@ -69,11 +70,6 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
 
         // Special cases:
         \T_NS_SEPARATOR             => \T_NS_SEPARATOR,
-        /*
-         * This can be neigh anything, but for any usage except constants,
-         * the T_STRING will be combined with non-allowed tokens, so we should be good.
-         */
-        \T_STRING                   => \T_STRING,
     ];
 
 
@@ -104,6 +100,11 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
         $this->safeOperands += Tokens::$heredocTokens;
         $this->safeOperands += Tokens::$magicConstants;
         $this->safeOperands += Tokens::$emptyTokens;
+        /*
+         * This can be neigh anything, but for any usage except constants,
+         * the namespaced name will be combined with non-allowed tokens, so we should be good.
+         */
+        $this->safeOperands += Collections::nameTokens();
     }
 
     /**
@@ -203,7 +204,7 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
                         return false;
                     }
                 } elseif ($tokens[$nextNonSimple]['code'] === \T_DOUBLE_COLON) {
-                    // Allow only `T_STRING::T_STRING`.
+                    // Allow only `NAME_TOKEN::T_STRING`.
                     if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_STRING) {
                         return false;
                     }
@@ -211,7 +212,9 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
                     $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($nextNonSimple - 1), null, true);
                     // No need to worry about parent/self, that's handled above and
                     // the double colon is skipped over in that case.
-                    if ($prevNonEmpty === false || $tokens[$prevNonEmpty]['code'] !== \T_STRING) {
+                    if ($prevNonEmpty === false
+                        || isset(Collections::nameTokens()[$tokens[$prevNonEmpty]['code']]) === false
+                    ) {
                         return false;
                     }
                 }
