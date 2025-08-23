@@ -342,7 +342,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTestCase
             ['array|bool|callable|int|float|null|object|string', 96],
             ['false|mixed|self|parent|iterable|Resource', 100],
             ['?int|float', 104],
-            ['bool|false', 113],
+            ['bool|FALSE', 113],
             ['object|ClassName', 116],
             ['iterable|array|Traversable', 119],
             ['int|string|INT', 122],
@@ -562,7 +562,7 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTestCase
     public static function dataNewDNFTypes()
     {
         return [
-            ['(Foo&Bar)|null', 175],
+            ['(Foo&Bar)|NULL', 175],
             ['int|(\A&\B)', 175],
             ['(A&B)|(C&D)', 176],
             ['(A&B)|(B&A)', 182],

@@ -258,7 +258,7 @@ class NewReturnTypeDeclarationsUnitTest extends BaseSniffTestCase
             ['int|float', 59],
             ['MyClassA|\Package\MyClassB', 60],
             ['array|bool|callable|int|float|null|Object|string', 61],
-            ['false|self|parent|static|iterable|Resource', 64],
+            ['FALSE|self|parent|static|iterable|Resource', 64],
             ['?int|float', 67],
             ['bool|false', 76],
             ['object|ClassName', 79],

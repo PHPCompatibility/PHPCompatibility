@@ -45,7 +45,7 @@ $arrow = fn($a) : int => $a * 10;
 // PHP 8.0+
 class Foo {
     public function fooStatic($a): static {
-        $closure = function ($a): ?static {};
+        $closure = function ($a): ?Static {};
     }
 }
 
@@ -61,7 +61,7 @@ function unionTypesTwoClasses($var): MyClassA|\Package\MyClassB {}
 function unionTypesAllBaseTypes() : array|bool|callable|int|float|null|Object|string {}
 
 // This is fine.
-function unionTypesAllPseudoTypes($var) : false|self|parent|static|iterable|Resource {}
+function unionTypesAllPseudoTypes($var) : FALSE|self|parent|static|iterable|Resource {}
 
 // Intentional fatal error - nullability is not allowed with union types, but that's not the concern of the sniff.
 $closure = function () use($a) :?int|float {};
@@ -134,7 +134,7 @@ function pseudoTypeTrue(): true {}
 enum Suit implements Colorful
 {
     public function color(): ?string {}
-    public function shape(): mixed {}
+    public function shape(): Mixed {}
     public function union(): A|B {}
 }
 

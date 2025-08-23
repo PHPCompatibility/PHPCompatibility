@@ -33,12 +33,12 @@ class PHP83Example {
     public const ?array ARRAY = array(1, 2, 3);
     public const true TRUE = true;
     public const false FALSE = false;
-    public const null NULL = null;
+    public const NULL NULL = null;
 
     // Union types are supported.
     final const int|float UNION_SIMPLE = 5;
     private final const MyClassA|\Package\MyClassB UNION_TWO_CLASSES = new MyClassA;
-    protected const array|bool|int|float|NULL|object|string|iterable|parent UNION_ALL_BASE_TYPES = null;
+    protected const array|bool|int|float|NULL|object|String|iterable|parent UNION_ALL_BASE_TYPES = null;
 
     // Intersection types are supported.
     public const MyClassA&\Package\MyClassB INTERSECTION_TYPE = new MyClassA;
@@ -46,10 +46,10 @@ class PHP83Example {
 
     // DNF types are supported.
     public const (MyClassA&\Package\MyClassB)|null DNF_TYPE = new MyClassA;
-    final const array|(Traversable&\Countable) ARRAY_LIKE = new MyCountableArray([1,2,3]);
+    final const Array|(Traversable&\Countable) ARRAY_LIKE = new MyCountableArray([1,2,3]);
 
     // The type applies to all constants in one declaration
-    public const float FIRST_CONST = 10.5, SECOND_CONST = 3.2;
+    public const FLOAT FIRST_CONST = 10.5, SECOND_CONST = 3.2;
     public const bool FIRST = true,
         /**
          * Docblock
