@@ -82,26 +82,21 @@ final class NewConstantArraysUsingDefineUnitTest extends BaseSniffTestCase
      */
     public static function dataNoFalsePositives()
     {
-        return [
-            [15],
-            [18],
-            [19],
-            [22],
-            [23],
-            [26],
-            [28],
-            [31],
-            [32],
-            [35],
-            [36],
-            [40],
-            [43],
-            [46],
-            [49],
-            [53],
-            [56],
-            [57],
-        ];
+        $data = [];
+
+        for ($line = 15; $line <= 37; $line++) {
+            $data[] = [$line];
+        }
+
+        for ($line = 40; $line <= 50; $line++) {
+            $data[] = [$line];
+        }
+
+        for ($line = 53; $line <= 61; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
