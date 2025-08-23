@@ -6,7 +6,7 @@ stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_SSLv23_CLIENT);
 
 // These are not.
 preg_match_all('`[a-z]+`', $subject);
-stream_socket_enable_crypto($fp, true);
+\stream_socket_enable_crypto($fp, true);
 
 bcscale( 10 ); // OK.
 bcscale(); // PHP 7.3+.
@@ -26,7 +26,7 @@ ftp_fput($ftp_stream,$remote_file,$handle); // PHP 7.3+
 ftp_get ($ftp_stream, $local_file, $remote_file); // PHP 7.3+
 ftp_nb_fget( $ftp_stream,$handle, $remote_file); // PHP 7.3+
 ftp_nb_fput($ftp_stream, $remote_file, $handle); // PHP 7.3+
-ftp_nb_get( $ftp_stream, $local_file, $remote_file); // PHP 7.3+
+\ftp_nb_get( $ftp_stream, $local_file, $remote_file); // PHP 7.3+
 ftp_nb_put( $ftp_stream, $remote_file,$local_file); // PHP 7.3+
 ftp_put( $ftp_stream, $remote_file, $local_file); // PHP 7.3+
 ftp_put ( $ftp_stream, $remote_file, $local_file,$mode,$startpos); // OK.
@@ -35,8 +35,8 @@ array_merge($arrays); // OK.
 array_merge(); // PHP 7.4+
 array_merge_recursive(); // PHP 7.4+
 
-fgetcsv($handle $length); // OK.
-fgetcsv($handle); // PHP 5.1+.
+fGetCSV($handle $length); // OK.
+fGetCSV($handle); // PHP 5.1+.
 
 xmlwriter_write_element($xmlwriter, $name); // PHP 5.2.3+.
 xmlwriter_write_element_ns($xmlwriter, $prefix, $name, $uri); // PHP 5.2.3+.
@@ -54,7 +54,7 @@ array_udiff_assoc( $array1, $array2, $array3, $value_compare_func ); // OK.
 array_udiff_uassoc($array1, $array2, $value_compare_func, $key_compare_func); // OK.
 array_udiff($array1, $array2, $value_compare_func ); // OK.
 array_uintersect_assoc( $array1, $array2, $value_compare_func ); // OK.
-array_uintersect_uassoc($array1, $array2, $array3, $value_compare_func, $key_compare_func); // OK.
+\array_uintersect_uassoc($array1, $array2, $array3, $value_compare_func, $key_compare_func); // OK.
 array_uintersect($array1, $array2, $value_compare_func ); // OK.
 
 array_diff_assoc($array); // PHP 8.0+.
@@ -88,3 +88,10 @@ ftp_fget( ftp: $ftp_stream, stream: $handle, remote_filename: $remote_file, offs
 
 pg_select($conn, 'phptests.bar', $conditions); // OK.
 pg_select($conn, 'phptests.bar'); // PHP 8.4+.
+
+// More safeguards against false positives on method calls and namespaced function calls.
+ClassName::array_push(...$stack);
+$obj->fgetcsv($handle);
+$obj?->array_diff_key($array);
+namespace\array_udiff($array, $value_compare_func );
+\Fully\Qualified\pg_select($conn, 'phptests.bar');
