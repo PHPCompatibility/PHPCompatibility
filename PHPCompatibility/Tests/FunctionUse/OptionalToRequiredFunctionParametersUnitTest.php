@@ -67,7 +67,7 @@ final class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTestCa
             ['pg_fetch_result', 'field', '8.4', [49], '8.3'],
             ['pg_fetch_result', 'row', '8.4', [50], '8.3'],
             ['pg_field_prtlen', 'field', '8.4', [52], '8.3'],
-            ['pg_field_is_null', 'field', '8.4', [54], '8.3'],
+            ['PG_field_is_null', 'field', '8.4', [54], '8.3'],
         ];
     }
 
@@ -117,7 +117,7 @@ final class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTestCa
     {
         return [
             ['mktime', 'hour', '5.1', '8.0', [19], '5.0'],
-            ['crypt', 'salt', '5.6', '8.0', [8], '5.5'],
+            ['CRYPT', 'salt', '5.6', '8.0', [8], '5.5'],
             ['parse_str', 'result', '7.2', '8.0', [7, 37], '7.1'],
         ];
     }
@@ -203,6 +203,10 @@ final class OptionalToRequiredFunctionParametersUnitTest extends BaseSniffTestCa
             [48],
             [51],
             [53],
+            [57],
+            [58],
+            [59],
+            [60],
         ];
     }
 

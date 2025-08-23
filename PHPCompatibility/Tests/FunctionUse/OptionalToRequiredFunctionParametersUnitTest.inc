@@ -5,7 +5,7 @@ parse_str($str, $output);
 
 // These are not.
 parse_str($str);
-crypt( $str ); // Recommended.
+CRYPT( $str ); // Recommended.
 
 // Prevent false positive on new. Issue #913.
 $crypt = new Crypt('password');
@@ -47,8 +47,14 @@ stream_context_set_option($context, $options); // Error x 2.
 
 pg_fetch_result($result, $row, $field);
 pg_fetch_result($result, $field); // Error.
-pg_fetch_result($result, field: $field); // Error.
+\pg_fetch_result($result, field: $field); // Error.
 pg_field_prtlen($result, $row, $field);
 pg_field_prtlen($result, $field); // Error.
-pg_field_is_null($result, $row, $field);
-pg_field_is_null($result, $field); // Error.
+PG_field_is_null($result, $row, $field);
+\PG_field_is_null($result, $field); // Error.
+
+// More safeguards against false positives on method calls and namespaced function calls.
+ClassName::parse_str($str);
+$obj->mb_parse_str($encoded_string);
+namespace\stream_context_set_option($context, $options);
+\Fully\Qualified\pg_fetch_result($result, $field);
