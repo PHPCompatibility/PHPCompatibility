@@ -94,3 +94,7 @@ class TypedConstants {
     protected const A&B EMPTY = new A;
     private const (A&B)|C PUBLIC = new C;
 }
+
+// Safeguard handling of variations of function calls to `define()`.
+DEFINE('TRAIT', 'value');
+\define('FINAL', 'value');

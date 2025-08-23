@@ -340,6 +340,8 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
             [93, 'for'],
             [94, 'empty'],
             [95, 'public'],
+            [99, 'trait'],
+            [100, 'final'],
         ];
     }
 
