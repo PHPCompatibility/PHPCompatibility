@@ -67,9 +67,6 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
         \T_TRUE                     => \T_TRUE,
         \T_FALSE                    => \T_FALSE,
         \T_NULL                     => \T_NULL,
-
-        // Special cases:
-        \T_NS_SEPARATOR             => \T_NS_SEPARATOR,
     ];
 
 
@@ -185,18 +182,12 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
 
                 return false;
 
-            case \T_NAMESPACE:
             case \T_PARENT:
             case \T_SELF:
             case \T_DOUBLE_COLON:
                 $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonSimple + 1), ($end + 1), true);
 
-                if ($tokens[$nextNonSimple]['code'] === \T_NAMESPACE) {
-                    // Allow only `namespace\...`.
-                    if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_NS_SEPARATOR) {
-                        return false;
-                    }
-                } elseif ($tokens[$nextNonSimple]['code'] === \T_PARENT
+                if ($tokens[$nextNonSimple]['code'] === \T_PARENT
                     || $tokens[$nextNonSimple]['code'] === \T_SELF
                 ) {
                     // Allow only `parent::` and `self::`.
