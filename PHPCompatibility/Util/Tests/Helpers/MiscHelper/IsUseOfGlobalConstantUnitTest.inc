@@ -186,3 +186,6 @@ const NOT_TARGET = null ?? PHP_VERSION_ID[1] ?? 1;
 ?>
 <?= /* test A10 */ PHP_VERSION_ID; ?>
 <?php
+
+/* test A11 */
+$arrow = fn() int => PHP_VERSION_ID;
