@@ -13,6 +13,7 @@ namespace PHPCompatibility\Helpers;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Parentheses;
 
 /**
  * Miscellaneous helper functions
@@ -53,6 +54,20 @@ final class MiscHelper
         // Is this one of the tokens this function handles ?
         if ($tokens[$stackPtr]['code'] !== \T_STRING) {
             return false;
+        }
+
+        // Handle things within attributes.
+        if (isset($tokens[$stackPtr]['attribute_opener'], $tokens[$stackPtr]['attribute_closer']) === true) {
+            $attributeIsNestedInParentheses = Parentheses::getLastOpener($phpcsFile, $tokens[$stackPtr]['attribute_opener']);
+            $constantIsNestedInParentheses  = Parentheses::getLastOpener($phpcsFile, $stackPtr);
+
+            // Check if the same parenthesis level applies.
+            if ($attributeIsNestedInParentheses === $constantIsNestedInParentheses) {
+                // Attribute name, not part of a parameter.
+                return false;
+            }
+
+            return true;
         }
 
         $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);

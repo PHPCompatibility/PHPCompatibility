@@ -228,6 +228,19 @@ class EverythingTyped {
     abstract public function returnTypeK(): PHP_VERSION_ID;
 }
 
+/* test 74 */
+#[PHP_VERSION_ID]
+function HasSingleAttribute() {}
+
+/* test 75 */
+#[MyAttribute(), PHP_VERSION_ID]
+function HasMultiAttribute() {}
+
+/* test 76 */
+attributeNestedInParenthesis1(
+    new #[MyAttribute(), PHP_VERSION_ID] class () {}
+);
+
 /*
  * Make sure that global constants are correctly identified.
  *
@@ -271,3 +284,18 @@ $arrow = fn() int => PHP_VERSION_ID;
 
 /* test A12 */
 $spreadInArray = [...PHP_VERSION_ID];
+
+/* test A13 */
+$matchCondition = match(PHP_VERSION_ID) {
+    10      => true,
+    default => false,
+};
+
+/* test A14 */
+#[MyAttribute(PHP_VERSION_ID)]
+function HasAttribute() {}
+
+/* test A15 */
+attributeNestedInParenthesis2(
+    new #[MyAttribute(PHP_VERSION_ID)] class () {}
+);
