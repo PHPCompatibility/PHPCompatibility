@@ -113,6 +113,15 @@ function &PHP_VERSION_ID() {}
 /* test 35 */
 echo namespace\PHP_VERSION_ID;
 
+/* test 36 */
+const PHP_VERSION_ID = 'something';
+
+/* test 37 */
+const ABC = '123',
+      DEF = '456',
+      PHP_VERSION_ID = 'something',
+      GHI = 789;
+
 /*
  * Make sure that global constants are correctly identified.
  *
@@ -142,13 +151,7 @@ switch( PHP_VERSION_ID ) {
 }
 
 /* test A8 */
-const PHP_VERSION_ID = 'something';
-
-/* test A9 */
 $array[PHP_VERSION_ID] = 'something';
 
-/* test A10 */
-const ABC = '123',
-      DEF = '456',
-      PHP_VERSION_ID = 'something',
-	  GHI = 789;
+/* test A9 */
+const NOT_TARGET = null ?? PHP_VERSION_ID[1] ?? 1;

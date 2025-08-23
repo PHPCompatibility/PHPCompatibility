@@ -13,7 +13,6 @@ namespace PHPCompatibility\Helpers;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
-use PHPCSUtils\Utils\Scopes;
 
 /**
  * Miscellaneous helper functions
@@ -59,9 +58,10 @@ final class MiscHelper
         $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($next !== false
             && ($tokens[$next]['code'] === \T_OPEN_PARENTHESIS
-                || $tokens[$next]['code'] === \T_DOUBLE_COLON)
+                || $tokens[$next]['code'] === \T_DOUBLE_COLON
+                || $tokens[$next]['code'] === \T_EQUAL)
         ) {
-            // Function call or declaration.
+            // Function call, function declaration or constant/property assignment.
             return false;
         }
 
@@ -95,13 +95,6 @@ final class MiscHelper
                 // Namespaced constant.
                 return false;
             }
-        }
-
-        if ($tokens[$prev]['code'] === \T_CONST
-            && Scopes::isOOConstant($phpcsFile, $prev) === true
-        ) {
-            // Class constant declaration.
-            return false;
         }
 
         /*
