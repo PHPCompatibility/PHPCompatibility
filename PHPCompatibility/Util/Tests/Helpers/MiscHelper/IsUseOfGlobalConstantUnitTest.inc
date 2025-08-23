@@ -241,6 +241,12 @@ attributeNestedInParenthesis1(
     new #[MyAttribute(), PHP_VERSION_ID] class () {}
 );
 
+/* test 77 */
+try {
+} catch (PHP_VERSION_ID $e) {
+/* test 78 */
+} catch (PHP_VERSION_ID) {}
+
 /*
  * Make sure that global constants are correctly identified.
  *

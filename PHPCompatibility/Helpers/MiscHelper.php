@@ -70,6 +70,11 @@ final class MiscHelper
             return true;
         }
 
+        // Ignore exception names in catch structures.
+        if (Parentheses::lastOwnerIn($phpcsFile, $stackPtr, [\T_CATCH]) !== false) {
+            return false;
+        }
+
         $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($next !== false
             && ($tokens[$next]['code'] === \T_OPEN_PARENTHESIS
