@@ -72,7 +72,6 @@ final class MiscHelper
             \T_EXTENDS    => true,
             \T_IMPLEMENTS => true,
             \T_NEW        => true,
-            \T_FUNCTION   => true,
             \T_INSTANCEOF => true,
             \T_INSTEADOF  => true,
             \T_GOTO       => true,
