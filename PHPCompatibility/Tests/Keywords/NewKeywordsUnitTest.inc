@@ -18,7 +18,7 @@ class Talker {
 }
 
 namespace Foobar;
-
+namespace\function_call();
 $namespace = __NAMESPACE__;
 
 trait FoobarTrait {
