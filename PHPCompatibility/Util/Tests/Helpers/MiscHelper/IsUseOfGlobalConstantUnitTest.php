@@ -25,6 +25,29 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
 {
 
     /**
+     * Verify handling of invalid token pointer.
+     *
+     * @return void
+     */
+    public function testIsUseOfGlobalConstantReturnsFalseForNonExistentToken()
+    {
+        $result = MiscHelper::isUseOfGlobalConstant(self::$phpcsFile, 10000);
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Verify handling of invalid passed token type.
+     *
+     * @return void
+     */
+    public function testIsUseOfGlobalConstantReturnsFalseForUnsupportedToken()
+    {
+        $stackPtr = $this->getTargetToken('/* test 20 */', \T_ECHO);
+        $result   = MiscHelper::isUseOfGlobalConstant(self::$phpcsFile, $stackPtr);
+        $this->assertFalse($result);
+    }
+
+    /**
      * Test whether detection of whether a T_STRING is a global constant works correctly.
      *
      * @dataProvider dataIsUseOfGlobalConstant
