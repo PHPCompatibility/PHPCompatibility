@@ -1077,11 +1077,18 @@ final class RemovedConstantsUnitTest extends BaseSniffTestCase
      */
     public static function dataNoFalsePositives()
     {
-        return [
-            [3],
-            [4],
-            [5],
-        ];
+        $data = [];
+
+        // No errors expected on the first 6 lines.
+        for ($line = 1; $line <= 6; $line++) {
+            $data[] = [$line];
+        }
+
+        for ($line = 824; $line <= 835; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
