@@ -270,6 +270,38 @@ class TypedConstants {
     final protected const (TypeA&TypeB)|null PHP_VERSION_ID = null;
 }
 
+class NameInConstantType {
+    /* test 86 */
+    final const PHP_VERSION_ID CONST_NAME_A = 'Type is class name, not constant';
+
+    /* test 87 */
+    public const ?PHP_VERSION_ID CONST_NAME_B = 'Type is class name, not constant';
+
+    /* test 88 */
+    protected const PHP_VERSION_ID|false CONST_NAME_C = 'Type is class name, not constant';
+
+    /* test 89 */
+    private const false|PHP_VERSION_ID CONST_NAME_D = 'Type is class name, not constant';
+
+    /* test 90 */
+    const string|PHP_VERSION_ID|false CONST_NAME_E = 'Type is class name, not constant';
+
+    /* test 91 */
+    final const PHP_VERSION_ID&Something CONST_NAME_F = 'Type is class name, not constant';
+
+    /* test 92 */
+    public const Something&PHP_VERSION_ID CONST_NAME_G = 'Type is class name, not constant';
+
+    /* test 93 */
+    protected const Something&PHP_VERSION_ID&SomethingElse CONST_NAME_H = 'Type is class name, not constant';
+
+    /* test 94 */
+    private const (Something&PHP_VERSION_ID)|null CONST_NAME_I = 'Type is class name, not constant';
+
+    /* test 95 */
+    public const false|(PHP_VERSION_ID&Something) CONST_NAME_J = 'Type is class name, not constant';
+}
+
 /*
  * Make sure that global constants are correctly identified.
  *

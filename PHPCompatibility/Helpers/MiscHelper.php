@@ -100,6 +100,7 @@ final class MiscHelper
             \T_INSTEADOF             => true,
             \T_GOTO                  => true,
             \T_AS                    => true,
+            \T_CONST                 => true,
             \T_NULLABLE              => true,
             \T_TYPE_UNION            => true,
             \T_TYPE_INTERSECTION     => true,
