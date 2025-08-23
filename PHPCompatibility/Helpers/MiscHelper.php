@@ -87,12 +87,14 @@ final class MiscHelper
             return false;
         }
 
-        if ($prev !== false
-            && $tokens[$prev]['code'] === \T_NS_SEPARATOR
-            && $tokens[($prev - 1)]['code'] === \T_STRING
-        ) {
-            // Namespaced constant.
-            return false;
+        if ($tokens[$prev]['code'] === \T_NS_SEPARATOR) {
+            $prevPrev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
+            if ($tokens[$prevPrev]['code'] === \T_STRING
+                || $tokens[$prevPrev]['code'] === \T_NAMESPACE
+            ) {
+                // Namespaced constant.
+                return false;
+            }
         }
 
         if ($tokens[$prev]['code'] === \T_CONST

@@ -110,6 +110,9 @@ enum PHP_VERSION_ID: string {}
 /* test 34 */
 function &PHP_VERSION_ID() {}
 
+/* test 35 */
+echo namespace\PHP_VERSION_ID;
+
 /*
  * Make sure that global constants are correctly identified.
  *
