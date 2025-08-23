@@ -247,6 +247,11 @@ try {
 /* test 78 */
 } catch (PHP_VERSION_ID) {}
 
+enum AllowsConstants: string {
+    /* test 79 */
+    public const PHP_VERSION_ID = true;
+}
+
 /*
  * Make sure that global constants are correctly identified.
  *
