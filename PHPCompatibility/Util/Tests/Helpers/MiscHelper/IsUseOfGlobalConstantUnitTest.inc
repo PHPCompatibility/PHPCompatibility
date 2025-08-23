@@ -189,3 +189,6 @@ const NOT_TARGET = null ?? PHP_VERSION_ID[1] ?? 1;
 
 /* test A11 */
 $arrow = fn() int => PHP_VERSION_ID;
+
+/* test A12 */
+$spreadInArray = [...PHP_VERSION_ID];
