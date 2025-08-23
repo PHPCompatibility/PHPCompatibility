@@ -17,7 +17,7 @@ define( 'CONSTANT', 'foo', true, );
 curl_version(); // OK.
 curl_version( CURLVERSION_NOW ); // OK.
 curl_version( 4 ); // OK when on Curl version 4.
-curl_version( 10505678 );
+\curl_version( 10505678 );
 curl_version( $age );
 
 mb_decode_numericentity($str, $convmap); // OK.
@@ -31,10 +31,10 @@ imap_headerinfo($imap_stream, $msg_number, $fromlength, $subjectlength, $default
 
 odbc_exec($connection_id, $query_string); // OK.
 odbc_exec($connection_id, $query_string, $flags); // Error.
-odbc_do($connection_id, $query_string, $flags); // Error.
+ODBC_DO($connection_id, $query_string, $flags); // Error.
 
 imagepolygon($image, $points, $num_points, $color); // Warning.
-imageopenpolygon($image, $points, $num_points, $color); // Warning.
+ImageOpenPolygon($image, $points, $num_points, $color); // Warning.
 imagefilledpolygon($image, $points, $num_points, $color); // Warning.
 
 mysqli_get_client_info($mysql); // Warning.
@@ -44,7 +44,7 @@ define(constant_name: 'CONSTANT', value : 'foo'); // OK.
 define( case_insensitive : true, value : 'foo', constant_name: 'CONSTANT' ); // Error.
 
 imagepolygon($image, color: $color, points: $points); // OK, well not really as this function sig doesn't support named params, but that's not the concern of this sniff.
-imagepolygon($image, color: $color, points: $points, num_points: $num_points); // Warning.
+\imagepolygon($image, color: $color, points: $points, num_points: $num_points); // Warning.
 
 // Prevent false positives on PHP 8.0+ nullsafe method calls.
 $obj?->define( 'CONSTANT', 'foo', true, ); // OK.
@@ -65,7 +65,14 @@ imagerotate($image, $angle, $bg_color, $ignore_transparent); // Error.
 ldap_exop($ldap, $request_oid, $request_data, $controls, $response_data, $response_oid); // Error x 2.
 
 session_set_save_handler($handler, true); // OK.
-session_set_save_handler($open, $close, $read, $write, $destroy, $gc, $create_sid, $validate_sid, $update_timestamp); // Error x 7.
+\session_set_save_handler($open, $close, $read, $write, $destroy, $gc, $create_sid, $validate_sid, $update_timestamp); // Error x 7.
 
 mysqli_store_result($mysql); // OK.
 mysqli_store_result($mysql, $mode); // Warning.
+
+// Safeguard against false positives on method calls and namespaced function calls.
+ClassName::curl_version( $age );
+$obj->odbc_do($connection_id, $query_string, $flags);
+namespace\mysqli_get_client_info($mysql);
+\Fully\Qualified\imagerotate($image, $angle, $bg_color, $ignore_transparent);
+Partially\Qualified\mysqli_store_result($mysql, $mode);
