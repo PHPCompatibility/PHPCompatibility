@@ -122,6 +122,33 @@ const ABC = '123',
       PHP_VERSION_ID = 'something',
       GHI = 789;
 
+/* test 38 */
+use SomeNamespace\{
+    PHP_VERSION_ID,
+    TEMPLATEPATH,
+};
+
+/* test 39 */
+use SomeNamespace\{
+    PHP_VERSION_ID,
+};
+
+/* test 40 */
+use const SomeNamespace\{
+    PHP_VERSION_ID,
+    TEMPLATEPATH,
+};
+
+/* test 41 */
+use SomeNamespace\{
+    const PHP_VERSION_ID,
+};
+
+/* test 42 */
+use SomeNamespace\{
+    CONST PHP_VERSION_ID,
+};
+
 /*
  * Make sure that global constants are correctly identified.
  *
@@ -155,3 +182,7 @@ $array[PHP_VERSION_ID] = 'something';
 
 /* test A9 */
 const NOT_TARGET = null ?? PHP_VERSION_ID[1] ?? 1;
+
+?>
+<?= /* test A10 */ PHP_VERSION_ID; ?>
+<?php

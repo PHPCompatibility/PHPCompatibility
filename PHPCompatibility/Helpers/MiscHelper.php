@@ -100,15 +100,19 @@ final class MiscHelper
         /*
          * Deal with a number of variations of use statements.
          */
-        for ($i = $stackPtr; $i > 0; $i--) {
-            if ($tokens[$i]['line'] !== $tokens[$stackPtr]['line']) {
-                break;
-            }
-        }
+        $find                   = [
+            \T_SEMICOLON,
+            \T_OPEN_TAG,
+            \T_OPEN_TAG_WITH_ECHO,
+            \T_OPEN_CURLY_BRACKET,
+            \T_OPEN_SQUARE_BRACKET,
+            \T_OPEN_PARENTHESIS,
+        ];
+        $endOfPreviousStatement = $phpcsFile->findPrevious($find, ($stackPtr - 1));
+        $startOfThisStatement   = $phpcsFile->findNext(Tokens::$emptyTokens, ($endOfPreviousStatement + 1), null, true);
 
-        $firstOnLine = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), null, true);
-        if ($firstOnLine !== false && $tokens[$firstOnLine]['code'] === \T_USE) {
-            $nextOnLine = $phpcsFile->findNext(Tokens::$emptyTokens, ($firstOnLine + 1), null, true);
+        if ($tokens[$startOfThisStatement]['code'] === \T_USE) {
+            $nextOnLine = $phpcsFile->findNext(Tokens::$emptyTokens, ($startOfThisStatement + 1), null, true);
             if ($nextOnLine !== false) {
                 if (($tokens[$nextOnLine]['code'] === \T_STRING && $tokens[$nextOnLine]['content'] === 'const')) {
                     $hasNsSep = $phpcsFile->findNext(\T_NS_SEPARATOR, ($nextOnLine + 1), $stackPtr);
