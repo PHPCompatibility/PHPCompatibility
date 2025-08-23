@@ -257,6 +257,19 @@ trait ConstantInTrait {
     final const PHP_VERSION_ID = true;
 }
 
+class TypedConstants {
+    /* test 81 */
+    public const int PHP_VERSION_ID = 10;
+    /* test 82 */
+    protected const ?string PHP_VERSION_ID = null;
+    /* test 83 */
+    private const int|false PHP_VERSION_ID = 10;
+    /* test 84 */
+    final const TypeA&TypeB PHP_VERSION_ID = new TypeA();
+    /* test 85 */
+    final protected const (TypeA&TypeB)|null PHP_VERSION_ID = null;
+}
+
 /*
  * Make sure that global constants are correctly identified.
  *
