@@ -49,3 +49,10 @@ $d = Baz(Bar::func_get_args());
 $e = Baz($object->func_get_args());
 $f = Baz(\Bar\func_get_args());
 $g = Baz($obj?->func_num_args());
+$h = Baz($object->func_get_args); // Property access.
+$i = Baz(Bar::FUNC_NUM_ARGS); // Constant access
+
+function codeInParenthesesButNotInFunctionCall($a, $b) {
+    $arbitraryParentheses1 = (func_get_args());
+    $arbitraryParentheses2 = ($array + \func_get_args());
+}

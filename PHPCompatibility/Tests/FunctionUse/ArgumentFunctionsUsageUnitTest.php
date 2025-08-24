@@ -87,17 +87,17 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
      */
     public static function dataNoFalsePositivesUseAsParameter()
     {
-        return [
-            [25],
-            [26],
-            [27],
-            [29],
-            [30],
-            [31],
-            [32],
-            [33],
-            [36],
-        ];
+        $data = [];
+
+        for ($line = 24; $line <= 38; $line++) {
+            $data[] = [$line];
+        }
+
+        for ($line = 55; $line <= 58; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
@@ -160,12 +160,14 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
      */
     public static function dataNoFalsePositivesUseOutsideFunctionScope()
     {
-        return [
-            [48],
-            [49],
-            [50],
-            [51],
-        ];
+        $data = self::dataNoFalsePositivesUseAsParameter();
+
+        // Tests specific for this error.
+        for ($line = 47; $line <= 53; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
