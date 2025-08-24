@@ -3331,7 +3331,10 @@ final class RemovedConstantsSniff extends Sniff
      */
     public function register()
     {
-        return [\T_STRING];
+        return [
+            \T_STRING,
+            \T_NAME_FULLY_QUALIFIED,
+        ];
     }
 
 
@@ -3349,7 +3352,7 @@ final class RemovedConstantsSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         $tokens       = $phpcsFile->getTokens();
-        $constantName = $tokens[$stackPtr]['content'];
+        $constantName = \ltrim($tokens[$stackPtr]['content'], '\\');
 
         if (isset($this->removedConstants[$constantName]) === false) {
             return;
