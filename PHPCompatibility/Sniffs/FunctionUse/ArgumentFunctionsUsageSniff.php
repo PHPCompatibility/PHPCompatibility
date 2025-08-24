@@ -17,6 +17,7 @@ use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\Parentheses;
 
 /**
  * Detect usage of `func_get_args()`, `func_get_arg()` and `func_num_args()` in invalid context.
@@ -132,14 +133,17 @@ class ArgumentFunctionsUsageSniff extends Sniff
             return;
         }
 
-        if (isset($tokens[$stackPtr]['nested_parenthesis']) === false) {
+        $opener = Parentheses::getLastOpener($phpcsFile, $stackPtr);
+        if ($opener === false
+            || isset($tokens[$opener]['parenthesis_owner']) === true
+        ) {
+            // Not nested in parentheses at all or nested in "owned" parentheses, which are never function calls.
             return;
         }
 
-        $closer       = \end($tokens[$stackPtr]['nested_parenthesis']);
-        $opener       = \key($tokens[$stackPtr]['nested_parenthesis']);
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), null, true);
         if ($tokens[$prevNonEmpty]['code'] !== \T_STRING) {
+            // Not nested in a function call.
             return;
         }
 
