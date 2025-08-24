@@ -101,6 +101,8 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        $data[] = [70];
+
         return $data;
     }
 

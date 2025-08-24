@@ -87,13 +87,15 @@ class ArgumentFunctionsUsageSniff extends Sniff
 
         // Next non-empty token should be the open parenthesis.
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS) {
+        if ($nextNonEmpty === false
+            || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS
+            || isset($tokens[$nextNonEmpty]['parenthesis_owner'])
+        ) {
             return;
         }
 
         $ignore  = [
-            \T_FUNCTION => true,
-            \T_NEW      => true,
+            \T_NEW => true,
         ];
         $ignore += Collections::objectOperators();
 

@@ -65,3 +65,7 @@ function namespacedFunctionCalls() {
     $a = Baz(Partially\Qualified\func_get_args());
     $b = Baz(namespace\Foo\func_get_args());
 }
+
+class ReturnByRef {
+    public function &func_get_args() {}
+}
