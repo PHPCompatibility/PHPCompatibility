@@ -26,7 +26,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
 {
 
     /**
-     * testArgumentFunctionsUseAsParameter
+     * Test that use of the functions nested within a function call is correctly detected.
      *
      * @dataProvider dataArgumentFunctionsUseAsParameter
      *
@@ -44,7 +44,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * Data provider dataArgumentFunctionsUseAsParameter.
+     * Data provider.
      *
      * @see testArgumentFunctionsUseAsParameter()
      *
@@ -64,7 +64,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
 
 
     /**
-     * testNoFalsePositivesUseAsParameter
+     * Test that there are no false positives for the "nested in function call" check.
      *
      * @dataProvider dataNoFalsePositivesUseAsParameter
      *
@@ -112,7 +112,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
 
 
     /**
-     * testArgumentFunctionsUseOutsideFunctionScope
+     * Test that use of the functions in the global scope is correctly detected.
      *
      * @dataProvider dataArgumentFunctionsUseOutsideFunctionScope
      *
@@ -130,7 +130,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * Data provider dataArgumentFunctionsUseOutsideFunctionScope.
+     * Data provider.
      *
      * @see testArgumentFunctionsUseOutsideFunctionScope()
      *
@@ -147,7 +147,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
 
 
     /**
-     * testNoFalsePositivesUseOutsideFunctionScope
+     * Test that there are no false positives for the "usage in global scope" check.
      *
      * @dataProvider dataNoFalsePositivesUseOutsideFunctionScope
      *

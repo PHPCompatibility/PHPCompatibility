@@ -137,7 +137,7 @@ class ArgumentFunctionsUsageSniff extends Sniff
         /*
          * Check for use of the functions in the global scope.
          *
-         * As PHPCS can not determine whether a file is included from within a function in
+         * PHPCS can not determine whether a file is included from within a function in
          * another file, so always throw a warning/error.
          */
         if (Conditions::hasCondition($phpcsFile, $stackPtr, Collections::functionDeclarationTokens()) === false) {
