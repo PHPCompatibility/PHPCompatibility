@@ -69,3 +69,7 @@ function namespacedFunctionCalls() {
 class ReturnByRef {
     public function &func_get_args() {}
 }
+
+// Safeguard handling of PHP 7.4+ arrow functions.
+$arrow = fn($a, $b): array => func_get_args(); // OK, usage not in global scope.
+$arrow = fn($a, $b) => nested(\func_get_args()); // Even though nested, ignore as arrow functions can't be used with PHP < 5.3 anyway.

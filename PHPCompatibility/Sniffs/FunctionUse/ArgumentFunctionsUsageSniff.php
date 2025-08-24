@@ -62,7 +62,11 @@ class ArgumentFunctionsUsageSniff extends Sniff
      */
     public function register()
     {
-        return [\T_STRING];
+        return [
+            \T_STRING,
+            // Only registering arrow functions to allow for skipping over them.
+            \T_FN,
+        ];
     }
 
 
@@ -75,11 +79,20 @@ class ArgumentFunctionsUsageSniff extends Sniff
      * @param int                         $stackPtr  The position of the current token in the
      *                                               stack passed in $tokens.
      *
-     * @return void
+     * @return int|void Integer stack pointer to skip forward or void to continue
+     *                  normal file processing.
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $tokens     = $phpcsFile->getTokens();
+        $tokens = $phpcsFile->getTokens();
+
+        if ($tokens[$stackPtr]['code'] === \T_FN
+            && isset($tokens[$stackPtr]['scope_closer'])
+        ) {
+            // Skip over everything within an arrow function.
+            return $tokens[$stackPtr]['scope_closer'];
+        }
+
         $functionLc = \strtolower($tokens[$stackPtr]['content']);
         if (isset($this->targetFunctions[$functionLc]) === false) {
             return;
