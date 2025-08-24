@@ -135,29 +135,10 @@ class ArgumentFunctionsUsageSniff extends Sniff
             return;
         }
 
-        $throwError = false;
-
-        $closer = \end($tokens[$stackPtr]['nested_parenthesis']);
-        if (isset($tokens[$closer]['parenthesis_owner'])
-            && $tokens[$tokens[$closer]['parenthesis_owner']]['code'] === \T_CLOSURE
-        ) {
-            $throwError = true;
-        } else {
-            $opener       = \key($tokens[$stackPtr]['nested_parenthesis']);
-            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), null, true);
-            if ($tokens[$prevNonEmpty]['code'] !== \T_STRING) {
-                return;
-            }
-
-            $prevPrevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
-            if ($tokens[$prevPrevNonEmpty]['code'] === \T_FUNCTION) {
-                return;
-            }
-
-            $throwError = true;
-        }
-
-        if ($throwError === false) {
+        $closer       = \end($tokens[$stackPtr]['nested_parenthesis']);
+        $opener       = \key($tokens[$stackPtr]['nested_parenthesis']);
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), null, true);
+        if ($tokens[$prevNonEmpty]['code'] !== \T_STRING) {
             return;
         }
 

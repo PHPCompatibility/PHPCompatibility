@@ -5,7 +5,7 @@
  */
 function detect($a, $b) {
     echo array_map('trim', func_get_args());
-    $closure = function( \func_get_args() ) {}; // Parse error, but not our concern.
+    $closure = function($a, $b) { \nested(\func_get_args()) };
 }
 
 $closure = function ( $param ) {
