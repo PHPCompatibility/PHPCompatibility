@@ -152,18 +152,41 @@ final class NewClassMemberAccessUnitTest extends BaseSniffTestCase
 
 
     /**
-     * testNoFalsePositives
+     * Test that there are no false positives for valid code.
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number.
      *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '5.3');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array<array<int>>
+     */
+    public static function dataNoFalsePositives()
+    {
+        $data = [];
 
         // No errors expected on the first 37 lines.
         for ($line = 1; $line <= 37; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        for ($line = 121; $line <= 130; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
