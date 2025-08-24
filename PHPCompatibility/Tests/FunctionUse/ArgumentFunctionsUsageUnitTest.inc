@@ -3,27 +3,27 @@
 /*
  * Test pre-PHP 5.3: these functions could not be used in parameter lists.
  */
-function Foo() {
-    echo Foo(func_get_args());
+function detect($a, $b) {
+    echo array_map('trim', func_get_args());
     $closure = function( \func_get_args() ) {}; // Parse error, but not our concern.
 }
 
 $closure = function ( $param ) {
-    echo $this->Foo(func_get_args());
+    echo $this->Foo(FUNC_GET_ARGS());
 };
 
 class ABC {
-    public function foo() {
+    public function foo($a, $b) {
         echo MyNS\Bar(func_get_arg(1));
-        if ( func_num_args() > 0 &&  self::baz( \func_num_args() ) ) {}
+        if ( Func_Num_Args() > 0 &&  self::baz( \func_num_args() ) ) {}
         $b = new MyClass(func_get_args());
     }
 }
 
 // Test against false positives.
-function Foo() {
+function preventFalsePositivesForNonNestedAndNonGlobalFunctionCall($a, $b) {
     $a = func_get_args();
-    echo func_get_arg(1);
+    echo \func_get_arg(1);
     if ( func_num_args() > 0 ) {}
 
     $d = Baz(Bar::func_get_args());
