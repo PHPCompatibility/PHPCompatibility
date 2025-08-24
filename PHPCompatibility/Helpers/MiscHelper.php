@@ -98,20 +98,6 @@ final class MiscHelper
             return false;
         }
 
-        $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($tokens[$prev]['code'] === \T_NS_SEPARATOR) {
-            $prevPrev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
-            if ($tokens[$prevPrev]['code'] === \T_STRING
-                || $tokens[$prevPrev]['code'] === \T_NAMESPACE
-            ) {
-                // Namespaced constant on PHPCS 3.x.
-                return false;
-            }
-
-            // If not a namespaced constant, skip over the NS separator when looking at the "previous" token.
-            $prev = $prevPrev;
-        }
-
         // Array of tokens which if found preceding the $stackPtr indicate that a T_STRING is not a global constant.
         $tokensToIgnore  = [
             \T_NAMESPACE             => true,
@@ -133,6 +119,7 @@ final class MiscHelper
         $tokensToIgnore += Collections::objectOperators();
         $tokensToIgnore += Tokens::$scopeModifiers;
 
+        $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if (isset($tokensToIgnore[$tokens[$prev]['code']]) === true) {
             // Not the use of a constant.
             return false;
