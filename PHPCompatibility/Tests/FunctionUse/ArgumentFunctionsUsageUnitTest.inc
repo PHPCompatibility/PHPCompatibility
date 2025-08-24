@@ -9,14 +9,14 @@ function detect($a, $b) {
 }
 
 $closure = function ( $param ) {
-    echo $this->Foo(FUNC_GET_ARGS());
+    echo $this->Foo(FUNC_GET_ARGS(),);
 };
 
 class ABC {
     public function foo($a, $b) {
         echo MyNS\Bar(func_get_arg(1));
         if ( Func_Num_Args() > 0 &&  self::baz( \func_num_args() ) ) {}
-        $b = new MyClass(func_get_args());
+        $b = new MyClass(func_get_args(),);
     }
 }
 
@@ -30,7 +30,7 @@ function preventFalsePositivesForNonNestedAndNonGlobalFunctionCall($a, $b) {
     $e = Baz($object->func_get_args());
     $f = Baz(\Fully\Qualified\func_get_args());
     $g = Baz( new Func_Get_Args());
-    $h = Baz($obj?->func_num_args());
+    $h = Baz($obj?->func_num_args(),);
 
     if ( !function_exists('func_get_args')) {
         function func_get_args() {}
@@ -42,7 +42,7 @@ function preventFalsePositivesForNonNestedAndNonGlobalFunctionCall($a, $b) {
  */
 $a = func_get_args();
 echo Bar(func_get_arg(1));
-if ( \func_num_args() > 0 &&  baz( func_num_args() ) ) {} // x 2 (+ 1 x use in param list) .
+if ( \func_num_args() > 0 &&  baz( func_num_args(), ) ) {} // x 2 (+ 1 x use in param list) .
 
 // Test against false positives.
 $d = Baz(Bar::func_get_args());
@@ -59,7 +59,7 @@ function codeInParenthesesButNotInFunctionCall($a, $b) {
 
 // More tests against false positives for namespaced function calls.
 $j = Baz(Partially\Qualified\func_get_args());
-$k = Baz(namespace\Foo\func_get_arg(1));
+$k = Baz(namespace\Foo\func_get_arg(1),);
 
 function namespacedFunctionCalls() {
     $a = Baz(Partially\Qualified\func_get_args());
