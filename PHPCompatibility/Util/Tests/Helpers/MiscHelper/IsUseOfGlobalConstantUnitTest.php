@@ -12,6 +12,7 @@ namespace PHPCompatibility\Util\Tests\Helpers\MiscHelper;
 
 use PHPCompatibility\Helpers\MiscHelper;
 use PHPCSUtils\TestUtils\UtilityMethodTestCase;
+use PHPCSUtils\Tokens\Collections;
 
 /**
  * Tests for the `isUseOfGlobalConstant()` utility function.
@@ -56,13 +57,20 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
      *
      * @param string $commentString The comment which prefaces the target token in the test file.
      * @param string $expected      The expected boolean return value.
+     * @param string $targetContent Optional. The expected contents of the target token.
      *
      * @return void
      */
-    public function testIsUseOfGlobalConstant($commentString, $expected)
+    public function testIsUseOfGlobalConstant($commentString, $expected, $targetContent = null)
     {
-        $stackPtr = $this->getTargetToken($commentString, \T_STRING, 'PHP_VERSION_ID');
-        $result   = MiscHelper::isUseOfGlobalConstant(self::$phpcsFile, $stackPtr);
+        // Work around tokenization difference between PHPCS 3.x/4.x.
+        if (self::usesPhp8NameTokens() === true && $targetContent !== null) {
+            $stackPtr = $this->getTargetToken($commentString, Collections::nameTokens(), $targetContent);
+        } else {
+            $stackPtr = $this->getTargetToken($commentString, \T_STRING, 'PHP_VERSION_ID');
+        }
+
+        $result = MiscHelper::isUseOfGlobalConstant(self::$phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
@@ -77,7 +85,7 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
     {
         return [
             ['/* test 1 */', false],
-            ['/* test 2 */', false],
+            ['/* test 2 */', false, 'MY\OTHER\PHP_VERSION_ID\NS'],
             ['/* test 3 */', false],
             ['/* test 4 */', false],
             ['/* test 5 */', false],
@@ -91,14 +99,14 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
             ['/* test 13 */', false],
             ['/* test 14 */', false],
             ['/* test 15 */', false],
-            ['/* test 16 */', false],
-            ['/* test 17 */', false],
+            ['/* test 16 */', false, 'My\UsedAsNamespace\PHP_VERSION_ID\something'],
+            ['/* test 17 */', false, 'My\UsedAsNamespace\PHP_VERSION_ID\something'],
             ['/* test 18 */', false],
             ['/* test 19 */', false],
-            ['/* test 20 */', false],
+            ['/* test 20 */', false, '\mynamespace\PHP_VERSION_ID'],
             ['/* test 21 */', false],
             ['/* test 22 */', false],
-            ['/* test 23 */', false],
+            ['/* test 23 */', false, 'SomeNamespace\PHP_VERSION_ID'],
             ['/* test 24 */', false],
             ['/* test 25 */', false],
             ['/* test 26 */', false],
@@ -110,7 +118,7 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
             ['/* test 32 */', false],
             ['/* test 33 */', false],
             ['/* test 34 */', false],
-            ['/* test 35 */', false],
+            ['/* test 35 */', false, 'namespace\PHP_VERSION_ID'],
             ['/* test 36 */', false],
             ['/* test 37 */', false],
             ['/* test 38 */', false],
@@ -171,9 +179,55 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
             ['/* test 93 */', false],
             ['/* test 94 */', false],
             ['/* test 95 */', false],
+            ['/* test 96 */', false, '\PHP_VERSION_ID'],
+            ['/* test 97 */', false, '\PHP_VERSION_ID'],
+            ['/* test 98 */', false, '\PHP_VERSION_ID'],
+            ['/* test 99 */', false, '\PHP_VERSION_ID'],
+            ['/* test 100 */', false, '\PHP_VERSION_ID'],
+            ['/* test 101 */', false, '\PHP_VERSION_ID'],
+            ['/* test 102 */', false, '\PHP_VERSION_ID'],
+            ['/* test 103 */', false, '\PHP_VERSION_ID'],
+            ['/* test 104 */', false, '\PHP_VERSION_ID'],
+            ['/* test 105 */', false, '\PHP_VERSION_ID'],
+            ['/* test 106 */', false, '\PHP_VERSION_ID'],
+            ['/* test 107 */', false, '\PHP_VERSION_ID'],
+            ['/* test 108 */', false, '\PHP_VERSION_ID'],
+            ['/* test 109 */', false, '\PHP_VERSION_ID'],
+            ['/* test 110 */', false, '\PHP_VERSION_ID'],
+            ['/* test 111 */', false, '\PHP_VERSION_ID'],
+            ['/* test 112 */', false, '\PHP_VERSION_ID'],
+            ['/* test 113 */', false, '\PHP_VERSION_ID'],
+            ['/* test 114 */', false, '\PHP_VERSION_ID'],
+            ['/* test 115 */', false, '\PHP_VERSION_ID'],
+            ['/* test 116 */', false, '\PHP_VERSION_ID'],
+            ['/* test 117 */', false, '\PHP_VERSION_ID'],
+            ['/* test 118 */', false, '\PHP_VERSION_ID'],
+            ['/* test 119 */', false, '\PHP_VERSION_ID'],
+            ['/* test 120 */', false, '\PHP_VERSION_ID'],
+            ['/* test 121 */', false, '\PHP_VERSION_ID'],
+            ['/* test 122 */', false, '\PHP_VERSION_ID'],
+            ['/* test 123 */', false, '\PHP_VERSION_ID'],
+            ['/* test 124 */', false, '\PHP_VERSION_ID'],
+            ['/* test 125 */', false, '\PHP_VERSION_ID'],
+            ['/* test 126 */', false, '\PHP_VERSION_ID'],
+            ['/* test 127 */', false, '\PHP_VERSION_ID'],
+            ['/* test 128 */', false, '\PHP_VERSION_ID'],
+            ['/* test 129 */', false, '\PHP_VERSION_ID'],
+            ['/* test 130 */', false, '\PHP_VERSION_ID'],
+            ['/* test 131 */', false, '\PHP_VERSION_ID'],
+            ['/* test 132 */', false, '\PHP_VERSION_ID'],
+            ['/* test 133 */', false, '\PHP_VERSION_ID'],
+            ['/* test 134 */', false, '\PHP_VERSION_ID'],
+            ['/* test 135 */', false, '\PHP_VERSION_ID'],
+            ['/* test 136 */', false, '\PHP_VERSION_ID'],
+            ['/* test 137 */', false, '\PHP_VERSION_ID'],
+            ['/* test 138 */', false, '\PHP_VERSION_ID'],
+            ['/* test 139 */', false, '\PHP_VERSION_ID'],
+            ['/* test 140 */', false, '\PHP_VERSION_ID'],
+            ['/* test 141 */', false, '\PHP_VERSION_ID'],
 
             ['/* test A1 */', true],
-            ['/* test A2 */', true],
+            ['/* test A2 */', true, '\PHP_VERSION_ID'],
             ['/* test A3 */', true],
             ['/* test A4 */', true],
             ['/* test A5 */', true],
@@ -189,11 +243,13 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
             ['/* test A15 */', true],
             ['/* test A16 */', true],
             ['/* test A17 */', true],
-            ['/* test A18 */', true],
+            ['/* test A18 */', true, '\PHP_VERSION_ID'],
             ['/* test A19 */', true],
-            ['/* test A20 */', true],
+            ['/* test A20 */', true, '\PHP_VERSION_ID'],
             ['/* test A21 */', true],
             ['/* test A22 */', true],
+            ['/* test A23 */', true, '\PHP_VERSION_ID'],
+            ['/* test A24 */', true, '\PHP_VERSION_ID'],
         ];
     }
 }

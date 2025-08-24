@@ -32,7 +32,7 @@ final class MiscHelper
 {
 
     /**
-     * Determine whether an arbitrary T_STRING token is the use of a global constant.
+     * Determine whether an arbitrary T_STRING or T_NAME_FULLY_QUALIFIED token is the use of a global constant.
      *
      * @since 8.1.0
      * @since 10.0.0 This method is now static.
@@ -52,7 +52,16 @@ final class MiscHelper
         }
 
         // Is this one of the tokens this function handles ?
-        if ($tokens[$stackPtr]['code'] !== \T_STRING) {
+        if ($tokens[$stackPtr]['code'] !== \T_STRING
+            && $tokens[$stackPtr]['code'] !== \T_NAME_FULLY_QUALIFIED
+        ) {
+            return false;
+        }
+
+        if ($tokens[$stackPtr]['code'] === \T_NAME_FULLY_QUALIFIED
+            && \strpos($tokens[$stackPtr]['content'], '\\', 1) !== false
+        ) {
+            // This is a fully qualified name with a namespace, not for the global namespace.
             return false;
         }
 
@@ -89,6 +98,20 @@ final class MiscHelper
             return false;
         }
 
+        $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if ($tokens[$prev]['code'] === \T_NS_SEPARATOR) {
+            $prevPrev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
+            if ($tokens[$prevPrev]['code'] === \T_STRING
+                || $tokens[$prevPrev]['code'] === \T_NAMESPACE
+            ) {
+                // Namespaced constant on PHPCS 3.x.
+                return false;
+            }
+
+            // If not a namespaced constant, skip over the NS separator when looking at the "previous" token.
+            $prev = $prevPrev;
+        }
+
         // Array of tokens which if found preceding the $stackPtr indicate that a T_STRING is not a global constant.
         $tokensToIgnore  = [
             \T_NAMESPACE             => true,
@@ -110,20 +133,9 @@ final class MiscHelper
         $tokensToIgnore += Collections::objectOperators();
         $tokensToIgnore += Tokens::$scopeModifiers;
 
-        $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
         if (isset($tokensToIgnore[$tokens[$prev]['code']]) === true) {
             // Not the use of a constant.
             return false;
-        }
-
-        if ($tokens[$prev]['code'] === \T_NS_SEPARATOR) {
-            $prevPrev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
-            if ($tokens[$prevPrev]['code'] === \T_STRING
-                || $tokens[$prevPrev]['code'] === \T_NAMESPACE
-            ) {
-                // Namespaced constant.
-                return false;
-            }
         }
 
         // Handle plain return types.
