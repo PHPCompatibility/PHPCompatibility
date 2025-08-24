@@ -28,7 +28,7 @@ function preventFalsePositivesForNonNestedAndNonGlobalFunctionCall($a, $b) {
 
     $d = Baz(Bar::func_get_args());
     $e = Baz($object->func_get_args());
-    $f = Baz(\Bar\func_get_args());
+    $f = Baz(\Fully\Qualified\func_get_args());
     $g = Baz( new Func_Get_Args());
     $h = Baz($obj?->func_num_args());
 
@@ -47,7 +47,7 @@ if ( \func_num_args() > 0 &&  baz( func_num_args() ) ) {} // x 2 (+ 1 x use in p
 // Test against false positives.
 $d = Baz(Bar::func_get_args());
 $e = Baz($object->func_get_args());
-$f = Baz(\Bar\func_get_args());
+$f = Baz(\Fully\Qualified\func_get_args());
 $g = Baz($obj?->func_num_args());
 $h = Baz($object->func_get_args); // Property access.
 $i = Baz(Bar::FUNC_NUM_ARGS); // Constant access
@@ -55,4 +55,13 @@ $i = Baz(Bar::FUNC_NUM_ARGS); // Constant access
 function codeInParenthesesButNotInFunctionCall($a, $b) {
     $arbitraryParentheses1 = (func_get_args());
     $arbitraryParentheses2 = ($array + \func_get_args());
+}
+
+// More tests against false positives for namespaced function calls.
+$j = Baz(Partially\Qualified\func_get_args());
+$k = Baz(namespace\Foo\func_get_arg(1));
+
+function namespacedFunctionCalls() {
+    $a = Baz(Partially\Qualified\func_get_args());
+    $b = Baz(namespace\Foo\func_get_args());
 }

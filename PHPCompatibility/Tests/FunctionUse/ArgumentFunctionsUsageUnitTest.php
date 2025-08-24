@@ -97,6 +97,10 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        for ($line = 64; $line <= 67; $line++) {
+            $data[] = [$line];
+        }
+
         return $data;
     }
 
@@ -164,6 +168,10 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
 
         // Tests specific for this error.
         for ($line = 47; $line <= 53; $line++) {
+            $data[] = [$line];
+        }
+
+        for ($line = 60; $line <= 62; $line++) {
             $data[] = [$line];
         }
 
