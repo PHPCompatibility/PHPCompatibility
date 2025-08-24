@@ -360,6 +360,7 @@ final class NewClassesUnitTest extends BaseSniffTestCase
             [158],
             [169],
             [170],
+            [171],
             [181],
             [265],
             [325],
@@ -371,6 +372,14 @@ final class NewClassesUnitTest extends BaseSniffTestCase
             [493],
             [582],
             [586],
+            [602],
+            [603],
+            [604],
+            [605],
+            [607],
+            [608],
+            [609],
+            [612],
         ];
     }
 
