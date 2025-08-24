@@ -73,3 +73,7 @@ class ReturnByRef {
 // Safeguard handling of PHP 7.4+ arrow functions.
 $arrow = fn($a, $b): array => func_get_args(); // OK, usage not in global scope.
 $arrow = fn($a, $b) => nested(\func_get_args()); // Even though nested, ignore as arrow functions can't be used with PHP < 5.3 anyway.
+
+// Ensure there are no false positives for PHP 8.0+ attributes with the same name.
+#[Func_get_args(), Func_Num_Args()]
+function hasAttribute() {}

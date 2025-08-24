@@ -16,6 +16,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Parentheses;
 
@@ -104,6 +105,11 @@ class ArgumentFunctionsUsageSniff extends Sniff
             || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS
             || isset($tokens[$nextNonEmpty]['parenthesis_owner'])
         ) {
+            return;
+        }
+
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            // Class instantiation in attribute, not function call.
             return;
         }
 

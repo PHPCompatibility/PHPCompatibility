@@ -103,7 +103,7 @@ class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
 
         $data[] = [70];
 
-        for ($line = 73; $line <= 75; $line++) {
+        for ($line = 73; $line <= 79; $line++) {
             $data[] = [$line];
         }
 
