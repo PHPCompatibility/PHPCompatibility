@@ -36,5 +36,10 @@ function &test() {
 // Also recognize this with PHP 8.0 nullsafe object operator.
 echo $foo?->bar()[1];
 
+// Safeguard against false negatives for namespaced function calls.
+namespace\test()[0];
+\Fully\Qualified\test()[0];
+Partially\Qualified\test()[0];
+
 // Don't throw errors during live code review.
 echo test(
