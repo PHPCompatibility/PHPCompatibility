@@ -157,6 +157,12 @@ final class InternalInterfacesUnitTest extends BaseSniffTestCase
             [28],
             [32],
             [33],
+            [46],
+            [47],
+            [48],
+            [50],
+            [51],
+            [52],
         ];
     }
 

@@ -10,8 +10,8 @@ class MyUppercase implements DATETIMEINTERFACE {} // Test case-insensitivity.
 class MyLowercase implements datetimeinterface {} // Test case-insensitivity.
 
 // These shouldn't throw errors.
-class MyTraversable implements TraversableSomething {}
-class MyTraversable implements myNameSpace\Traversable {}
+class MyTraversableA implements TraversableSomething {}
+class MyTraversableB implements myNameSpace\Traversable {}
 
 // Internal interfaces with anonymous classes.
 $a = new class implements Traversable {}
@@ -25,8 +25,8 @@ class ImplementsNothingEither extends Foo {}
 
 // DateTimeInterface cannot be extended by userland interfaces. The others can.
 interface IDontExtend {} // OK.
-interface MyDateTimeInterface extends MyNs\DateTimeInterface, Traversable, Throwable, ArrayAccess {} // OK.
-interface MyDateTimeInterface extends ArrayAccess, DateTimeInterface, SomeInterface {} // Error.
+interface MyDateTimeInterfaceA extends MyNs\DateTimeInterface, Traversable, Throwable, ArrayAccess {} // OK.
+interface MyDateTimeInterfaceB extends ArrayAccess, DateTimeInterface, SomeInterface {} // Error.
 
 // Safeguard handling of PHP 8.1+ enums implementing internal interfaces.
 enum ImplementsNothing {} // OK.
@@ -41,3 +41,12 @@ enum MyEnum implements UnitEnum {}
 interface MyUnitEnum extends UnitEnum {}
 class MyEnumUser implements BackedEnum {}
 interface MyBackedEnum extends BackedEnum {}
+
+// Safeguard against false positives on namespaced implements/extends.
+class NamespaceRelative implements namespace\Traversable {}
+class PartiallyQualified implements Partially\Qualified\DateTimeInterface {}
+class FullyQualified implements \Fully\Qualified\Throwable {}
+
+interface MyNamespaceRelative extends namespace\UnitEnum {}
+interface MyPartiallyQualified extends Partially\Qualified\BackedEnum {}
+interface MyFullyQualified extends \Fully\Qualified\UnitEnum {}
