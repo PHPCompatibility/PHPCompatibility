@@ -30,7 +30,7 @@ function notOurTarget($a) {
         func_get_arg(0); // OK, not the PHP native function call.
     echo $obj?->debug_backtrace(); // OK, not the PHP native function call.
     echo ABC::func_get_args(); // OK, not the PHP native function call.
-    echo \myNS\debug_print_backtrace(); // OK, not the PHP native function call.
+    echo \Fully\Qualified\debug_print_backtrace(); // OK, not the PHP native function call.
     const DEBUG_BACKTRACE = 'abc';
 }
 
@@ -101,9 +101,9 @@ $d = function($a, $b, ...$c) {
     func_get_arg(2); // Warning.
     func_get_args(); // Error.
     $c[0] = 'something else';
-    func_get_arg(0); // OK - $a was not touched.
-    func_get_arg(1); // Error.
-    func_get_arg(2); // Error.
+    \func_get_arg(0); // OK - $a was not touched.
+    \func_get_arg(1); // Error.
+    \FUNC_GET_ARG(2); // Error.
     debug_backtrace(); // Error.
     debug_print_backtrace( $index ); // Error.
     debug_backtrace ( )  [ 1 ]; // Error. Index which will be used is unknown.
@@ -130,7 +130,7 @@ function functionCallsMayChangeParamByReferenceA($x) {
 }
 
 function functionCallsMayChangeParamByReferenceB($x) {
-    $y = function_call($x);
+    $y = \function_call($x);
     debug_backtrace(); // Warning, $x may have been changed by reference.
 }
 
@@ -160,7 +160,7 @@ function author_can( $post, $capability ) {
         if ( strpos( $string, '%' ) !== false ) {
             $args = array_slice( func_get_args(), 0 ); // Error.
             $args = array_slice( func_get_args(), 1 ); // OK, param changed is not one of the ones targetted by array_slice.
-            $args = array_splice(
+            $args = \array_splice(
                 func_get_args(),
                 2
             ); // OK, not accessing a named parameter.
@@ -262,6 +262,20 @@ function flagPreIncrementDecrement($x, $y) {
     \func_get_arg(1); // Error.
     Func_Get_Args(); // Error.
     \debug_backtrace(); // Error.
+}
+
+// Safeguard against false positives on namespaced function calls.
+function namespacedMirrorFunctionsAreNotOurTarget($a) {
+    $a = 'changed!';
+    Partially\Qualified\func_get_args(); // OK.
+    namespace\Relative\debug_backtrace(); // OK.
+}
+
+function hasNestedMirrorMethods() {
+    class MirrorMethods {
+        public function func_get_args() {} // OK.
+        public &function debug_backtrace() {} // OK.
+    }
 }
 
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
