@@ -137,7 +137,11 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
             $paramNames[] = $param['name'];
         }
 
-        for ($i = ($scopeOpener + 1); $i < $scopeCloser; $i++) {
+        $prevNonEmpty = $scopeOpener;
+        for ($i = ($scopeOpener + 1);
+            $i < $scopeCloser;
+            $prevNonEmpty = (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) ? $prevNonEmpty : $i), $i++
+        ) {
             if (isset(Collections::closedScopes()[$tokens[$i]['code']]) && isset($tokens[$i]['scope_closer'])) {
                 // Skip past nested structures.
                 $i = $tokens[$i]['scope_closer'];
@@ -164,18 +168,15 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 continue;
             }
 
-            $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($i - 1), null, true);
-            if ($prev !== false) {
-                if (isset(Collections::objectOperators()[$tokens[$prev]['code']])) {
-                    continue;
-                }
+            if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']])) {
+                continue;
+            }
 
-                // Check for namespaced functions, ie: \foo\bar() not \bar().
-                if ($tokens[ $prev ]['code'] === \T_NS_SEPARATOR) {
-                    $pprev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
-                    if ($pprev !== false && $tokens[ $pprev ]['code'] === \T_STRING) {
-                        continue;
-                    }
+            // Check for namespaced functions, ie: \foo\bar() not \bar().
+            if ($tokens[ $prevNonEmpty ]['code'] === \T_NS_SEPARATOR) {
+                $pprev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
+                if ($pprev !== false && $tokens[ $pprev ]['code'] === \T_STRING) {
+                    continue;
                 }
             }
 
@@ -238,9 +239,9 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                  * {@internal Note: This does not take offset calculations into account!
                  *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}
                  */
-                if ($prev !== false && $tokens[$prev]['code'] === \T_OPEN_PARENTHESIS) {
+                if ($tokens[$prevNonEmpty]['code'] === \T_OPEN_PARENTHESIS) {
 
-                    $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
+                    $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
                     if ($maybeFunctionCall !== false
                         && $tokens[$maybeFunctionCall]['code'] === \T_STRING
                         && ($tokens[$maybeFunctionCall]['content'] === 'array_slice'
