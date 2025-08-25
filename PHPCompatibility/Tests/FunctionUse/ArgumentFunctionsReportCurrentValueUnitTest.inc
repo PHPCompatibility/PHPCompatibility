@@ -330,6 +330,116 @@ function namespacedArraySliceOrSpliceDoNotGetException( $string, $other ) {
     $args = Partially\Qualified\array_splice( func_get_args(), 1 ); // Error.
 }
 
+/*
+ * Recognize list assignments correctly, including in PHP 7.1+ short lists and keyed lists.
+ */
+function ignoreParamAssignedToOtherVarinLongList($z) {
+    list($x, list($y)) = $z;
+    debug_print_backtrace(); // OK.
+}
+
+function ignoreParamAssignedToOtherVarinShortList($z) {
+    [$x, [$y]] = $z;
+    func_get_args(); // OK.
+}
+
+function paramIsAssignedNewValueInLongList($x) {
+    list($x) = function_call();
+    debug_backtrace(); // Error, $x has been assigned a new value via list.
+}
+
+function paramIsAssignedNewValueInShortList($x) {
+    [$x] = function_call();
+    func_get_args(); // Error, $x has been assigned a new value via short list.
+}
+
+function paramIsAssignedNewValueInNestedLongListA($y) {
+    list($x, , list($y)) = function_call();
+    func_get_args(); // Error, $y has been assigned a new value via list.
+}
+
+function paramIsAssignedNewValueInNestedShortListA($y) {
+    [[$y], $x,] = function_call();
+    debug_print_backtrace(); // Error, $y has been assigned a new value via short list.
+}
+
+function paramIsAssignedNewValueInNestedLongListB($y) {
+    list(list($y), , $x, ,) = function_call();
+    func_get_args(); // Error, $y has been assigned a new value via list.
+}
+
+function paramIsAssignedNewValueInNestedShortListB($y) {
+    [$x, , [$y]] = function_call();
+    debug_print_backtrace(); // Error, $y has been assigned a new value via short list.
+}
+
+function paramIsAssignedNewValueInLongListWithNestedList($z) {
+    list(list($y), , $z, ,) = function_call();
+    func_get_args(); // Error, $z has been assigned a new value via list.
+}
+
+function paramIsAssignedNewValueInShortListWithNestedList($z) {
+    [[$x], $z, , ] = function_call();
+    debug_print_backtrace(); // Error, $z has been assigned a new value via short list.
+}
+
+// Handle PHP 7.1+ keyed lists correctly.
+function ignoreParamUsedAsKeyInLongList($x) {
+    list($x => $y) = function_call();
+    debug_backtrace(); // OK, key is just used to retrieve the correct value from the array.
+}
+
+function ignoreParamUsedAsKeyInShortList($x) {
+    [$x => $y] = function_call();
+    func_get_args(); // OK, key is just used to retrieve the correct value from the array.
+}
+
+function ignoreParamUsedAsKeyInNestedLongList($y) {
+    list($x, list($y => $z)) = function_call();
+    func_get_args(); // OK, key is just used to retrieve the correct value from the array.
+}
+
+function ignoreParamUsedAsKeyInNestedShortList($y) {
+    [[$y => $z], $x, ] = function_call();
+    debug_print_backtrace(); // OK, key is just used to retrieve the correct value from the array.
+}
+
+// Handle PHP 7.3+ list reference assignments.
+function dontIgnoreReferenceAssignmentsinLongList($b) {
+    list(&$d) = $b;
+    // Do some more.
+    func_get_args(); // Warning, reference assignment.
+}
+
+function dontIgnoreReferenceAssignmentsinShortList($b) {
+    [&$d] = $b;
+    // Do some more.
+    debug_print_backtrace(); // Warning, reference assignment.
+}
+
+function dontIgnoreReferenceAssignmentsinNestedLongList($c) {
+    list($a, list(&$b)) = $c;
+    // Do some more.
+    debug_backtrace(); // Warning, reference assignment.
+}
+
+function dontIgnoreReferenceAssignmentsinNestedShortList($c) {
+    [$a, [&$b]] = $c;
+    // Do some more.
+    func_get_args(); // Warning, reference assignment.
+}
+
+// If the variable is used in the list, but not as a key and not directly assigned to, we throw a warning to err on the safe side.
+function paramIsUsedInAssignmentInLongList($x) {
+    list($this->property[$x]) = function_call();
+    debug_backtrace(); // Warning.
+}
+
+function paramIsUsedInAssignmentInShortList($x) {
+    [$this->{$x}] = function_call();
+    func_get_args(); // Warning.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);

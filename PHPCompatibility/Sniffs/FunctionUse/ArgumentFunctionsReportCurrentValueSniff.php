@@ -18,6 +18,7 @@ use PHPCSUtils\BackCompat\BCFile;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Lists;
 use PHPCSUtils\Utils\Operators;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
@@ -313,6 +314,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              */
             $scanResult    = 'clean';
             $variableToken = null;
+            $listsSeen     = [];
             for ($j = ($scopeOpener + 1); $j < $startOfStatement; $j++) {
                 if (isset(Collections::closedScopes()[$tokens[$j]['code']])
                     && isset($tokens[$j]['scope_closer'])
@@ -344,6 +346,16 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     }
                 }
 
+                // Keep track of the long/short lists structures seen.
+                if (isset(Collections::listOpenTokensBC()[$tokens[$j]['code']])) {
+                    $listOpenClose = Lists::getOpenClose($phpcsFile, $j);
+                    if ($listOpenClose !== false) {
+                        // Store in reverse order so we always have the last seen list first.
+                        $listOpenClose['list_token'] = $j;
+                        \array_unshift($listsSeen, $listOpenClose);
+                    }
+                }
+
                 if ($tokens[$j]['code'] !== \T_VARIABLE) {
                     continue;
                 }
@@ -365,6 +377,42 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     continue;
                 }
 
+                /*
+                 * Check if this is a variable in a list structure.
+                 *
+                 * For variables in a list, we need to:
+                 * - Flag assignments.
+                 * - Ignore list keys.
+                 */
+                if ($listsSeen !== []) {
+                    foreach ($listsSeen as $openClose) {
+                        if ($openClose['opener'] < $j && $j < $openClose['closer']) {
+                            $listInfo = Lists::getAssignments($phpcsFile, $openClose['list_token']);
+                            foreach ($listInfo as $listItem) {
+                                if ($listItem['is_empty'] === false
+                                    && $listItem['is_nested_list'] === false
+                                ) {
+                                    if ($listItem['assignment_token'] === $j) {
+                                        // We found a definite assignment within a list.
+                                        $scanResult    = 'error';
+                                        $variableToken = $j;
+                                        break 3;
+                                    }
+
+                                    if (isset($listItem['key_token'], $listItem['key_end_token'])
+                                        && $listItem['key_token'] <= $j && $j <= $listItem['key_end_token']
+                                    ) {
+                                        // The variable is used in the key for a list. We can safely disregard it.
+                                        continue 3;
+                                    }
+                                }
+                            }
+
+                            break;
+                        }
+                    }
+                }
+
                 $beforeVar                = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($j - 1), null, true);
                 $startOfVariableStatement = BCFile::findStartOfStatement(
                     $phpcsFile,
@@ -379,20 +427,38 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                  * - Variable is not nested in parenthesis, i.e. not used in a potential function call.
                  * - Not preceded by a reference operator.
                  * - Has an assignment operator before it and none after.
+                 *
+                 * Additionally, we also check if this is a list assignment and if so, if there are no reference
+                 * assignments within the list.
+                 * If there are no references in the list, we can ignore this assignment as plain.
                  */
                 if (empty($tokens[$j]['nested_parenthesis']) === true
                     && $beforeVar !== false
                     && Operators::isReference($phpcsFile, $beforeVar) === false
-                    && $tokens[$startOfVariableStatement]['code'] === \T_VARIABLE
+                    && ($tokens[$startOfVariableStatement]['code'] === \T_VARIABLE
+                        || isset(Collections::listOpenTokensBC()[$tokens[$startOfVariableStatement]['code']]))
                 ) {
+                    // If this was a list assignment, we need to make sure there are no reference assignments.
+                    $listHasReferenceAssignment = false;
+                    if (isset(Collections::listOpenTokensBC()[$tokens[$startOfVariableStatement]['code']])) {
+                        foreach ($listsSeen as $openClose) {
+                            if ($openClose['list_token'] === $startOfVariableStatement) {
+                                $listHasReferenceAssignment = $this->doesListHaveReferenceAssignments($phpcsFile, $openClose['list_token']);
+                                break;
+                            }
+                        }
+                    }
+
                     $endOfVariableStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($j + 1));
                     $lastAssignmentOperator = $phpcsFile->findPrevious(
                         Tokens::$assignmentTokens,
                         ($endOfVariableStatement - 1),
                         $startOfVariableStatement
                     );
+
                     if ($lastAssignmentOperator !== false
                         && $lastAssignmentOperator < $j
+                        && $listHasReferenceAssignment === false
                     ) {
                         continue;
                     }
@@ -522,5 +588,33 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
         }
 
         return true;
+    }
+
+    /**
+     * Check if there are any reference assignments in a list structure.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the list token.
+     *
+     * @return bool
+     */
+    private function doesListHaveReferenceAssignments(File $phpcsFile, $stackPtr)
+    {
+        $listInfo = Lists::getAssignments($phpcsFile, $stackPtr);
+        foreach ($listInfo as $listItem) {
+            if ($listItem['assign_by_reference'] === true) {
+                return true;
+            }
+
+            if ($listItem['is_nested_list'] === true
+                && $this->doesListHaveReferenceAssignments($phpcsFile, $listItem['assignment_token']) === true
+            ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

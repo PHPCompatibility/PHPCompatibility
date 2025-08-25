@@ -96,6 +96,14 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
             [328, 'func_get_args', '$string'],
             [329, 'func_get_args', '$string'],
             [330, 'func_get_args', '$string'],
+            [348, 'debug_backtrace', '$x'],
+            [353, 'func_get_args', '$x'],
+            [358, 'func_get_args', '$y'],
+            [363, 'debug_print_backtrace', '$y'],
+            [368, 'func_get_args', '$y'],
+            [373, 'debug_print_backtrace', '$y'],
+            [378, 'func_get_args', '$z'],
+            [383, 'debug_print_backtrace', '$z'],
         ];
     }
 
@@ -132,6 +140,12 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
             [134, 'debug_backtrace', '$x'],
             [249, 'func_get_args', '$stuff'],
             [255, 'func_get_args', '$matches'],
+            [411, 'func_get_args', '$b'],
+            [417, 'debug_print_backtrace', '$b'],
+            [423, 'debug_backtrace', '$c'],
+            [429, 'func_get_args', '$c'],
+            [435, 'debug_backtrace', '$x'],
+            [440, 'func_get_args', '$x'],
         ];
     }
 
@@ -199,7 +213,15 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
             $cases[] = [$line];
         }
 
-        $cases[] = [336]; // Parse error.
+        for ($line = 333; $line <= 345; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 386; $line <= 406; $line++) {
+            $cases[] = [$line];
+        }
+
+        $cases[] = [446]; // Parse error.
 
         return $cases;
     }
