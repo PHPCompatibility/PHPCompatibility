@@ -309,6 +309,27 @@ function arrayFunctionNamesAreCaseInsensitive( $string, $other ) {
     $args = Array_SPLICE(func_get_args(), 2); // OK, not accessing a named parameter.
 }
 
+// Safeguard against false negatives on method calls and namespaced function calls.
+function namespacedArraySliceOrSpliceDoNotGetException( $string, $other ) {
+    $string = function_call([ $string ]);
+
+    $args = new array_slice( func_get_args(), 1 ); // Error.
+    $args = MyClass::array_slice( func_get_args(), 1 ); // Error.
+    $args = $obj->array_slice( func_get_args(), 1 ); // Error.
+    $args = $obj?->array_slice( func_get_args(), 1 ); // Error.
+    $args = namespace\array_slice( func_get_args(), 1 ); // Error.
+    $args = \Fully\Qualified\array_slice( func_get_args(), 1 ); // Error.
+    $args = Partially\Qualified\array_slice( func_get_args(), 1 ); // Error.
+
+    $args = new array_splice( func_get_args(), 1 ); // Error.
+    $args = MyClass::array_splice( func_get_args(), 1 ); // Error.
+    $args = $obj->array_splice( func_get_args(), 1 ); // Error.
+    $args = $obj?->array_splice( func_get_args(), 1 ); // Error.
+    $args = namespace\Relative\array_splice( func_get_args(), 1 ); // Error.
+    $args = \Fully\Qualified\array_splice( func_get_args(), 1 ); // Error.
+    $args = Partially\Qualified\array_splice( func_get_args(), 1 ); // Error.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);

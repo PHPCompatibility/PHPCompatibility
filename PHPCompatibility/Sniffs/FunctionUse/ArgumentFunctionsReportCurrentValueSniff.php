@@ -168,16 +168,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 continue;
             }
 
-            if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']])) {
+            if ($this->isCallToGlobalFunction($phpcsFile, $i) === false) {
                 continue;
-            }
-
-            // Check for namespaced functions, ie: \foo\bar() not \bar().
-            if ($tokens[ $prevNonEmpty ]['code'] === \T_NS_SEPARATOR) {
-                $pprev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
-                if ($pprev !== false && $tokens[ $pprev ]['code'] === \T_STRING) {
-                    continue;
-                }
             }
 
             /*
@@ -237,7 +229,9 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 if ($tokens[$prevNonEmpty]['code'] === \T_OPEN_PARENTHESIS) {
 
                     $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
-                    if ($tokens[$maybeFunctionCall]['code'] === \T_STRING) {
+                    if ($tokens[$maybeFunctionCall]['code'] === \T_STRING
+                        && $this->isCallToGlobalFunction($phpcsFile, $maybeFunctionCall) === true
+                    ) {
                         $functionNameLc = \strtolower($tokens[$maybeFunctionCall]['content']);
                         if ($functionNameLc === 'array_slice'
                             || $functionNameLc === 'array_splice'
@@ -484,5 +478,48 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
             unset($variableToken);
         }
+    }
+
+    /**
+     * Check if a `T_STRING` token represents a function call to a global function.
+     *
+     * Note: not 100% precise, but should be sufficient for now. At a later point in
+     * time there will probably be a PHPCSUtils function for this.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the potential function call
+     *                                               token in the stack.
+     *
+     * @return bool
+     */
+    private function isCallToGlobalFunction(File $phpcsFile, $stackPtr)
+    {
+        $tokens       = $phpcsFile->getTokens();
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+
+        if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === true) {
+            // Method call.
+            return false;
+        }
+
+        if ($tokens[$prevNonEmpty]['code'] === \T_NEW
+            || $tokens[$prevNonEmpty]['code'] === \T_FUNCTION
+        ) {
+            return false;
+        }
+
+        if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR) {
+            $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
+            if ($tokens[$prevPrevToken]['code'] === \T_STRING
+                || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
+            ) {
+                // Namespaced function.
+                return false;
+            }
+        }
+
+        return true;
     }
 }
