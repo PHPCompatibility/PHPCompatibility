@@ -55,22 +55,6 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
     ];
 
     /**
-     * Tokens to look out for to allow us to skip past nested scoped structures.
-     *
-     * @since 9.1.0
-     *
-     * @var array<string, true>
-     */
-    private $skipPastNested = [
-        'T_CLASS'      => true,
-        'T_ANON_CLASS' => true,
-        'T_INTERFACE'  => true,
-        'T_TRAIT'      => true,
-        'T_FUNCTION'   => true,
-        'T_CLOSURE'    => true,
-    ];
-
-    /**
      * The tokens for variable incrementing/decrementing.
      *
      * @since 9.1.0
@@ -166,7 +150,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
         }
 
         for ($i = ($scopeOpener + 1); $i < $scopeCloser; $i++) {
-            if (isset($this->skipPastNested[$tokens[$i]['type']]) && isset($tokens[$i]['scope_closer'])) {
+            if (isset(Collections::closedScopes()[$tokens[$i]['code']]) && isset($tokens[$i]['scope_closer'])) {
                 // Skip past nested structures.
                 $i = $tokens[$i]['scope_closer'];
                 continue;
@@ -350,7 +334,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              */
             $scanResult = 'clean';
             for ($j = ($scopeOpener + 1); $j < $startOfStatement; $j++) {
-                if (isset($this->skipPastNested[$tokens[$j]['type']])
+                if (isset(Collections::closedScopes()[$tokens[$j]['code']])
                     && isset($tokens[$j]['scope_closer'])
                 ) {
                     // Skip past nested structures.
