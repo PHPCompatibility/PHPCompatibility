@@ -237,25 +237,26 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 if ($tokens[$prevNonEmpty]['code'] === \T_OPEN_PARENTHESIS) {
 
                     $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
-                    if ($maybeFunctionCall !== false
-                        && $tokens[$maybeFunctionCall]['code'] === \T_STRING
-                        && ($tokens[$maybeFunctionCall]['content'] === 'array_slice'
-                        || $tokens[$maybeFunctionCall]['content'] === 'array_splice')
-                    ) {
-                        $parentFuncParamTwo = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 2);
-                        $number             = $phpcsFile->findNext(
-                            \T_LNUMBER,
-                            $parentFuncParamTwo['start'],
-                            ($parentFuncParamTwo['end'] + 1)
-                        );
+                    if ($tokens[$maybeFunctionCall]['code'] === \T_STRING) {
+                        $functionNameLc = \strtolower($tokens[$maybeFunctionCall]['content']);
+                        if ($functionNameLc === 'array_slice'
+                            || $functionNameLc === 'array_splice'
+                        ) {
+                            $parentFuncParamTwo = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 2);
+                            $number             = $phpcsFile->findNext(
+                                \T_LNUMBER,
+                                $parentFuncParamTwo['start'],
+                                ($parentFuncParamTwo['end'] + 1)
+                            );
 
-                        if ($number !== false && isset($paramNames[$tokens[$number]['content']]) === false) {
-                            // Requesting non-named additional parameters. Ignore.
-                            continue ;
+                            if ($number !== false && isset($paramNames[$tokens[$number]['content']]) === false) {
+                                // Requesting non-named additional parameters. Ignore.
+                                continue ;
+                            }
+
+                            // Slice starts at a named argument, but we know which params are being accessed.
+                            $paramNamesSubset = \array_slice($paramNames, $tokens[$number]['content']);
                         }
-
-                        // Slice starts at a named argument, but we know which params are being accessed.
-                        $paramNamesSubset = \array_slice($paramNames, $tokens[$number]['content']);
                     }
                 }
             }

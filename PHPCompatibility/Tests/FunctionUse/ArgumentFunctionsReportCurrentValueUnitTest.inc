@@ -301,6 +301,14 @@ function backtraceOptionsByTheNumber($a) {
     debug_print_backtrace(2); // OK, args index will be omitted.
 }
 
+function arrayFunctionNamesAreCaseInsensitive( $string, $other ) {
+    $string = function_call([ $string ]);
+
+    $args = ARRAY_SLICE( func_get_args(), 0 ); // Error.
+    $args = \Array_Slice( func_get_args(), 1 ); // OK, param changed is not one of the ones targetted by array_slice.
+    $args = Array_SPLICE(func_get_args(), 2); // OK, not accessing a named parameter.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);
