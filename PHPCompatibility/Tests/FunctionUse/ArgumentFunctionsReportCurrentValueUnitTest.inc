@@ -18,62 +18,62 @@ $d = function($a, $b, ...$c) {
  * Prevent false positives.
  */
 function foo($a) {
-	$a = 'foo';
+    $a = 'foo';
     debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS); // 'args' is ignored, so not affected.
     debug_backtrace()[0]['class']; // Explicitly requesting a non-args index from the backtrace array.
 }
 
 function foo($a) {
-	$a   = 'changed!';
-	$obj = new ABC();
-	echo $obj->
-		func_get_arg(0); // OK, not the PHP native function call.
-	echo $obj?->debug_backtrace(); // OK, not the PHP native function call.
-	echo ABC::func_get_args(); // OK, not the PHP native function call.
-	echo \myNS\debug_print_backtrace(); // OK, not the PHP native function call.
-	const DEBUG_BACKTRACE = 'abc';
+    $a   = 'changed!';
+    $obj = new ABC();
+    echo $obj->
+        func_get_arg(0); // OK, not the PHP native function call.
+    echo $obj?->debug_backtrace(); // OK, not the PHP native function call.
+    echo ABC::func_get_args(); // OK, not the PHP native function call.
+    echo \myNS\debug_print_backtrace(); // OK, not the PHP native function call.
+    const DEBUG_BACKTRACE = 'abc';
 }
 
 debug_backtrace(); // Not called within the scope of a function, so 'args' is not set/affected.
 
 $e = function() {
-	$abc = 'abc';
+    $abc = 'abc';
     var_dump(func_get_args()); // OK, no named args, so no risk.
 }
 
 function something( $a, $b ) {
-	$a = 'abc';
+    $a = 'abc';
     func_get_arg(2); // OK, requesting a non-named additional argument.
 }
 
 // No scope opener/closer.
 class ABC {
-	abstract private function def();
+    abstract private function def();
 }
 
 interface ABC {
-	public function def();
+    public function def();
 }
 
 // Making sure the sniff does not get confused over nested structures.
 function foo($a, $b, ...$c) {
-	$d = function($args) {
-		$a = 'abc';
-	    $b = \func_get_args();
-	}
+    $d = function($args) {
+        $a = 'abc';
+        $b = \func_get_args();
+    }
 
-	function local_function($b = 123) {
-		-- /* comment */ $c;
-	    func_get_arg(0);
-	}
+    function local_function($b = 123) {
+        -- /* comment */ $c;
+        func_get_arg(0);
+    }
 
-	class ABC {
-		public function some_method() {
-		    debug_print_backtrace();
-		}
-	}
+    class ABC {
+        public function some_method() {
+            debug_print_backtrace();
+        }
+    }
 
-	func_get_args(); // OK, nothing changed in the scope we're interested in.
+    func_get_args(); // OK, nothing changed in the scope we're interested in.
 }
 
 /*
@@ -88,19 +88,19 @@ function bar($x) {
 
 $d = function($a, $b, ...$c) {
     func_get_arg(
-		2
-	); // OK.
-	$b = array_map('strtolower', $b);
+        2
+    ); // OK.
+    $b = array_map('strtolower', $b);
     func_get_arg( 0 ); // OK - $a was not touched
     func_get_arg(1); // Error.
     func_get_arg(2); // OK - $c was not touched (yet).
     func_get_args(); // Error.
-	$d = array_map('strtolower', $c);
+    $d = array_map('strtolower', $c);
     func_get_arg( 0 ); // OK - $a was not touched
     func_get_arg(1); // Error.
     func_get_arg(2); // Warning.
     func_get_args(); // Error.
-	$c[0] = 'something else';
+    $c[0] = 'something else';
     func_get_arg(0); // OK - $a was not touched.
     func_get_arg(1); // Error.
     func_get_arg(2); // Error.
@@ -111,16 +111,16 @@ $d = function($a, $b, ...$c) {
 }
 
 function foo($a, $b, ...$c) {
-	$a[1]['a'][2] = 'abc';
+    $a[1]['a'][2] = 'abc';
 
-	function local_function( $b = 123 ) {
-		$c = 'something';
-	}
+    function local_function( $b = 123 ) {
+        $c = 'something';
+    }
 
-	func_get_arg(0); // Error.
-	func_get_arg(1); // OK. Changed in a different scope.
-	func_get_arg($var); // Error.
-	$c = func_get_arg(2); // OK. Assignment operator is right associative.
+    func_get_arg(0); // Error.
+    func_get_arg(1); // OK. Changed in a different scope.
+    func_get_arg($var); // Error.
+    $c = func_get_arg(2); // OK. Assignment operator is right associative.
 }
 
 
@@ -137,35 +137,35 @@ function foo($x) {
 /*
  * Some more tests based on real life code.
  */
-	public function add_node( $args ) {
-		// Shim for old method signature.
-		if ( func_num_args() >= 3 && is_string( func_get_arg( 0 ) ) ) { // OK.
-			$args = array_merge( array( 'parent' => func_get_arg( 0 ) ), func_get_arg( 2 ) ); // OK.
-		}
-	}
+    public function add_node( $args ) {
+        // Shim for old method signature.
+        if ( func_num_args() >= 3 && is_string( func_get_arg( 0 ) ) ) { // OK.
+            $args = array_merge( array( 'parent' => func_get_arg( 0 ) ), func_get_arg( 2 ) ); // OK.
+        }
+    }
 
 function author_can( $post, $capability ) {
-	if ( $post === 'abc' ) {
-		return false;
-	}
+    if ( $post === 'abc' ) {
+        return false;
+    }
 
-	$args = array_slice( func_get_args(), 2 ); // OK, not accessing a named parameter.
+    $args = array_slice( func_get_args(), 2 ); // OK, not accessing a named parameter.
 }
 
-	public function feedback( $string, $other ) {
-		if ( isset( $this->upgrader->strings[ $string ] ) ) {
-			$string = $this->upgrader->strings[ $string ];
-		}
+    public function feedback( $string, $other ) {
+        if ( isset( $this->upgrader->strings[ $string ] ) ) {
+            $string = $this->upgrader->strings[ $string ];
+        }
 
-		if ( strpos( $string, '%' ) !== false ) {
-			$args = array_slice( func_get_args(), 0 ); // Error.
-			$args = array_slice( func_get_args(), 1 ); // OK, param changed is not one of the ones targetted by array_slice.
-			$args = array_splice(
-				func_get_args(),
-				2
-			); // OK, not accessing a named parameter.
-		}
-	}
+        if ( strpos( $string, '%' ) !== false ) {
+            $args = array_slice( func_get_args(), 0 ); // Error.
+            $args = array_slice( func_get_args(), 1 ); // OK, param changed is not one of the ones targetted by array_slice.
+            $args = array_splice(
+                func_get_args(),
+                2
+            ); // OK, not accessing a named parameter.
+        }
+    }
 
 // Issue #1207.
 function ignoreParamInReturn ( $stuff ) {
