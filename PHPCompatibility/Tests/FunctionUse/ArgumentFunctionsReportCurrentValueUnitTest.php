@@ -147,21 +147,18 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
         $cases[] = [104];
         $cases[] = [121];
         $cases[] = [123];
-        $cases[] = [142];
-        $cases[] = [143];
-        $cases[] = [152];
-        $cases[] = [162];
-        $cases[] = [164];
-        $cases[] = [173];
-        $cases[] = [176];
-        $cases[] = [184];
-        $cases[] = [192];
-        $cases[] = [200];
-        $cases[] = [208];
-        $cases[] = [215];
-        $cases[] = [220];
-        $cases[] = [225];
-        $cases[] = [238];
+
+        for ($line = 137; $line <= 160; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 162; $line <= 227; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 233; $line <= 240; $line++) {
+            $cases[] = [$line];
+        }
 
         $cases[] = [261]; // Parse error.
 
