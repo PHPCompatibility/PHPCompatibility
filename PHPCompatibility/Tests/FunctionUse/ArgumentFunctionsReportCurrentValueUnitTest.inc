@@ -255,6 +255,15 @@ function dontIgnoreNonPlainAssignments($matches) {
     $args = func_get_args(); // Warning, non-plain assignment.
 }
 
+function flagPreIncrementDecrement($x, $y) {
+    --$x;
+    ++$y;
+    func_get_arg(0); // Error.
+    \func_get_arg(1); // Error.
+    Func_Get_Args(); // Error.
+    \debug_backtrace(); // Error.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);

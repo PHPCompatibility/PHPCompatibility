@@ -453,7 +453,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 $afterVar = $phpcsFile->findNext(Tokens::$emptyTokens, ($j + 1), null, true);
                 if ($afterVar === false) {
                     // Shouldn't be possible, but just in case.
-                    continue;
+                    continue; // @codeCoverageIgnore
                 }
 
                 if (isset($this->plusPlusMinusMinus[$tokens[$afterVar]['code']])) {
