@@ -193,15 +193,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                          */
                         case 'debug_backtrace':
                         case 'debug_print_backtrace':
-                            $hasIgnoreArgs = $phpcsFile->findNext(
-                                \T_STRING,
-                                $paramOne['start'],
-                                ($paramOne['end'] + 1),
-                                false,
-                                'DEBUG_BACKTRACE_IGNORE_ARGS'
-                            );
-
-                            if ($hasIgnoreArgs !== false) {
+                            if (\preg_match('`(^|\|)\s*\\\\?DEBUG_BACKTRACE_IGNORE_ARGS`', $paramOne['clean']) === 1) {
                                 // Debug_backtrace() called with ignore args option.
                                 continue 2;
                             }

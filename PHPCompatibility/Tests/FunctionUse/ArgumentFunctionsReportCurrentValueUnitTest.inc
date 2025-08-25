@@ -278,6 +278,14 @@ function hasNestedMirrorMethods() {
     }
 }
 
+function usingFQNconstant($a) {
+    $a = 'foo';
+    debug_print_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS);                 // OK, 'args' is ignored, so not affected.
+    debug_backtrace(namespace\Relative\DEBUG_BACKTRACE_IGNORE_ARGS);     // Error, not the global constant being passed, value unknown.
+    debug_print_backtrace(\Fully\Qualified\DEBUG_BACKTRACE_IGNORE_ARGS); // Error, not the global constant being passed, value unknown.
+    debug_backtrace(Partially\Qualified\DEBUG_BACKTRACE_IGNORE_ARGS);    // Error, not the global constant being passed, value unknown.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);
