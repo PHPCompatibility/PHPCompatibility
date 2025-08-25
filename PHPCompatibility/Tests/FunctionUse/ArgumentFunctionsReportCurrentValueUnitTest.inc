@@ -2,7 +2,7 @@
 /*
  * Same behaviour across PHP versions as the passed argument(s) are not touched before the function(s) are called.
  */
-function foo($x) {
+function parametersNotTouched($x) {
     func_get_arg(0);
     func_get_args();
     debug_backtrace();
@@ -12,18 +12,18 @@ function foo($x) {
 $d = function($a, $b, ...$c) {
     func_get_arg(0);
     func_get_args();
-}
+};
 
 /*
  * Prevent false positives.
  */
-function foo($a) {
+function specialCasesA($a) {
     $a = 'foo';
     debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS); // 'args' is ignored, so not affected.
     debug_backtrace()[0]['class']; // Explicitly requesting a non-args index from the backtrace array.
 }
 
-function foo($a) {
+function notOurTarget($a) {
     $a   = 'changed!';
     $obj = new ABC();
     echo $obj->
@@ -39,35 +39,35 @@ debug_backtrace(); // Not called within the scope of a function, so 'args' is no
 $e = function() {
     $abc = 'abc';
     var_dump(func_get_args()); // OK, no named args, so no risk.
-}
+};
 
-function something( $a, $b ) {
+function requestingNonNamedArgWhichCannotBeChanged( $a, $b ) {
     $a = 'abc';
     func_get_arg(2); // OK, requesting a non-named additional argument.
 }
 
 // No scope opener/closer.
-class ABC {
-    abstract private function def();
+abstract class AbstractMethodsHaveNoScopeNorCode {
+    abstract protected function def();
 }
 
-interface ABC {
+interface InterfaceMethodsHaveNoScopeNorCode {
     public function def();
 }
 
 // Making sure the sniff does not get confused over nested structures.
-function foo($a, $b, ...$c) {
+function handledNestedClosedScopesCorrectly($a, $b, ...$c) {
     $d = function($args) {
         $a = 'abc';
         $b = \func_get_args();
-    }
+    };
 
     function local_function($b = 123) {
         -- /* comment */ $c;
         func_get_arg(0);
     }
 
-    class ABC {
+    class NestedClass {
         public function some_method() {
             debug_print_backtrace();
         }
@@ -79,7 +79,7 @@ function foo($a, $b, ...$c) {
 /*
  * PHP 7.0+ changed behaviour.
  */
-function bar($x) {
+function php70ChangedBehaviour($x) {
     $x++;
     func_get_arg(0); // Error.
     Func_Get_Args(); // Error.
@@ -108,9 +108,9 @@ $d = function($a, $b, ...$c) {
     debug_print_backtrace( $index ); // Error.
     debug_backtrace ( )  [ 1 ]; // Error. Index which will be used is unknown.
     debug_backtrace ( )  [ 2 ] [ 'args' ]; // Error.
-}
+};
 
-function foo($a, $b, ...$c) {
+function assignmentToSubArray($a, $b, ...$c) {
     $a[1]['a'][2] = 'abc';
 
     function local_function( $b = 123 ) {
@@ -124,12 +124,12 @@ function foo($a, $b, ...$c) {
 }
 
 
-function foo($x) {
+function functionCallsMayChangeParamByReferenceA($x) {
     array_sort($x);
-    \ func_get_args ( ); // Warning, $x may (in this case: will) have been changed by reference.
+    \func_get_args ( ); // Warning, $x may (in this case: will) have been changed by reference.
 }
 
-function foo($x) {
+function functionCallsMayChangeParamByReferenceB($x) {
     $y = function_call($x);
     debug_backtrace(); // Warning, $x may have been changed by reference.
 }
@@ -137,7 +137,7 @@ function foo($x) {
 /*
  * Some more tests based on real life code.
  */
-    public function add_node( $args ) {
+    function add_node( $args ) {
         // Shim for old method signature.
         if ( func_num_args() >= 3 && is_string( func_get_arg( 0 ) ) ) { // OK.
             $args = array_merge( array( 'parent' => func_get_arg( 0 ) ), func_get_arg( 2 ) ); // OK.
@@ -152,7 +152,7 @@ function author_can( $post, $capability ) {
     $args = array_slice( func_get_args(), 2 ); // OK, not accessing a named parameter.
 }
 
-    public function feedback( $string, $other ) {
+    function feedback( $string, $other ) {
         if ( isset( $this->upgrader->strings[ $string ] ) ) {
             $string = $this->upgrader->strings[ $string ];
         }
@@ -256,6 +256,6 @@ function dontIgnoreNonPlainAssignments($matches) {
 }
 
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
-function foo($x) {
+function LiveCoding($x) {
     $x = function_call($x);
     func_get_args(); // Ignored.
