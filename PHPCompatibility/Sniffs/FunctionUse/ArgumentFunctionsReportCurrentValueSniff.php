@@ -193,7 +193,10 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                          */
                         case 'debug_backtrace':
                         case 'debug_print_backtrace':
-                            if (\preg_match('`(^|\|)\s*\\\\?DEBUG_BACKTRACE_IGNORE_ARGS`', $paramOne['clean']) === 1) {
+                            if (\preg_match('`(^|\|)\s*\\\\?DEBUG_BACKTRACE_IGNORE_ARGS`', $paramOne['clean']) === 1
+                                || $paramOne['clean'] === '2'
+                                || $paramOne['clean'] === '3'
+                            ) {
                                 // Debug_backtrace() called with ignore args option.
                                 continue 2;
                             }

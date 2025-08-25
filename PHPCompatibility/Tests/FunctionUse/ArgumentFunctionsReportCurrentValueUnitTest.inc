@@ -286,6 +286,21 @@ function usingFQNconstant($a) {
     debug_backtrace(Partially\Qualified\DEBUG_BACKTRACE_IGNORE_ARGS);    // Error, not the global constant being passed, value unknown.
 }
 
+// Ref: https://www.php.net/manual/en/function.debug-backtrace.php#refsect1-function.debug-backtrace-parameters
+function backtraceOptionsByTheNumber($a) {
+    $a = 'foo';
+    debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT); // Error, args index will be populated.
+    debug_backtrace(0); // Error, args index will be populated.
+    debug_backtrace(1); // Error, args index will be populated.
+    debug_backtrace(2); // OK, args index will be omitted.
+    debug_backtrace( \DEBUG_BACKTRACE_PROVIDE_OBJECT | \DEBUG_BACKTRACE_IGNORE_ARGS ); // OK, args index will be omitted.
+    debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS | DEBUG_BACKTRACE_PROVIDE_OBJECT ); // OK, args index will be omitted.
+    debug_backtrace(3); // OK, args index will be omitted.
+
+    debug_print_backtrace(0); // Error, args index will be populated.
+    debug_print_backtrace(2); // OK, args index will be omitted.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);
