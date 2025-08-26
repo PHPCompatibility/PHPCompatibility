@@ -518,6 +518,16 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     continue;
                 }
 
+                // Check for $obj::class, which can be safely ignored.
+                if ($tokens[$afterVar]['code'] === \T_DOUBLE_COLON) {
+                    $nextAfterAfterVar = $phpcsFile->findNext(Tokens::$emptyTokens, ($afterVar + 1), null, true);
+                    if ($tokens[$nextAfterAfterVar]['code'] === \T_STRING
+                        && \strtolower($tokens[$nextAfterAfterVar]['content']) === 'class'
+                    ) {
+                        continue;
+                    }
+                }
+
                 /*
                  * Ok, so we've found a variable which was passed as one of the parameters.
                  * Now, is this variable being changed, i.e. incremented, decremented, unset

@@ -594,6 +594,21 @@ function doNotGetConfusedOverPHP80Attributes($a) {
         };
 }
 
+$preventFalsePositivesOnPHP80ClassOnObjA = function ($obj) {
+    $name = $obj::class;
+    func_get_args(); // OK.
+};
+
+$preventFalsePositivesOnPHP80ClassOnObjB = function ($obj) {
+    function_call($obj::CLASS);
+    func_get_args(); // OK.
+};
+
+$preventFalsePositivesOnPHP80ClassOnObjC = function ($obj) {
+    if ($obj::class === 'Foo\Bar') {}
+    func_get_args(); // OK.
+};
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);

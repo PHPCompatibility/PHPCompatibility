@@ -286,11 +286,11 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
             $cases[] = [$line];
         }
 
-        for ($line = 586; $line <= 596; $line++) {
+        for ($line = 586; $line <= 611; $line++) {
             $cases[] = [$line];
         }
 
-        $cases[] = [600]; // Parse error.
+        $cases[] = [615]; // Parse error.
 
         return $cases;
     }
