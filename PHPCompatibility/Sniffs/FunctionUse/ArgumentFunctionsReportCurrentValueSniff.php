@@ -22,6 +22,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Lists;
 use PHPCSUtils\Utils\Numbers;
 use PHPCSUtils\Utils\Operators;
+use PHPCSUtils\Utils\Parentheses;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -477,6 +478,45 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 }
 
                 /*
+                 * Check if this variable is used in a control structure condition.
+                 *
+                 * For the purposes of this check, this type of usage is non-problematic if:
+                 * - The variable is the only thing in the control structure condition,
+                 *   so no analysis of more complex comparisons.
+                 * - If the control structure is a `foreach()`, the variable is used in the "before as" part.
+                 * - And we're going to ignore `for()` structures as too complex.
+                 */
+
+                $inForeach = Context::inForeachCondition($phpcsFile, $j);
+                if ($inForeach === 'beforeAs') {
+                    // Safe to ignore.
+                    continue;
+                } elseif ($inForeach === 'afterAs') {
+                    // We know this is an assignment, so throw an error.
+                    $scanResult    = 'error';
+                    $variableToken = $j;
+                    break;
+                }
+
+                if (Parentheses::getLastOwner($phpcsFile, $j, \T_CATCH) !== false) {
+                    // The only variable in a catch statement is the one being assigned to, so throw an error.
+                    $scanResult    = 'error';
+                    $variableToken = $j;
+                    break;
+                }
+
+                $afterVar              = $phpcsFile->findNext(Tokens::$emptyTokens, ($j + 1), null, true);
+                $lastParenthesesOpener = Parentheses::getLastOpener($phpcsFile, $j);
+                if ($lastParenthesesOpener !== false
+                    && isset($tokens[$lastParenthesesOpener]['parenthesis_closer']) === true
+                    && Parentheses::isOwnerIn($phpcsFile, $lastParenthesesOpener, Collections::controlStructureTokens())
+                    && $beforeVar === $lastParenthesesOpener
+                    && $afterVar === $tokens[$lastParenthesesOpener]['parenthesis_closer']
+                ) {
+                    continue;
+                }
+
+                /*
                  * Ok, so we've found a variable which was passed as one of the parameters.
                  * Now, is this variable being changed, i.e. incremented, decremented, unset
                  * or assigned something ?
@@ -493,7 +533,6 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     break;
                 }
 
-                $afterVar = $phpcsFile->findNext(Tokens::$emptyTokens, ($j + 1), null, true);
                 if ($afterVar === false) {
                     // Shouldn't be possible, but just in case.
                     continue; // @codeCoverageIgnore

@@ -530,6 +530,45 @@ function assignmentOperators($a0, $a1, $a2, $a3, $a4, $a5 = null) {
     func_get_arg(5); // Warning. Null coalesce doesn't necessarily change the value.
 }
 
+function controlStructureHandling($c0, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $c8, $c9, $c10, $c11, $c12, $c13) {
+    // Not problematic
+    if ($c0) {
+    } elseif ($c1) {}
+    foreach ($c2[$c3] as $k => $v) {}
+    switch ($c4) {
+        case 0: break;
+    }
+    while($c5) {}
+    do {} while ($c6);
+    $match = match($c7) {
+        0 => 10,
+    };
+
+    // Problematic.
+    foreach ($array as $c8 => $v) {}
+    foreach ($array as $k => $c9) {}
+    try {
+    } catch (Exception $c10) {}
+
+    // Difficult to determine.
+    for ($i = $c11; $c12 < $end; $c13++) {}
+
+    func_get_arg(0); // OK, unchanged.
+    func_get_arg(1); // OK, unchanged.
+    func_get_arg(2); // OK, unchanged.
+    func_get_arg(3); // OK, unchanged.
+    func_get_arg(4); // OK, unchanged.
+    func_get_arg(5); // OK, unchanged
+    func_get_arg(6); // OK, unchanged.
+    func_get_arg(7); // OK, unchanged.
+    func_get_arg(8); // Error, $c8 is assigned new value.
+    func_get_arg(9); // Error, $c9 is assigned new value.
+    func_get_arg(10); // Error, $c10 is assigned new value.
+    func_get_arg(11); // Warning.
+    func_get_arg(12); // Warning.
+    func_get_arg(13); // Error.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);
