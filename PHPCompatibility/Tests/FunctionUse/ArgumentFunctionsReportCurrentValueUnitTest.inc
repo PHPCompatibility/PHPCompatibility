@@ -449,6 +449,20 @@ function arraySliceShouldTakeSignIntoAccount( $n0, $n1, $n2, $n3, $n4 ) {
     $args = array_slice( func_get_args(), -3 ); // Error.
 }
 
+function arraySliceShouldTakeLengthIntoAccount( $n0, $n1, $n2, $n3, $n4 ) {
+    $n3 = function_call();
+
+    $args = array_slice( func_get_args(), +1, 2 ); // OK, params being accessed are unchanged.
+    $args = array_slice( func_get_args(), -1, 1 ); // OK, params being accessed are unchanged.
+    $args = array_slice( func_get_args(), 2, 1 ); // OK, params being accessed are unchanged.
+    $args = array_slice( func_get_args(), -4, 2 ); // OK, params being accessed are unchanged.
+    $args = array_slice( func_get_args(), 4, null ); // OK, params being accessed are unchanged.
+
+    $args = array_slice( func_get_args(), +2, 2 ); // Error.
+    $args = array_slice( func_get_args(), -2, 1 ); // Error.
+    $args = array_slice( func_get_args(), 2, null ); // Error.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);

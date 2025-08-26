@@ -249,8 +249,17 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                                         continue ;
                                     }
 
+                                    $targetLength          = null;
+                                    $parentFuncLengthParam = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 3, 'length');
+                                    if ($parentFuncLengthParam !== false) {
+                                        $lengthValue = TokenGroup::isNumber($phpcsFile, $parentFuncLengthParam['start'], $parentFuncLengthParam['end']);
+                                        if (\is_int($lengthValue) && $lengthValue !== 0) {
+                                            $targetLength = $lengthValue;
+                                        }
+                                    }
+
                                     // Slice starts at a named argument, but we know which params are being accessed.
-                                    $paramNamesSubset = \array_slice($paramNames, $offsetValue);
+                                    $paramNamesSubset = \array_slice($paramNames, $offsetValue, $targetLength);
                                 }
                             }
                         }
