@@ -20,6 +20,7 @@ use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Lists;
+use PHPCSUtils\Utils\Numbers;
 use PHPCSUtils\Utils\Operators;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
@@ -209,7 +210,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                         case 'func_get_arg':
                             $number = $phpcsFile->findNext(\T_LNUMBER, $paramOne['start'], ($paramOne['end'] + 1));
                             if ($number !== false) {
-                                $argNumber = $tokens[$number]['content'];
+                                $argNumber = (int) Numbers::getCompleteNumber($phpcsFile, $number)['decimal'];
 
                                 if (isset($paramNames[$argNumber]) === false) {
                                     // Requesting a non-named additional parameter. Ignore.

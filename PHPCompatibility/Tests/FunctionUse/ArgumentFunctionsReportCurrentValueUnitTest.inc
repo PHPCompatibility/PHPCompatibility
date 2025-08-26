@@ -463,6 +463,25 @@ function arraySliceShouldTakeLengthIntoAccount( $n0, $n1, $n2, $n3, $n4 ) {
     $args = array_slice( func_get_args(), 2, null ); // Error.
 }
 
+function nonDecimalIntegers( $named ) {
+    ++$named;
+    $args = func_get_arg(02); // OK, param changed is not targetted.
+    $args = func_get_arg(0x2); // OK, param changed is not targetted.
+    $args = func_get_arg(0b10); // OK, param changed is not targetted.
+
+    $args = array_slice( func_get_args(), 02 ); // OK, param changed is not one of the ones targetted by array_slice.
+    $args = array_slice( func_get_args(), 0x2 ); // OK, param changed is not one of the ones targetted by array_slice.
+    $args = array_slice( func_get_args(), 0b10 ); // OK, param changed is not one of the ones targetted by array_slice.
+
+    $args = func_get_arg(00); // Error.
+    $args = func_get_arg(0x0); // Error.
+    $args = func_get_arg(0b0); // Error.
+
+    $args = array_slice( func_get_args(), 00 ); // Error.
+    $args = array_slice( func_get_args(), 0X0 ); // Error.
+    $args = array_slice( func_get_args(), 0B0 ); // Error.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);
