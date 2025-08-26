@@ -146,7 +146,9 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
             $i < $scopeCloser;
             $prevNonEmpty = (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) ? $prevNonEmpty : $i), $i++
         ) {
-            if (isset(Collections::closedScopes()[$tokens[$i]['code']]) && isset($tokens[$i]['scope_closer'])) {
+            if ((isset(Collections::closedScopes()[$tokens[$i]['code']]) || $tokens[$i]['code'] === \T_FN)
+                && isset($tokens[$i]['scope_closer'])
+            ) {
                 // Skip past nested structures.
                 $i = $tokens[$i]['scope_closer'];
                 continue;

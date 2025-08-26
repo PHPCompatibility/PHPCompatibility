@@ -569,6 +569,21 @@ function controlStructureHandling($c0, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $c8, $
     func_get_arg(13); // Error.
 }
 
+// PHP 7.4 arrow function handling.
+function arrowFunctionsShouldBeIgnored() {
+    $a = fn($f) => [$f++, func_get_args()]; // Deliberately ignored.
+    $b = fn($g) => do_something($g) && func_get_arg(0); // Deliberately ignored.
+}
+
+// Making sure the sniff does not get confused over nested arrow functions when examining the surrounding scope.
+function handledNestedArrowFunctionsCorrectly($a, $b, ) {
+    $arrowFunctionsHaveAccessToVarsOutsideItsOwnScope = fn($add) => do_something($b) + $add;
+    $thisFuncGetArgsCanBeIgnoredAsItsForTheArrowFunction = fn($args) => \func_get_args(); // OK.
+
+    func_get_arg(0); // OK.
+    func_get_arg(1); // Warning, $b was used within an arrow function.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);
