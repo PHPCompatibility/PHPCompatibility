@@ -13,6 +13,7 @@ namespace PHPCompatibility\Helpers;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCSUtils\Utils\Numbers;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
@@ -175,7 +176,8 @@ final class TokenGroup
         if ($tokens[$nextNonEmpty]['code'] === \T_LNUMBER
             || $tokens[$nextNonEmpty]['code'] === \T_DNUMBER
         ) {
-            $content = (float) $tokens[$nextNonEmpty]['content'];
+            $numberInfo = Numbers::getCompleteNumber($phpcsFile, $nextNonEmpty);
+            $content    = (float) $numberInfo['decimal'];
         } elseif ($tokens[$nextNonEmpty]['code'] === \T_TRUE) {
             $content = 1.0;
         } elseif ($tokens[$nextNonEmpty]['code'] === \T_FALSE
