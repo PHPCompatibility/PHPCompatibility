@@ -11,6 +11,7 @@
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\TokenGroup;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
@@ -237,20 +238,21 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                         if ($functionNameLc === 'array_slice'
                             || $functionNameLc === 'array_splice'
                         ) {
-                            $parentFuncParamTwo = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 2);
-                            $number             = $phpcsFile->findNext(
-                                \T_LNUMBER,
-                                $parentFuncParamTwo['start'],
-                                ($parentFuncParamTwo['end'] + 1)
-                            );
+                            $parentFuncOffsetParam = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 2, 'offset');
+                            if ($parentFuncOffsetParam !== false) {
+                                $offsetValue = TokenGroup::isNumber($phpcsFile, $parentFuncOffsetParam['start'], $parentFuncOffsetParam['end']);
 
-                            if ($number !== false && isset($paramNames[$tokens[$number]['content']]) === false) {
-                                // Requesting non-named additional parameters. Ignore.
-                                continue ;
+                                if (\is_int($offsetValue)) {
+                                    $normalizedOffsetValue = ($offsetValue >= 0) ? $offsetValue : (\count($paramNames) + $offsetValue);
+                                    if (isset($paramNames[$normalizedOffsetValue]) === false) {
+                                        // Requesting non-named additional parameters. Ignore.
+                                        continue ;
+                                    }
+
+                                    // Slice starts at a named argument, but we know which params are being accessed.
+                                    $paramNamesSubset = \array_slice($paramNames, $offsetValue);
+                                }
                             }
-
-                            // Slice starts at a named argument, but we know which params are being accessed.
-                            $paramNamesSubset = \array_slice($paramNames, $tokens[$number]['content']);
                         }
                     }
                 }

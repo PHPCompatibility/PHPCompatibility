@@ -104,6 +104,7 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
             [373, 'debug_print_backtrace', '$y'],
             [378, 'func_get_args', '$z'],
             [383, 'debug_print_backtrace', '$z'],
+            [449, 'func_get_args', '$n2'],
         ];
     }
 
@@ -221,7 +222,11 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
             $cases[] = [$line];
         }
 
-        $cases[] = [446]; // Parse error.
+        for ($line = 442; $line <= 448; $line++) {
+            $cases[] = [$line];
+        }
+
+        $cases[] = [455]; // Parse error.
 
         return $cases;
     }
