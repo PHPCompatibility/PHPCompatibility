@@ -514,6 +514,22 @@ function php81OctalLiterals( $n0, $n1, $n2, $n3 ) {
     $args = array_slice( func_get_args(), 0O1 ); // Error.
 }
 
+function assignmentOperators($a0, $a1, $a2, $a3, $a4, $a5 = null) {
+    $a0   = 'abc';
+    $a1  .= 'abc';
+    $a2  += 10;
+    $a3 **= 10;
+    $a4  ^= 'abc';
+    $a5 ??= 'abc';
+
+    func_get_arg(0); // Error.
+    func_get_arg(1); // Error.
+    func_get_arg(2); // Error.
+    func_get_arg(3); // Error.
+    func_get_arg(4); // Error.
+    func_get_arg(5); // Warning. Null coalesce doesn't necessarily change the value.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);
