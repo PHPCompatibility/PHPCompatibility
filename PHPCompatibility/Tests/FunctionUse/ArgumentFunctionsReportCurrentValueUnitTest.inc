@@ -152,7 +152,7 @@ function author_can( $post, $capability ) {
     $args = array_slice( func_get_args(), 2 ); // OK, not accessing a named parameter.
 }
 
-    function feedback( $string, $other ) {
+    function feedback( $string, $other, ) {
         if ( isset( $this->upgrader->strings[ $string ] ) ) {
             $string = $this->upgrader->strings[ $string ];
         }
@@ -208,7 +208,7 @@ function ignoreParamInReturnUnscopedCondition ( $stuff ) {
     $args = func_get_args(); // OK.
 }
 
-function ignoreParamInExitUnscopedCondition ( $stuff ) {
+function ignoreParamInExitUnscopedCondition ( $stuff, ) {
     if ( true === SOME_CONSTANT )
         do_something OR die( 'Did ' . functionCall( $stuff ) );
 
@@ -278,7 +278,7 @@ function hasNestedMirrorMethods() {
     }
 }
 
-function usingFQNconstant($a) {
+function usingFQNconstant($a,) {
     $a = 'foo';
     debug_print_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS);                 // OK, 'args' is ignored, so not affected.
     debug_backtrace(namespace\Relative\DEBUG_BACKTRACE_IGNORE_ARGS);     // Error, not the global constant being passed, value unknown.
@@ -358,7 +358,7 @@ function paramIsAssignedNewValueInNestedLongListA($y) {
     func_get_args(); // Error, $y has been assigned a new value via list.
 }
 
-function paramIsAssignedNewValueInNestedShortListA($y) {
+function paramIsAssignedNewValueInNestedShortListA($y,) {
     [[$y], $x,] = function_call();
     debug_print_backtrace(); // Error, $y has been assigned a new value via short list.
 }
@@ -405,7 +405,7 @@ function ignoreParamUsedAsKeyInNestedShortList($y) {
 }
 
 // Handle PHP 7.3+ list reference assignments.
-function dontIgnoreReferenceAssignmentsinLongList($b) {
+function dontIgnoreReferenceAssignmentsinLongList($b,) {
     list(&$d) = $b;
     // Do some more.
     func_get_args(); // Warning, reference assignment.
