@@ -584,6 +584,16 @@ function handledNestedArrowFunctionsCorrectly($a, $b, ) {
     func_get_arg(1); // Warning, $b was used within an arrow function.
 }
 
+function doNotGetConfusedOverPHP80Attributes($a) {
+    $a++;
+
+    $closure =
+        #[Func_Get_Args()] // OK, not the function.
+        function($a, $b) {
+            return $a + $b;
+        };
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);

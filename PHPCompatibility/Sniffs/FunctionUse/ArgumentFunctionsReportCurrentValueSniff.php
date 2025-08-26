@@ -618,6 +618,11 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
      */
     private function isCallToGlobalFunction(File $phpcsFile, $stackPtr)
     {
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            // Class instantiation in attribute, not function call.
+            return false;
+        }
+
         $tokens       = $phpcsFile->getTokens();
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
