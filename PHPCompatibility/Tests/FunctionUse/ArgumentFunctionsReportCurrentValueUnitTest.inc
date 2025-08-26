@@ -505,6 +505,15 @@ function php74NumericLiteralsWithUnderscoress( $n0, $n1, $n2, $n3, $n4, $n5, $n6
     $args = array_slice( func_get_args(), 0b10_000 ); // Error.
 }
 
+function php81OctalLiterals( $n0, $n1, $n2, $n3 ) {
+    $n1 = (int) $n1;
+    $args = func_get_arg(0o3); // OK, param changed is not targetted.
+    $args = array_slice( func_get_args(), 0O2 ); // OK, param changed is not one of the ones targetted by array_slice.
+
+    $args = func_get_arg(0o1); // Error.
+    $args = array_slice( func_get_args(), 0O1 ); // Error.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);
