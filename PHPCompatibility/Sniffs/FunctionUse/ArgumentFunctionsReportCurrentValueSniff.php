@@ -179,6 +179,29 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
             }
 
             /*
+             * Check if the function is used as a PHP 8.1+ first class callable.
+             *
+             * Not allowed by PHP for the func_get_arg*() functions, so ignore.
+             * Allowed for the debug_*backtrace() functions, but please don't do this....
+             */
+            if (isset($tokens[$next]['parenthesis_closer'])) {
+                $hasEllipsis = $phpcsFile->findNext(Tokens::$emptyTokens, ($next + 1), null, true);
+                if ($hasEllipsis !== false && $tokens[$hasEllipsis]['code'] === \T_ELLIPSIS) {
+                    $isFirstClassCallable = $phpcsFile->findNext(Tokens::$emptyTokens, ($hasEllipsis + 1), null, true);
+                    if ($isFirstClassCallable !== false && $isFirstClassCallable === $tokens[$next]['parenthesis_closer']) {
+                        if ($foundFunctionName === 'debug_backtrace' || $foundFunctionName === 'debug_print_backtrace') {
+                            $error = 'Since PHP 7.0, functions inspecting arguments, like %1$s(), no longer report the original value as passed to a parameter, but will instead provide the current value. Using this function as a first class callable is a really bad idea.';
+                            $data  = [$foundFunctionName];
+
+                            $phpcsFile->addWarning($error, $i, 'AsFirstClassCallable', $data);
+                        }
+
+                        continue;
+                    }
+                }
+            }
+
+            /*
              * Address some special cases.
              */
             if ($foundFunctionName !== 'func_get_args') {

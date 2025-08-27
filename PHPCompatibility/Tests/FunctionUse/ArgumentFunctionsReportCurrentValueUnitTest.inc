@@ -655,6 +655,22 @@ class constructorPropertyPromotion {
     }
 }
 
+function ignoreUseAsFirstClassCallableFuncGetArgs($a, $b) {
+    $fcc1 = func_get_arg(...); // OK. Well, not really, Fatal error "Cannot call func_get_arg() dynamically", but not our concern.
+    $fcc2 = func_get_args(...); // OK. Well, not really, Fatal error "Cannot call func_get_args() dynamically", but not our concern.
+    $a++;
+    echo $fcc1(0);
+    echo $fcc2();
+}
+
+function alwaysFlagUseAsFirstClassCallableDebugBacktrace($a, $b) {
+    $fcc1 = debug_backtrace(...); // Error.
+    $fcc2 = debug_print_backtrace(...); // Error.
+    $a++;
+    var_dump($fcc1(0)); // This will print 11 for $a.
+    $fcc2(); // This will print 11 for $a.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);

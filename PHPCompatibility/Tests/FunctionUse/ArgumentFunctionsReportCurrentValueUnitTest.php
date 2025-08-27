@@ -190,6 +190,37 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
     }
 
     /**
+     * Verify the debug*backtrace() functions are always flagged when used as first class callable.
+     *
+     * @dataProvider dataFirstClassCallable
+     *
+     * @param int    $line         The line number where a warning is expected.
+     * @param string $functionName The name of the function to which the warning applies.
+     *
+     * @return void
+     */
+    public function testFirstClassCallable($line, $functionName)
+    {
+        $file = $this->sniffFile(__FILE__, '7.0');
+        $this->assertWarning($file, $line, "Since PHP 7.0, functions inspecting arguments, like {$functionName}(), no longer report the original value as passed to a parameter, but will instead provide the current value. Using this function as a first class callable is a really bad idea.");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testFirstClassCallable()
+     *
+     * @return array
+     */
+    public static function dataFirstClassCallable()
+    {
+        return [
+            [667, 'debug_backtrace'],
+            [668, 'debug_print_backtrace'],
+        ];
+    }
+
+    /**
      * testNoFalsePositives.
      *
      * @dataProvider dataNoFalsePositives
@@ -309,7 +340,11 @@ class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
             $cases[] = [$line];
         }
 
-        $cases[] = [661]; // Parse error.
+        for ($line = 657; $line <= 666; $line++) {
+            $cases[] = [$line];
+        }
+
+        $cases[] = [677]; // Parse error.
 
         return $cases;
     }
