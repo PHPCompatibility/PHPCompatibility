@@ -55,18 +55,6 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
     ];
 
     /**
-     * The tokens for variable incrementing/decrementing.
-     *
-     * @since 9.1.0
-     *
-     * @var array<int|string, true>
-     */
-    private $plusPlusMinusMinus = [
-        \T_DEC => true,
-        \T_INC => true,
-    ];
-
-    /**
      * Tokens to ignore when determining the start of a statement for call to one of the functions.
      *
      * @since 9.1.0
@@ -428,7 +416,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     $variableToken = $j;
                 }
 
-                if ($beforeVar !== false && isset($this->plusPlusMinusMinus[$tokens[$beforeVar]['code']])) {
+                if ($beforeVar !== false && isset(Collections::incrementDecrementOperators()[$tokens[$beforeVar]['code']])) {
                     // Variable is being (pre-)incremented/decremented.
                     $scanResult    = 'error';
                     $variableToken = $j;
@@ -441,7 +429,7 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     continue; // @codeCoverageIgnore
                 }
 
-                if (isset($this->plusPlusMinusMinus[$tokens[$afterVar]['code']])) {
+                if (isset(Collections::incrementDecrementOperators()[$tokens[$afterVar]['code']])) {
                     // Variable is being (post-)incremented/decremented.
                     $scanResult    = 'error';
                     $variableToken = $j;
