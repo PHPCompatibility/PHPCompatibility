@@ -640,6 +640,21 @@ function php80NamedArgsInFunctionCallsFuncArraySliceSplice($p0, $p1, $p2, $p3, $
     array_splice( $array, offset: func_get_args()[1]); // Error, offset value undermined and func_get_args() not used in expected parameter.
 }
 
+class constructorPropertyPromotion {
+    public function __construct(
+        protected string $propA,
+        public int $propB,
+        bool $param,
+    ) {
+        $this->propA = $param; // Changing the property value, not the parameter value.
+        $propB       = $param; // Changing the parameter value, not the property value.
+
+        func_get_arg(4); // OK, retrieving non-named param.
+        func_get_arg(0); // OK, property value was changed, not the value of the passed parameter.
+        func_get_arg(1); // Error.
+    }
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);
