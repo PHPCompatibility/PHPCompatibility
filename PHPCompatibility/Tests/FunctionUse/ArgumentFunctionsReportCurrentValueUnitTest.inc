@@ -609,6 +609,37 @@ $preventFalsePositivesOnPHP80ClassOnObjC = function ($obj) {
     func_get_args(); // OK.
 };
 
+function php80NamedArgsInFunctionCallsFuncGetArg($a, $b) {
+    $a++;
+
+    func_get_arg(position: 1); // OK, $b is unchanged.
+    func_get_arg(position: 0); // Error, $a was changed.
+    func_get_arg(positions: 1); // Error - typo in param name, so we cannot discount a position.
+}
+
+function php80NamedArgsInFunctionCallsFuncDebugBacktrace($a) {
+    $a++;
+
+    debug_backtrace(options: \DEBUG_BACKTRACE_PROVIDE_OBJECT | \DEBUG_BACKTRACE_IGNORE_ARGS); // OK, args are not retrieved.
+    debug_backtrace(limit: 2, options: 2); // OK, args are not retrieved. (reverse param order)
+    debug_print_backtrace(options: \DEBUG_BACKTRACE_IGNORE_ARGS); // OK, args are not retrieved.
+    debug_print_backtrace(limit: 0, options: 2); // OK, args are not retrieved. (reverse param order)
+
+    debug_backtrace(limit: 2);   // Error, $a was changed.
+    debug_print_backtrace(options: 1); // Error, $a was changed.
+}
+
+function php80NamedArgsInFunctionCallsFuncArraySliceSplice($p0, $p1, $p2, $p3, $p4) {
+    $p0++;
+    do_something($p3);
+
+    array_slice(offset: 2,  array: func_get_args(), preserve_keys: true, length: 1); // OK, $p2 was unchanged (mangled param order).
+    array_splice( offset: 4, array: func_get_args() ); // OK, $p4 was unchanged.
+
+    array_slice( array: func_get_args(), preserve_keys: true ); // Error, $p0 was changed. Missing required param, but that's not our concern.
+    array_splice( $array, offset: func_get_args()[1]); // Error, offset value undermined and func_get_args() not used in expected parameter.
+}
+
 // Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
 function LiveCoding($x) {
     $x = function_call($x);

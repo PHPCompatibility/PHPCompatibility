@@ -182,36 +182,38 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              * Address some special cases.
              */
             if ($foundFunctionName !== 'func_get_args') {
-                $paramOne = PassedParameters::getParameter($phpcsFile, $i, 1);
-                if ($paramOne !== false) {
-                    switch ($foundFunctionName) {
-                        /*
-                         * Check if `debug_(print_)backtrace()` is called with the
-                         * `DEBUG_BACKTRACE_IGNORE_ARGS` option.
-                         */
-                        case 'debug_backtrace':
-                        case 'debug_print_backtrace':
-                            if (\preg_match('`(^|\|)\s*\\\\?DEBUG_BACKTRACE_IGNORE_ARGS`', $paramOne['clean']) === 1
-                                || $paramOne['clean'] === '2'
-                                || $paramOne['clean'] === '3'
-                            ) {
-                                // Debug_backtrace() called with ignore args option.
-                                continue 2;
-                            }
-                            break;
+                switch ($foundFunctionName) {
+                    /*
+                     * Check if `debug_(print_)backtrace()` is called with the
+                     * `DEBUG_BACKTRACE_IGNORE_ARGS` option.
+                     */
+                    case 'debug_backtrace':
+                    case 'debug_print_backtrace':
+                        $optionsParam = PassedParameters::getParameter($phpcsFile, $i, 1, 'options');
+                        if ($optionsParam !== false
+                            && (\preg_match('`(^|\|)\s*\\\\?DEBUG_BACKTRACE_IGNORE_ARGS`', $optionsParam['clean']) === 1
+                                || $optionsParam['clean'] === '2'
+                                || $optionsParam['clean'] === '3')
+                        ) {
+                            // Debug_backtrace() called with ignore args option.
+                            continue 2;
+                        }
+                        break;
 
-                        /*
-                         * Collect the necessary information to only throw a notice if the argument
-                         * touched/changed is in line with the passed $arg_num.
-                         *
-                         * Also, we can ignore `func_get_arg()` if the argument offset passed is
-                         * higher than the number of named parameters.
-                         *
-                         * {@internal Note: This does not take calculations into account!
-                         *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}
-                         */
-                        case 'func_get_arg':
-                            $number = $phpcsFile->findNext(\T_LNUMBER, $paramOne['start'], ($paramOne['end'] + 1));
+                    /*
+                     * Collect the necessary information to only throw a notice if the argument
+                     * touched/changed is in line with the passed $arg_num.
+                     *
+                     * Also, we can ignore `func_get_arg()` if the argument offset passed is
+                     * higher than the number of named parameters.
+                     *
+                     * {@internal Note: This does not take calculations into account!
+                     *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}
+                     */
+                    case 'func_get_arg':
+                        $positionParam = PassedParameters::getParameter($phpcsFile, $i, 1, 'position');
+                        if ($positionParam !== false) {
+                            $number = $phpcsFile->findNext(\T_LNUMBER, $positionParam['start'], ($positionParam['end'] + 1));
                             if ($number !== false) {
                                 $argNumber = (int) Numbers::getCompleteNumber($phpcsFile, $number)['decimal'];
 
@@ -220,8 +222,8 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                                     continue 2;
                                 }
                             }
-                            break;
-                    }
+                        }
+                        break;
                 }
             } else {
                 /*
@@ -232,9 +234,10 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                  * {@internal Note: This does not take offset calculations into account!
                  *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}
                  */
-                if ($tokens[$prevNonEmpty]['code'] === \T_OPEN_PARENTHESIS) {
+                $lastParenthesesOpener = Parentheses::getLastOpener($phpcsFile, $i);
+                if ($lastParenthesesOpener !== false) {
 
-                    $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
+                    $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($lastParenthesesOpener - 1), null, true);
                     if ($tokens[$maybeFunctionCall]['code'] === \T_STRING
                         && $this->isCallToGlobalFunction($phpcsFile, $maybeFunctionCall) === true
                     ) {
@@ -242,33 +245,40 @@ class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                         if ($functionNameLc === 'array_slice'
                             || $functionNameLc === 'array_splice'
                         ) {
-                            $parentFuncOffsetParam = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 2, 'offset');
-                            if ($parentFuncOffsetParam !== false) {
-                                $offsetValue = TokenGroup::isNumber($phpcsFile, $parentFuncOffsetParam['start'], $parentFuncOffsetParam['end']);
+                            // Verify the `func_get_args()` was seen in the correct parameter for this check.
+                            $parentFuncArrayParam = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 1, 'array');
+                            if ($parentFuncArrayParam !== false
+                                && $parentFuncArrayParam['start'] <= $i && $i <= $parentFuncArrayParam['end']
+                            ) {
+                                $parentFuncOffsetParam = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 2, 'offset');
+                                if ($parentFuncOffsetParam !== false) {
+                                    $offsetValue = TokenGroup::isNumber($phpcsFile, $parentFuncOffsetParam['start'], $parentFuncOffsetParam['end']);
 
-                                if (\is_int($offsetValue)) {
-                                    $normalizedOffsetValue = ($offsetValue >= 0) ? $offsetValue : (\count($paramNames) + $offsetValue);
-                                    if (isset($paramNames[$normalizedOffsetValue]) === false) {
-                                        // Requesting non-named additional parameters. Ignore.
-                                        continue ;
-                                    }
-
-                                    $targetLength          = null;
-                                    $parentFuncLengthParam = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 3, 'length');
-                                    if ($parentFuncLengthParam !== false) {
-                                        $lengthValue = TokenGroup::isNumber($phpcsFile, $parentFuncLengthParam['start'], $parentFuncLengthParam['end']);
-                                        if (\is_int($lengthValue) && $lengthValue !== 0) {
-                                            $targetLength = $lengthValue;
+                                    if (\is_int($offsetValue)) {
+                                        $normalizedOffsetValue = ($offsetValue >= 0) ? $offsetValue : (\count($paramNames) + $offsetValue);
+                                        if (isset($paramNames[$normalizedOffsetValue]) === false) {
+                                            // Requesting non-named additional parameters. Ignore.
+                                            continue ;
                                         }
-                                    }
 
-                                    // Slice starts at a named argument, but we know which params are being accessed.
-                                    $paramNamesSubset = \array_slice($paramNames, $offsetValue, $targetLength);
+                                        $targetLength          = null;
+                                        $parentFuncLengthParam = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 3, 'length');
+                                        if ($parentFuncLengthParam !== false) {
+                                            $lengthValue = TokenGroup::isNumber($phpcsFile, $parentFuncLengthParam['start'], $parentFuncLengthParam['end']);
+                                            if (\is_int($lengthValue) && $lengthValue !== 0) {
+                                                $targetLength = $lengthValue;
+                                            }
+                                        }
+
+                                        // Slice starts at a named argument, but we know which params are being accessed.
+                                        $paramNamesSubset = \array_slice($paramNames, $offsetValue, $targetLength);
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                unset($lastParenthesesOpener, $functionNameLc);
             }
 
             /*
