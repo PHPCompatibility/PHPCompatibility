@@ -65,3 +65,16 @@ ldap_connect($uri, 369 + $offset, $wallet, $password, $auth_mode); // Port value
 \ldap_connect(uri: $uri, wallet: $wallet);
 \ldap_connect(auth_mode: $auth_mode, wallet: $wallet);
 \ldap_connect(auth_mode: $auth_mode, wallet: $wallet, password: $password);
+
+// Safeguard against false positives on namespaced function calls.
+namespace\ldap_connect($host, $port);
+\Fully\Qualified\ldap_connect($host, $port);
+
+// Safeguard handling where port value cannot be determined.
+ldap_connect($uri, namespace\get_port(), $wallet, $password, $auth_mode); // Port value undetermined, so ignore for PHP 8.3 deprecation check.
+ldap_connect($uri, \Fully\Qualified\get_port(), $wallet, $password, $auth_mode); // Port value undetermined, so ignore for PHP 8.3 deprecation check.
+ldap_connect($uri, \Partially\Qualified\get_port(), $wallet, $password, $auth_mode); // Port value undetermined, so ignore for PHP 8.3 deprecation check.
+
+// Safeguard handling of uppercase and fully qualified null.
+ldap_connect($uri, NULL, $wallet, $password, $auth_mode);
+ldap_connect($uri, \null, $wallet, $password, $auth_mode);

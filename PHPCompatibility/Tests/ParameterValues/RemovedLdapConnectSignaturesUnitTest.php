@@ -153,6 +153,10 @@ final class RemovedLdapConnectSignaturesUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        for ($line = 70; $line <= 80; $line++) {
+            $data[] = [$line];
+        }
+
         return $data;
     }
 
@@ -192,6 +196,11 @@ final class RemovedLdapConnectSignaturesUnitTest extends BaseSniffTestCase
             [65],
             [66],
             [67],
+            [74],
+            [75],
+            [76],
+            [79],
+            [80],
         ];
     }
 
@@ -226,6 +235,9 @@ final class RemovedLdapConnectSignaturesUnitTest extends BaseSniffTestCase
         for ($line = 1; $line <= 31; $line++) {
             $data[] = [$line];
         }
+
+        $data[] = [70];
+        $data[] = [71];
 
         return $data;
     }
