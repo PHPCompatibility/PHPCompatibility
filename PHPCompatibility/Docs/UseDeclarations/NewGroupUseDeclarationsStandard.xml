@@ -1,18 +1,15 @@
 <?xml version="1.0"?>
 <documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
-               title="New Use Const/Function Statements"
->
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Group Use Declarations"
+    >
     <standard>
     <![CDATA[
-    Detect group use declarations as introduced in PHP 7.0.
-
-    Checks for:
-    - Group use statements as introduced in PHP 7.0.
+    The ability to group use statements was introduced in PHP 7.0.
     ]]>
     </standard>
     <code_comparison>
-        <code title="Cross-version compatible: Use Declarations without Groups.">
+        <code title="Cross-version compatible: use statements without groups.">
         <![CDATA[
 use My\Project\ClassA;
 use My\Project\ClassB;
@@ -31,38 +28,35 @@ use const My\Project\ConstB;
 use const My\Project\ConstC;
         ]]>
         </code>
-        <code title="PHP &gt;= 7.0: Group Use Declarations without trailing commas.">
+        <code title="PHP &gt;= 7.0: group use statements (without trailing commas).">
         <![CDATA[
 use My\Project\<em>{
-        ClassA,
-        ClassB,
-        ClassC as C
+    ClassA,
+    ClassB,
+    ClassC as C
 }</em>;
 
 use function My\Project\<em>{
-        fn_a,
-        fn_b,
-        fn_c
+    fn_a,
+    fn_b,
+    fn_c
 }</em>;
 
 use const My\Project\<em>{
-        ConstA,
-        ConstB,
-        ConstC
+    ConstA,
+    ConstB,
+    ConstC
 }</em>;
         ]]>
         </code>
     </code_comparison>
     <standard>
     <![CDATA[
-    Detect group use declarations as introduced in PHP 7.0.
-
-    Checks for:
-    - Trailing commas in group use statements as allowed since PHP 7.2.
+    As of PHP 7.2, it is allowed to use a trailing comma after the last item in a group use statement.
     ]]>
     </standard>
     <code_comparison>
-        <code title="Cross-version compatible: Use Declarations without Groups.">
+        <code title="Cross-version compatible: use statements without groups.">
         <![CDATA[
 use My\Project\ClassA;
 use My\Project\ClassC as C;
@@ -78,21 +72,21 @@ use const My\Project\ConstA;
 use const My\Project\ConstC;
         ]]>
         </code>
-        <code title="PHP &gt;= 7.2: Use Declarations with Trailing comma.">
+        <code title="PHP &gt;= 7.2: group use statements with trailing commas.">
         <![CDATA[
 use My\Project\{
-        ClassA,
-        ClassC as C<em>,</em>
+    ClassA,
+    ClassC as C<em>,</em>
 };
 
 use function My\Project\{
-        fn_a,
-        fn_c<em>,</em>
+    fn_a,
+    fn_c<em>,</em>
 };
 
 use const My\Project\{
-        ConstA,
-        ConstC<em>,</em>
+    ConstA,
+    ConstC<em>,</em>
 };
         ]]>
         </code>
