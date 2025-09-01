@@ -50,7 +50,7 @@ final class ResolveHelper
     {
         $tokens = $phpcsFile->getTokens();
 
-        // Check for the existence of the token and that an accepted token.
+        // Check for the existence of the token and that it's an accepted token.
         if (isset($tokens[$stackPtr]) === false || $tokens[$stackPtr]['code'] !== \T_NEW) {
             return '';
         }
@@ -59,6 +59,8 @@ final class ResolveHelper
         if ($start === false
             || $tokens[$start]['code'] === \T_VARIABLE
             || $tokens[$start]['code'] === \T_ANON_CLASS
+            || $tokens[$start]['code'] === \T_ATTRIBUTE // Only possible for anonymous classes.
+            || $tokens[$start]['code'] === \T_READONLY // Only possible for anonymous classes.
         ) {
             // Parse error, name cannot be determined or not a named class.
             return '';
