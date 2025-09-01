@@ -208,3 +208,10 @@ interface PropertiesInInterfaces
     // Any visibility but "public" is invalid, but that's not the concern of this sniff.
     protected string|false $unionType { get; set; }
 }
+
+// PHP 8.4: safeguard the sniff still functions correctly when final properties are used.
+class FinalProp {
+    final $onlyFinal;
+    final string $finalTyped;
+    final private ?MyType $finalPrivateTyped;
+}
