@@ -96,6 +96,10 @@ final class RemovedSetlocaleStringUnitTest extends BaseSniffTestCase
         $data[] = [17];
         $data[] = [21];
 
+        for ($line = 23; $line <= 34; $line++) {
+            $data[] = [$line];
+        }
+
         return $data;
     }
 

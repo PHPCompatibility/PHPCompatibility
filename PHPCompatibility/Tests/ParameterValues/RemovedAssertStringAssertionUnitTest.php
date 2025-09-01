@@ -66,16 +66,39 @@ final class RemovedAssertStringAssertionUnitTest extends BaseSniffTestCase
     /**
      * Verify there are no false positives on code this sniff should ignore.
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '7.2');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array<array<int>>
+     */
+    public static function dataNoFalsePositives()
+    {
+        $data = [];
 
         // No errors expected on the first 16 lines.
         for ($line = 1; $line <= 16; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        for ($line = 30; $line <= 37; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
     /**

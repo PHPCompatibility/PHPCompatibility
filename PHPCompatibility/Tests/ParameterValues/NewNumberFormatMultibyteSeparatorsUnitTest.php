@@ -90,8 +90,9 @@ final class NewNumberFormatMultibyteSeparatorsUnitTest extends BaseSniffTestCase
             $cases[] = [$line];
         }
 
-        $cases[] = [39];
-        $cases[] = [40];
+        for ($line = 38; $line <= 48; $line++) {
+            $cases[] = [$line];
+        }
 
         return $cases;
     }

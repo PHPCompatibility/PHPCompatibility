@@ -64,12 +64,19 @@ final class RemovedImplodeFlexibleParamOrderUnitTest extends BaseSniffTestCase
             [38, 'implode'],
             [40, 'join'],
             [46, 'implode'],
-            [47, 'implode'],
+            [47, 'IMPLODE'],
             [48, 'implode'],
             [49, 'implode'],
             [52, 'implode'],
             [53, 'implode'],
             [68, 'implode'],
+
+            [82, 'implode'],
+            [83, 'join'],
+            [84, 'implode'],
+            [85, 'implode'],
+            [91, 'implode'],
+            [92, 'implode'],
         ];
     }
 
@@ -108,8 +115,10 @@ final class RemovedImplodeFlexibleParamOrderUnitTest extends BaseSniffTestCase
         $data[] = [57];
         $data[] = [64];
         $data[] = [67];
-        $data[] = [71];
-        $data[] = [72];
+
+        for ($line = 70; $line <= 79; $line++) {
+            $data[] = [$line];
+        }
 
         return $data;
     }

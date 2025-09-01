@@ -103,6 +103,12 @@ final class RemovedHashAlgorithmsUnitTest extends BaseSniffTestCase
             [28],
             [29],
             [30],
+            [33],
+            [34],
+            [35],
+            [36],
+            [37],
+            [38],
         ];
     }
 

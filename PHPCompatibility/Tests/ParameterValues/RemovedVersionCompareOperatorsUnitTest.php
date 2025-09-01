@@ -92,6 +92,10 @@ final class RemovedVersionCompareOperatorsUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        for ($line = 55; $line <= 61; $line++) {
+            $data[] = [$line];
+        }
+
         return $data;
     }
 

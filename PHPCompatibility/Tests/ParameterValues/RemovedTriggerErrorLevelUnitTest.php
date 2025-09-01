@@ -59,6 +59,7 @@ final class RemovedTriggerErrorLevelUnitTest extends BaseSniffTestCase
             [30],
             [34],
             [36],
+            [37],
         ];
     }
 
@@ -92,6 +93,9 @@ final class RemovedTriggerErrorLevelUnitTest extends BaseSniffTestCase
         for ($line = 1; $line <= 27; $line++) {
             $data[] = [$line];
         }
+
+        $data[] = [40];
+        $data[] = [41];
 
         return $data;
     }

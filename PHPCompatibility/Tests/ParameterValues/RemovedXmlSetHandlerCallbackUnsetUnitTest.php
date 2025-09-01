@@ -107,6 +107,9 @@ final class RemovedXmlSetHandlerCallbackUnsetUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        $data[] = [78];
+        $data[] = [79];
+
         return $data;
     }
 

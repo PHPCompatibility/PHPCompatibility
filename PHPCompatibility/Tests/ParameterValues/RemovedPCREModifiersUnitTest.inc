@@ -56,7 +56,7 @@ preg_replace('!exclamations (why not?!e', $Replace, $Source);
 
 // Other modifiers with /e
 preg_replace('/some text/emS', $Replace, $Source);
-preg_replace('/some text/meS', $Replace, $Source);
+\Preg_Replace('/some text/meS', $Replace, $Source);
 preg_replace('/some text/mSe', $Replace, $Source);
 
 // Multi-line example (issue #83)
@@ -103,7 +103,7 @@ preg_replace('`\d{2}e`', $Replace, $Source); // good
 preg_replace('{^fopen(.*?): }', $Replace, $Source); //good - monolog example
 preg_replace('[\d{2}]e', $Replace, $Source); //bad
 preg_replace('[\d{2}e]', $Replace, $Source); //good
-preg_replace('(\d{2})e', $Replace, $Source); //bad
+\preg_replace('(\d{2})e', $Replace, $Source); //bad
 preg_replace('(\d{2}e)', $Replace, $Source); //good
 preg_replace('<\d{2}>e', $Replace, $Source); //bad
 preg_replace('<\d{2}e>', $Replace, $Source); //good
@@ -150,7 +150,7 @@ preg_filter('/\/e/e', $Replace, $Source);
 ///////////// More warning generated:
 
 // Regex build up of strings combined with variables/function calls.
-preg_replace('/something' . $variable . 'something else/e', $Replace, $Source);
+\preg_replace('/something' . $variable . 'something else/e', $Replace, $Source);
 preg_replace('/something' . preg_quote($variable) . 'something else/e', $Replace, $Source);
 
 // Issue 265 - build up string with varying quotes - this should be ok.
@@ -237,3 +237,13 @@ preg_replace("/double-quoted/${e->{$z}}", $Replace, $Source); // Ok.
 // Safeguard against false positives for text within brackets.
 preg_replace( $my->get_regex('_regexp'), $replace, $subject );
 preg_replace( $regexes[ $type . '_regexp' ], $replace, $subject );
+\PREG_Filter( namespace\get_regex('#regexp#e'), $text, $matches );
+preg_filter( \get_regex('#regexp#e'), $text, $matches );
+
+// Safeguard against false positives on method calls and namespaced function calls.
+ClassName::preg_replace('/some text/e', $subject);
+$obj->preg_filter('/some text/e', $subject);
+$obj?->preg_replace('/some text/e', $subject);
+namespace\preg_filter('/some text/e', $subject);
+\Fully\Qualified\preg_replace('/some text/e', $subject);
+Partially\Qualified\preg_filter('/some text/e', $subject);

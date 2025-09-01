@@ -102,10 +102,14 @@ final class RemovedMbStrrposEncodingThirdParamUnitTest extends BaseSniffTestCase
         }
 
         $data[] = [27];
-        $data[] = [31];
-        $data[] = [32];
-        $data[] = [33];
-        $data[] = [34];
+
+        for ($line = 30; $line <= 34; $line++) {
+            $data[] = [$line];
+        }
+
+        for ($line = 47; $line <= 53; $line++) {
+            $data[] = [$line];
+        }
 
         return $data;
     }

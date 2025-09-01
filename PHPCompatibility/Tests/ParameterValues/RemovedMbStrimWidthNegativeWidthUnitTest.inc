@@ -41,3 +41,7 @@ $a = mb_strimwidth($str, -100, -10, '' );
 
 // Safeguard support for PHP 8 named parameters.
 $a = \MB_StrimWidth(start: -2, width: -10, string: $str, trim_marker: '');
+
+// Safeguard against false positives on namespaced function calls.
+namespace\mb_strimwidth($str, -100, -10, '' );
+\Fully\Qualified\mb_strimwidth($str, -100, -10, '' );

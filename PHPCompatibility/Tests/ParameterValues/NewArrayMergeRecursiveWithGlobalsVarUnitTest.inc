@@ -14,10 +14,10 @@ register_callback(array_merge_recursive(...));
  * Valid cross-version: not passing $GLOBALS twice to array_merge_recursive().
  */
 array_merge_recursive();
-array_merge_recursive($GLOBALS);
+\array_merge_recursive($GLOBALS);
 array_merge_recursive(my_get_array(), $GLOBALS, $someOtherArray);
 array_merge_recursive($GLOBALS, $someOtherArray);
-array_merge_recursive($GLOBALS, $GLOBALS['_GET']);
+ARRAY_MERGE_RECURSIVE($GLOBALS, $GLOBALS['_GET']);
 array_merge_recursive($GLOBALS['_POST'], $GLOBALS);
 
 /*
@@ -26,4 +26,8 @@ array_merge_recursive($GLOBALS['_POST'], $GLOBALS);
  * PHP < 7.0: would exhaust memory to the limit.
  */
 array_merge_recursive($GLOBALS, $GLOBALS);
-array_merge_recursive($GLOBALS, $someOtherArray, $GLOBALS, my_get_array(),);
+\Array_Merge_Recursive($GLOBALS, $someOtherArray, $GLOBALS, my_get_array(),);
+
+// More safeguards against false positives on namespaced function calls.
+namespace\array_merge_recursive($GLOBALS, $GLOBALS);
+\Fully\Qualified\array_merge_recursive($GLOBALS, $GLOBALS);

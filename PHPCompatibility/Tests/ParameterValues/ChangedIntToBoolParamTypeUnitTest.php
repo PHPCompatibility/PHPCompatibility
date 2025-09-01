@@ -98,6 +98,10 @@ final class ChangedIntToBoolParamTypeUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        for ($line = 30; $line <= 36; $line++) {
+            $data[] = [$line];
+        }
+
         return $data;
     }
 

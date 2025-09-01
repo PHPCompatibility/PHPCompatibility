@@ -66,16 +66,39 @@ final class NewHTMLEntitiesFlagsDefaultUnitTest extends BaseSniffTestCase
     /**
      * Verify there are no false positives on code this sniff should ignore.
      *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number.
+     *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '8.0-8.1');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array<array<int>>
+     */
+    public static function dataNoFalsePositives()
+    {
+        $data = [];
 
         // No errors expected on the first 9 lines.
         for ($line = 1; $line <= 9; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        for ($line = 17; $line <= 23; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 

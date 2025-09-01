@@ -94,6 +94,9 @@ final class RemovedGetClassNoArgsUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        $data[] = [42];
+        $data[] = [43];
+
         return $data;
     }
 

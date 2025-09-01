@@ -58,6 +58,10 @@ final class NewStripTagsAllowableTagsArrayUnitTest extends BaseSniffTestCase
             [26],
             [33],
             [34],
+            [38],
+            [53],
+            [54],
+            [55],
         ];
     }
 
@@ -130,6 +134,9 @@ final class NewStripTagsAllowableTagsArrayUnitTest extends BaseSniffTestCase
             [39],
             [40],
             [41],
+            [53],
+            [54],
+            [55],
         ];
     }
 
@@ -148,6 +155,10 @@ final class NewStripTagsAllowableTagsArrayUnitTest extends BaseSniffTestCase
 
         // No errors expected on the first 11 lines.
         for ($line = 1; $line <= 11; $line++) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        for ($line = 44; $line <= 50; $line++) {
             $this->assertNoViolation($file, $line);
         }
     }
@@ -170,6 +181,6 @@ final class NewStripTagsAllowableTagsArrayUnitTest extends BaseSniffTestCase
 
     /*
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw warnings/errors
-     * about independently of the testVersion.
+     * independently of the testVersion.
      */
 }

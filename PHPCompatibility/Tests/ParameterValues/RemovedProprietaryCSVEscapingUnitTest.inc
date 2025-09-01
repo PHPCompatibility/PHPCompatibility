@@ -24,7 +24,7 @@ str_getcsv($string, $separator, $enclosure, " ");
 fputcsv();
 \fgetcsv();
 str_getcsv();
-fputcsv($stream, $fields);
+FPUTCSV($stream, $fields);
 \fgetcsv($stream);
 str_getcsv($string);
 fputcsv($stream, $fields, $separator $enclosure, eol: "\r\n");
@@ -35,10 +35,14 @@ fgetcsv($stream, $length, $separator, $enclosure, /* comment */);
 // PHP 7.4+: passing an empty string as the $escape parameter will disable escaping.
 fputcsv($stream, $fields, /*comment*/ escape: /*comment*/ ''/*comment*/ );
 \fgetcsv($stream, $length, $separator, $enclosure, '');
-str_getcsv(
+Str_Getcsv(
     $string,
     $separator,
     $enclosure,
     // phpcs:ignore Stnd.Cat.Sniff -- for (testing) reasons.
     "",
 );
+
+// Safeguard against false positives on method calls and namespaced function calls.
+namespace\fputcsv($stream, $fields);
+\Fully\Qualified\fgetcsv($stream, $length, $separator, $enclosure, '');

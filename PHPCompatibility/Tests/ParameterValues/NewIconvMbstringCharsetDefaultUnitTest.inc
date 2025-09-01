@@ -11,7 +11,7 @@ $a = iconv_mime_decode( $encoded_header, $mode, $charset );
 $a = iconv_strlen($str, $charset);
 $a = iconv_strpos ( $haystack, $needle, 0, 'UTF-8' );
 $a = iconv_strrpos($haystack, $needle, $charset );
-$a = iconv_substr($str, $offset, $length, ini_get("iconv.internal_encoding"));
+$a = \iconv_substr($str, $offset, $length, ini_get("iconv.internal_encoding"));
 
 $a = mb_check_encoding($var, $encoding);
 
@@ -26,7 +26,7 @@ $a = mb_strcut($str, $start, $length, $encoding);
 $a = mb_stripos( $haystack, $needle, $offset, $encoding );
 $a = mb_stristr( $haystack, $needle, true, $encoding );
 $a = mb_strlen($str, $encoding);
-$a = mb_strpos( $haystack, $needle, $offset, $encoding );
+$a = \mb_strpos( $haystack, $needle, $offset, $encoding );
 $a = mb_strrchr( $haystack, $needle, $part, $encoding );
 $a = mb_strrichr( $haystack, $needle, $part, $encoding );
 $a = mb_strripos( $haystack, $needle, $offset, $encoding );
@@ -34,7 +34,7 @@ $a = mb_strrpos( $haystack, $needle, $offset, $encoding );
 $a = mb_strstr( $haystack, $needle, true, $encoding );
 $a = mb_strtolower( $str, $encoding );
 $a = mb_strtoupper( $str, $encoding );
-$a = mb_strwidth( $str, $encoding );
+$a = \mb_strwidth( $str, $encoding );
 $a = mb_substr_count( $haystack, $needle, $encoding );
 $a = mb_substr(string: $str, start: $start, encoding: $encoding);
 
@@ -44,7 +44,7 @@ $a = mb_substr(string: $str, start: $start, encoding: $encoding);
 $a = iconv_mime_decode_headers( $encoded_headers, $mode );
 $a = iconv_mime_decode( $encoded_header, $mode );
 $a = Iconv_Strlen($str);
-$a = iconv_strpos ( $haystack, $needle );
+$a = \iconv_strpos ( $haystack, $needle );
 $a = iconv_strrpos($haystack, $needle );
 $a = iconv_substr($str, $offset);
 
@@ -62,7 +62,7 @@ $a = mb_stripos( $haystack, $needle );
 $a = mb_stristr( $haystack, $needle );
 $a = mb_strlen($str);
 $a = mb_strpos( $haystack, $needle );
-$a = mb_strrchr( $haystack, $needle, $part );
+$a = \mb_strrchr( $haystack, $needle, $part );
 $a = mb_strrichr( $haystack, $needle );
 $a = mb_strripos( $haystack, $needle, $offset );
 $a = mb_strrpos( $haystack, $needle );
@@ -71,7 +71,7 @@ $a = mb_strtolower($str);
 $a = mb_strtoupper( $str );
 $a = mb_strwidth( $str );
 $a = mb_substr_count( $haystack, $needle );
-$a = mb_substr(string: $str, start: $start, length: 10);
+$a = \mb_substr(string: $str, start: $start, length: 10);
 
 /*
  * iconv_mime_encode() specific tests.
@@ -90,7 +90,7 @@ $a = iconv_mime_encode(
 
 $a = Iconv_Mime_Encode( $field_name, $field_value ); // Error: $preferences not set.
 $a = ICONV_mime_encode( $field_name, $field_value, $preferences ); // Warning: unclear whether array keys are set or not.
-$a = iconv_mime_encode(
+$a = \iconv_mime_encode(
     $field_name,
     $field_value,
     array(
@@ -109,7 +109,7 @@ $a = iconv_mime_encode(
     ]
 ); // Error: 'input-charset' not set.
 
-$a = iconv_mime_encode(
+$a = \iconv_mime_encode(
     $field_name,
     $field_value,
     [
@@ -204,3 +204,11 @@ $a = iconv_mime_encode(
         'output-charset' => 'UTF-8',
     ]
 ); // Warning: 'input-charset' potentially not set.
+
+// Safeguard against false positives on method calls and namespaced function calls.
+ClassName::iconv_substr($str, $offset);
+$obj->mb_convert_kana( $str, $option );
+$obj?->mb_strwidth( $str );
+namespace\iconv_substr($str, $offset);
+\Fully\Qualified\mb_convert_kana( $str, $option );
+Partially\Qualified\mb_strwidth( $str );

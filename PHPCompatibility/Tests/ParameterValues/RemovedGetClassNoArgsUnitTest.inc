@@ -37,3 +37,7 @@ get_parent_class(
 // Also not OK: wrong parameter name used.
 \get_class(something_else: $object);
 get_parent_class(something_else: $object_or_class);
+
+// Safeguard against false positives on namespaced function calls.
+namespace\get_parent_class()
+\Fully\Qualified\get_class();

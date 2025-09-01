@@ -87,6 +87,10 @@ final class RemovedMbStrimWidthNegativeWidthUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        for ($line = 45; $line <= 47; $line++) {
+            $data[] = [$line];
+        }
+
         return $data;
     }
 

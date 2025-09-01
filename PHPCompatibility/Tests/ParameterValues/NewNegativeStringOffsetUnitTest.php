@@ -75,25 +75,48 @@ final class NewNegativeStringOffsetUnitTest extends BaseSniffTestCase
             [47, 'offset', 'Substr_Count'],
             [48, 'length', 'substr_count'],
             [51, 'start', 'mb_strimwidth'],
-            [52, 'start', 'mb_strimwidth'],
-            [52, 'width', 'mb_strimwidth'],
+            [52, 'start', 'MB_Strimwidth'],
+            [52, 'width', 'MB_Strimwidth'],
         ];
     }
 
 
     /**
-     * testNoFalsePositives
+     * Test that there are no false positives.
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line Line number.
      *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '7.0');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array<array<int>>
+     */
+    public static function dataNoFalsePositives()
+    {
+        $data = [];
 
         // No errors expected on the first 26 lines.
         for ($line = 1; $line <= 26; $line++) {
-            $this->assertNoViolation($file, $line);
+            $data[] = [$line];
         }
+
+        for ($line = 54; $line <= 60; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
