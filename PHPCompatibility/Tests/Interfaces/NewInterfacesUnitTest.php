@@ -198,7 +198,7 @@ final class NewInterfacesUnitTest extends BaseSniffTestCase
      */
     public static function dataNoFalsePositives()
     {
-        return [
+        $data = [
             [24],
             [25],
             [56],
@@ -224,6 +224,12 @@ final class NewInterfacesUnitTest extends BaseSniffTestCase
             [223],
             [241],
         ];
+
+        for ($line = 237; $line <= 262; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 

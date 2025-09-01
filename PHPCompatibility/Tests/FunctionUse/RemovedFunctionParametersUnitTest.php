@@ -72,7 +72,7 @@ final class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
             ['pg_connect', 'dbname', '8.0', [27], '7.4'],
             ['imap_headerinfo', 'defaulthost', '8.0', [30], '7.4'],
             ['odbc_exec', 'flags', '8.0', [33], '7.4'],
-            ['odbc_do', 'flags', '8.0', [34], '7.4'],
+            ['ODBC_DO', 'flags', '8.0', [34], '7.4'],
             ['imagerotate', 'ignore_transparent', '8.3', [63], '8.2'],
         ];
     }
@@ -174,7 +174,7 @@ final class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
     {
         return [
             ['imagepolygon', 'num_points', '8.1', [36, 47], '8.0'],
-            ['imageopenpolygon', 'num_points', '8.1', [37], '8.0'],
+            ['ImageOpenPolygon', 'num_points', '8.1', [37], '8.0'],
             ['imagefilledpolygon', 'num_points', '8.1', [38], '8.0'],
             ['mysqli_get_client_info', 'mysql', '8.1', [40], '8.0'],
             ['ldap_exop', 'response_data', '8.4', [65], '8.3'],
@@ -228,6 +228,11 @@ final class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
             [53],
             [62],
             [67],
+            [74],
+            [75],
+            [76],
+            [77],
+            [78],
         ];
     }
 

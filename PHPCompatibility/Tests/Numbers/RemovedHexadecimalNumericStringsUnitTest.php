@@ -72,6 +72,7 @@ final class RemovedHexadecimalNumericStringsUnitTest extends BaseSniffTestCase
             [23, '0x7ff00'],
             [27, '0x7ff00'],
             [28, '0x7ff00'],
+            [30, '0x7ff00'],
         ];
         // phpcs:enable
     }

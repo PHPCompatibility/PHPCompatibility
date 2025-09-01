@@ -687,7 +687,7 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['pg_escape_identifier', '5.4.3', 201, '5.5', '5.4'],
 
             ['array_column', '5.4', 170, '5.5'],
-            ['boolval', '5.4', 171, '5.5'],
+            ['BOOLVAL', '5.4', 171, '5.5'],
             ['json_last_error_msg', '5.4', 172, '5.5'],
             ['password_get_info', '5.4', 173, '5.5'],
             ['password_hash', '5.4', 174, '5.5'],
@@ -996,7 +996,7 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['pg_lo_truncate', '5.5', 420, '5.6'],
 
             ['iterator_count', '5.0', 434, '5.1'],
-            ['iterator_to_array', '5.0', 435, '5.1'],
+            ['Iterator_To_Array', '5.0', 435, '5.1'],
             ['spl_autoload_call', '5.0', 436, '5.1'],
             ['spl_autoload_extensions', '5.0', 437, '5.1'],
             ['spl_autoload_functions', '5.0', 438, '5.1'],
@@ -1189,6 +1189,8 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             [5],
             [6],
             [7],
+            [1097],
+            [1098],
         ];
     }
 

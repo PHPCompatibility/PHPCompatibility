@@ -51,8 +51,8 @@ $a = ini_get('safe_mode_exec_dir');
 ini_set('safe_mode_allowed_env_vars', 1);
 $a = ini_get('safe_mode_allowed_env_vars');
 
-ini_set( /*comment*/ 'safe_mode_protected_env_vars', 1);
-$a = ini_get('safe_mode_protected_env_vars');
+\ini_set( /*comment*/ 'safe_mode_protected_env_vars', 1);
+$a = \ini_get('safe_mode_protected_env_vars');
 
 ini_set('session.save_handler', 1); // Ok.
 $a = ini_get('session.save_handler'); // Ok.
@@ -110,8 +110,8 @@ $a = ini_get('ifx.default_password');
 ini_set('ifx.default_user', 'abc');
 $a = ini_get('ifx.default_user');
 
-ini_set('ifx.max_links', 1);
-$a = ini_get('ifx.max_links');
+INI_SET('ifx.max_links', 1);
+$a = INI_GET('ifx.max_links');
 
 ini_set('ifx.max_persistent', 1);
 $a = ini_get('ifx.max_persistent');
@@ -181,8 +181,8 @@ $a = ini_get('birdstep.max_links');
 ini_set('opcache.inherited_hack', true);
 $a = ini_get('opcache.inherited_hack');
 
-ini_set('pdo_odbc.db2_instance_name', 'string');
-$a = ini_get('pdo_odbc.db2_instance_name');
+\ini_set('pdo_odbc.db2_instance_name', 'string');
+$a = \ini_get('pdo_odbc.db2_instance_name');
 
 ini_set('ibase.allow_persistent', true);
 $a = ini_get('ibase.allow_persistent');
@@ -301,8 +301,8 @@ $test = ini_get('ingres.allow_persistent');
 ini_set('ingres.default_database', 0);
 $test = ini_get('ingres.default_database');
 
-ini_set('ingres.default_password', 0);
-$test = ini_get('ingres.default_password');
+\Ini_Set('ingres.default_password', 0);
+$test = \Ini_Get('ingres.default_password');
 
 ini_set('ingres.default_user', 0);
 $test = ini_get('ingres.default_user');
@@ -520,3 +520,8 @@ $test = ini_get('session.sid_length');
 
 ini_set('session.sid_bits_per_character', 1);
 $test = ini_get('session.sid_bits_per_character');
+
+// More safeguard against false positives on method calls and namespaced function calls.
+namespace\ini_set('pfpro.defaulthost', 'string');
+\Fully\Qualified\ini_get('phar.extract_list');
+Partially\Qualified\ini_set('assert.bail', 0);

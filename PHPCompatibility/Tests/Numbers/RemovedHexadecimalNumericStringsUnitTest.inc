@@ -26,3 +26,5 @@ class Foo {
 // Or when the hex numeric string is used in a parameter which doesn't support it.
 $test = gmp_init($num, '0x7ff00');
 $test = gmp_ROOT(nth: '0x7ff00', num: 10);
+
+$test = namespace\gmp_and($n, '0x7ff00');

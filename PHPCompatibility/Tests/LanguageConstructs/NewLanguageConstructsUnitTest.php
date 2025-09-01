@@ -28,16 +28,36 @@ final class NewLanguageConstructsUnitTest extends BaseSniffTestCase
     /**
      * PHP 5.3: namespace separator.
      *
+     * @dataProvider dataNamespaceSeparator
+     *
+     * @param int $line The line number where an error is expected.
+     *
      * @return void
      */
-    public function testNamespaceSeparator()
+    public function testNamespaceSeparator($line)
     {
         $file = $this->sniffFile(__FILE__, '5.2');
-        $this->assertError($file, 3, 'The \ operator (for namespaces) is not present in PHP version 5.2 or earlier');
+        $this->assertError($file, $line, 'The \ operator (for namespaces) is not present in PHP version 5.2 or earlier');
 
         $file = $this->sniffFile(__FILE__, '5.3');
-        $this->assertNoViolation($file, 3);
+        $this->assertNoViolation($file, $line);
     }
+
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public static function dataNamespaceSeparator()
+    {
+        return [
+            [3],
+            [7],
+            [8],
+            [10],
+        ];
+    }
+
 
     /**
      * PHP 5.6: variadic functions using ...

@@ -118,3 +118,12 @@ $a = (new Foo( array(1, array(4, 5), 3) )){1}[0]; // Should give two errors (dep
 $a = (clone $iterable)[1]{0}; // Should give two errors (depending on supported PHP version).
 
 var_dump((new Bar)?->y);
+
+// Safeguard against false positives on params in namespaced function calls.
+namespace\callMe(new foo())->get();
+\Fully\Qualified\callMe(new \bar());
+Partially\Qualified\callMe(new class() {})->get();
+
+namespace\callMe(clone $foo))->get();
+\Fully\Qualified\callMe(clone $foo));
+Partially\Qualified\callMe(clone $foo))->get();

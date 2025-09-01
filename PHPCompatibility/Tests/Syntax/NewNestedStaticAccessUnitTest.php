@@ -69,6 +69,8 @@ final class NewNestedStaticAccessUnitTest extends BaseSniffTestCase
             [23],
             [38],
             [41],
+            [49],
+            [50],
         ];
     }
 
@@ -100,6 +102,7 @@ final class NewNestedStaticAccessUnitTest extends BaseSniffTestCase
         return [
             [34],
             [35],
+            [51],
         ];
     }
 
@@ -133,6 +136,9 @@ final class NewNestedStaticAccessUnitTest extends BaseSniffTestCase
             [27],
             [28],
             [31],
+            [44],
+            [45],
+            [46],
         ];
     }
 

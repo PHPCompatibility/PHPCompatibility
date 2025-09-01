@@ -66,9 +66,11 @@ final class NewKeywordsUnitTest extends BaseSniffTestCase
     {
         $file = $this->sniffFile(__FILE__, '5.2');
         $this->assertError($file, 20, '"namespace" keyword is not present in PHP version 5.2 or earlier');
+        $this->assertError($file, 21, '"namespace" keyword is not present in PHP version 5.2 or earlier');
 
         $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file, 20);
+        $this->assertNoViolation($file, 21);
     }
 
     /**

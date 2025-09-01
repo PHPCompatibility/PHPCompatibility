@@ -32,7 +32,7 @@ $test = new Phar();
 $test = new PharData();
 $test = new PharException();
 $test = new PharFileInfo();
-$test = new FilesystemIterator();
+$test = new \FilesystemIterator();
 $test = new GlobIterator();
 $test = new MultipleIterator();
 $test = new RecursiveTreeIterator();
@@ -56,7 +56,7 @@ $test = new IntlCalendar();
 $test = new IntlGregorianCalendar();
 $test = new IntlTimeZone();
 $test = new IntlBreakIterator();
-$test = new IntlRuleBasedBreakIterator();
+$test = new \IntlRuleBasedBreakIterator();
 $test = new IntlCodePointBreakIterator();
 $test = new libXMLError();
 
@@ -76,7 +76,7 @@ class MyFilesystemIterator extends FilesystemIterator {}
 class MyGlobIterator extends GlobIterator {}
 class MyMultipleIterator extends MultipleIterator {}
 class MyRecursiveTreeIterator extends RecursiveTreeIterator {}
-class MySplDoublyLinkedList extends SplDoublyLinkedList {}
+class MySplDoublyLinkedList extends \SplDoublyLinkedList {}
 class MySplFixedArray extends SplFixedArray {}
 abstract class MySplHeap extends SplHeap {}
 class MySplMaxHeap extends SplMaxHeap {}
@@ -89,7 +89,7 @@ class MyRecursiveCallbackFilterIterator extends RecursiveCallbackFilterIterator 
 class MyReflectionZendExtension extends ReflectionZendExtension {}
 class MySessionHandler extends SessionHandler {}
 class MySNMP extends SNMP {}
-class MyTransliterator extends Transliterator {}
+class MyTransliterator extends \Transliterator {}
 class MyCURLFile extends CURLFile {}
 class MyDateTimeImmutable extends DateTimeImmutable {}
 class MyIntlCalendar extends IntlCalendar {}
@@ -106,7 +106,7 @@ DateTime::static_method();
 DateTimeZone::static_method();
 RegexIterator::static_method();
 RecursiveRegexIterator::static_method();
-DateInterval::static_method();
+\DateInterval::static_method();
 DatePeriod::static_method();
 Phar::static_method();
 PharData::static_method();
@@ -122,7 +122,7 @@ SplHeap::CLASS_CONSTANT;
 SplMaxHeap::CLASS_CONSTANT;
 SplMinHeap::CLASS_CONSTANT;
 SplPriorityQueue::CLASS_CONSTANT;
-SplQueue::CLASS_CONSTANT;
+\SplQueue::CLASS_CONSTANT;
 SplStack::CLASS_CONSTANT;
 CallbackFilterIterator::CLASS_CONSTANT;
 RecursiveCallbackFilterIterator::CLASS_CONSTANT;
@@ -168,7 +168,7 @@ class MyClass {
     function GlobIteratorTypeHint( \GlobIterator $a ) {} // Error: global namespace.
     function SplQueueTypeHint( myNameSpace\SplQueue $a ) {} // Ok.
     function CURLFileTypeHint( \some\other\CURLFile $a ) {} // Ok.
-
+    function SplMinHeapTypeHint( namespace\SplMinHeap $a ) {} // Ok.
     // New classes as nullable typehints (PHP 7.1+).
     function DatePeriodTypeHint( ?DatePeriod $a ) {}
     function FilesystemIteratorTypeHint( ?\FilesystemIterator $a ) {}
@@ -198,9 +198,9 @@ UnderflowException::CLASS_CONSTANT;
 PDOException::$static_property;
 
 
-$snon = new class extends BadFunctionCallException {};
-$snon = new class extends mysqli_sql_exception {};
-$snon = new class extends DivisionByZeroError {};
+$anon = new class extends BadFunctionCallException {};
+$anon = new class extends mysqli_sql_exception {};
+$anon = new class extends DivisionByZeroError {};
 
 class MyOtherExceptionHandler {
     // New Exceptions as typehints.
@@ -219,7 +219,7 @@ try {
 } catch (BadFunctionCallException $e) {
 } catch (BadMethodCallException $e) {
 } catch (DomainException $e) {
-} catch (InvalidArgumentException $e) {
+} catch (\InvalidArgumentException $e) {
 } catch (LengthException $e) {
 } catch (LogicException $e) {
 } catch (OutOfBoundsException $e) {
@@ -236,13 +236,13 @@ try {
 } catch (SoapFault $e) {
 } catch (PharException $e) {
 } catch (SNMPException $e) {
-} catch (IntlException $e) {
+} catch (\IntlException $e) {
 } catch (Error $e) {
 } catch (ArithmeticError $e) {
 } catch (AssertionError $e) {
 } catch (DivisionByZeroError $e) {
 } catch (ParseError $e) {
-} catch (TypeError $e) {
+} catch (\TypeError $e) {
 
 
 } catch (ArgumentCountError $e) {
@@ -473,7 +473,7 @@ $type = new ReflectionEnumUnitCase();
 
 class MyRandom extends \Random\Randomizer {
     protected Random\Engine\Mt19937 $propertyA;
-    protected Random\Engine\PcgOneseq128XslRr64 $propertyB;
+    protected \Random\Engine\PcgOneseq128XslRr64 $propertyB;
     protected Random\Engine\Xoshiro256StarStar $propertyC;
 
     public function foo(): \Random\Engine\Secure {
@@ -598,3 +598,15 @@ class TypedConstants {
     public const (XMLParser&\InflateContext)|null DNF_TYPE = new MyClassA;
     final const array|(ArrayObject&\ArrayIterator) ARRAY_LIKE = new MyArray([1,2,3]);
 }
+
+// More safeguards against false positives on namespaced names.
+$okay = namespace\Foo\DateTime::static_method();
+$okay = new namespace\Foo\GdFont();
+$okay = new Partially\Qualified\InflateContext();
+
+class TestA extends namespace\Foo\Socket {}
+class TestB extends \Fully\Qualified\ReflectionConstant {}
+class TestC extends Partially\Qualified\CallbackFilterIterator {}
+
+try {
+} catch (namespace\Exception | \Fully\Qualified\DomainException | Partially\Qualified\UnderflowException $e) {

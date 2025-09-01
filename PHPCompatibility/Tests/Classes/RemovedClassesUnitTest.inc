@@ -8,7 +8,7 @@ $okay = new \myNamespace\SWFAction();
 $okay = \myNamespace\SWFAction::static_method();
 $okay = SomeNamespace\SWFAction::static_method();
 
-$snon = new class extends \My\SWFFill {};
+$anon = new class extends \My\SWFFill {};
 new class extends My\SWFFont {};
 
 class MyClass {
@@ -17,7 +17,7 @@ class MyClass {
 }
 
 try {
-} catch (\My\Except\DOMException $e) { // TODO
+} catch (\My\Except\DOMException $e) {
 }
 
 function NsSWFMovieReturnTypeHint( $a ) : \SomeNamespace\SWFMovie {}
@@ -161,3 +161,13 @@ class TypedConstants {
     // DNF types are supported.
     public const (PSpell\Config&\PSpell\Dictionary)|null DNF_TYPE = new MyClassA;
 }
+
+// More safeguards against false positives on namespaced names.
+$okay = namespace\Foo\SQLiteDatabase::static_method();
+$okay = new namespace\Foo\SWFAction();
+$okay = new Partially\Qualified\SWFFill();
+
+class TestA extends namespace\Foo\OCILob {}
+
+try {
+} catch (namespace\HW_API_Error | \Fully\Qualified\HW_API_Content | Partially\Qualified\HW_API_Reason $e) {

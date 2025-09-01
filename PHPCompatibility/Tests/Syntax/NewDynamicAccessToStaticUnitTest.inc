@@ -64,3 +64,8 @@ class TestKeyword extends StaticAllThings {
 }
 
 echo $c?->name::test();
+
+// OK in PHP < 5.3.
+echo namespace\StaticAllThings::BAR;
+echo \Fully\Qualified\StaticAllThings :: $foo;
+echo Partially\Qualified\StaticAllThings::test();

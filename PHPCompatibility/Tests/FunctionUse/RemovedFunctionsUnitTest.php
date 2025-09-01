@@ -60,7 +60,7 @@ final class RemovedFunctionsUnitTest extends BaseSniffTestCase
     public static function dataDeprecatedFunction()
     {
         return [
-            ['dl', '5.3', 6, '5.2'],
+            ['DL', '5.3', 6, '5.2'],
             ['enchant_broker_get_dict_path', '8.0', 1172, '7.4'],
             ['enchant_broker_set_dict_path', '8.0', 1173, '7.4'],
             ['libxml_disable_entity_loader', '8.0', 1191, '7.4'],
@@ -1618,7 +1618,7 @@ final class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['mbereg_search_setpos', '7.3', '8.0', 'mb_ereg_search_setpos()', 166, '7.2'],
 
             ['convert_cyr_string', '7.4', '8.0', 'mb_convert_encoding(), iconv() or UConverter', 243, '7.3'],
-            ['money_format', '7.4', '8.0', 'NumberFormatter::formatCurrency()', 244, '7.3'],
+            ['Money_Format', '7.4', '8.0', 'NumberFormatter::formatCurrency()', 244, '7.3'],
             ['restore_include_path', '7.4', '8.0', "ini_restore('include_path')", 246, '7.3'],
             ['ldap_control_paged_result_response', '7.4', '8.0', 'ldap_search()', 234, '7.3'],
             ['ldap_control_paged_result', '7.4', '8.0', 'ldap_search()', 235, '7.3'],

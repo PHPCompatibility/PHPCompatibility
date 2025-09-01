@@ -20,7 +20,7 @@ copy($file, $newfile, $context);
 curl_multi_info_read( $mh, $msgs_in_queue );
 debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 3 ); // NB: 2 new params
 debug_print_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 3 ); // NB: 2 new params
-dirname('somewhere', 5);
+DIRNAME('somewhere', 5);
 dns_get_record("php.net", DNS_ANY, $authns, $addtl, true);
 fgetcsv($handle, 1000, ',', '"', '`');
 fputcsv( $handle, $fields, "," , '"', "`" );
@@ -29,7 +29,7 @@ filter_input_array(INPUT_POST, $args, false);
 filter_var_array($data, $args, false);
 gettimeofday ( true );
 get_html_translation_table(HTML_ENTITIES, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-get_loaded_extensions(true);
+\get_loaded_extensions(true);
 gzcompress('Compress me', 9, ZLIB_ENCODING_GZIP);
 gzdeflate($compressed, 9, ZLIB_ENCODING_GZIP);
 htmlentities($str, ENT_QUOTES, 'UTF-8', false);
@@ -40,7 +40,7 @@ idn_to_utf8($domain, IDNA_CHECK_BIDI,  INTL_IDNA_VARIANT_UTS46, $result); // NB:
 imagecolorset($im, $bg, 0, 0, 255, 0);
 imagepng ( $image, $to, 7, PNG_ALL_FILTERS ); // NB: 2 new params
 imagerotate($source, $degrees, 0, true);
-imap_open("{localhost:143}INBOX", "user_id", "password", OP_READONLY, 3, array('DISABLE_AUTHENTICATOR'=>true)); // NB: 2 new params
+Imap_Open("{localhost:143}INBOX", "user_id", "password", OP_READONLY, 3, array('DISABLE_AUTHENTICATOR'=>true)); // NB: 2 new params
 imap_reopen($mbox, "{imap.example.org:143}INBOX.Sent", OP_READONLY, 3);
 ini_get_all('pcre', false);
 is_a($WF, 'WidgetFactory', true);
@@ -67,7 +67,7 @@ pg_lo_create($database, $id);
 pg_lo_import($database, '/tmp/lob.dat', $id);
 preg_replace( '`[A-Z]([a-z]+)`', '$1', $subject , -1 , $count );
 preg_replace_callback( '`[A-Z]([a-z]+)`' , $callback , $subject , -1 , $count, $flags );
-round(1.55, 1, PHP_ROUND_HALF_EVEN);
+\round(1.55, 1, PHP_ROUND_HALF_EVEN);
 sem_acquire( $sem_identifier, true );
 session_regenerate_id (true);
 session_set_cookie_params($lifetime, $path, $domain, false, true );
@@ -89,7 +89,7 @@ substr_count($text, 'is', 2, 3); // NB: 2 new params
 sybase_connect('SYBASE', '', '', 'utf-8', '', true);
 timezone_transitions_get( $dtzObject, $timestamp_begin, $timestamp_end ); // NB: 2 new params
 timezone_identifiers_list( $what, $country); // NB: 2 new params
-token_get_all('<?php echo; ?>',TOKEN_PARSE);
+\token_get_all('<?php echo; ?>',TOKEN_PARSE);
 ucwords($foo, '|');
 $data = unserialize($foo, ["allowed_classes" => false]);
 get_defined_functions(true);
@@ -114,7 +114,7 @@ ldap_modify_batch( $link_identifier, $dn, $entry, $serverctrls );
 ldap_parse_result( $link, $result, &$errcode, &$matcheddn, &$errmsg, &$referrals, &$serverctrls );
 ldap_read( $link_identifier, $base_dn, $filter, $attributes, $attrsonly, $sizelimit, $timelimit, $deref, $serverctrls );
 ldap_rename( $link_identifier, $dn, $newrdn, $newparent, $deleteoldrdn, $serverctrls );
-ldap_search( $link_identifier, $base_dn, $filter, $attributes, $attrsonly, $sizelimit, $timelimit, $deref, $serverctrls );
+LDAP_SEARCH( $link_identifier, $base_dn, $filter, $attributes, $attrsonly, $sizelimit, $timelimit, $deref, $serverctrls );
 preg_replace_callback_array($patterns_and_callbacks, $subject, $limit, $count, $flags);
 date_time_set($object, $hour, $minute, $second, $microseconds);
 mb_decode_numericentity($str, $convmap, mb_internal_encoding(), FALSE );
@@ -151,3 +151,10 @@ posix_getrlimit($res);
 strrchr($haystack, $needle, $before_needle);
 $cert2 = openssl_csr_sign($csrdata, null, $privkey, 365, $args, serial_hex: 'DEADBEEF');
 $cert3 = openssl_csr_sign($csrdata, null, $privkey, 365, $args, 10, 'DEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEF');
+
+// Safeguard against false positives on method calls and namespaced function calls.
+ClassName::gettimeofday ( true );
+$obj->php_uname ("a");
+namespace\memory_get_usage(true);
+\Fully\Qualified\getopt($options, $longopts, $optind);
+Partially\Qualified\hash($algo, $data, $binary, []);

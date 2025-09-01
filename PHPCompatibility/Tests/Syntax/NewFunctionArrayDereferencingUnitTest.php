@@ -64,6 +64,9 @@ final class NewFunctionArrayDereferencingUnitTest extends BaseSniffTestCase
             [28, true],
             [29, true],
             [37],
+            [40],
+            [41],
+            [42],
         ];
     }
 
@@ -134,7 +137,7 @@ final class NewFunctionArrayDereferencingUnitTest extends BaseSniffTestCase
             [10],
             [11],
             [32],
-            [40],
+            [45],
         ];
     }
 

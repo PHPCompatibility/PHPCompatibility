@@ -130,8 +130,9 @@ final class RemovedClassesUnitTest extends BaseSniffTestCase
      */
     public static function dataNoFalsePositives()
     {
-        // No errors expected on the first 26 lines.
         $data = [];
+
+        // No errors expected on the first 26 lines.
         for ($line = 1; $line <= 26; $line++) {
             $data[] = [$line];
         }
@@ -142,6 +143,10 @@ final class RemovedClassesUnitTest extends BaseSniffTestCase
         $data[] = [111];
         $data[] = [146];
         $data[] = [150];
+
+        for ($line = 165; $line <= 173; $line++) {
+            $data[] = [$line];
+        }
 
         return $data;
     }

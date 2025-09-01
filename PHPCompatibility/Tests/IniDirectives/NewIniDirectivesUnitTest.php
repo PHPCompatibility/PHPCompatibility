@@ -379,6 +379,11 @@ final class NewIniDirectivesUnitTest extends BaseSniffTestCase
             [549],
             [552],
             [553],
+            [631],
+            [632],
+            [633],
+            [634],
+            [635],
         ];
     }
 

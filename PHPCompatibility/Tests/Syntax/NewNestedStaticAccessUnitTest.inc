@@ -39,3 +39,13 @@ echo Foo::bar()::baz();
 
 // No false negative with PHP 8.0 nullsafe object operator.
 echo $foo?->bar()::baz();
+
+// Safeguard against false positives on non-nested static access on namespaced classes.
+namespace\ClassName::$baz;
+\Fully\Qualified\ClassName::BAZ;
+Partially\Qualified\ClassName::baz();
+
+// Safeguard against false negatives on nested static access on namespaced classes.
+namespace\ClassName::foo()['bar']::$baz;
+\Fully\Qualified\ClassName::$boo::BAZ;
+Partially\Qualified\ClassName::MY_CONSTANT::baz(); // PHP 8.0.

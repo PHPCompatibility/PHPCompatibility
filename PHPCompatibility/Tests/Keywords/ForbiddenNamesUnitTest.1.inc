@@ -430,3 +430,7 @@ class TypedConstants {
     const resource CONST_K = null;
     const \numeric CONST_L = 10;
 }
+
+// Safeguard handling of variations of function calls to `define()`.
+DEFINE('FOO', 'trait');
+\define('BAZ', 'interface');

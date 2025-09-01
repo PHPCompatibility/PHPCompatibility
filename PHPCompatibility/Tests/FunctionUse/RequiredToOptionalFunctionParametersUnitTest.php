@@ -80,7 +80,7 @@ final class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTestCa
             ['ftp_put', 'mode', '7.2', [31], '7.3'],
             ['array_merge', 'arrays', '7.3', [35], '7.4'],
             ['array_merge_recursive', 'arrays', '7.3', [36], '7.4'],
-            ['fgetcsv', 'length', '5.0', [39], '5.1'],
+            ['fGetCSV', 'length', '5.0', [39], '5.1'],
             ['xmlwriter_write_element', 'content', '5.2.2', [41], '5.3', '5.2'],
             ['xmlwriter_write_element_ns', 'content', '5.2.2', [42], '5.3', '5.2'],
             ['imagepolygon', 'num_points', '7.4', [45], '8.0'],
@@ -158,6 +158,11 @@ final class RequiredToOptionalFunctionParametersUnitTest extends BaseSniffTestCa
             [83],
             [86],
             [89],
+            [93],
+            [94],
+            [95],
+            [96],
+            [97],
         ];
     }
 

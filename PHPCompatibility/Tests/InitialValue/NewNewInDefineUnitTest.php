@@ -91,6 +91,10 @@ final class NewNewInDefineUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        for ($line = 55; $line <= 58; $line++) {
+            $data[] = [$line];
+        }
+
         return $data;
     }
 

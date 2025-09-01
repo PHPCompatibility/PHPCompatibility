@@ -235,6 +235,26 @@ class TypedConstants {
     public const (Random\Engine&\Random\CryptoSafeEngine)|null DNF_TYPE = new MyClassA;
 }
 
+// Safeguard against false positives on namespaced names.
+class NamespaceRelative implements namespace\OuterIterator {}
+class PartiallyQualified implements Partially\Qualified\SessionHandlerInterface {}
+class FullyQualified implements \Fully\Qualified\SessionUpdateTimestampHandlerInterface {}
+
+interface MyNamespaceRelative extends namespace\DOMChildNode {}
+interface MyPartiallyQualified extends Partially\Qualified\Random\Engine {}
+interface MyFullyQualified extends \Fully\Qualified\SplObserver {}
+
+class NamespacedNames {
+    const namespace\UnitEnum NAME = 10;
+    public readonly Partially\Qualified\JsonSerializable $property = null;
+    function callMe(
+        namespace\DOMParentNode $paramA,
+        \Fully\Qualified\RecursiveIterator $paramB,
+        Partially\Qualified\SeekableIterator $paramC,
+    ): \Fully\Qualified\Reflector {
+    }
+}
+
 // Test parse error/live coding.
 // This MUST be the last test in the file!
 try {
