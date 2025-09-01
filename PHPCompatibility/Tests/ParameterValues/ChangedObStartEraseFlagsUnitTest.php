@@ -58,6 +58,10 @@ final class ChangedObStartEraseFlagsUnitTest extends BaseSniffTestCase
             [13],
             [14],
             [26],
+            [40],
+            [41],
+            [45],
+            [46],
         ];
     }
 
@@ -100,6 +104,8 @@ final class ChangedObStartEraseFlagsUnitTest extends BaseSniffTestCase
             [22],
             [23],
             [27],
+            [49],
+            [50],
         ];
     }
 
@@ -136,6 +142,10 @@ final class ChangedObStartEraseFlagsUnitTest extends BaseSniffTestCase
         }
 
         $data[] = [28];
+
+        for ($line = 30; $line <= 36; $line++) {
+            $data[] = [$line];
+        }
 
         return $data;
     }
