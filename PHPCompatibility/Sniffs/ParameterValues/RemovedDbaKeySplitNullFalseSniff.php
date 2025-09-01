@@ -106,7 +106,9 @@ final class RemovedDbaKeySplitNullFalseSniff extends AbstractFunctionCallParamet
              * Check if a hard-coded null or false was passed.
              */
             $contentLc = \strtolower($targetParam['clean']);
-            if ($contentLc !== 'null' && $contentLc !== 'false') {
+            if ($contentLc !== 'null' && $contentLc !== '\null'
+                && $contentLc !== 'false' && $contentLc !== '\false'
+            ) {
                 return;
             }
         }

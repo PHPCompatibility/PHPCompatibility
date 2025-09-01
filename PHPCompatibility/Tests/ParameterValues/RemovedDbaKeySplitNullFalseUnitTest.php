@@ -63,6 +63,8 @@ final class RemovedDbaKeySplitNullFalseUnitTest extends BaseSniffTestCase
             [38],
             [39],
             [42],
+            [50],
+            [51],
         ];
     }
 
@@ -96,6 +98,9 @@ final class RemovedDbaKeySplitNullFalseUnitTest extends BaseSniffTestCase
         for ($line = 1; $line <= 22; $line++) {
             $data[] = [$line];
         }
+
+        $data[] = [46];
+        $data[] = [47];
 
         return $data;
     }
