@@ -65,8 +65,9 @@ final class NewReadonlyPropertiesUnitTest extends BaseSniffTestCase
             [104],
             [105],
             [109],
+            [118],
 
-            [115],
+            [123],
         ];
     }
 
