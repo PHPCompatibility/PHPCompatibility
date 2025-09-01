@@ -22,9 +22,33 @@ use PHPCSUtils\TestUtils\UtilityMethodTestCase;
  * @since 7.0.5
  *
  * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQClassNameFromDoubleColonToken
+ * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQName
  */
 final class GetFQClassNameFromDoubleColonTokenUnitTest extends UtilityMethodTestCase
 {
+
+    /**
+     * Test an empty string is returned when the stackptr to a non-existent token is passed.
+     *
+     * @return void
+     */
+    public function testGetFQClassNameFromDoubleColonTokenNonExistentToken()
+    {
+        $result = ResolveHelper::getFQClassNameFromDoubleColonToken(self::$phpcsFile, 100000);
+        $this->assertSame('', $result);
+    }
+
+    /**
+     * Test an empty string is returned when an invalid token is passed.
+     *
+     * @return void
+     */
+    public function testGetFQClassNameFromDoubleColonTokenInvalidToken()
+    {
+        $stackPtr = $this->getTargetToken('/* test 1 */', \T_STRING);
+        $result   = ResolveHelper::getFQClassNameFromDoubleColonToken(self::$phpcsFile, $stackPtr);
+        $this->assertSame('', $result);
+    }
 
     /**
      * Test retrieving a fully qualified class name based on a T_DOUBLE_COLON token.
@@ -72,6 +96,12 @@ final class GetFQClassNameFromDoubleColonTokenUnitTest extends UtilityMethodTest
             ['/* test 17 */', ''],
             ['/* test 18 */', ''],
             ['/* test 19 */', ''],
+            ['/* test 20 */', ''],
+            ['/* test 21 */', ''],
+            ['/* test 22 */', ''],
+            ['/* test 23 */', '\HasConstantScalarDeclaration'],
+            ['/* test 24 */', '\DateTime'],
+            ['/* test 25 */', ''],
         ];
     }
 }
