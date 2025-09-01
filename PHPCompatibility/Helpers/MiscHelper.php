@@ -13,7 +13,7 @@ namespace PHPCompatibility\Helpers;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
-use PHPCSUtils\Utils\Scopes;
+use PHPCSUtils\Utils\Parentheses;
 
 /**
  * Miscellaneous helper functions
@@ -56,66 +56,112 @@ final class MiscHelper
             return false;
         }
 
+        // Handle things within attributes.
+        if (isset($tokens[$stackPtr]['attribute_opener'], $tokens[$stackPtr]['attribute_closer']) === true) {
+            $attributeIsNestedInParentheses = Parentheses::getLastOpener($phpcsFile, $tokens[$stackPtr]['attribute_opener']);
+            $constantIsNestedInParentheses  = Parentheses::getLastOpener($phpcsFile, $stackPtr);
+
+            // Check if the same parenthesis level applies.
+            if ($attributeIsNestedInParentheses === $constantIsNestedInParentheses) {
+                // Attribute name, not part of a parameter.
+                return false;
+            }
+
+            return true;
+        }
+
+        // Ignore exception names in catch structures.
+        if (Parentheses::lastOwnerIn($phpcsFile, $stackPtr, [\T_CATCH]) !== false) {
+            return false;
+        }
+
         $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($next !== false
             && ($tokens[$next]['code'] === \T_OPEN_PARENTHESIS
-                || $tokens[$next]['code'] === \T_DOUBLE_COLON)
+                || $tokens[$next]['code'] === \T_DOUBLE_COLON
+                || $tokens[$next]['code'] === \T_EQUAL
+                || $tokens[$next]['code'] === \T_TYPE_UNION
+                || $tokens[$next]['code'] === \T_TYPE_INTERSECTION
+                || $tokens[$next]['code'] === \T_TYPE_CLOSE_PARENTHESIS
+                || $tokens[$next]['code'] === \T_VARIABLE)
         ) {
-            // Function call or declaration.
+            // Function call, function declaration, type declaration or constant/property assignment.
             return false;
         }
 
         // Array of tokens which if found preceding the $stackPtr indicate that a T_STRING is not a global constant.
         $tokensToIgnore  = [
-            \T_NAMESPACE  => true,
-            \T_USE        => true,
-            \T_EXTENDS    => true,
-            \T_IMPLEMENTS => true,
-            \T_NEW        => true,
-            \T_FUNCTION   => true,
-            \T_INSTANCEOF => true,
-            \T_INSTEADOF  => true,
-            \T_GOTO       => true,
-            \T_AS         => true,
+            \T_NAMESPACE             => true,
+            \T_USE                   => true,
+            \T_EXTENDS               => true,
+            \T_IMPLEMENTS            => true,
+            \T_NEW                   => true,
+            \T_INSTANCEOF            => true,
+            \T_INSTEADOF             => true,
+            \T_GOTO                  => true,
+            \T_AS                    => true,
+            \T_CONST                 => true,
+            \T_NULLABLE              => true,
+            \T_TYPE_UNION            => true,
+            \T_TYPE_INTERSECTION     => true,
+            \T_TYPE_OPEN_PARENTHESIS => true,
         ];
         $tokensToIgnore += Tokens::$ooScopeTokens;
         $tokensToIgnore += Collections::objectOperators();
         $tokensToIgnore += Tokens::$scopeModifiers;
 
         $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prev !== false && isset($tokensToIgnore[$tokens[$prev]['code']]) === true) {
+        if (isset($tokensToIgnore[$tokens[$prev]['code']]) === true) {
             // Not the use of a constant.
             return false;
         }
 
-        if ($prev !== false
-            && $tokens[$prev]['code'] === \T_NS_SEPARATOR
-            && $tokens[($prev - 1)]['code'] === \T_STRING
-        ) {
-            // Namespaced constant.
-            return false;
+        if ($tokens[$prev]['code'] === \T_NS_SEPARATOR) {
+            $prevPrev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
+            if ($tokens[$prevPrev]['code'] === \T_STRING
+                || $tokens[$prevPrev]['code'] === \T_NAMESPACE
+            ) {
+                // Namespaced constant.
+                return false;
+            }
         }
 
-        if ($prev !== false
-            && $tokens[$prev]['code'] === \T_CONST
-            && Scopes::isOOConstant($phpcsFile, $prev) === true
-        ) {
-            // Class constant declaration.
-            return false;
+        // Handle plain return types.
+        if ($tokens[$prev]['code'] === \T_COLON) {
+            if ($tokens[$next]['code'] === \T_OPEN_CURLY_BRACKET
+                && isset($tokens[$next]['scope_condition'])
+            ) {
+                // Return type declaration.
+                return false;
+            }
+
+            if ($tokens[$next]['code'] === \T_SEMICOLON) {
+                $prevPrev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
+                if ($tokens[$prevPrev]['code'] === \T_CLOSE_PARENTHESIS
+                    && isset($tokens[$prevPrev]['parenthesis_owner'])
+                ) {
+                    // Return type declaration.
+                    return false;
+                }
+            }
         }
 
         /*
          * Deal with a number of variations of use statements.
          */
-        for ($i = $stackPtr; $i > 0; $i--) {
-            if ($tokens[$i]['line'] !== $tokens[$stackPtr]['line']) {
-                break;
-            }
-        }
+        $find                   = [
+            \T_SEMICOLON,
+            \T_OPEN_TAG,
+            \T_OPEN_TAG_WITH_ECHO,
+            \T_OPEN_CURLY_BRACKET,
+            \T_OPEN_SQUARE_BRACKET,
+            \T_OPEN_PARENTHESIS,
+        ];
+        $endOfPreviousStatement = $phpcsFile->findPrevious($find, ($stackPtr - 1));
+        $startOfThisStatement   = $phpcsFile->findNext(Tokens::$emptyTokens, ($endOfPreviousStatement + 1), null, true);
 
-        $firstOnLine = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), null, true);
-        if ($firstOnLine !== false && $tokens[$firstOnLine]['code'] === \T_USE) {
-            $nextOnLine = $phpcsFile->findNext(Tokens::$emptyTokens, ($firstOnLine + 1), null, true);
+        if ($tokens[$startOfThisStatement]['code'] === \T_USE) {
+            $nextOnLine = $phpcsFile->findNext(Tokens::$emptyTokens, ($startOfThisStatement + 1), null, true);
             if ($nextOnLine !== false) {
                 if (($tokens[$nextOnLine]['code'] === \T_STRING && $tokens[$nextOnLine]['content'] === 'const')) {
                     $hasNsSep = $phpcsFile->findNext(\T_NS_SEPARATOR, ($nextOnLine + 1), $stackPtr);
