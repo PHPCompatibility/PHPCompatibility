@@ -577,3 +577,24 @@ class ConstructorPropertyPromotionWithTypes {
         ReflectionConstant $normalParamClassType,
     ) {}
 }
+
+// Global constants can't be typed. Ignore.
+const FOO = 10;
+
+// Test support for PHP 8.3 typed constants.
+class TypedConstants {
+    const UNTYPED = 10;
+    protected const HashContext CLASS_TYPE = new ClassName();
+    private const ?IntlDatePatternGenerator NULLABLE_CLASS_TYPE = null;
+    protected const \StreamBucket FQN_INTERFACE = new ClassName;
+
+    // Union types are supported.
+    private final const Random\Randomizer|\Random\Engine\Secure UNION_TWO_CLASSES = new MyClassA;
+
+    // Intersection types are supported.
+    public const CurlHandle&\CurlMultiHandle INTERSECTION_TYPE = new MyClassA;
+
+    // DNF types are supported.
+    public const (XMLParser&\InflateContext)|null DNF_TYPE = new MyClassA;
+    final const array|(ArrayObject&\ArrayIterator) ARRAY_LIKE = new MyArray([1,2,3]);
+}

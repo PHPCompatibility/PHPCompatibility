@@ -65,8 +65,8 @@ class NewClassesUnitTest extends BaseSniffTestCase
     public static function dataNewClass()
     {
         return [
-            ['ArrayObject', '4.4', [305], '5.0'],
-            ['ArrayIterator', '4.4', [283], '5.0'],
+            ['ArrayObject', '4.4', [305, 599], '5.0'],
+            ['ArrayIterator', '4.4', [283, 599], '5.0'],
             ['CachingIterator', '4.4', [284], '5.0'],
             ['DirectoryIterator', '4.4', [285], '5.0'],
             ['RecursiveDirectoryIterator', '4.4', [286], '5.0'],
@@ -213,8 +213,8 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['OCICollection', '7.4', [424, 456], '8.0'],
             ['OCILob', '7.4', [425, 456], '8.0'],
             ['Attribute', '7.4', [431, 444], '8.0'],
-            ['CurlHandle', '7.4', [501], '8.0'],
-            ['CurlMultiHandle', '7.4', [502], '8.0'],
+            ['CurlHandle', '7.4', [501, 595], '8.0'],
+            ['CurlMultiHandle', '7.4', [502, 595], '8.0'],
             ['CurlShareHandle', '7.4', [503], '8.0'],
             ['EnchantBroker', '7.4', [506], '8.0'],
             ['EnchantDictionary', '7.4', [506], '8.0'],
@@ -228,11 +228,11 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['SysvMessageQueue', '7.4', [517], '8.0'],
             ['SysvSemaphore', '7.4', [518], '8.0'],
             ['SysvSharedMemory', '7.4', [519], '8.0'],
-            ['XMLParser', '7.4', [520], '8.0'],
-            ['InflateContext', '7.4', [523], '8.0'],
+            ['XMLParser', '7.4', [520, 598], '8.0'],
+            ['InflateContext', '7.4', [523, 598], '8.0'],
             ['DeflateContext', '7.4', [524], '8.0'],
 
-            ['IntlDatePatternGenerator', '8.0', [433], '8.1'],
+            ['IntlDatePatternGenerator', '8.0', [433, 588], '8.1'],
             ['Fiber', '8.0', [435, 449], '8.1'],
             ['ReflectionEnum', '8.0', [470], '8.1'],
             ['ReflectionEnumBackedCase', '8.0', [471], '8.1'],
@@ -252,18 +252,18 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['PSpell\Config', '8.0', [541], '8.1'],
             ['PSpell\Dictionary', '8.0', [542], '8.1'],
 
-            ['Random\Randomizer', '8.1', [474], '8.2'],
+            ['Random\Randomizer', '8.1', [474, 592], '8.2'],
             ['Random\Engine\Mt19937', '8.1', [475], '8.2'],
             ['Random\Engine\PcgOneseq128XslRr64', '8.1', [476], '8.2'],
             ['Random\Engine\Xoshiro256StarStar', '8.1', [477], '8.2'],
-            ['Random\Engine\Secure', '8.1', [479], '8.2'],
+            ['Random\Engine\Secure', '8.1', [479, 592], '8.2'],
 
             ['Dba\Connection', '8.3', [545, 571], '8.4'],
             ['Odbc\Connection', '8.3', [546, 573], '8.4'],
             ['Odbc\Result', '8.3', [546, 573], '8.4'],
             ['Soap\Sdl', '8.3', [547], '8.4'],
             ['Soap\Url', '8.3', [547, 572], '8.4'],
-            ['StreamBucket', '8.3', [548], '8.4'],
+            ['StreamBucket', '8.3', [548, 589], '8.4'],
             ['Pdo\DbLib', '8.3', [550, 575], '8.4'],
             ['Pdo\Firebird', '8.3', [551, 574], '8.4'],
             ['Pdo\Mysql', '8.3', [552, 575], '8.4'],
@@ -310,7 +310,7 @@ class NewClassesUnitTest extends BaseSniffTestCase
             ['TypeError', '5.6', [245], '7.0'],
             ['ClosedGeneratorException', '5.6', [341], '7.0'],
             ['ArgumentCountError', '7.0', [248], '7.1'],
-            ['HashContext', '7.1', [350], '7.2'],
+            ['HashContext', '7.1', [350, 587], '7.2'],
             ['SodiumException', '7.1', [342], '7.2'],
             ['CompileError', '7.2', [249], '7.3'],
             ['JsonException', '7.2', [250, 339], '7.3'],
@@ -369,6 +369,8 @@ class NewClassesUnitTest extends BaseSniffTestCase
             [453],
             [462],
             [493],
+            [582],
+            [586],
         ];
     }
 
