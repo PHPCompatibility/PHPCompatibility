@@ -70,6 +70,76 @@ final class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCas
             [161, 'func_get_args', '$string'],
             [230, 'func_get_args', '$x'],
             [243, 'func_get_args', '$stuff'],
+            [261, 'func_get_arg', '$x'],
+            [262, 'func_get_arg', '$y'],
+            [263, 'func_get_args', '$x'],
+            [264, 'debug_backtrace', '$x'],
+            [284, 'debug_backtrace', '$a'],
+            [285, 'debug_print_backtrace', '$a'],
+            [286, 'debug_backtrace', '$a'],
+            [292, 'debug_backtrace', '$a'],
+            [293, 'debug_backtrace', '$a'],
+            [294, 'debug_backtrace', '$a'],
+            [300, 'debug_print_backtrace', '$a'],
+            [307, 'func_get_args', '$string'],
+            [316, 'func_get_args', '$string'],
+            [317, 'func_get_args', '$string'],
+            [318, 'func_get_args', '$string'],
+            [319, 'func_get_args', '$string'],
+            [320, 'func_get_args', '$string'],
+            [321, 'func_get_args', '$string'],
+            [322, 'func_get_args', '$string'],
+            [324, 'func_get_args', '$string'],
+            [325, 'func_get_args', '$string'],
+            [326, 'func_get_args', '$string'],
+            [327, 'func_get_args', '$string'],
+            [328, 'func_get_args', '$string'],
+            [329, 'func_get_args', '$string'],
+            [330, 'func_get_args', '$string'],
+            [348, 'debug_backtrace', '$x'],
+            [353, 'func_get_args', '$x'],
+            [358, 'func_get_args', '$y'],
+            [363, 'debug_print_backtrace', '$y'],
+            [368, 'func_get_args', '$y'],
+            [373, 'debug_print_backtrace', '$y'],
+            [378, 'func_get_args', '$z'],
+            [383, 'debug_print_backtrace', '$z'],
+            [449, 'func_get_args', '$n2'],
+            [461, 'func_get_args', '$n3'],
+            [462, 'func_get_args', '$n3'],
+            [463, 'func_get_args', '$n3'],
+            [476, 'func_get_arg', '$named'],
+            [477, 'func_get_arg', '$named'],
+            [478, 'func_get_arg', '$named'],
+            [480, 'func_get_args', '$named'],
+            [481, 'func_get_args', '$named'],
+            [482, 'func_get_args', '$named'],
+            [497, 'func_get_arg', '$n16'],
+            [498, 'func_get_arg', '$n16'],
+            [499, 'func_get_arg', '$n16'],
+            [500, 'func_get_arg', '$n16'],
+            [502, 'func_get_args', '$n16'],
+            [503, 'func_get_args', '$n16'],
+            [504, 'func_get_args', '$n16'],
+            [505, 'func_get_args', '$n16'],
+            [513, 'func_get_arg', '$n1'],
+            [514, 'func_get_args', '$n1'],
+            [525, 'func_get_arg', '$a0'],
+            [526, 'func_get_arg', '$a1'],
+            [527, 'func_get_arg', '$a2'],
+            [528, 'func_get_arg', '$a3'],
+            [529, 'func_get_arg', '$a4'],
+            [564, 'func_get_arg', '$c8'],
+            [565, 'func_get_arg', '$c9'],
+            [566, 'func_get_arg', '$c10'],
+            [569, 'func_get_arg', '$c13'],
+            [616, 'func_get_arg', '$a'],
+            [617, 'func_get_arg', '$a'],
+            [628, 'debug_backtrace', '$a'],
+            [629, 'debug_print_backtrace', '$a'],
+            [639, 'func_get_args', '$p0'],
+            [640, 'func_get_args', '$p0'],
+            [654, 'func_get_arg', '$propB'],
         ];
     }
 
@@ -106,9 +176,49 @@ final class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCas
             [134, 'debug_backtrace', '$x'],
             [249, 'func_get_args', '$stuff'],
             [255, 'func_get_args', '$matches'],
+            [411, 'func_get_args', '$b'],
+            [417, 'debug_print_backtrace', '$b'],
+            [423, 'debug_backtrace', '$c'],
+            [429, 'func_get_args', '$c'],
+            [435, 'debug_backtrace', '$x'],
+            [440, 'func_get_args', '$x'],
+            [530, 'func_get_arg', '$a5'],
+            [567, 'func_get_arg', '$c11'],
+            [568, 'func_get_arg', '$c12'],
+            [584, 'func_get_arg', '$b'],
         ];
     }
 
+    /**
+     * Verify the debug*backtrace() functions are always flagged when used as first class callable.
+     *
+     * @dataProvider dataFirstClassCallable
+     *
+     * @param int    $line         The line number where a warning is expected.
+     * @param string $functionName The name of the function to which the warning applies.
+     *
+     * @return void
+     */
+    public function testFirstClassCallable($line, $functionName)
+    {
+        $file = $this->sniffFile(__FILE__, '7.0');
+        $this->assertWarning($file, $line, "Since PHP 7.0, functions inspecting arguments, like {$functionName}(), no longer report the original value as passed to a parameter, but will instead provide the current value. Using this function as a first class callable is a really bad idea.");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testFirstClassCallable()
+     *
+     * @return array
+     */
+    public static function dataFirstClassCallable()
+    {
+        return [
+            [667, 'debug_backtrace'],
+            [668, 'debug_print_backtrace'],
+        ];
+    }
 
     /**
      * testNoFalsePositives.
@@ -147,23 +257,94 @@ final class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCas
         $cases[] = [104];
         $cases[] = [121];
         $cases[] = [123];
-        $cases[] = [142];
-        $cases[] = [143];
-        $cases[] = [152];
-        $cases[] = [162];
-        $cases[] = [164];
-        $cases[] = [173];
-        $cases[] = [176];
-        $cases[] = [184];
-        $cases[] = [192];
-        $cases[] = [200];
-        $cases[] = [208];
-        $cases[] = [215];
-        $cases[] = [220];
-        $cases[] = [225];
-        $cases[] = [238];
 
-        $cases[] = [261]; // Parse error.
+        for ($line = 137; $line <= 160; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 162; $line <= 227; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 233; $line <= 240; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 266; $line <= 283; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 295; $line <= 299; $line++) {
+            $cases[] = [$line];
+        }
+
+        $cases[] = [301];
+
+        for ($line = 308; $line <= 314; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 333; $line <= 345; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 386; $line <= 406; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 442; $line <= 448; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 451; $line <= 460; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 465; $line <= 475; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 484; $line <= 496; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 507; $line <= 512; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 516; $line <= 524; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 532; $line <= 563; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 571; $line <= 583; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 586; $line <= 615; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 619; $line <= 627; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 631; $line <= 638; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 642; $line <= 653; $line++) {
+            $cases[] = [$line];
+        }
+
+        for ($line = 657; $line <= 666; $line++) {
+            $cases[] = [$line];
+        }
+
+        $cases[] = [677]; // Parse error.
 
         return $cases;
     }

@@ -11,13 +11,18 @@
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\TokenGroup;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCFile;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\Lists;
+use PHPCSUtils\Utils\Numbers;
 use PHPCSUtils\Utils\Operators;
+use PHPCSUtils\Utils\Parentheses;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -52,34 +57,6 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
         'func_get_args'         => true,
         'debug_backtrace'       => true,
         'debug_print_backtrace' => true,
-    ];
-
-    /**
-     * Tokens to look out for to allow us to skip past nested scoped structures.
-     *
-     * @since 9.1.0
-     *
-     * @var array<string, true>
-     */
-    private $skipPastNested = [
-        'T_CLASS'      => true,
-        'T_ANON_CLASS' => true,
-        'T_INTERFACE'  => true,
-        'T_TRAIT'      => true,
-        'T_FUNCTION'   => true,
-        'T_CLOSURE'    => true,
-    ];
-
-    /**
-     * The tokens for variable incrementing/decrementing.
-     *
-     * @since 9.1.0
-     *
-     * @var array<int|string, true>
-     */
-    private $plusPlusMinusMinus = [
-        \T_DEC => true,
-        \T_INC => true,
     ];
 
     /**
@@ -165,8 +142,14 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
             $paramNames[] = $param['name'];
         }
 
-        for ($i = ($scopeOpener + 1); $i < $scopeCloser; $i++) {
-            if (isset($this->skipPastNested[$tokens[$i]['type']]) && isset($tokens[$i]['scope_closer'])) {
+        $prevNonEmpty = $scopeOpener;
+        for ($i = ($scopeOpener + 1);
+            $i < $scopeCloser;
+            $prevNonEmpty = (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) ? $prevNonEmpty : $i), $i++
+        ) {
+            if ((isset(Collections::closedScopes()[$tokens[$i]['code']]) || $tokens[$i]['code'] === \T_FN)
+                && isset($tokens[$i]['scope_closer'])
+            ) {
                 // Skip past nested structures.
                 $i = $tokens[$i]['scope_closer'];
                 continue;
@@ -192,16 +175,28 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 continue;
             }
 
-            $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($i - 1), null, true);
-            if ($prev !== false) {
-                if (isset(Collections::objectOperators()[$tokens[$prev]['code']])) {
-                    continue;
-                }
+            if ($this->isCallToGlobalFunction($phpcsFile, $i) === false) {
+                continue;
+            }
 
-                // Check for namespaced functions, ie: \foo\bar() not \bar().
-                if ($tokens[ $prev ]['code'] === \T_NS_SEPARATOR) {
-                    $pprev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
-                    if ($pprev !== false && $tokens[ $pprev ]['code'] === \T_STRING) {
+            /*
+             * Check if the function is used as a PHP 8.1+ first class callable.
+             *
+             * Not allowed by PHP for the func_get_arg*() functions, so ignore.
+             * Allowed for the debug_*backtrace() functions, but please don't do this....
+             */
+            if (isset($tokens[$next]['parenthesis_closer'])) {
+                $hasEllipsis = $phpcsFile->findNext(Tokens::$emptyTokens, ($next + 1), null, true);
+                if ($hasEllipsis !== false && $tokens[$hasEllipsis]['code'] === \T_ELLIPSIS) {
+                    $isFirstClassCallable = $phpcsFile->findNext(Tokens::$emptyTokens, ($hasEllipsis + 1), null, true);
+                    if ($isFirstClassCallable !== false && $isFirstClassCallable === $tokens[$next]['parenthesis_closer']) {
+                        if ($foundFunctionName === 'debug_backtrace' || $foundFunctionName === 'debug_print_backtrace') {
+                            $error = 'Since PHP 7.0, functions inspecting arguments, like %1$s(), no longer report the original value as passed to a parameter, but will instead provide the current value. Using this function as a first class callable is a really bad idea.';
+                            $data  = [$foundFunctionName];
+
+                            $phpcsFile->addWarning($error, $i, 'AsFirstClassCallable', $data);
+                        }
+
                         continue;
                     }
                 }
@@ -211,51 +206,48 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              * Address some special cases.
              */
             if ($foundFunctionName !== 'func_get_args') {
-                $paramOne = PassedParameters::getParameter($phpcsFile, $i, 1);
-                if ($paramOne !== false) {
-                    switch ($foundFunctionName) {
-                        /*
-                         * Check if `debug_(print_)backtrace()` is called with the
-                         * `DEBUG_BACKTRACE_IGNORE_ARGS` option.
-                         */
-                        case 'debug_backtrace':
-                        case 'debug_print_backtrace':
-                            $hasIgnoreArgs = $phpcsFile->findNext(
-                                \T_STRING,
-                                $paramOne['start'],
-                                ($paramOne['end'] + 1),
-                                false,
-                                'DEBUG_BACKTRACE_IGNORE_ARGS'
-                            );
+                switch ($foundFunctionName) {
+                    /*
+                     * Check if `debug_(print_)backtrace()` is called with the
+                     * `DEBUG_BACKTRACE_IGNORE_ARGS` option.
+                     */
+                    case 'debug_backtrace':
+                    case 'debug_print_backtrace':
+                        $optionsParam = PassedParameters::getParameter($phpcsFile, $i, 1, 'options');
+                        if ($optionsParam !== false
+                            && (\preg_match('`(^|\|)\s*\\\\?DEBUG_BACKTRACE_IGNORE_ARGS`', $optionsParam['clean']) === 1
+                                || $optionsParam['clean'] === '2'
+                                || $optionsParam['clean'] === '3')
+                        ) {
+                            // Debug_backtrace() called with ignore args option.
+                            continue 2;
+                        }
+                        break;
 
-                            if ($hasIgnoreArgs !== false) {
-                                // Debug_backtrace() called with ignore args option.
-                                continue 2;
-                            }
-                            break;
-
-                        /*
-                         * Collect the necessary information to only throw a notice if the argument
-                         * touched/changed is in line with the passed $arg_num.
-                         *
-                         * Also, we can ignore `func_get_arg()` if the argument offset passed is
-                         * higher than the number of named parameters.
-                         *
-                         * {@internal Note: This does not take calculations into account!
-                         *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}
-                         */
-                        case 'func_get_arg':
-                            $number = $phpcsFile->findNext(\T_LNUMBER, $paramOne['start'], ($paramOne['end'] + 1));
+                    /*
+                     * Collect the necessary information to only throw a notice if the argument
+                     * touched/changed is in line with the passed $arg_num.
+                     *
+                     * Also, we can ignore `func_get_arg()` if the argument offset passed is
+                     * higher than the number of named parameters.
+                     *
+                     * {@internal Note: This does not take calculations into account!
+                     *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}
+                     */
+                    case 'func_get_arg':
+                        $positionParam = PassedParameters::getParameter($phpcsFile, $i, 1, 'position');
+                        if ($positionParam !== false) {
+                            $number = $phpcsFile->findNext(\T_LNUMBER, $positionParam['start'], ($positionParam['end'] + 1));
                             if ($number !== false) {
-                                $argNumber = $tokens[$number]['content'];
+                                $argNumber = (int) Numbers::getCompleteNumber($phpcsFile, $number)['decimal'];
 
                                 if (isset($paramNames[$argNumber]) === false) {
                                     // Requesting a non-named additional parameter. Ignore.
                                     continue 2;
                                 }
                             }
-                            break;
-                    }
+                        }
+                        break;
                 }
             } else {
                 /*
@@ -266,30 +258,51 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                  * {@internal Note: This does not take offset calculations into account!
                  *  Should be exceptionally rare and can - if needs be - be addressed at a later stage.}
                  */
-                if ($prev !== false && $tokens[$prev]['code'] === \T_OPEN_PARENTHESIS) {
+                $lastParenthesesOpener = Parentheses::getLastOpener($phpcsFile, $i);
+                if ($lastParenthesesOpener !== false) {
 
-                    $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
-                    if ($maybeFunctionCall !== false
-                        && $tokens[$maybeFunctionCall]['code'] === \T_STRING
-                        && ($tokens[$maybeFunctionCall]['content'] === 'array_slice'
-                        || $tokens[$maybeFunctionCall]['content'] === 'array_splice')
+                    $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($lastParenthesesOpener - 1), null, true);
+                    if ($tokens[$maybeFunctionCall]['code'] === \T_STRING
+                        && $this->isCallToGlobalFunction($phpcsFile, $maybeFunctionCall) === true
                     ) {
-                        $parentFuncParamTwo = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 2);
-                        $number             = $phpcsFile->findNext(
-                            \T_LNUMBER,
-                            $parentFuncParamTwo['start'],
-                            ($parentFuncParamTwo['end'] + 1)
-                        );
+                        $functionNameLc = \strtolower($tokens[$maybeFunctionCall]['content']);
+                        if ($functionNameLc === 'array_slice'
+                            || $functionNameLc === 'array_splice'
+                        ) {
+                            // Verify the `func_get_args()` was seen in the correct parameter for this check.
+                            $parentFuncArrayParam = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 1, 'array');
+                            if ($parentFuncArrayParam !== false
+                                && $parentFuncArrayParam['start'] <= $i && $i <= $parentFuncArrayParam['end']
+                            ) {
+                                $parentFuncOffsetParam = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 2, 'offset');
+                                if ($parentFuncOffsetParam !== false) {
+                                    $offsetValue = TokenGroup::isNumber($phpcsFile, $parentFuncOffsetParam['start'], $parentFuncOffsetParam['end']);
 
-                        if ($number !== false && isset($paramNames[$tokens[$number]['content']]) === false) {
-                            // Requesting non-named additional parameters. Ignore.
-                            continue ;
+                                    if (\is_int($offsetValue)) {
+                                        $normalizedOffsetValue = ($offsetValue >= 0) ? $offsetValue : (\count($paramNames) + $offsetValue);
+                                        if (isset($paramNames[$normalizedOffsetValue]) === false) {
+                                            // Requesting non-named additional parameters. Ignore.
+                                            continue ;
+                                        }
+
+                                        $targetLength          = null;
+                                        $parentFuncLengthParam = PassedParameters::getParameter($phpcsFile, $maybeFunctionCall, 3, 'length');
+                                        if ($parentFuncLengthParam !== false) {
+                                            $lengthValue = TokenGroup::isNumber($phpcsFile, $parentFuncLengthParam['start'], $parentFuncLengthParam['end']);
+                                            if (\is_int($lengthValue) && $lengthValue !== 0) {
+                                                $targetLength = $lengthValue;
+                                            }
+                                        }
+
+                                        // Slice starts at a named argument, but we know which params are being accessed.
+                                        $paramNamesSubset = \array_slice($paramNames, $offsetValue, $targetLength);
+                                    }
+                                }
+                            }
                         }
-
-                        // Slice starts at a named argument, but we know which params are being accessed.
-                        $paramNamesSubset = \array_slice($paramNames, $tokens[$number]['content']);
                     }
                 }
+                unset($lastParenthesesOpener, $functionNameLc);
             }
 
             /*
@@ -348,9 +361,11 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
              * Ok, so we've found one of the target functions in the right scope.
              * Now, let's check if any of the passed parameters were touched.
              */
-            $scanResult = 'clean';
+            $scanResult    = 'clean';
+            $variableToken = null;
+            $listsSeen     = [];
             for ($j = ($scopeOpener + 1); $j < $startOfStatement; $j++) {
-                if (isset($this->skipPastNested[$tokens[$j]['type']])
+                if (isset(Collections::closedScopes()[$tokens[$j]['code']])
                     && isset($tokens[$j]['scope_closer'])
                 ) {
                     // Skip past nested structures.
@@ -380,6 +395,16 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     }
                 }
 
+                // Keep track of the long/short lists structures seen.
+                if (isset(Collections::listOpenTokensBC()[$tokens[$j]['code']])) {
+                    $listOpenClose = Lists::getOpenClose($phpcsFile, $j);
+                    if ($listOpenClose !== false) {
+                        // Store in reverse order so we always have the last seen list first.
+                        $listOpenClose['list_token'] = $j;
+                        \array_unshift($listsSeen, $listOpenClose);
+                    }
+                }
+
                 if ($tokens[$j]['code'] !== \T_VARIABLE) {
                     continue;
                 }
@@ -401,6 +426,42 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     continue;
                 }
 
+                /*
+                 * Check if this is a variable in a list structure.
+                 *
+                 * For variables in a list, we need to:
+                 * - Flag assignments.
+                 * - Ignore list keys.
+                 */
+                if ($listsSeen !== []) {
+                    foreach ($listsSeen as $openClose) {
+                        if ($openClose['opener'] < $j && $j < $openClose['closer']) {
+                            $listInfo = Lists::getAssignments($phpcsFile, $openClose['list_token']);
+                            foreach ($listInfo as $listItem) {
+                                if ($listItem['is_empty'] === false
+                                    && $listItem['is_nested_list'] === false
+                                ) {
+                                    if ($listItem['assignment_token'] === $j) {
+                                        // We found a definite assignment within a list.
+                                        $scanResult    = 'error';
+                                        $variableToken = $j;
+                                        break 3;
+                                    }
+
+                                    if (isset($listItem['key_token'], $listItem['key_end_token'])
+                                        && $listItem['key_token'] <= $j && $j <= $listItem['key_end_token']
+                                    ) {
+                                        // The variable is used in the key for a list. We can safely disregard it.
+                                        continue 3;
+                                    }
+                                }
+                            }
+
+                            break;
+                        }
+                    }
+                }
+
                 $beforeVar                = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($j - 1), null, true);
                 $startOfVariableStatement = BCFile::findStartOfStatement(
                     $phpcsFile,
@@ -415,20 +476,87 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                  * - Variable is not nested in parenthesis, i.e. not used in a potential function call.
                  * - Not preceded by a reference operator.
                  * - Has an assignment operator before it and none after.
+                 *
+                 * Additionally, we also check if this is a list assignment and if so, if there are no reference
+                 * assignments within the list.
+                 * If there are no references in the list, we can ignore this assignment as plain.
                  */
                 if (empty($tokens[$j]['nested_parenthesis']) === true
                     && $beforeVar !== false
                     && Operators::isReference($phpcsFile, $beforeVar) === false
-                    && $tokens[$startOfVariableStatement]['code'] === \T_VARIABLE
+                    && ($tokens[$startOfVariableStatement]['code'] === \T_VARIABLE
+                        || isset(Collections::listOpenTokensBC()[$tokens[$startOfVariableStatement]['code']]))
                 ) {
+                    // If this was a list assignment, we need to make sure there are no reference assignments.
+                    $listHasReferenceAssignment = false;
+                    if (isset(Collections::listOpenTokensBC()[$tokens[$startOfVariableStatement]['code']])) {
+                        foreach ($listsSeen as $openClose) {
+                            if ($openClose['list_token'] === $startOfVariableStatement) {
+                                $listHasReferenceAssignment = $this->doesListHaveReferenceAssignments($phpcsFile, $openClose['list_token']);
+                                break;
+                            }
+                        }
+                    }
+
                     $endOfVariableStatement = $phpcsFile->findNext([\T_SEMICOLON, \T_CLOSE_TAG], ($j + 1));
                     $lastAssignmentOperator = $phpcsFile->findPrevious(
                         Tokens::$assignmentTokens,
                         ($endOfVariableStatement - 1),
                         $startOfVariableStatement
                     );
+
                     if ($lastAssignmentOperator !== false
                         && $lastAssignmentOperator < $j
+                        && $listHasReferenceAssignment === false
+                    ) {
+                        continue;
+                    }
+                }
+
+                /*
+                 * Check if this variable is used in a control structure condition.
+                 *
+                 * For the purposes of this check, this type of usage is non-problematic if:
+                 * - The variable is the only thing in the control structure condition,
+                 *   so no analysis of more complex comparisons.
+                 * - If the control structure is a `foreach()`, the variable is used in the "before as" part.
+                 * - And we're going to ignore `for()` structures as too complex.
+                 */
+
+                $inForeach = Context::inForeachCondition($phpcsFile, $j);
+                if ($inForeach === 'beforeAs') {
+                    // Safe to ignore.
+                    continue;
+                } elseif ($inForeach === 'afterAs') {
+                    // We know this is an assignment, so throw an error.
+                    $scanResult    = 'error';
+                    $variableToken = $j;
+                    break;
+                }
+
+                if (Parentheses::getLastOwner($phpcsFile, $j, \T_CATCH) !== false) {
+                    // The only variable in a catch statement is the one being assigned to, so throw an error.
+                    $scanResult    = 'error';
+                    $variableToken = $j;
+                    break;
+                }
+
+                $afterVar              = $phpcsFile->findNext(Tokens::$emptyTokens, ($j + 1), null, true);
+                $lastParenthesesOpener = Parentheses::getLastOpener($phpcsFile, $j);
+                if ($lastParenthesesOpener !== false
+                    && isset($tokens[$lastParenthesesOpener]['parenthesis_closer']) === true
+                    && Parentheses::isOwnerIn($phpcsFile, $lastParenthesesOpener, Collections::controlStructureTokens())
+                    && $beforeVar === $lastParenthesesOpener
+                    && $afterVar === $tokens[$lastParenthesesOpener]['parenthesis_closer']
+                ) {
+                    continue;
+                }
+
+                // Check for $obj::class, which can be safely ignored.
+                if ($tokens[$afterVar]['code'] === \T_DOUBLE_COLON) {
+                    $nextAfterAfterVar = $phpcsFile->findNext(Tokens::$emptyTokens, ($afterVar + 1), null, true);
+                    if ($tokens[$nextAfterAfterVar]['code'] === \T_STRING
+                        && \strtolower($tokens[$nextAfterAfterVar]['content']) === 'class'
                     ) {
                         continue;
                     }
@@ -444,39 +572,30 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     $variableToken = $j;
                 }
 
-                if ($beforeVar !== false && isset($this->plusPlusMinusMinus[$tokens[$beforeVar]['code']])) {
+                if ($beforeVar !== false && isset(Collections::incrementDecrementOperators()[$tokens[$beforeVar]['code']])) {
                     // Variable is being (pre-)incremented/decremented.
                     $scanResult    = 'error';
                     $variableToken = $j;
                     break;
                 }
 
-                $afterVar = $phpcsFile->findNext(Tokens::$emptyTokens, ($j + 1), null, true);
                 if ($afterVar === false) {
                     // Shouldn't be possible, but just in case.
-                    continue;
+                    continue; // @codeCoverageIgnore
                 }
 
-                if (isset($this->plusPlusMinusMinus[$tokens[$afterVar]['code']])) {
+                if (isset(Collections::incrementDecrementOperators()[$tokens[$afterVar]['code']])) {
                     // Variable is being (post-)incremented/decremented.
                     $scanResult    = 'error';
                     $variableToken = $j;
                     break;
                 }
 
-                if (empty($tokens[$j]['nested_parenthesis']) === false) {
-                    $parentheses = $tokens[$j]['nested_parenthesis'];
-                    \end($parentheses);
-                    $openParens   = \key($parentheses);
-                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($openParens - 1), null, true);
-                    if ($prevNonEmpty !== false
-                        && $tokens[$prevNonEmpty]['code'] === \T_UNSET
-                    ) {
-                        // Variable is being unset.
-                        $scanResult    = 'error';
-                        $variableToken = $j;
-                        break;
-                    }
+                if (Context::inUnset($phpcsFile, $j)) {
+                    // Variable is being unset.
+                    $scanResult    = 'error';
+                    $variableToken = $j;
+                    break;
                 }
 
                 if ($tokens[$afterVar]['code'] === \T_OPEN_SQUARE_BRACKET
@@ -492,8 +611,8 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                     }
                 }
 
-                if ($afterVar !== false
-                    && isset(Tokens::$assignmentTokens[$tokens[$afterVar]['code']])
+                if (isset(Tokens::$assignmentTokens[$tokens[$afterVar]['code']])
+                    && $tokens[$afterVar]['code'] !== \T_COALESCE_EQUAL
                 ) {
                     // Variable is being assigned something.
                     $scanResult    = 'error';
@@ -525,5 +644,81 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
 
             unset($variableToken);
         }
+    }
+
+    /**
+     * Check if a `T_STRING` token represents a function call to a global function.
+     *
+     * Note: not 100% precise, but should be sufficient for now. At a later point in
+     * time there will probably be a PHPCSUtils function for this.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the potential function call
+     *                                               token in the stack.
+     *
+     * @return bool
+     */
+    private function isCallToGlobalFunction(File $phpcsFile, $stackPtr)
+    {
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            // Class instantiation in attribute, not function call.
+            return false;
+        }
+
+        $tokens       = $phpcsFile->getTokens();
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+
+        if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === true) {
+            // Method call.
+            return false;
+        }
+
+        if ($tokens[$prevNonEmpty]['code'] === \T_NEW
+            || $tokens[$prevNonEmpty]['code'] === \T_FUNCTION
+        ) {
+            return false;
+        }
+
+        if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR) {
+            $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
+            if ($tokens[$prevPrevToken]['code'] === \T_STRING
+                || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
+            ) {
+                // Namespaced function.
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Check if there are any reference assignments in a list structure.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the list token.
+     *
+     * @return bool
+     */
+    private function doesListHaveReferenceAssignments(File $phpcsFile, $stackPtr)
+    {
+        $listInfo = Lists::getAssignments($phpcsFile, $stackPtr);
+        foreach ($listInfo as $listItem) {
+            if ($listItem['assign_by_reference'] === true) {
+                return true;
+            }
+
+            if ($listItem['is_nested_list'] === true
+                && $this->doesListHaveReferenceAssignments($phpcsFile, $listItem['assignment_token']) === true
+            ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
