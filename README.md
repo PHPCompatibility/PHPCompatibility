@@ -212,7 +212,10 @@ To whitelist userland functions, you can pass a comma-delimited list of function
     <!-- Whitelist the mysql_to_rfc3339() and mysql_another_function() functions. -->
     <rule ref="PHPCompatibility.Extensions.RemovedExtensions">
         <properties>
-            <property name="functionWhitelist" type="array" value="mysql_to_rfc3339,mysql_another_function"/>
+            <property name="functionWhitelist" type="array">
+                <element value="mysql_to_rfc3339"/>
+                <element value="mysql_another_function"/>
+            </property>
         </properties>
     </rule>
 ```
