@@ -63,7 +63,7 @@ class RemovedExtensionsSniff extends Sniff
      *
      * @var string[]
      */
-    public $functionWhitelist;
+    public $functionWhitelist = [];
 
     /**
      * A list of removed extensions with their alternative, if any.
@@ -305,18 +305,6 @@ class RemovedExtensionsSniff extends Sniff
      */
     protected function isWhiteListed($content)
     {
-        if (isset($this->functionWhitelist) === false) {
-            return false;
-        }
-
-        if (\is_string($this->functionWhitelist) === true) {
-            if (\strpos($this->functionWhitelist, ',') !== false) {
-                $this->functionWhitelist = \explode(',', $this->functionWhitelist);
-            } else {
-                $this->functionWhitelist = (array) $this->functionWhitelist;
-            }
-        }
-
         if (\is_array($this->functionWhitelist) === true) {
             $this->functionWhitelist = \array_map('strtolower', $this->functionWhitelist);
             return \in_array($content, $this->functionWhitelist, true);
