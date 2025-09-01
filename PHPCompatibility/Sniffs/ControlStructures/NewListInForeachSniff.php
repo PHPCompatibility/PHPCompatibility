@@ -24,8 +24,9 @@ use PHP_CodeSniffer\Files\File;
  * @link https://www.php.net/manual/en/control-structures.foreach.php#control-structures.foreach.list
  *
  * @since 9.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewListInForeachSniff extends Sniff
+final class NewListInForeachSniff extends Sniff
 {
 
     /**

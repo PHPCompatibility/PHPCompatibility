@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  * @since 9.0.0 Detection of new operators was originally included in the
  *              NewLanguageConstructSniff (since 5.6).
  */
-class NewOperatorsUnitTest extends BaseSniffTestCase
+final class NewOperatorsUnitTest extends BaseSniffTestCase
 {
 
     /**

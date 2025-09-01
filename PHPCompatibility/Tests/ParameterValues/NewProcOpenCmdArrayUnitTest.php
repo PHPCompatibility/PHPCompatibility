@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 9.3.0
  */
-class NewProcOpenCmdArrayUnitTest extends BaseSniffTestCase
+final class NewProcOpenCmdArrayUnitTest extends BaseSniffTestCase
 {
 
     /**

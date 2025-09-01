@@ -35,7 +35,7 @@ use PHPCSUtils\Utils\ObjectDeclarations;
  *
  * @since 10.0.0
  */
-class ForbiddenFinalPrivateMethodsSniff extends Sniff
+final class ForbiddenFinalPrivateMethodsSniff extends Sniff
 {
 
     /**

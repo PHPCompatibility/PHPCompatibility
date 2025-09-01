@@ -25,9 +25,10 @@ use PHPCSUtils\Utils\Arrays;
  * @link https://www.php.net/manual/en/language.types.array.php#language.types.array.syntax
  *
  * @since 7.0.0
- * @since 9.0.0 Renamed from `ShortArraySniff` to `NewShortArraySniff`.
+ * @since 9.0.0  Renamed from `ShortArraySniff` to `NewShortArraySniff`.
+ * @since 10.0.0 This class is now `final`.
  */
-class NewShortArraySniff extends Sniff
+final class NewShortArraySniff extends Sniff
 {
 
     /**

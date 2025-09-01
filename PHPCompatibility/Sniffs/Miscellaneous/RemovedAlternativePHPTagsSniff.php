@@ -27,8 +27,9 @@ use PHPCSUtils\Tokens\Collections;
  * @link https://www.php.net/manual/en/language.basic-syntax.phptags.php
  *
  * @since 7.0.4
+ * @since 10.0.0 This class is now `final`.
  */
-class RemovedAlternativePHPTagsSniff extends Sniff
+final class RemovedAlternativePHPTagsSniff extends Sniff
 {
 
     /**

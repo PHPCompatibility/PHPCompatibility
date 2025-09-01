@@ -25,8 +25,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://wiki.php.net/rfc/negative-string-offsets
  *
  * @since 9.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
+final class NewNegativeStringOffsetSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

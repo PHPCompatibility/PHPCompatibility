@@ -29,8 +29,9 @@ use PHPCSUtils\Utils\Lists;
  * @link https://wiki.php.net/rfc/short_list_syntax
  *
  * @since 9.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewShortListSniff extends Sniff
+final class NewShortListSniff extends Sniff
 {
 
     /**

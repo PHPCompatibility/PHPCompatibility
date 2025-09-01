@@ -28,8 +28,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://www.php.net/manual/en/function.proc-open.php
  *
  * @since 9.3.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
+final class NewProcOpenCmdArraySniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

@@ -27,12 +27,13 @@ use PHPCSUtils\Utils\MessageHelper;
  *
  * @since 8.1.0
  * @since 9.0.0  Renamed from `OptionalRequiredFunctionParametersSniff` to `OptionalToRequiredFunctionParametersSniff`.
- * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class.
- *               Previously the sniff extended the sister-sniff `RequiredToOptionalFunctionParametersSniff`.
- *               Methods which were previously required due to the extending of the (grand-parent)
- *               `AbstractComplexVersionSniff` have been removed.
+ * @since 10.0.0 - Now extends the base `AbstractFunctionCallParameterSniff` class.
+ *                 Previously the sniff extended the sister-sniff `RequiredToOptionalFunctionParametersSniff`.
+ *                 Methods which were previously required due to the extending of the (grand-parent)
+ *                 `AbstractComplexVersionSniff` have been removed.
+ *               - This class is now `final`.
  */
-class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallParameterSniff
+final class OptionalToRequiredFunctionParametersSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

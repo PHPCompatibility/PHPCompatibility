@@ -27,11 +27,12 @@ use PHP_CodeSniffer\Util\Tokens;
  * @link https://www.php.net/manual/en/function.empty.php
  *
  * @since 7.0.4
- * @since 9.0.0 The "is the parameter a variable" determination has been abstracted out
- *              and moved to a separate method `Sniff::isVariable()`.
- * @since 9.0.0 Renamed from `EmptyNonVariableSniff` to `NewEmptyNonVariableSniff`.
+ * @since 9.0.0  The "is the parameter a variable" determination has been abstracted out
+ *               and moved to a separate method `Sniff::isVariable()`.
+ * @since 9.0.0  Renamed from `EmptyNonVariableSniff` to `NewEmptyNonVariableSniff`.
+ * @since 10.0.0 This class is now `final`.
  */
-class NewEmptyNonVariableSniff extends Sniff
+final class NewEmptyNonVariableSniff extends Sniff
 {
 
     /**

@@ -32,8 +32,9 @@ use PHPCSUtils\Utils\Numbers;
  * @link https://www.php.net/manual/en/control-structures.switch.php
  *
  * @since 8.2.0
+ * @since 10.0.0 This class is now `final`.
  */
-class DiscouragedSwitchContinueSniff extends Sniff
+final class DiscouragedSwitchContinueSniff extends Sniff
 {
 
     /**

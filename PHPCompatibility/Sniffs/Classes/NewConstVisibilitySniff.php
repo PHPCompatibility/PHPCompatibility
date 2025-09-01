@@ -25,8 +25,9 @@ use PHPCSUtils\Utils\Constants;
  * @link https://www.php.net/manual/en/language.oop5.constants.php#language.oop5.basic.class.this
  *
  * @since 7.0.7
+ * @since 10.0.0 This class is now `final`.
  */
-class NewConstVisibilitySniff extends Sniff
+final class NewConstVisibilitySniff extends Sniff
 {
 
     /**

@@ -27,8 +27,9 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * @link https://www.php.net/manual/en/functions.arguments.php#example-146
  *
  * @since 7.0.7
+ * @since 10.0.0 This class is now `final`.
  */
-class NewNullableTypesSniff extends Sniff
+final class NewNullableTypesSniff extends Sniff
 {
 
     /**

@@ -32,9 +32,10 @@ use PHPCSUtils\Utils\MessageHelper;
  * @link https://www.php.net/manual/en/language.oop5.magic.php
  *
  * @since 5.5
- * @since 5.6 Now extends the base `Sniff` class.
+ * @since 5.6    Now extends the base `Sniff` class.
+ * @since 10.0.0 This class is now `final`.
  */
-class NonStaticMagicMethodsSniff extends Sniff
+final class NonStaticMagicMethodsSniff extends Sniff
 {
 
     /**

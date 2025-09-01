@@ -29,10 +29,11 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://www.php.net/manual/en/language.references.pass.php
  *
  * @since 5.5
- * @since 7.0.8 This sniff now throws a warning (deprecated) or an error (removed) depending
- *              on the `testVersion` set. Previously it would always throw an error.
+ * @since 7.0.8  This sniff now throws a warning (deprecated) or an error (removed) depending
+ *               on the `testVersion` set. Previously it would always throw an error.
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenCallTimePassByReferenceSniff extends Sniff
+final class ForbiddenCallTimePassByReferenceSniff extends Sniff
 {
 
     /**

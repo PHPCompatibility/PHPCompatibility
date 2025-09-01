@@ -28,7 +28,7 @@ use PHPCompatibility\Helpers\ScannedCode;
  *
  * @since 10.0.0
  */
-class NewAssertCustomExceptionSniff extends AbstractFunctionCallParameterSniff
+final class NewAssertCustomExceptionSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

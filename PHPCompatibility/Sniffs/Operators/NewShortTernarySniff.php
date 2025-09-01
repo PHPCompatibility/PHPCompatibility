@@ -27,10 +27,11 @@ use PHPCSUtils\Utils\Operators;
  * @link https://www.php.net/manual/en/language.operators.comparison.php#language.operators.comparison.ternary
  *
  * @since 7.0.0
- * @since 7.0.8 This sniff now throws an error instead of a warning.
- * @since 9.0.0 Renamed from `TernaryOperatorsSniff` to `NewShortTernarySniff`.
+ * @since 7.0.8  This sniff now throws an error instead of a warning.
+ * @since 9.0.0  Renamed from `TernaryOperatorsSniff` to `NewShortTernarySniff`.
+ * @since 10.0.0 This class is now `final`.
  */
-class NewShortTernarySniff extends Sniff
+final class NewShortTernarySniff extends Sniff
 {
 
     /**

@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  * @since 9.2.0
  * @since 10.0.0 Moved from `Classes` to `FunctionDeclarations`.
  */
-class AbstractPrivateMethodsUnitTest extends BaseSniffTestCase
+final class AbstractPrivateMethodsUnitTest extends BaseSniffTestCase
 {
 
     /**

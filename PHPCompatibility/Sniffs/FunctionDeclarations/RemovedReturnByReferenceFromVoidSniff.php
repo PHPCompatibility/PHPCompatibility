@@ -27,7 +27,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  *
  * @since 10.0.0
  */
-class RemovedReturnByReferenceFromVoidSniff extends Sniff
+final class RemovedReturnByReferenceFromVoidSniff extends Sniff
 {
 
     /**

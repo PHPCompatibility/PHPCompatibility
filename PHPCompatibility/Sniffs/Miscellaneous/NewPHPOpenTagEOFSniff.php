@@ -28,8 +28,9 @@ use PHP_CodeSniffer\Files\File;
  * @link https://github.com/php/php-src/blob/30de357fa14480468132bbc22a272aeb91789ba8/UPGRADING#L37-L40
  *
  * @since 9.3.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewPHPOpenTagEOFSniff extends Sniff
+final class NewPHPOpenTagEOFSniff extends Sniff
 {
 
     /**

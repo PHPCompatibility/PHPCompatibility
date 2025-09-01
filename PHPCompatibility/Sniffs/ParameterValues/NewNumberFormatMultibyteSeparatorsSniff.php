@@ -29,7 +29,7 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * @since 10.0.0
  */
-class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParameterSniff
+final class NewNumberFormatMultibyteSeparatorsSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

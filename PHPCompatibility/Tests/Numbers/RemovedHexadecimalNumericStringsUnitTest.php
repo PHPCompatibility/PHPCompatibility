@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  * @since 7.0.3
  * @since 10.0.0 Split off from the ValidIntegers sniff.
  */
-class RemovedHexadecimalNumericStringsUnitTest extends BaseSniffTestCase
+final class RemovedHexadecimalNumericStringsUnitTest extends BaseSniffTestCase
 {
 
     /**

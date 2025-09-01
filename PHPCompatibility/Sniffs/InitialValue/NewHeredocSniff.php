@@ -35,10 +35,11 @@ use PHPCSUtils\Utils\MessageHelper;
  * @since 7.1.4
  * @since 8.2.0  Now extends the NewConstantScalarExpressionsSniff instead of the base Sniff class.
  * @since 9.0.0  Renamed from `NewHeredocInitializeSniff` to `NewHeredocSniff`.
- * @since 10.0.0 This sniff now extends the `AbstractInitialValueSniff` class instead of the
- *               `NewConstantScalarExpressionsSniff` class.
+ * @since 10.0.0 - This sniff now extends the `AbstractInitialValueSniff` class instead of the
+ *                 `NewConstantScalarExpressionsSniff` class.
+ *               - This class is now `final`.
  */
-class NewHeredocSniff extends AbstractInitialValueSniff
+final class NewHeredocSniff extends AbstractInitialValueSniff
 {
 
     /**
@@ -102,7 +103,7 @@ class NewHeredocSniff extends AbstractInitialValueSniff
             return;
         }
 
-        $error       = static::ERROR_PHRASE;
+        $error       = self::ERROR_PHRASE;
         $errorCode   = 'Found';
         $phrase      = '';
         $codeSnippet = \trim(GetTokensAsString::noComments($phpcsFile, $stackPtr, $hasHeredoc));

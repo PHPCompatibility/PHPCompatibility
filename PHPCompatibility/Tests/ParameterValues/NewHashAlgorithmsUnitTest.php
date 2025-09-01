@@ -24,7 +24,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 7.0.7
  */
-class NewHashAlgorithmsUnitTest extends BaseSniffTestCase
+final class NewHashAlgorithmsUnitTest extends BaseSniffTestCase
 {
 
     /**

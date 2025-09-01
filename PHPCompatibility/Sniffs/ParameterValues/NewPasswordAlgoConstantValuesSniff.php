@@ -29,8 +29,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://wiki.php.net/rfc/password_registry
  *
  * @since 9.3.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSniff
+final class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

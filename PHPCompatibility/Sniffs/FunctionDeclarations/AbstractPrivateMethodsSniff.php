@@ -33,11 +33,12 @@ use PHPCSUtils\Utils\ObjectDeclarations;
  * @link https://wiki.php.net/rfc/abstract_trait_method_validation
  *
  * @since 9.2.0
- * @since 10.0.0 The sniff has been renamed from `PHPCompatibility.Classes.ForbiddenAbstractPrivateMethods`
- *               to `PHPCompatibility.FunctionDeclarations.AbstractPrivateMethods` and now
- *               includes detection of the PHP 8.0 change.
+ * @since 10.0.0 - The sniff has been renamed from `PHPCompatibility.Classes.ForbiddenAbstractPrivateMethods`
+ *                 to `PHPCompatibility.FunctionDeclarations.AbstractPrivateMethods` and now
+ *                 includes detection of the PHP 8.0 change.
+ *               - This class is now `final`.
  */
-class AbstractPrivateMethodsSniff extends Sniff
+final class AbstractPrivateMethodsSniff extends Sniff
 {
 
     /**

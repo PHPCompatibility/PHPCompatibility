@@ -23,7 +23,7 @@ use PHPCSUtils\BackCompat\Helper;
  *
  * @since 10.0.0
  */
-class NewNumericLiteralSeparatorUnitTest extends BaseSniffTestCase
+final class NewNumericLiteralSeparatorUnitTest extends BaseSniffTestCase
 {
 
     /**

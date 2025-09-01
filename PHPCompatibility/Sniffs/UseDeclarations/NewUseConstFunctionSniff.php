@@ -30,8 +30,9 @@ use PHPCSUtils\Utils\UseStatements;
  * @link https://www.php.net/manual/en/language.namespaces.importing.php
  *
  * @since 7.1.4
+ * @since 10.0.0 This class is now `final`.
  */
-class NewUseConstFunctionSniff extends Sniff
+final class NewUseConstFunctionSniff extends Sniff
 {
 
     /**

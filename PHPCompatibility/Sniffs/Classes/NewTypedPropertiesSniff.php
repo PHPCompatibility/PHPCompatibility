@@ -45,8 +45,9 @@ use PHPCSUtils\Utils\Variables;
  * @link https://wiki.php.net/rfc/dnf_types
  *
  * @since 9.2.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewTypedPropertiesSniff extends Sniff
+final class NewTypedPropertiesSniff extends Sniff
 {
     use ComplexVersionNewFeatureTrait;
 

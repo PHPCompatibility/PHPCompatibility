@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 9.3.0
  */
-class RemovedMbStrrposEncodingThirdParamUnitTest extends BaseSniffTestCase
+final class RemovedMbStrrposEncodingThirdParamUnitTest extends BaseSniffTestCase
 {
 
     /**

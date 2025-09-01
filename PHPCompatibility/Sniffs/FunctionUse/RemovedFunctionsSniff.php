@@ -30,9 +30,10 @@ use PHPCSUtils\Utils\MessageHelper;
  *               `Generic.PHP.ForbiddenFunctions` sniff.
  * @since 7.1.0  Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
  * @since 9.0.0  Renamed from `DeprecatedFunctionsSniff` to `RemovedFunctionsSniff`.
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
+ *               - This class is now `final`.
  */
-class RemovedFunctionsSniff extends Sniff
+final class RemovedFunctionsSniff extends Sniff
 {
     use ComplexVersionDeprecatedRemovedFeatureTrait;
 

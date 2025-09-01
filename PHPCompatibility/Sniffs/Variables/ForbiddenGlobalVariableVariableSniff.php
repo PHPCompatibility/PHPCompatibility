@@ -25,8 +25,9 @@ use PHPCSUtils\Utils\GetTokensAsString;
  * @link https://wiki.php.net/rfc/uniform_variable_syntax#global_keyword_takes_only_simple_variables
  *
  * @since 7.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenGlobalVariableVariableSniff extends Sniff
+final class ForbiddenGlobalVariableVariableSniff extends Sniff
 {
 
     /**

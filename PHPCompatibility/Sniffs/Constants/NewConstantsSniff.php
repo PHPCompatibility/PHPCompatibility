@@ -22,9 +22,10 @@ use PHP_CodeSniffer\Files\File;
  * PHP version All
  *
  * @since 8.1.0
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ *               - This class is now `final`.
  */
-class NewConstantsSniff extends Sniff
+final class NewConstantsSniff extends Sniff
 {
     use ComplexVersionNewFeatureTrait;
 

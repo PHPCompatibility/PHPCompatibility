@@ -26,8 +26,9 @@ use PHPCSUtils\Tokens\Collections;
  * @link https://php-legacy-docs.zend.com/manual/php5/en/migration55.incompatible#migration55.incompatible.self-parent-static
  *
  * @since 7.1.4
+ * @since 10.0.0 This class is now `final`.
  */
-class CaseSensitiveKeywordsSniff extends Sniff
+final class CaseSensitiveKeywordsSniff extends Sniff
 {
 
     /**

@@ -30,7 +30,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * @since 10.0.0
  */
-class NewNamedParametersSniff extends Sniff
+final class NewNamedParametersSniff extends Sniff
 {
 
     /**

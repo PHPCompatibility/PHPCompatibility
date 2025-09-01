@@ -23,7 +23,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 7.0.7
  */
-class NewMultiCatchUnitTest extends BaseSniffTestCase
+final class NewMultiCatchUnitTest extends BaseSniffTestCase
 {
 
     /**

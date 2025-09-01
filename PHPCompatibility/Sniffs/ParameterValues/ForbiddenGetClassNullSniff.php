@@ -25,8 +25,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://www.php.net/manual/en/function.get-class.php#refsect1-function.get-class-changelog
  *
  * @since 9.0.0
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
+final class ForbiddenGetClassNullSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

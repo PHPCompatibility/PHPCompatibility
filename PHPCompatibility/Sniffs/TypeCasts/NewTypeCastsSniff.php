@@ -23,9 +23,10 @@ use PHP_CodeSniffer\Files\File;
  * @link https://www.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting
  *
  * @since 8.0.1
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ *               - This class is now `final`.
  */
-class NewTypeCastsSniff extends Sniff
+final class NewTypeCastsSniff extends Sniff
 {
     use ComplexVersionNewFeatureTrait;
 

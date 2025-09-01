@@ -24,8 +24,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://php-legacy-docs.zend.com/manual/php5/en/function.strip-tags#refsect1-function.strip-tags-changelog
  *
  * @since 9.3.0
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenStripTagsSelfClosingXHTMLSniff extends AbstractFunctionCallParameterSniff
+final class ForbiddenStripTagsSelfClosingXHTMLSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

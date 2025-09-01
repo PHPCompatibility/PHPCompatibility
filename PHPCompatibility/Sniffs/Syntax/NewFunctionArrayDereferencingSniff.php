@@ -36,9 +36,10 @@ use PHPCSUtils\Tokens\Collections;
  *            to allow re-use of the logic by the PHP 7.4 RemovedCurlyBraceArrayAccess sniff.}
  *
  * @since 7.0.0
- * @since 9.3.0 Now also detects dereferencing using curly braces.
+ * @since 9.3.0  Now also detects dereferencing using curly braces.
+ * @since 10.0.0 This class is now `final`.
  */
-class NewFunctionArrayDereferencingSniff extends Sniff
+final class NewFunctionArrayDereferencingSniff extends Sniff
 {
 
     /**

@@ -34,7 +34,7 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * @since 10.0.0
  */
-class RemovedDollarBraceStringEmbedsSniff extends Sniff
+final class RemovedDollarBraceStringEmbedsSniff extends Sniff
 {
 
     /**

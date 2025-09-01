@@ -26,9 +26,10 @@ use PHPCSUtils\Utils\Arrays;
  * @link https://www.php.net/manual/en/language.constants.syntax.php
  *
  * @since 7.1.4
- * @since 9.0.0 Renamed from `ConstantArraysUsingConstSniff` to `NewConstantArraysUsingConstSniff`.
+ * @since 9.0.0  Renamed from `ConstantArraysUsingConstSniff` to `NewConstantArraysUsingConstSniff`.
+ * @since 10.0.0 This class is now `final`.
  */
-class NewConstantArraysUsingConstSniff extends Sniff
+final class NewConstantArraysUsingConstSniff extends Sniff
 {
 
     /**

@@ -30,9 +30,10 @@ use PHPCSUtils\Utils\Numbers;
  * @link https://www.php.net/manual/en/control-structures.continue.php
  *
  * @since 5.5
- * @since 5.6 Now extends the base `Sniff` class.
+ * @since 5.6    Now extends the base `Sniff` class.
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
+final class ForbiddenBreakContinueVariableArgumentsSniff extends Sniff
 {
 
     /**

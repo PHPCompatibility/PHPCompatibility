@@ -32,10 +32,11 @@ use PHPCSUtils\Utils\TextStrings;
  * @since 7.0.1  The sniff will now only throw warnings for `ini_get()`.
  * @since 7.1.0  Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.
  * @since 9.0.0  Renamed from `DeprecatedIniDirectivesSniff` to `RemovedIniDirectivesSniff`.
- * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class
- *               and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `AbstractFunctionCallParameterSniff` class
+ *                 and uses the `ComplexVersionDeprecatedRemovedFeatureTrait`.
+ *               - This class is now `final`.
  */
-class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
+final class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
 {
     use ComplexVersionDeprecatedRemovedFeatureTrait;
 

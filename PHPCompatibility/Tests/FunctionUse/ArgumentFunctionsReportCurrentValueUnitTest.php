@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 9.1.0
  */
-class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
+final class ArgumentFunctionsReportCurrentValueUnitTest extends BaseSniffTestCase
 {
 
     /**

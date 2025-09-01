@@ -35,9 +35,10 @@ use PHPCSUtils\Utils\Variables;
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
  * @since 7.1.4  Now also detects new interfaces when used as parameter type declarations.
  * @since 8.2.0  Now also detects new interfaces when used as return type declarations.
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ *               - This class is now `final`.
  */
-class NewInterfacesSniff extends Sniff
+final class NewInterfacesSniff extends Sniff
 {
     use ComplexVersionNewFeatureTrait;
 

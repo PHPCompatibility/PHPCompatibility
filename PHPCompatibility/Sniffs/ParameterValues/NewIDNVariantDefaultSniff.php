@@ -27,8 +27,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://www.php.net/manual/en/function.idn-to-utf8.php
  *
  * @since 9.3.0
+ * @since 10.0.0 This class is now `final`.
  */
-class NewIDNVariantDefaultSniff extends AbstractFunctionCallParameterSniff
+final class NewIDNVariantDefaultSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

@@ -29,9 +29,10 @@ use PHPCSUtils\Utils\Conditions;
  * @link https://wiki.php.net/rfc/lsb_parentself_forwarding
  *
  * @since 7.0.3
- * @since 9.0.0 Renamed from `LateStaticBindingSniff` to `NewLateStaticBindingSniff`.
+ * @since 9.0.0  Renamed from `LateStaticBindingSniff` to `NewLateStaticBindingSniff`.
+ * @since 10.0.0 This class is now `final`.
  */
-class NewLateStaticBindingSniff extends Sniff
+final class NewLateStaticBindingSniff extends Sniff
 {
 
     /**

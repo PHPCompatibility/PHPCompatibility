@@ -28,8 +28,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * @link https://www.php.net/manual/en/language.oop5.magic.php#object.tostring
  *
  * @since 9.2.0
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenToStringParametersSniff extends Sniff
+final class ForbiddenToStringParametersSniff extends Sniff
 {
 
     /**

@@ -35,8 +35,9 @@ use PHPCSUtils\Utils\Operators;
  * @link https://www.php.net/manual/en/language.operators.precedence.php
  *
  * @since 9.2.0
+ * @since 10.0.0 This class is now `final`.
  */
-class ChangedConcatOperatorPrecedenceSniff extends Sniff
+final class ChangedConcatOperatorPrecedenceSniff extends Sniff
 {
 
     /**

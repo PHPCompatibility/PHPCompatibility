@@ -26,7 +26,7 @@ use PHPCSUtils\Tokens\Collections;
  *
  * @since 10.0.0
  */
-class NewTrailingCommaSniff extends Sniff
+final class NewTrailingCommaSniff extends Sniff
 {
 
     /**

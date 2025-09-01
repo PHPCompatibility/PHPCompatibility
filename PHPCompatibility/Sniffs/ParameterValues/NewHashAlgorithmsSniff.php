@@ -25,10 +25,11 @@ use PHP_CodeSniffer\Files\File;
  *
  * @since 7.0.7
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
- * @since 10.0.0 Now extends the base `AbstractFunctionCallParameterSniff` class
- *               and uses the `ComplexVersionNewFeatureTrait` and the `HashAlgorithmsTrait`.
+ * @since 10.0.0 - Now extends the base `AbstractFunctionCallParameterSniff` class
+ *                 and uses the `ComplexVersionNewFeatureTrait` and the `HashAlgorithmsTrait`.
+ *               - This class is now `final`.
  */
-class NewHashAlgorithmsSniff extends AbstractFunctionCallParameterSniff
+final class NewHashAlgorithmsSniff extends AbstractFunctionCallParameterSniff
 {
     use ComplexVersionNewFeatureTrait;
     use HashAlgorithmsTrait;

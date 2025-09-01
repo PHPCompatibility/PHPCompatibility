@@ -23,7 +23,7 @@ use PHPCompatibility\Sniffs\Upgrade\LowPHPSniff;
  *
  * @since 9.3.0
  */
-class LowPHPUnitTest extends BaseSniffTestCase
+final class LowPHPUnitTest extends BaseSniffTestCase
 {
 
     /**

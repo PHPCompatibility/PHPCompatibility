@@ -29,8 +29,9 @@ use PHPCSUtils\Utils\MessageHelper;
  * @link https://github.com/PHPCompatibility/PHPCompatibility/issues/835
  *
  * @since 9.3.0
+ * @since 10.0.0 This class is now `final`.
  */
-class LowPHPSniff extends Sniff
+final class LowPHPSniff extends Sniff
 {
 
     /**

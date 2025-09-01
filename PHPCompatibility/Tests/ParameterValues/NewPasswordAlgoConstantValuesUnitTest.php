@@ -22,7 +22,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  *
  * @since 9.3.0
  */
-class NewPasswordAlgoConstantValuesUnitTest extends BaseSniffTestCase
+final class NewPasswordAlgoConstantValuesUnitTest extends BaseSniffTestCase
 {
 
     /**

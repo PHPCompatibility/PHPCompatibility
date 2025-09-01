@@ -38,11 +38,12 @@ use PHPCSUtils\Utils\ObjectDeclarations;
  * @link https://www.php.net/manual/en/language.oop5.decon.php
  *
  * @since 7.0.0
- * @since 7.0.8 This sniff now throws a warning instead of an error as the functionality is
- *              only deprecated (for now).
- * @since 9.0.0 Renamed from `DeprecatedPHP4StyleConstructorsSniff` to `RemovedPHP4StyleConstructorsSniff`.
+ * @since 7.0.8  This sniff now throws a warning instead of an error as the functionality is
+ *               only deprecated (for now).
+ * @since 9.0.0  Renamed from `DeprecatedPHP4StyleConstructorsSniff` to `RemovedPHP4StyleConstructorsSniff`.
+ * @since 10.0.0 This class is now `final`.
  */
-class RemovedPHP4StyleConstructorsSniff extends Sniff
+final class RemovedPHP4StyleConstructorsSniff extends Sniff
 {
 
     /**

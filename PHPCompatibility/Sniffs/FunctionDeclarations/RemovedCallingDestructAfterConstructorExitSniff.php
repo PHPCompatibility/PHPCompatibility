@@ -30,7 +30,7 @@ use PHPCSUtils\Utils\UseStatements;
  *
  * @since 10.0.0
  */
-class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
+final class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
 {
 
     /**

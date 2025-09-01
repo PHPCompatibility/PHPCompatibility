@@ -31,7 +31,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * @since 10.0.0
  */
-class ChangedObStartEraseFlagsSniff extends AbstractFunctionCallParameterSniff
+final class ChangedObStartEraseFlagsSniff extends AbstractFunctionCallParameterSniff
 {
 
     /**

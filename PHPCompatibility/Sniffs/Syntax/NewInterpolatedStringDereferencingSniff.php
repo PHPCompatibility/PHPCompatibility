@@ -27,7 +27,7 @@ use PHP_CodeSniffer\Util\Tokens;
  *
  * @since 10.0.0
  */
-class NewInterpolatedStringDereferencingSniff extends Sniff
+final class NewInterpolatedStringDereferencingSniff extends Sniff
 {
 
     /**

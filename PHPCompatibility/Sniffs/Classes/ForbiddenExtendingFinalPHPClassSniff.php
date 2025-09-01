@@ -26,7 +26,7 @@ use PHP_CodeSniffer\Files\File;
  *
  * @since 10.0.0
  */
-class ForbiddenExtendingFinalPHPClassSniff extends Sniff
+final class ForbiddenExtendingFinalPHPClassSniff extends Sniff
 {
 
     /**

@@ -35,7 +35,7 @@ use PHPCSUtils\Utils\TextStrings;
  * @since 10.0.0 The check in this sniff was previously contained in the ValidIntegers
  *               sniff and has now been split off to a separate sniff.
  */
-class RemovedHexadecimalNumericStringsSniff extends Sniff
+final class RemovedHexadecimalNumericStringsSniff extends Sniff
 {
 
     /**

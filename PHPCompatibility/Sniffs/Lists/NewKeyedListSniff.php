@@ -26,9 +26,10 @@ use PHPCSUtils\Utils\Lists;
  * @link https://www.php.net/manual/en/function.list.php
  *
  * @since 9.0.0
- * @since 10.0.0 Complete rewrite.
+ * @since 10.0.0 - Complete rewrite.
+ *               - This class is now `final`.
  */
-class NewKeyedListSniff extends Sniff
+final class NewKeyedListSniff extends Sniff
 {
 
     /**

@@ -24,7 +24,7 @@ use PHPCompatibility\Tests\BaseSniffTestCase;
  * @since 7.0   RemovedVariablesSniffTest.
  * @since 7.1.3 Merged to one sniff & test.
  */
-class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTestCase
+final class RemovedPredefinedGlobalVariablesUnitTest extends BaseSniffTestCase
 {
 
     /**

@@ -27,9 +27,10 @@ use PHP_CodeSniffer\Files\File;
  * @since 5.6
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..
  * @since 9.0.0  Detection for new operator tokens has been moved to the `NewOperators` sniff.
- * @since 10.0.0 Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.
+ *               - This class is now `final`.
  */
-class NewLanguageConstructsSniff extends Sniff
+final class NewLanguageConstructsSniff extends Sniff
 {
     use ComplexVersionNewFeatureTrait;
 

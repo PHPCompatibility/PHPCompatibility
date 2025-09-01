@@ -31,8 +31,9 @@ use PHPCSUtils\Utils\Variables;
  * @link https://www.php.net/manual/en/functions.anonymous.php
  *
  * @since 7.1.4
+ * @since 10.0.0 This class is now `final`.
  */
-class ForbiddenVariableNamesInClosureUseSniff extends Sniff
+final class ForbiddenVariableNamesInClosureUseSniff extends Sniff
 {
 
     /**

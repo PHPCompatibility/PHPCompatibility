@@ -26,7 +26,7 @@ use PHPCSUtils\Utils\Numbers;
  *
  * @since 10.0.0
  */
-class NewNumericLiteralSeparatorSniff extends Sniff
+final class NewNumericLiteralSeparatorSniff extends Sniff
 {
 
     /**
