@@ -22,7 +22,7 @@ function foo(integer $a) {}
 
 class MyOtherClass extends MyClass {
     function foo(parent $a) {} // Correction: Valid as of PHP 5.2+.
-    function bar(static $a) {}
+    function bar(Static $a) {}
 }
 
 // Class/interface type declaration - PHP 5.0+
@@ -63,7 +63,7 @@ function foo(object $a) {}
 function foo(parent $a) {} // Invalid - not within a class.
 
 namespace test {
-    function foo(parent $a) {} // Invalid - not within a class.
+    function foo(Parent $a) {} // Invalid - not within a class.
 }
 
 class Bar {
@@ -85,7 +85,7 @@ $arrow = fn($a) => $a * 10; // OK.
 $closure = function (mixed $a) {};
 
 // Invalid: Nullable mixed type declaration.
-function NullableMixed(?mixed $a) {};
+function NullableMixed(?Mixed $a) {};
 
 // PHP 8.0 union types.
 function NOTunionTypeBitwiseOrInDefault($var = CONSTANT_A | CONSTANT_B) {}
@@ -110,7 +110,7 @@ function pseudoTypeNull(null $var = null) {}
 function pseudoTypeFalse(false $var = false) {}
 
 // Intentional fatal error - false pseudotype is not allowed in combination with bool, but that's not the concern of the sniff.
-function pseudoTypeFalseAndBool(bool|false $var = false) {}
+function pseudoTypeFalseAndBool(bool|FALSE $var = false) {}
 
 // Intentional fatal error - object is not allowed in combination with class name, but that's not the concern of the sniff.
 function objectAndClass(object|ClassName $var) {}
@@ -172,7 +172,7 @@ enum Suit implements Colorful
 // PHP 8.2 DNF types.
 function NOTDnfTypeParamDefault($param = (CONST_A & CONST_B) | CONST_C) {}
 
-function DNFTypes((Foo&Bar)|null $a, int|(\A&\B) $b) {}
+function DNFTypes((Foo&Bar)|NULL $a, int|(\A&\B) $b) {}
 $closure = function($a, (A&B)|(C&D) $b) {};
 
 // Intentional fatal error - &/| reversed. This is not a valid type. Ignore.
