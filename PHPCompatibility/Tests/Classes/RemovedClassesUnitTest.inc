@@ -141,3 +141,23 @@ class ConstructorPropertyPromotionWithTypes {
         SWFVideoStream $normalParamClassType,
     ) {}
 }
+
+// Global constants can't be typed. Ignore.
+const FOO = 10;
+
+// Test support for PHP 8.3 typed constants.
+class TypedConstants {
+    const UNTYPED = 10;
+    protected const HW_API_Error CLASS_TYPE = new HW_API_Error();
+    private const ?OCICollection NULLABLE_CLASS_TYPE = null;
+    protected const \IMAP\Connection FQN_INTERFACE = new ClassName;
+
+    // Union types are supported.
+    private final const SWFFontChar|\SWFGradient UNION_TWO_CLASSES = new MyClassA;
+
+    // Intersection types are supported.
+    public const SWFShape&\SWFSound INTERSECTION_TYPE = new MyClassA;
+
+    // DNF types are supported.
+    public const (PSpell\Config&\PSpell\Dictionary)|null DNF_TYPE = new MyClassA;
+}
