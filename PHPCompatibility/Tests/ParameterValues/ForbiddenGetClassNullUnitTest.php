@@ -53,23 +53,48 @@ final class ForbiddenGetClassNullUnitTest extends BaseSniffTestCase
             [11],
             [12],
             [15],
+            [29],
+            [30],
         ];
     }
 
 
     /**
-     * testNoFalsePositives
+     * Verify there are no false positives on valid code.
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
      *
      * @return void
      */
-    public function testNoFalsePositives()
+    public function testNoFalsePositives($line)
     {
         $file = $this->sniffFile(__FILE__, '7.2');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array
+     */
+    public static function dataNoFalsePositives()
+    {
+        $cases = [];
 
         // No errors expected on the first 9 lines.
         for ($line = 1; $line <= 9; $line++) {
-            $this->assertNoViolation($file, $line);
+            $cases[] = [$line];
         }
+
+        for ($line = 20; $line <= 26; $line++) {
+            $cases[] = [$line];
+        }
+
+        return $cases;
     }
 
 
