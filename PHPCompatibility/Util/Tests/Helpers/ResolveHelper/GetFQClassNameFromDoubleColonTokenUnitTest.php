@@ -20,6 +20,8 @@ use PHPCSUtils\TestUtils\UtilityMethodTestCase;
  * @group utilityFunctions
  *
  * @since 7.0.5
+ *
+ * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQClassNameFromDoubleColonToken
  */
 final class GetFQClassNameFromDoubleColonTokenUnitTest extends UtilityMethodTestCase
 {
@@ -28,8 +30,6 @@ final class GetFQClassNameFromDoubleColonTokenUnitTest extends UtilityMethodTest
      * Test retrieving a fully qualified class name based on a T_DOUBLE_COLON token.
      *
      * @dataProvider dataGetFQClassNameFromDoubleColonToken
-     *
-     * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQClassNameFromDoubleColonToken
      *
      * @param string $commentString The comment which prefaces the T_DOUBLE_COLON token in the test file.
      * @param string $expected      The expected fully qualified class name.

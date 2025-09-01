@@ -20,6 +20,8 @@ use PHPCSUtils\TestUtils\UtilityMethodTestCase;
  * @group utilityFunctions
  *
  * @since 7.0.3
+ *
+ * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQExtendedClassName
  */
 final class GetFQExtendedClassNameUnitTest extends UtilityMethodTestCase
 {
@@ -28,8 +30,6 @@ final class GetFQExtendedClassNameUnitTest extends UtilityMethodTestCase
      * Test retrieving a fully qualified class name for the class being extended.
      *
      * @dataProvider dataGetFQExtendedClassName
-     *
-     * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQExtendedClassName
      *
      * @param string $commentString The comment which prefaces the T_CLASS token in the test file.
      * @param string $expected      The expected fully qualified class name.
@@ -77,8 +77,6 @@ final class GetFQExtendedClassNameUnitTest extends UtilityMethodTestCase
      * Test an empty string is returned when an invalid token is passed.
      *
      * @dataProvider dataGetFQExtendedClassNameInvalidToken
-     *
-     * @covers \PHPCompatibility\Helpers\ResolveHelper::getFQExtendedClassName
      *
      * @param string     $commentString The comment which prefaces the T_CLASS token in the test file.
      * @param int|string $targetType    The token to pass to the method.
