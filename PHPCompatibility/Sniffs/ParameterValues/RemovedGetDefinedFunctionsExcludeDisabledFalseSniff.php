@@ -73,7 +73,8 @@ final class RemovedGetDefinedFunctionsExcludeDisabledFalseSniff extends Abstract
             return;
         }
 
-        if ($targetParam['clean'] !== 'false') {
+        $cleanValueLc = \strtolower($targetParam['clean']);
+        if ($cleanValueLc !== 'false' && $cleanValueLc !== '\false') {
             return;
         }
 
