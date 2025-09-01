@@ -3,38 +3,38 @@
 /*
  * Test pre-PHP 5.3: these functions could not be used in parameter lists.
  */
-function Foo() {
-	echo Foo(func_get_args());
-	$closure = function( \func_get_args() ) {}; // Parse error, but not our concern.
+function detect($a, $b) {
+    echo array_map('trim', func_get_args());
+    $closure = function($a, $b) { \nested(\func_get_args()) };
 }
 
 $closure = function ( $param ) {
-	echo $this->Foo(func_get_args());
+    echo $this->Foo(FUNC_GET_ARGS(),);
 };
 
 class ABC {
-	public function foo() {
-		echo MyNS\Bar(func_get_arg(1));
-		if ( func_num_args() > 0 &&  self::baz( \func_num_args() ) ) {}
-		$b = new MyClass(func_get_args());
-	}
+    public function foo($a, $b) {
+        echo MyNS\Bar(func_get_arg(1));
+        if ( Func_Num_Args() > 0 &&  self::baz( \func_num_args() ) ) {}
+        $b = new MyClass(func_get_args(),);
+    }
 }
 
 // Test against false positives.
-function Foo() {
+function preventFalsePositivesForNonNestedAndNonGlobalFunctionCall($a, $b) {
     $a = func_get_args();
-    echo func_get_arg(1);
+    echo \func_get_arg(1);
     if ( func_num_args() > 0 ) {}
 
-	$d = Baz(Bar::func_get_args());
-	$e = Baz($object->func_get_args());
-	$f = Baz(\Bar\func_get_args());
-	$g = Baz( new Func_Get_Args());
-	$h = Baz($obj?->func_num_args());
+    $d = Baz(Bar::func_get_args());
+    $e = Baz($object->func_get_args());
+    $f = Baz(\Fully\Qualified\func_get_args());
+    $g = Baz( new Func_Get_Args());
+    $h = Baz($obj?->func_num_args(),);
 
-	if ( !function_exists('func_get_args')) {
-		function func_get_args() {}
-	}
+    if ( !function_exists('func_get_args')) {
+        function func_get_args() {}
+    }
 }
 
 /*
@@ -42,10 +42,38 @@ function Foo() {
  */
 $a = func_get_args();
 echo Bar(func_get_arg(1));
-if ( \func_num_args() > 0 &&  baz( func_num_args() ) ) {} // x 2 (+ 1 x use in param list) .
+if ( \func_num_args() > 0 &&  baz( func_num_args(), ) ) {} // x 2 (+ 1 x use in param list) .
 
 // Test against false positives.
 $d = Baz(Bar::func_get_args());
 $e = Baz($object->func_get_args());
-$f = Baz(\Bar\func_get_args());
+$f = Baz(\Fully\Qualified\func_get_args());
 $g = Baz($obj?->func_num_args());
+$h = Baz($object->func_get_args); // Property access.
+$i = Baz(Bar::FUNC_NUM_ARGS); // Constant access
+
+function codeInParenthesesButNotInFunctionCall($a, $b) {
+    $arbitraryParentheses1 = (func_get_args());
+    $arbitraryParentheses2 = ($array + \func_get_args());
+}
+
+// More tests against false positives for namespaced function calls.
+$j = Baz(Partially\Qualified\func_get_args());
+$k = Baz(namespace\Foo\func_get_arg(1),);
+
+function namespacedFunctionCalls() {
+    $a = Baz(Partially\Qualified\func_get_args());
+    $b = Baz(namespace\Foo\func_get_args());
+}
+
+class ReturnByRef {
+    public function &func_get_args() {}
+}
+
+// Safeguard handling of PHP 7.4+ arrow functions.
+$arrow = fn($a, $b): array => func_get_args(); // OK, usage not in global scope.
+$arrow = fn($a, $b) => nested(\func_get_args()); // Even though nested, ignore as arrow functions can't be used with PHP < 5.3 anyway.
+
+// Ensure there are no false positives for PHP 8.0+ attributes with the same name.
+#[Func_get_args(), Func_Num_Args()]
+function hasAttribute() {}

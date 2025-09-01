@@ -26,7 +26,7 @@ final class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
 {
 
     /**
-     * testArgumentFunctionsUseAsParameter
+     * Test that use of the functions nested within a function call is correctly detected.
      *
      * @dataProvider dataArgumentFunctionsUseAsParameter
      *
@@ -44,7 +44,7 @@ final class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * Data provider dataArgumentFunctionsUseAsParameter.
+     * Data provider.
      *
      * @see testArgumentFunctionsUseAsParameter()
      *
@@ -64,7 +64,7 @@ final class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
 
 
     /**
-     * testNoFalsePositivesUseAsParameter
+     * Test that there are no false positives for the "nested in function call" check.
      *
      * @dataProvider dataNoFalsePositivesUseAsParameter
      *
@@ -87,22 +87,32 @@ final class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
      */
     public static function dataNoFalsePositivesUseAsParameter()
     {
-        return [
-            [25],
-            [26],
-            [27],
-            [29],
-            [30],
-            [31],
-            [32],
-            [33],
-            [36],
-        ];
+        $data = [];
+
+        for ($line = 24; $line <= 38; $line++) {
+            $data[] = [$line];
+        }
+
+        for ($line = 55; $line <= 58; $line++) {
+            $data[] = [$line];
+        }
+
+        for ($line = 64; $line <= 67; $line++) {
+            $data[] = [$line];
+        }
+
+        $data[] = [70];
+
+        for ($line = 73; $line <= 79; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 
     /**
-     * testArgumentFunctionsUseOutsideFunctionScope
+     * Test that use of the functions in the global scope is correctly detected.
      *
      * @dataProvider dataArgumentFunctionsUseOutsideFunctionScope
      *
@@ -120,7 +130,7 @@ final class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * Data provider dataArgumentFunctionsUseOutsideFunctionScope.
+     * Data provider.
      *
      * @see testArgumentFunctionsUseOutsideFunctionScope()
      *
@@ -137,7 +147,7 @@ final class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
 
 
     /**
-     * testNoFalsePositivesUseOutsideFunctionScope
+     * Test that there are no false positives for the "usage in global scope" check.
      *
      * @dataProvider dataNoFalsePositivesUseOutsideFunctionScope
      *
@@ -160,12 +170,18 @@ final class ArgumentFunctionsUsageUnitTest extends BaseSniffTestCase
      */
     public static function dataNoFalsePositivesUseOutsideFunctionScope()
     {
-        return [
-            [48],
-            [49],
-            [50],
-            [51],
-        ];
+        $data = self::dataNoFalsePositivesUseAsParameter();
+
+        // Tests specific for this error.
+        for ($line = 47; $line <= 53; $line++) {
+            $data[] = [$line];
+        }
+
+        for ($line = 60; $line <= 62; $line++) {
+            $data[] = [$line];
+        }
+
+        return $data;
     }
 
 

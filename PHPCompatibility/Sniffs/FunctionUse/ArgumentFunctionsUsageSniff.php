@@ -15,7 +15,10 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Conditions;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\Parentheses;
 
 /**
  * Detect usage of `func_get_args()`, `func_get_arg()` and `func_num_args()` in invalid context.
@@ -61,7 +64,11 @@ final class ArgumentFunctionsUsageSniff extends Sniff
      */
     public function register()
     {
-        return [\T_STRING];
+        return [
+            \T_STRING,
+            // Only registering arrow functions to allow for skipping over them.
+            \T_FN,
+        ];
     }
 
 
@@ -74,25 +81,41 @@ final class ArgumentFunctionsUsageSniff extends Sniff
      * @param int                         $stackPtr  The position of the current token in the
      *                                               stack passed in $tokens.
      *
-     * @return void
+     * @return int|void Integer stack pointer to skip forward or void to continue
+     *                  normal file processing.
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $tokens     = $phpcsFile->getTokens();
+        $tokens = $phpcsFile->getTokens();
+
+        if ($tokens[$stackPtr]['code'] === \T_FN
+            && isset($tokens[$stackPtr]['scope_closer'])
+        ) {
+            // Skip over everything within an arrow function.
+            return $tokens[$stackPtr]['scope_closer'];
+        }
+
         $functionLc = \strtolower($tokens[$stackPtr]['content']);
         if (isset($this->targetFunctions[$functionLc]) === false) {
             return;
         }
 
         // Next non-empty token should be the open parenthesis.
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true, null, true);
-        if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS) {
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        if ($nextNonEmpty === false
+            || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS
+            || isset($tokens[$nextNonEmpty]['parenthesis_owner'])
+        ) {
+            return;
+        }
+
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            // Class instantiation in attribute, not function call.
             return;
         }
 
         $ignore  = [
-            \T_FUNCTION => true,
-            \T_NEW      => true,
+            \T_NEW => true,
         ];
         $ignore += Collections::objectOperators();
 
@@ -100,9 +123,14 @@ final class ArgumentFunctionsUsageSniff extends Sniff
         if (isset($ignore[$tokens[$prevNonEmpty]['code']]) === true) {
             // Not a call to a PHP function.
             return;
-        } elseif ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR && $tokens[$prevNonEmpty - 1]['code'] === \T_STRING) {
-            // Namespaced function.
-            return;
+        } elseif ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR) {
+            $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
+            if ($tokens[$prevPrevToken]['code'] === \T_STRING
+                || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
+            ) {
+                // Namespaced function.
+                return;
+            }
         }
 
         $data = [$tokens[$stackPtr]['content']];
@@ -110,10 +138,10 @@ final class ArgumentFunctionsUsageSniff extends Sniff
         /*
          * Check for use of the functions in the global scope.
          *
-         * As PHPCS can not determine whether a file is included from within a function in
+         * PHPCS can not determine whether a file is included from within a function in
          * another file, so always throw a warning/error.
          */
-        if ($phpcsFile->hasCondition($stackPtr, [\T_FUNCTION, \T_CLOSURE]) === false) {
+        if (Conditions::hasCondition($phpcsFile, $stackPtr, Collections::functionDeclarationTokens()) === false) {
             $isError = false;
             $message = 'Use of %s() outside of a user-defined function is only supported if the file is included from within a user-defined function in another file prior to PHP 5.3.';
 
@@ -132,33 +160,17 @@ final class ArgumentFunctionsUsageSniff extends Sniff
             return;
         }
 
-        if (isset($tokens[$stackPtr]['nested_parenthesis']) === false) {
+        $opener = Parentheses::getLastOpener($phpcsFile, $stackPtr);
+        if ($opener === false
+            || isset($tokens[$opener]['parenthesis_owner']) === true
+        ) {
+            // Not nested in parentheses at all or nested in "owned" parentheses, which are never function calls.
             return;
         }
 
-        $throwError = false;
-
-        $closer = \end($tokens[$stackPtr]['nested_parenthesis']);
-        if (isset($tokens[$closer]['parenthesis_owner'])
-            && $tokens[$tokens[$closer]['parenthesis_owner']]['code'] === \T_CLOSURE
-        ) {
-            $throwError = true;
-        } else {
-            $opener       = \key($tokens[$stackPtr]['nested_parenthesis']);
-            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), null, true);
-            if ($tokens[$prevNonEmpty]['code'] !== \T_STRING) {
-                return;
-            }
-
-            $prevPrevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
-            if ($tokens[$prevPrevNonEmpty]['code'] === \T_FUNCTION) {
-                return;
-            }
-
-            $throwError = true;
-        }
-
-        if ($throwError === false) {
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), null, true);
+        if ($tokens[$prevNonEmpty]['code'] !== \T_STRING) {
+            // Not nested in a function call.
             return;
         }
 
