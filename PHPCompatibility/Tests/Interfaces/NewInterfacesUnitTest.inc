@@ -215,6 +215,26 @@ class DNFTypes {
 // Safeguard correct handling of PHP 8.3 readonly anonymous class.
 $anon = new readonly class implements \Random\Engine {};
 
+// Global constants can't be typed. Ignore.
+const FOO = 10;
+
+// Test support for PHP 8.3 typed constants.
+class TypedConstants {
+    const UNTYPED = 10;
+    protected const UnitEnum CLASS_TYPE = new ClassName();
+    private const ?BackedEnum NULLABLE_CLASS_TYPE = null;
+    protected const \Random\CryptoSafeEngine FQN_INTERFACE = new ClassName;
+
+    // Union types are supported.
+    private final const RecursiveIterator|\SeekableIterator UNION_TWO_CLASSES = new MyClassA;
+
+    // Intersection types are supported.
+    public const JsonSerializable&\SessionHandlerInterface INTERSECTION_TYPE = new MyClassA;
+
+    // DNF types are supported.
+    public const (Random\Engine&\Random\CryptoSafeEngine)|null DNF_TYPE = new MyClassA;
+}
+
 // Test parse error/live coding.
 // This MUST be the last test in the file!
 try {

@@ -16,6 +16,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Exceptions\ValueError;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Constants;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
@@ -216,6 +217,7 @@ class NewInterfacesSniff extends Sniff
             \T_USE       => \T_USE,
             \T_INTERFACE => \T_INTERFACE,
             \T_CATCH     => \T_CATCH,
+            \T_CONST     => \T_CONST,
         ];
 
         $targets += Collections::ooCanImplement();
@@ -255,6 +257,10 @@ class NewInterfacesSniff extends Sniff
 
             case \T_INTERFACE:
                 $this->processInterfaceToken($phpcsFile, $stackPtr);
+                break;
+
+            case \T_CONST:
+                $this->processConstantToken($phpcsFile, $stackPtr);
                 break;
 
             case \T_CATCH:
@@ -382,6 +388,36 @@ class NewInterfacesSniff extends Sniff
                 }
             }
         }
+    }
+
+
+    /**
+     * Processes this test for when a constant token is encountered.
+     *
+     * - Detect new interfaces when used as a class constant type declaration.
+     *
+     * @since 10.0.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in
+     *                                               the stack passed in $tokens.
+     *
+     * @return void
+     */
+    private function processConstantToken(File $phpcsFile, $stackPtr)
+    {
+        try {
+            $properties = Constants::getProperties($phpcsFile, $stackPtr);
+        } catch (ValueError $e) {
+            // Not an OO constant or parse error.
+            return;
+        }
+
+        if ($properties['type'] === '') {
+            return;
+        }
+
+        $this->checkTypeDeclaration($phpcsFile, $properties['type_token'], $properties['type']);
     }
 
 
