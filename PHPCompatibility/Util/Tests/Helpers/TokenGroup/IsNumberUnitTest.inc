@@ -60,6 +60,14 @@ $a = null;
 /* test ZI7 */
 $a = - 'not a numeric string';
 
+/* test ZI8 */
+$a = 00_00;
+
+/* test ZI9 */
+$a = 0o0;
+
+/* test ZI10 */
+$a = 0O0;
 
 /*
  * Make sure that zero numbers are correctly identified.
@@ -72,6 +80,9 @@ $a = 0.0;
 
 /* test ZF2 */
 $a = - 0.0000000000;
+
+/* test ZF3 */
+$a = - 0_0.000_000_0000;
 
 
 /*
@@ -137,6 +148,34 @@ $a = + '  0123 things';
 /* test I16 */
 $a = -+-+10;
 
+/* test I17 */
+$hex = 0x123;
+
+/* test I18 */
+$binary = -0b10001;
+
+/* test I19 */
+$octal = 01234;
+
+/* test I20 */
+$php74dec = 10_456;
+
+/* test I21 */
+$php74hex = 0x1_23;
+
+/* test I22 */
+$php74binary = 0b10_001;
+
+/* test I23 */
+$php74octal = 01_234;
+
+/* test I24 */
+$php81octal = +0o1234;
+
+/* test I25 */
+$php81octal = 0O1234;
+
+
 /*
  * Make sure that numbers are correctly identified.
  *
@@ -179,6 +218,9 @@ EOT;
 
 /* test F11 */
 $a = +'0.123';
+
+/* test F12 */
+$a = 0.1_23;
 
 /* testHeredocNoEnd */
 $a = <<<EOD

@@ -149,6 +149,9 @@ final class IsNumberUnitTest extends UtilityMethodTestCase
             'Evals to 0, no floats: - sign with string starting with 0'        => ['/* test ZI5 */', false, -0, false, false],
             'Evals to 0, no floats: null'                                      => ['/* test ZI6 */', false, 0, false, false],
             'Evals to 0, no floats: - sign with text string'                   => ['/* test ZI7 */', false, 0, false, false],
+            'Evals to 0, no floats: PHP 7.4+ underscore integer'               => ['/* test ZI8 */', false, 0, false, false],
+            'Evals to 0, no floats: PHP 8.1+ octal literal'                    => ['/* test ZI9 */', false, 0, false, false],
+            'Evals to 0, no floats: PHP 8.1+ octal literal uppercase O'        => ['/* test ZI10 */', false, 0, false, false],
 
             'Evals to 0, incl floats: int 0'                                   => ['/* test ZI1 */', true, 0.0, false, false],
             'Evals to 0, incl floats: + sign with int 0'                       => ['/* test ZI2 */', true, 0.0, false, false],
@@ -157,12 +160,17 @@ final class IsNumberUnitTest extends UtilityMethodTestCase
             'Evals to 0, incl floats: - sign with string starting with 0'      => ['/* test ZI5 */', true, -0.0, false, false],
             'Evals to 0, incl floats: null'                                    => ['/* test ZI6 */', true, 0.0, false, false],
             'Evals to 0, incl floats: - sign with text string'                 => ['/* test ZI7 */', true, 0.0, false, false],
+            'Evals to 0, incl floats: PHP 7.4+ underscore integer'             => ['/* test ZI8 */', true, 0.0, false, false],
+            'Evals to 0, incl floats: PHP 8.1+ octal literal'                  => ['/* test ZI9 */', true, 0.0, false, false],
+            'Evals to 0, incl floats: PHP 8.1+ octal literal uppercase O'      => ['/* test ZI10 */', true, 0.0, false, false],
 
             'Evals to 0, no floats: float 0.0'                                 => ['/* test ZF1 */', false, false, false, false],
             'Evals to 0, no floats: - sign with float 0.0'                     => ['/* test ZF2 */', false, false, false, false],
+            'Evals to 0, no floats: PHP 7.4+ underscore float'                 => ['/* test ZF3 */', false, false, false, false],
 
             'Evals to 0, incl floats: float 0.0'                               => ['/* test ZF1 */', true, 0.0, false, false],
             'Evals to 0, incl floats: - sign with float 0.0'                   => ['/* test ZF2 */', true, -0.0, false, false],
+            'Evals to 0, incl floats: PHP 7.4+ underscore float'               => ['/* test ZF3 */', true, 0.0, false, false],
 
             'Evals to int, no floats: int 1'                                   => ['/* test I1 */', false, 1, true, false],
             'Evals to int, no floats: - sign with int 10'                      => ['/* test I2 */', false, -10, false, true],
@@ -184,6 +192,16 @@ final class IsNumberUnitTest extends UtilityMethodTestCase
                                                                                => ['/* test I15 */', false, 123, true, false],
             'Evals to int, no floats: multiple signs with int'                 => ['/* test I16 */', false, 10, true, false],
 
+            'Evals to int, no floats: hexidecimal number'                      => ['/* test I17 */', false, 291, true, false],
+            'Evals to int, no floats: binary number'                           => ['/* test I18 */', false, -17, false, true],
+            'Evals to int, no floats: octal number'                            => ['/* test I19 */', false, 668, true, false],
+            'Evals to int, no floats: PHP 7.4+ decimal number with underscore' => ['/* test I20 */', false, 10456, true, false],
+            'Evals to int, no floats: PHP 7.4+ hex number with underscore'     => ['/* test I21 */', false, 291, true, false],
+            'Evals to int, no floats: PHP 7.4+ binary number with underscore'  => ['/* test I22 */', false, 17, true, false],
+            'Evals to int, no floats: PHP 7.4+ octal number with underscore'   => ['/* test I23 */', false, 668, true, false],
+            'Evals to int, no floats: PHP 8.1+ octal literal'                  => ['/* test I24 */', false, 668, true, false],
+            'Evals to int, no floats: PHP 8.1+ octal literal uppercase O'      => ['/* test I25 */', false, 668, true, false],
+
             'Evals to int, incl floats: int 1'                                 => ['/* test I1 */', true, 1.0, true, false],
             'Evals to int, incl floats: - sign with int 10'                    => ['/* test I2 */', true, -10.0, false, true],
             'Evals to int, incl floats: + sign with int 10 and whitespace'     => ['/* test I3 */', true, 10.0, true, false],
@@ -204,6 +222,16 @@ final class IsNumberUnitTest extends UtilityMethodTestCase
                                                                                => ['/* test I15 */', true, 123.0, true, false],
             'Evals to int, incl floats: multiple signs with int'               => ['/* test I16 */', true, 10.0, true, false],
 
+            'Evals to int, incl floats: hexidecimal number'                    => ['/* test I17 */', true, 291.0, true, false],
+            'Evals to int, incl floats: binary number'                         => ['/* test I18 */', true, -17.0, false, true],
+            'Evals to int, incl floats: octal number'                          => ['/* test I19 */', true, 668.0, true, false],
+            'Evals to int, incl floats: PHP 7.4+ decimal num with underscore'  => ['/* test I20 */', true, 10456.0, true, false],
+            'Evals to int, incl floats: PHP 7.4+ hex number with underscore'   => ['/* test I21 */', true, 291.0, true, false],
+            'Evals to int, incl floats: PHP 7.4+ binary num with underscore'   => ['/* test I22 */', true, 17.0, true, false],
+            'Evals to int, incl floats: PHP 7.4+ octal number with underscore' => ['/* test I23 */', true, 668.0, true, false],
+            'Evals to int, incl floats: PHP 8.1+ octal literal'                => ['/* test I24 */', true, 668.0, true, false],
+            'Evals to int, incl floats: PHP 8.1+ octal literal uppercase O'    => ['/* test I25 */', true, 668.0, true, false],
+
             'Evals to float, no floats: float 1.23'                            => ['/* test F1 */', false, false, false, false],
             'Evals to float, no floats: float -10.123'                         => ['/* test F2 */', false, false, false, false],
             'Evals to float, no floats: float +10.123 with whitespace'         => ['/* test F3 */', false, false, false, false],
@@ -217,6 +245,7 @@ final class IsNumberUnitTest extends UtilityMethodTestCase
                                                                                => ['/* test F9 */', false, false, false, false],
             'Evals to float, no floats: heredoc containing float'              => ['/* test F10 */', false, false, false, false],
             'Evals to float, no floats: + sign with text string'               => ['/* test F11 */', false, false, false, false],
+            'Evals to float, no floats: PHP 7.4+ underscore number'            => ['/* test F12 */', false, false, false, false],
 
             'Evals to float, incl floats: float 1.23'                          => ['/* test F1 */', true, 1.23, true, false],
             'Evals to float, incl floats: float -10.123'                       => ['/* test F2 */', true, -10.123, false, true],
@@ -231,6 +260,7 @@ final class IsNumberUnitTest extends UtilityMethodTestCase
                                                                                => ['/* test F9 */', true, -10e8, false, true],
             'Evals to float, incl floats: heredoc containing float'            => ['/* test F10 */', true, 10.123, true, false],
             'Evals to float, incl floats: + sign with text string'             => ['/* test F11 */', true, 0.123, true, false],
+            'Evals to float, incl floats: PHP 7.4+ underscore number'          => ['/* test F12 */', true, 0.123, true, false],
         ];
     }
 
