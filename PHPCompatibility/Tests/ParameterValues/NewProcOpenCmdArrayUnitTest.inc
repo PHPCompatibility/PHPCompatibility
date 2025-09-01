@@ -16,7 +16,7 @@ $proc = proc_open(self::COMMAND, $descriptorSpec, $pipes);
 
 // PHP 7.4: passing $cmd as an array.
 $proc = proc_open(['php', '-r', 'echo "Hello World\n";'], $descriptors, $pipes);
-$proc = proc_open(
+$proc = \Proc_Open(
     array(
         'php',
         '-r',
@@ -31,15 +31,15 @@ $proc = proc_open(['php', '-r', escapeshellarg($echo)], $descriptors, $pipes);
 $proc = proc_open(
     array(
         'phpcs',
-        '--standard=' . escapeshellarg($standard), // Escaping.
-        './path/to/' . escapeshellarg($file),
+        '--standard=' . \escapeshellarg($standard), // Escaping.
+        './path/to/' . EscapeShellArg($file),
     ),
     $descriptors,
     $pipes
 );
 
 // Safeguard support for PHP 8 named parameters.
-$proc = proc_open(
+$proc = proc_Open(
     descriptor_spec: array(
         0 => array("pipe", "r"),
         1 => array("pipe", "w"),
@@ -50,7 +50,7 @@ $proc = proc_open(
     env_vars: $env_vars
 ); // OK.
 
-$proc = proc_open(
+$proc = \proc_open(
     pipes: $pipes,
     env_vars: $env_vars,
     descriptor_spec: array(
@@ -58,5 +58,13 @@ $proc = proc_open(
         1 => array("pipe", "w"),
         2 => array("file", "/tmp/error-output.txt", "a"),
     ),
-    command: array('php', '-r', escapeshellarg($echo)),
+    command: array('php', '-r', \escapeshellarg($echo)),
 ); // Error + Warning.
+
+// Safeguard against false positives on method calls and namespaced function calls.
+ClassName::proc_open(['php', '-r', 'echo "Hello World\n";'], $descriptors, $pipes);
+$obj->proc_open(['php', '-r', 'echo "Hello World\n";'], $descriptors, $pipes);
+$obj?->proc_open(['php', '-r', 'echo "Hello World\n";'], $descriptors, $pipes);
+namespace\proc_open(['php', '-r', 'echo "Hello World\n";'], $descriptors, $pipes);
+\Fully\Qualified\proc_open(['php', '-r', 'echo "Hello World\n";'], $descriptors, $pipes);
+Partially\Qualified\proc_open(['php', '-r', 'echo "Hello World\n";'], $descriptors, $pipes);
