@@ -42,7 +42,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php == '8.5' && '8.4' || matrix.php }}
+          php-version: ${{ matrix.php }}
           ini-values: error_reporting=-1, display_errors=On, display_startup_errors=On, zend.assertions=1
           coverage: none
           tools: cs2pr
@@ -58,14 +58,6 @@ jobs:
         with:
           # Bust the cache at least once a month - output format: YYYY-MM.
           custom-cache-suffix: $(date -u "+%Y-%m")
-
-      - name: "Install PHP again (PHP 8.5)"
-        if: ${{ matrix.php == '8.5' }}
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
-          coverage: none
 
       - name: Lint against parse errors
         if: ${{ matrix.php != '5.4' && matrix.php != '8.4' }}
@@ -145,7 +137,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php == '8.5' && '8.4' || matrix.php }}
+          php-version: ${{ matrix.php }}
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: none
 
@@ -177,14 +169,6 @@ jobs:
       - name: "Composer: set PHPCS version for tests (lowest)"
         if: ${{ matrix.phpcs_version == 'lowest' }}
         run: composer update squizlabs/php_codesniffer phpcsstandards/phpcsutils --prefer-lowest --no-scripts --no-interaction
-
-      - name: "Install PHP again (PHP 8.5)"
-        if: ${{ matrix.php == '8.5' }}
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
-          coverage: none
 
       - name: Grab PHPUnit version
         id: phpunit_version
