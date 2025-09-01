@@ -145,3 +145,19 @@ abstract class DoesntExtendAndDoesntHaveDestructMethodButMayUseTrait {
 
     abstract function skipOverParenthesis($a, $b);
 }
+
+// Issue #1873.
+abstract class BowOutWhenNoConstructorBody
+{
+    abstract public function __construct();
+}
+
+abstract class ReportEvenWhenDestructorIsAbstract
+{
+    public function __construct() {
+        exit(1); // Error.
+    }
+
+    abstract public function __destruct();
+}
+
