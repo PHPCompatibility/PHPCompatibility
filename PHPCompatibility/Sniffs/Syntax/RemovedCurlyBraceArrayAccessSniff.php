@@ -10,7 +10,6 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
-use PHPCompatibility\Helpers\MiscHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff;
@@ -320,12 +319,6 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
         $tokens       = $phpcsFile->getTokens();
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
-        if (MiscHelper::isUseOfGlobalConstant($phpcsFile, $stackPtr) === false
-            && $tokens[$prevNonEmpty]['code'] !== \T_DOUBLE_COLON // Class constant access.
-        ) {
-            return [];
-        }
-
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false) {
             return [];
@@ -364,7 +357,7 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
 
                 $braces[$current] = $tokens[$current]['bracket_closer'];
 
-                // Continue, just in case there is nested access using curly braces, i.e. `$a{$i}{$j};`.
+                // Continue, just in case there is nested access using curly braces, i.e. `FOO[$a]{$i}{$j};`.
                 $current = $tokens[$current]['bracket_closer'];
                 continue;
             }
