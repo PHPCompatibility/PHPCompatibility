@@ -142,6 +142,8 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTestCase
             ['int', '5.6', 175, '8.2'],
             ['null', '7.4', 179, '8.2'],
             ['self', '5.1', 186, '8.2', false],
+
+            ['string', '5.6', 194, '7.0'],
         ];
     }
 
@@ -700,12 +702,13 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTestCase
             [179],
             [182],
             [186],
+            [194],
         ];
     }
 
 
     /**
-     * Verify that no false positives are thrown for function declarations without types.
+     * Verify that no false positives are thrown for function declarations without types or constructor property promotion.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -738,6 +741,9 @@ class NewParamTypeDeclarationsUnitTest extends BaseSniffTestCase
             [129],
             [137],
             [173],
+            [191],
+            [192],
+            [193],
         ];
     }
 

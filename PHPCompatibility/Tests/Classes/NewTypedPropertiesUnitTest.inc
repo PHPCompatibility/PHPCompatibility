@@ -189,3 +189,12 @@ class DNFTypes {
         public (A&B)|(C&D) $y = new Something,
     ) {}
 }
+
+// PHP 8.4: safeguard the sniff still functions correctly when asymmetric visibility is used.
+class AsymVisibility {
+    protected(set) string $asym;
+
+    public function __construct(
+        protected private(set) (My&\DNF)|false $asymInConstructor,
+    ) {}
+}

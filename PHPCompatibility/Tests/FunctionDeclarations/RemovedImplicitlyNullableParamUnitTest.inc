@@ -53,5 +53,14 @@ $closure = function (
 
 $arrow = fn(iterable $i = null): bool => doSomething($i);
 
+// PHP 8.4: safeguard the sniff still skips over constructor promoted properties.
+// Fatal error on all versions, but not the concern of this sniff.
+class AsymVisibility {
+    public function __construct(
+        protected(set) Foo $asymInConstructorImplicit = null,
+        protected private(set) string $asymInConstructorExplicit = null,
+    ) {}
+}
+
 // Intentional parse error. This has to be the last test in the file.
 $closure = function( Type $a = null, $b

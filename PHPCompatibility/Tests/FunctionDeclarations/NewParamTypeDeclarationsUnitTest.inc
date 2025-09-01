@@ -184,3 +184,13 @@ $arrow = fn((A&B)|(B&A) $a) => $a;
 // Intentional fatal error - segments which are strict subsets of others are disallowed, but that's not the concern of the sniff.
 // Intentional fatal error - using self type outside a class is invalid.
 $arrow = fn((A&self)|A $a) => $a;
+
+// PHP 8.4: safeguard the sniff still skips over constructor promoted properties.
+class AsymVisibility {
+    public function __construct(
+        protected(set) ?int $asymInConstructorImplicit,
+        protected private(set) string $asymInConstructorExplicit,
+        public(set) public (My&\DNF)|false $asymInConstructorImplicitOrderReversed,
+        string $normalParam,
+    ) {}
+}
