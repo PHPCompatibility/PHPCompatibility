@@ -14,6 +14,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\Parentheses;
 
 /**
  * Detect class member access on object instantiation/cloning.
@@ -135,18 +136,18 @@ final class NewClassMemberAccessSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (isset($tokens[$stackPtr]['nested_parenthesis']) === false) {
+        $parenthesisOpener = Parentheses::getLastOpener($phpcsFile, $stackPtr);
+        if ($parenthesisOpener === false) {
             // The `new className/clone $a` has to be in parentheses, without is not supported.
             return [];
         }
 
-        $parenthesisCloser = \end($tokens[$stackPtr]['nested_parenthesis']);
-        $parenthesisOpener = \key($tokens[$stackPtr]['nested_parenthesis']);
-
-        if (isset($tokens[$parenthesisOpener]['parenthesis_owner']) === true) {
+        if (Parentheses::getOwner($phpcsFile, $parenthesisOpener) !== false) {
             // If there is an owner, these parentheses are for a different purpose.
             return [];
         }
+
+        $parenthesisCloser = $tokens[$parenthesisOpener]['parenthesis_closer'];
 
         $prevBeforeParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($parenthesisOpener - 1), null, true);
         if ($prevBeforeParenthesis !== false && $tokens[$prevBeforeParenthesis]['code'] === \T_STRING) {
