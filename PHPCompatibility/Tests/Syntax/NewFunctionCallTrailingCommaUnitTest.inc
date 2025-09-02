@@ -110,3 +110,8 @@ function bar() {}
 
 // Document how trailing comma's in PHP 8.1+ first class callables are handled.
 register_callback(strtolower(...,)); // Parse error, but throw an error anyway as the calllable is by rights a function call.
+
+// Safeguard against false negatives on namespaced function calls.
+namespace\callMe($a, $b,);
+\Fully\Qualified\callMe(1, 2, 3, 4, 5,);
+Partially\Qualified\callMe(1, 2, 3, 4, 5,);

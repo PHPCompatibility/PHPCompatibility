@@ -73,6 +73,9 @@ final class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTestCase
             [105],
             [108],
             [112],
+            [115],
+            [116],
+            [117],
         ];
     }
 
