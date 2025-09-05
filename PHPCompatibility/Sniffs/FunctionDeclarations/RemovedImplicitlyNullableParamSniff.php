@@ -11,11 +11,11 @@
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
+use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\TypeString;
 
 /**
@@ -38,19 +38,6 @@ final class RemovedImplicitlyNullableParamSniff extends Sniff
 {
 
     /**
-     * Tokens allowed in the default value.
-     *
-     * This property will be enriched in the register() method.
-     *
-     * @since 10.0.0
-     *
-     * @var array<int|string, int|string>
-     */
-    private $allowedInDefault = [
-        \T_NULL => \T_NULL,
-    ];
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 10.0.0
@@ -59,8 +46,6 @@ final class RemovedImplicitlyNullableParamSniff extends Sniff
      */
     public function register()
     {
-        $this->allowedInDefault += Tokens::$emptyTokens;
-
         return Collections::functionDeclarationTokens();
     }
 
@@ -109,9 +94,10 @@ final class RemovedImplicitlyNullableParamSniff extends Sniff
                 continue;
             }
 
-            if ($param['type_hint'] === 'null'
-                || $param['type_hint'] === 'mixed'
-                || TypeString::isNullable($param['type_hint'])
+            $typeHint = \strtolower($param['type_hint']);
+            if ($typeHint === 'null'
+                || $typeHint === 'mixed'
+                || TypeString::isNullable($typeHint)
             ) {
                 // Type is nullable, no issue.
                 continue;
@@ -129,10 +115,11 @@ final class RemovedImplicitlyNullableParamSniff extends Sniff
              */
 
             // Determine the end of the parameter.
-            $paramEnd   = ($param['comma_token'] === false) ? $closeParens : $param['comma_token'];
-            $hasNull    = $phpcsFile->findNext(\T_NULL, $param['default_token'], $paramEnd);
-            $hasNonNull = $phpcsFile->findNext($this->allowedInDefault, $param['default_token'], $paramEnd, true);
-            if ($hasNull === false || $hasNonNull !== false) {
+            $paramEnd          = ($param['comma_token'] === false) ? $closeParens : $param['comma_token'];
+            $cleanDefaultValue = GetTokensAsString::noEmpties($phpcsFile, $param['default_token'], ($paramEnd - 1));
+            $cleanDefaultValue = \strtolower($cleanDefaultValue);
+
+            if ($cleanDefaultValue !== 'null' && $cleanDefaultValue !== '\null') {
                 // No null default value, we're okay.
                 continue;
             }
