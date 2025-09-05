@@ -156,9 +156,7 @@ final class TokenGroup
             return false;
         }
 
-        $skipOver                  = Tokens::$emptyTokens;
-        $skipOver[\T_NS_SEPARATOR] = \T_NS_SEPARATOR;
-        $nextNonEmpty              = $phpcsFile->findNext($skipOver, $start, $searchEnd, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $start, $searchEnd, true);
         while ($nextNonEmpty !== false
             && ($tokens[$nextNonEmpty]['code'] === \T_PLUS
             || $tokens[$nextNonEmpty]['code'] === \T_MINUS)
@@ -167,7 +165,7 @@ final class TokenGroup
                 $negativeNumber = ($negativeNumber === false) ? true : false;
             }
 
-            $nextNonEmpty = $phpcsFile->findNext($skipOver, ($nextNonEmpty + 1), $searchEnd, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), $searchEnd, true);
         }
 
         if ($nextNonEmpty === false || isset($maybeValidTokens[$tokens[$nextNonEmpty]['code']]) === false) {
