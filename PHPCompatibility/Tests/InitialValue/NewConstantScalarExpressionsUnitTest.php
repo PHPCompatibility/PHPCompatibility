@@ -187,6 +187,13 @@ final class NewConstantScalarExpressionsUnitTest extends BaseSniffTestCase
             [338, 'const'],
             [340, 'const'],
             [341, 'const'],
+
+            [356, 'const'],
+            [357, 'property'],
+            [358, 'property'],
+            [360, 'default', '$a = SOMETHING ? \True : FALSE'],
+            [360, 'default', '$c = SOMETHING_ELSE ? \false : \null'],
+            [361, 'static'],
         ];
     }
 
@@ -224,6 +231,11 @@ final class NewConstantScalarExpressionsUnitTest extends BaseSniffTestCase
 
         // ... nor on line 267 - 282.
         for ($line = 267; $line <= 280; $line++) {
+            $data[] = [$line];
+        }
+
+        // ... or on line 344 - 354.
+        for ($line = 344; $line <= 354; $line++) {
             $data[] = [$line];
         }
 
