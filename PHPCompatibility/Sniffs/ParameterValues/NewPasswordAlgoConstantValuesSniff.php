@@ -112,9 +112,7 @@ final class NewPasswordAlgoConstantValuesSniff extends AbstractFunctionCallParam
 
         $tokens = $phpcsFile->getTokens();
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
-            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === true
-                || $tokens[$i]['code'] === \T_NS_SEPARATOR
-            ) {
+            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === true) {
                 continue;
             }
 
