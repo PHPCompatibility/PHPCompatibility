@@ -15,6 +15,7 @@ use PHPCompatibility\Helpers\MiscHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -169,13 +170,24 @@ final class NewExitAsFunctionCallSniff extends AbstractFunctionCallParameterSnif
         }
 
         // Check if this is exit/die used as a fully qualified function call.
-        $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($tokens[$prev]['code'] === \T_NS_SEPARATOR) {
+        $isFullyQualified = false;
+        if ($tokens[$stackPtr]['content'][0] === '\\') {
+            // PHPCS 4.x.
+            $isFullyQualified = true;
+        } else {
+            // PHPCS 3.x.
+            $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            if ($tokens[$prev]['code'] === \T_NS_SEPARATOR) {
+                $isFullyQualified = true;
+            }
+        }
+
+        if ($isFullyQualified === true) {
             $phpcsFile->addError(
                 'Using "%s" as a fully qualified function call is not allowed in PHP 8.3 or earlier.',
                 $stackPtr,
                 'FullyQualified',
-                [$tokens[$stackPtr]['content']]
+                [\ltrim($tokens[$stackPtr]['content'], '\\')]
             );
         }
 
@@ -245,11 +257,13 @@ final class NewExitAsFunctionCallSniff extends AbstractFunctionCallParameterSnif
             }
 
             // Check for use of PHP native global constants for which we know the type.
-            if ($tokens[$i]['code'] === \T_STRING
-                && isset($this->phpNativeConstants[$tokens[$i]['content']]) === true
+            $trimmedContent = \ltrim($tokens[$i]['content'], '\\');
+            if (($tokens[$i]['code'] === \T_STRING
+                || $tokens[$i]['code'] === \T_NAME_FULLY_QUALIFIED)
+                && isset($this->phpNativeConstants[$trimmedContent]) === true
                 && MiscHelper::isUseOfGlobalConstant($phpcsFile, $i) === true
             ) {
-                $type = \gettype($this->phpNativeConstants[$tokens[$i]['content']]);
+                $type = \gettype($this->phpNativeConstants[$trimmedContent]);
                 switch ($type) {
                     case 'integer':
                         ++$integer;
@@ -283,7 +297,7 @@ final class NewExitAsFunctionCallSniff extends AbstractFunctionCallParameterSnif
                 continue;
             }
 
-            if ($tokens[$i]['code'] === \T_STRING
+            if (isset(Collections::nameTokens()[$tokens[$i]['code']]) === true
                 || $tokens[$i]['code'] === \T_VARIABLE
             ) {
                 // Variable, non-PHP-native constant, function call. Ignore as undetermined.
