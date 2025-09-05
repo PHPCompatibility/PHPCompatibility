@@ -69,10 +69,16 @@ $a = 0o0;
 /* test ZI10 */
 $a = 0O0;
 
+/* test ZI11 */
+$a = \false;
+
+/* test ZI12 */
+$a = -\null;
+
 /*
  * Make sure that zero numbers are correctly identified.
  *
- * The below should be recognized as numbers (integers).
+ * The below should be recognized as numbers (floats).
  */
 
 /* test ZF1 */
@@ -174,6 +180,9 @@ $php81octal = +0o1234;
 
 /* test I25 */
 $php81octal = 0O1234;
+
+/* test I26 */
+$a = - \true;
 
 
 /*
