@@ -43,7 +43,7 @@ $anon = new class() extends ClassWhichMayOrMayNotContainADestructMethod {
         if ($something) {
             die(); // Warning.
         } else {
-            exit(2); // Warning.
+            \exit(2); // Warning.
         }
     }
 };
@@ -140,7 +140,7 @@ abstract class DoesntExtendAndDoesntHaveDestructMethodButMayUseTrait {
      */
     #[AttributeWhichCouldBeLong, ShouldBeSkippedOver( 10, self::CONST_VALUE)]
     public function __construct() {
-        die(1); // Warning.
+        \die(1); // Warning.
     }
 
     abstract function skipOverParenthesis($a, $b);
