@@ -1,6 +1,7 @@
 ---
 name: "\U0001F680 Feature request"
 about: I have a suggestion (and may want to implement it).
+title: ''
 ---
 
 ## Is your feature request related to a problem?

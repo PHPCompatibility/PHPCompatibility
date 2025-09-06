@@ -1,11 +1,11 @@
-# Change Log for the PHPCompatibility standard for PHP Codesniffer
+# Change Log for the PHPCompatibility standard for PHP CodeSniffer
 
 All notable changes to this project will be documented in this file.
 
 This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/).
 
 Up to version 8.0.0, the `major.minor` version numbers were based on the PHP version for which compatibility check support was added, with `patch` version numbers being specific to this library.
-From version 8.0.0 onwards, [Semantic Versioning](http://semver.org/) is used.
+From version 8.0.0 onwards, [Semantic Versioning](https://semver.org/) is used.
 
 <!-- Legend to the icons used: https://github.com/PHPCompatibility/PHPCompatibility/pull/506#discussion_r131650488 -->
 
@@ -175,7 +175,7 @@ The `10.0.0` release is expected around the same time as the release of PHP 7.4 
 - :star2: New `PHPCompatibility.ParameterValues.RemovedImplodeFlexibleParamOrder` sniff to detect `implode()` being called with `$glue` and `$pieces` in reverse order from the documented argument order. This was previously allowed for historical reasons, but will be deprecated in PHP 7.4. [#846]
 - :star2: New `PHPCompatibility.ParameterValues.RemovedMbStrrposEncodingThirdParam` sniff to detect the `$encoding` being passed as the third, instead of the fourth parameter, to `mb_strrpos()` as has been soft deprecated since PHP 5.2 and will be hard deprecated as of PHP 7.4. [#860]
 - :star2: New `PHPCompatibility.Syntax.RemovedCurlyBraceArrayAccess` sniff to detect array and string offset access using curly braces as will be deprecated as of PHP 7.4. [#855]
-    - In contrast to any other sniff in the PHPCompatibility standard, this sniff contains an auto-fixer.
+    * In contrast to any other sniff in the PHPCompatibility standard, this sniff contains an auto-fixer.
 - :star2: New `PHPCompatibility.TextStrings.NewUnicodeEscapeSequence` sniff to detect use of the PHP 7.0+ unicode codepoint escape sequences and issues with invalid sequences. [#856]
 - :star2: New `PHPCompatibility.Upgrade.LowPHP` sniff to give users of old PHP versions advance warning when support will be dropped in the near future. [#838]
     At this moment, the intention is to drop support for PHP 5.3 by the end of this year.
@@ -208,13 +208,13 @@ The `10.0.0` release is expected around the same time as the release of PHP 7.4 
 - :pushpin: `PHPCompatibility.FunctionDeclarations.NewExceptionsFromToString` sniff: the sniff will now also examine the function docblock, if available, and will throw an error when a `@throws` tag is found in the docblock. [#880]. Fixes [#863]
 - :pushpin: `PHPCompatibility.FunctionDeclarations.NonStaticMagicMethods` sniff: will now also check the visibility and `static` (or not) requirements of the magic `__construct()`, `__destruct()`, `__clone()`, `__debugInfo()`, `__invoke()` and `__set_state()` methods. [#885]
 - :pushpin: `PHPCompatibility.Syntax.NewArrayStringDereferencing` sniff: the sniff will now also recognize array string dereferencing using curly braces as was (silently) supported since PHP 7.0. [#851]
-    - The sniff will now also throw errors for each dereference found on the array/string, not just the first one.
+    * The sniff will now also throw errors for each dereference found on the array/string, not just the first one.
 - :pushpin: `PHPCompatibility.Syntax.NewClassMemberAccess` sniff: the sniff will now also recognize class member access on instantiation and cloning using curly braces as was (silently) supported since PHP 7.0. [#852]
-    - The sniff will now also throw errors for each access detected, not just the first one.
-    - The line number on which the error is thrown in now set more precisely.
+    * The sniff will now also throw errors for each access detected, not just the first one.
+    * The line number on which the error is thrown in now set more precisely.
 - :pushpin: `PHPCompatibility.Syntax.NewFunctionArrayDereferencing` sniff: the sniff will now also recognize function array dereferencing using curly braces as was (silently) supported since PHP 7.0. [#853]
-    - The sniff will now also throw errors for each access detected, not just the first one.
-    - The line number on which the error is thrown in now set more precisely.
+    * The sniff will now also throw errors for each access detected, not just the first one.
+    * The line number on which the error is thrown in now set more precisely.
 - :recycle: Various code clean-up and improvements. [#849], [#850]
 - :recycle: Various minor inline documentation fixes. [#854], [#886]
 - :wrench: Travis: various tweaks to the build script. [#834], [#842]
@@ -403,7 +403,7 @@ See all related issues and PRs in the [9.1.0 milestone].
 - :recycle: Various code clean-up and improvements. [#745], [#756], [#774]
 - :recycle: Various minor inline documentation fixes. [#749], [#757]
 - :umbrella: Improved code coverage recording. [#744], [#776]
-- :green_heart: Travis: build tests are now being run against PHP 7.3 as well. [#511]
+- :green_heart: Travis: build tests are now being run against PHP 7.3 as well. [#764]
     Note: full PHP 7.3 support is only available in combination with PHP_CodeSniffer 2.9.2 or 3.3.1+ due to an incompatibility within PHP_CodeSniffer itself.
 
 ### Fixed
@@ -422,7 +422,6 @@ See all related issues and PRs in the [9.1.0 milestone].
 Thanks go out to [Jonathan Champ] for his contribution to this version. :clap:
 
 [#262]: https://github.com/PHPCompatibility/PHPCompatibility/issues/262
-[#511]: https://github.com/PHPCompatibility/PHPCompatibility/pull/511
 [#585]: https://github.com/PHPCompatibility/PHPCompatibility/pull/585
 [#629]: https://github.com/PHPCompatibility/PHPCompatibility/issues/629
 [#740]: https://github.com/PHPCompatibility/PHPCompatibility/issues/740
@@ -443,6 +442,7 @@ Thanks go out to [Jonathan Champ] for his contribution to this version. :clap:
 [#758]: https://github.com/PHPCompatibility/PHPCompatibility/pull/758
 [#760]: https://github.com/PHPCompatibility/PHPCompatibility/pull/760
 [#762]: https://github.com/PHPCompatibility/PHPCompatibility/pull/762
+[#764]: https://github.com/PHPCompatibility/PHPCompatibility/pull/764
 [#767]: https://github.com/PHPCompatibility/PHPCompatibility/pull/767
 [#768]: https://github.com/PHPCompatibility/PHPCompatibility/pull/768
 [#769]: https://github.com/PHPCompatibility/PHPCompatibility/pull/769
@@ -546,8 +546,8 @@ See all related issues and PRs in the [9.0.0 milestone].
 - :bug: `PHPCompatibility.Generators.NewGeneratorReturn` sniff: The sniff would throw false positives for `return` statements in nested constructs and did not correctly detect the scope which should be examined. [#725]. Fixes [#724].
 - :bug: `PHPCompatibility.Keywords.NewKeywords` sniff: PHP magic constants are case _in_sensitive. This sniff now accounts for this. [#707]
 - :bug: Various bugs in the `PHPCompatibility.Syntax.ForbiddenCallTimePassByReference` sniff [#723]:
-    - Closures called via a variable will now also be examined. (false negative)
-    - References within arrays/closures passed as function call parameters would incorrectly trigger an error. (false positive)
+    * Closures called via a variable will now also be examined. (false negative)
+    * References within arrays/closures passed as function call parameters would incorrectly trigger an error. (false positive)
 - :green_heart: Compatibility with PHPUnit 7.2. [#712]
 
 ### Credits
@@ -556,7 +556,6 @@ Thanks go out to [Jonathan Champ] for his contribution to this version. :clap:
 [polyfills-password_compat]: https://github.com/ircmaxell/password_compat
 [polyfills-paragonie]:       https://github.com/paragonie?utf8=?&q=polyfill
 [polyfills-symfony]:         https://github.com/symfony?utf8=?&q=polyfill
-[phpcs-3.2.0-release]:       https://github.com/PHPCSStandards/PHP_CodeSniffer/releases/3.2.0
 
 [#248]: https://github.com/PHPCompatibility/PHPCompatibility/issues/248
 [#252]: https://github.com/PHPCompatibility/PHPCompatibility/issues/252
@@ -636,8 +635,8 @@ Composer users are advised to update their `composer.json`. The dependency is no
 Within this new organization, hosting will be offered for framework/CMS specific PHPCompatibility rulesets.
 
 The first two such repositories have been created and are now available for use:
-* PHPCompatibilityJoomla [GitHub][gh-phpcompat-joomla]|[Packagist][packagist-phpcompat-joomla]
-* PHPCompatibilityWP [GitHub][gh-phpcompat-wp]|[Packagist][packagist-phpcompat-wp]
+- PHPCompatibilityJoomla [GitHub][gh-phpcompat-joomla]|[Packagist][packagist-phpcompat-joomla]
+- PHPCompatibilityWP [GitHub][gh-phpcompat-wp]|[Packagist][packagist-phpcompat-wp]
 
 If you want to make sure you have all PHPCompatibility rulesets available at any time, you can use the PHPCompatibilityAll package [GitHub][gh-phpcompat-all]|[Packagist][packagist-phpcompat-all].
 
@@ -875,7 +874,6 @@ See all related issues and PRs in the [8.1.0 milestone].
 ### Credits
 Thanks go out to [Juliette Reinders Folmer] and [Jonathan Van Belle] for their contributions to this version. :clap:
 
-[#39]:  https://github.com/PHPCompatibility/PHPCompatibility/issues/39
 [#263]: https://github.com/PHPCompatibility/PHPCompatibility/issues/263
 [#507]: https://github.com/PHPCompatibility/PHPCompatibility/pull/507
 [#511]: https://github.com/PHPCompatibility/PHPCompatibility/pull/511
@@ -939,7 +937,7 @@ See all related issues and PRs in the [8.0.1 milestone].
 ### Credits
 Thanks go out to [Juliette Reinders Folmer] for her contributions to this version. :clap:
 
-[phpcs-squiz-fix-1591]: https://github.com/squizlabs/PHP_CodeSniffer/issues/1591)
+[phpcs-squiz-fix-1591]: https://github.com/squizlabs/PHP_CodeSniffer/issues/1591
 
 [#497]: https://github.com/PHPCompatibility/PHPCompatibility/pull/497
 [#498]: https://github.com/PHPCompatibility/PHPCompatibility/pull/498
@@ -1191,7 +1189,6 @@ Thanks go out to [Juliette Reinders Folmer] and [Mark Clements] for their contri
 [#422]: https://github.com/PHPCompatibility/PHPCompatibility/pull/422
 [#423]: https://github.com/PHPCompatibility/PHPCompatibility/pull/423
 [#424]: https://github.com/PHPCompatibility/PHPCompatibility/pull/424
-[#424]: https://github.com/PHPCompatibility/PHPCompatibility/pull/424
 [#425]: https://github.com/PHPCompatibility/PHPCompatibility/pull/425
 [#426]: https://github.com/PHPCompatibility/PHPCompatibility/pull/426
 [#428]: https://github.com/PHPCompatibility/PHPCompatibility/pull/428
@@ -1313,7 +1310,7 @@ See all related issues and PRs in the [7.1.2 milestone].
 ### Credits
 Thanks go out to [Juliette Reinders Folmer] for her contributions to this version. :clap:
 
-[#68-comment]: https://github.com/PHPCompatibility/PHPCompatibility/issues/68#issuecomment-231366445)
+[#68-comment]: https://github.com/PHPCompatibility/PHPCompatibility/issues/68#issuecomment-231366445
 [#300]:        https://github.com/PHPCompatibility/PHPCompatibility/pull/300
 [#302]:        https://github.com/PHPCompatibility/PHPCompatibility/pull/302
 [#303]:        https://github.com/PHPCompatibility/PHPCompatibility/pull/303
@@ -1410,8 +1407,8 @@ See all related issues and PRs in the [7.0.8 milestone].
 ### Credits
 Thanks go out to [Juliette Reinders Folmer] for her contributions to this version. :clap:
 
-[php-reserved-keywords]:       http://php.net/manual/en/reserved.keywords.php).
-[php-other-reserved-keywords]: http://php.net/manual/en/reserved.other-reserved-words.php)
+[php-reserved-keywords]:       https://www.php.net/reserved.keywords
+[php-other-reserved-keywords]: https://www.php.net/reserved.other-reserved-words
 
 [#115]: https://github.com/PHPCompatibility/PHPCompatibility/issues/115
 [#271]: https://github.com/PHPCompatibility/PHPCompatibility/pull/271
@@ -1585,8 +1582,8 @@ See all related issues and PRs in the [7.0.5 milestone].
 ### Credits
 Thanks go out to [Juliette Reinders Folmer] and [Yoshiaki Yoshida] for their contributions to this version. :clap:
 
-[26d0b6]: https://github.com/PHPCompatibility/PHPCompatibility/commit/26d0b6cf0921f75d93a4faaf09c390f386dde9ff)
-[841616]: https://github.com/PHPCompatibility/PHPCompatibility/commit/8416162ea81f4067226324f5948f4a50f7958a9b)
+[26d0b6]: https://github.com/PHPCompatibility/PHPCompatibility/commit/26d0b6cf0921f75d93a4faaf09c390f386dde9ff
+[841616]: https://github.com/PHPCompatibility/PHPCompatibility/commit/8416162ea81f4067226324f5948f4a50f7958a9b
 
 [#170]: https://github.com/PHPCompatibility/PHPCompatibility/pull/170
 [#188]: https://github.com/PHPCompatibility/PHPCompatibility/pull/188
@@ -1727,7 +1724,7 @@ See all related issues and PRs in the [7.0.3 milestone].
 - :bug: A number of sniffs would return `false` if the examined construct was not found. This could potentially cause race conditions/infinite sniff loops. [#138]
 - :wrench: The unit tests would fail to run when used in combination with a PEAR install of PHPCS. [#157].
 - :green_heart: Unit tests failing against PHPCS 2.6.1. [#158]
-    The unit tests *will* still fail against PHPCS 2.6.2 due to a bug in PHPCS itself. This bug does not affect the running of the sniffs outside of a unit test context.
+    The unit tests _will_ still fail against PHPCS 2.6.2 due to a bug in PHPCS itself. This bug does not affect the running of the sniffs outside of a unit test context.
 
 ### Credits
 Thanks go out to [Juliette Reinders Folmer] for her contributions to this version. :clap:
@@ -1939,7 +1936,7 @@ See all related issues and PRs in the [5.6 milestone].
 - :green_heart: The sniffs are now tested using the new container-based infrastructure in Travis CI. [#37]
 
 ### Fixed
-- :bug: The `ForbiddenCallTimePassByReference` sniff was throwing false positives when a bitwise and `&` was used in combination with class constants and class properties within function calls. [#44]. Fixes [#39].
+- :bug: The `ForbiddenCallTimePassByReference` sniff was throwing false positives when a bitwise and `&` was used in combination with class constants and class properties within function calls. [#44]. Partially fixes [#39].
 - :bug: The `ForbiddenNamesAsInvokedFunctions` sniff was throwing false positives in certain cases when a comment separated a `try` from the `catch` block. [#29]
 - :bug: The `ForbiddenNamesAsInvokedFunctions` sniff was incorrectly reporting `instanceof` as being introduced in PHP 5.4 while it has been around since PHP 5.0. [#80]
 - :white_check_mark: Compatibility with PHPCS 2.0 - 2.3. [#63], [#65]

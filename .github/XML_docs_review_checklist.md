@@ -1,5 +1,4 @@
-XML Docs review checklist
------------------
+# XML Docs review checklist
 
 Use the below list as a basic check for PRs submitting XML docs for sniffs.
 
@@ -24,4 +23,4 @@ Add one of the following emoji's to each item to indicate compliance.
 * The line length of the code samples stays within the character limit (48 chars).
 * The readability of the code samples is good.
 
-A more detailed description of the requirements for XML docs can be found in the associated issue: https://github.com/PHPCompatibility/PHPCompatibility/issues/1285
+A more detailed description of the requirements for XML docs can be found in the associated issue: <https://github.com/PHPCompatibility/PHPCompatibility/issues/1285>
