@@ -129,6 +129,7 @@ jobs:
 
       - name: Setup ini config
         id: set_ini
+        # yamllint disable rule:line-length
         run: |
           # On stable PHPCS versions, allow for PHP deprecation notices.
           # Unit tests don't need to fail on those for stable releases where those issues won't get fixed anymore.
@@ -146,6 +147,7 @@ jobs:
               echo 'PHP_INI=error_reporting=-1, display_errors=On, display_startup_errors=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
             fi
           fi
+          # yamllint enable rule:line-length
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
@@ -189,6 +191,7 @@ jobs:
 
       - name: Grab PHPUnit version
         id: phpunit_version
+        # yamllint disable-line rule:line-length
         run: echo "VERSION=$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> "$GITHUB_OUTPUT"
 
       - name: Determine PHPUnit config file to use
@@ -249,6 +252,7 @@ jobs:
 
       - name: Setup ini config
         id: set_ini
+        # yamllint disable rule:line-length
         run: |
           # On stable PHPCS versions, allow for PHP deprecation notices.
           # Unit tests don't need to fail on those for stable releases where those issues won't get fixed anymore.
@@ -266,6 +270,7 @@ jobs:
               echo 'PHP_INI=error_reporting=-1, display_errors=On, display_startup_errors=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
             fi
           fi
+          # yamllint enable rule:line-length
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
@@ -298,6 +303,7 @@ jobs:
 
       - name: Grab PHPUnit version
         id: phpunit_version
+        # yamllint disable-line rule:line-length
         run: echo "VERSION=$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> "$GITHUB_OUTPUT"
 
       - name: "DEBUG: Show grabbed version"

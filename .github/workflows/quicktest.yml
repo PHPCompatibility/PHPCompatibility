@@ -51,12 +51,14 @@ jobs:
       # Unit tests don't need to fail on those for stable releases where those issues won't get fixed anymore.
       - name: Setup ini config
         id: set_ini
+        # yamllint disable rule:line-length
         run: |
           if [ "${{ contains( matrix.phpcs_version, 'dev') }}" == "false" ]; then
             echo 'PHP_INI=error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, display_startup_errors=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
           else
             echo 'PHP_INI=error_reporting=-1, display_errors=On, display_startup_errors=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
           fi
+          # yamllint enable rule:line-length
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
@@ -95,6 +97,7 @@ jobs:
 
       - name: Grab PHPUnit version
         id: phpunit_version
+        # yamllint disable-line rule:line-length
         run: echo "VERSION=$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> "$GITHUB_OUTPUT"
 
       - name: Determine PHPUnit config file to use
