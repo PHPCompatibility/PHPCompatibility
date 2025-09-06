@@ -2201,8 +2201,8 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0.3]: https://github.com/PHPCompatibility/PHPCompatibility/compare/7.0.2...7.0.3
 [7.0.2]: https://github.com/PHPCompatibility/PHPCompatibility/compare/7.0.1...7.0.2
 [7.0.1]: https://github.com/PHPCompatibility/PHPCompatibility/compare/7.0...7.0.1
-[7.0]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.6...7.0
-[5.6]: https://github.com/PHPCompatibility/PHPCompatibility/compare/5.5...5.6
+[7.0]:   https://github.com/PHPCompatibility/PHPCompatibility/compare/5.6...7.0
+[5.6]:   https://github.com/PHPCompatibility/PHPCompatibility/compare/5.5...5.6
 
 [9.3.5 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/34
 [9.3.4 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/33
@@ -2232,38 +2232,38 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0.3 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/5
 [7.0.2 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/4
 [7.0.1 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/3
-[7.0 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/2
-[5.6 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/1
-[5.5 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/16
+[7.0 milestone]:   https://github.com/PHPCompatibility/PHPCompatibility/milestone/2
+[5.6 milestone]:   https://github.com/PHPCompatibility/PHPCompatibility/milestone/1
+[5.5 milestone]:   https://github.com/PHPCompatibility/PHPCompatibility/milestone/16
 
-[Arthur Edamov]: https://github.com/edamov
-[Chris Abernethy]: https://github.com/cabernet-zerve
-[Declan Kelly]: https://github.com/declank
-[dgudgeon]: https://github.com/dgudgeon
-[djaenecke]: https://github.com/djaenecke
-[Dominic]: https://github.com/dol
-[Eugene Maslovich]: https://github.com/ehpc
-[Gary Jones]: https://github.com/GaryJones
-[Jaap van Otterdijk]: https://github.com/jaapio
-[Jason Stallings]: https://github.com/octalmage
-[Jonathan Champ]: https://github.com/jrchamp
-[Jonathan Van Belle]: https://github.com/Grummfy
+[Arthur Edamov]:            https://github.com/edamov
+[Chris Abernethy]:          https://github.com/cabernet-zerve
+[Declan Kelly]:             https://github.com/declank
+[dgudgeon]:                 https://github.com/dgudgeon
+[djaenecke]:                https://github.com/djaenecke
+[Dominic]:                  https://github.com/dol
+[Eugene Maslovich]:         https://github.com/ehpc
+[Gary Jones]:               https://github.com/GaryJones
+[Jaap van Otterdijk]:       https://github.com/jaapio
+[Jason Stallings]:          https://github.com/octalmage
+[Jonathan Champ]:           https://github.com/jrchamp
+[Jonathan Van Belle]:       https://github.com/Grummfy
 [Juliette Reinders Folmer]: https://github.com/jrfnl
-[Ken Guest]: https://github.com/kenguest
-[Komarov Alexey]: https://github.com/erdraug
-[Marin Crnkovic]: https://github.com/anorgan
-[Mark Clements]: https://github.com/MarkMaldaba
-[Michael Babker]: https://github.com/mbabker
-[Nick Pack]: https://github.com/nickpack
-[Nikhil]: https://github.com/Nikschavan
-[Oliver Klee]: https://github.com/oliverklee
-[Remko van Bezooijen]: https://github.com/emkookmer
-[Rowan Collins]: https://github.com/IMSoP
-[Ryan Neufeld]: https://github.com/ryanneufeld
-[Sam Van der Borght]: https://github.com/samvdb
-[Sergii Bondarenko]: https://github.com/BR0kEN-
-[Tadas Juozapaitis]: https://github.com/kasp3r
-[Tim Millwood]: https://github.com/timmillwood
-[William Entriken]: https://github.com/fulldecent
-[Yılmaz]: https://github.com/edigu
-[Yoshiaki Yoshida]: https://github.com/kakakakakku
+[Ken Guest]:                https://github.com/kenguest
+[Komarov Alexey]:           https://github.com/erdraug
+[Marin Crnkovic]:           https://github.com/anorgan
+[Mark Clements]:            https://github.com/MarkMaldaba
+[Michael Babker]:           https://github.com/mbabker
+[Nick Pack]:                https://github.com/nickpack
+[Nikhil]:                   https://github.com/Nikschavan
+[Oliver Klee]:              https://github.com/oliverklee
+[Remko van Bezooijen]:      https://github.com/emkookmer
+[Rowan Collins]:            https://github.com/IMSoP
+[Ryan Neufeld]:             https://github.com/ryanneufeld
+[Sam Van der Borght]:       https://github.com/samvdb
+[Sergii Bondarenko]:        https://github.com/BR0kEN-
+[Tadas Juozapaitis]:        https://github.com/kasp3r
+[Tim Millwood]:             https://github.com/timmillwood
+[William Entriken]:         https://github.com/fulldecent
+[Yılmaz]:                  https://github.com/edigu
+[Yoshiaki Yoshida]:         https://github.com/kakakakakku
