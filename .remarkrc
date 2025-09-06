@@ -1,0 +1,60 @@
+{
+  "plugins": [
+    "remark-gfm",
+    ["remark-lint-checkbox-character-style", "consistent"],
+    ["remark-lint-checkbox-content-indent", "consistent"],
+    "remark-lint-definition-spacing",
+    "remark-lint-file-extension",
+    ["remark-lint-linebreak-style", "unix"],
+    ["remark-lint-link-title-style", "\""],
+    ["remark-lint-ordered-list-marker-style", "."],
+    [
+        "remark-lint-no-dead-urls",
+        {
+            "skipUrlPatterns": [
+                "^https?://github\\.com/PHPCompatibility/PHPCompatibility/compare/[0-9\\.]+?\\.{3}[0-9\\.]+",
+                "^https?://github\\.com/[A-Za-z0-9-]+",
+                "^https?://packagist\\.org/packages/phpcompatibility/php-compatibility#dev-develop",
+                "^https?://coveralls\\.io/github/PHPCompatibility/PHPCompatibility"
+            ],
+            "deadOrAliveOptions": {
+                "maxRetries": 3
+            }
+        }
+    ],
+    "remark-lint-no-duplicate-defined-urls",
+    "remark-lint-no-duplicate-definitions",
+    "remark-lint-no-empty-url",
+    "remark-lint-no-file-name-consecutive-dashes",
+    ["remark-lint-no-file-name-irregular-characters", "\\.a-zA-Z0-9-_"],
+    "remark-lint-no-file-name-outer-dashes",
+    "remark-lint-no-heading-like-paragraph",
+    "remark-lint-no-literal-urls",
+    "remark-lint-no-reference-like-url",
+    "remark-lint-no-shortcut-reference-image",
+    "remark-lint-no-table-indentation",
+    [
+        "remark-lint-no-undefined-references",
+        {
+            "allow": [
+                "!NOTE",
+                "!TIP",
+                "!IMPORTANT",
+                "!WARNING",
+                "!CAUTION"
+            ]
+        }
+    ],
+    "remark-lint-no-unneeded-full-reference-image",
+    "remark-lint-no-unneeded-full-reference-link",
+    "remark-lint-no-unused-definitions",
+    ["remark-lint-strikethrough-marker", "~~"],
+    ["remark-lint-table-cell-padding", "consistent"],
+    "remark-lint-heading-whitespace",
+    "remark-lint-list-item-punctuation",
+    "remark-lint-match-punctuation",
+    "remark-lint-no-hr-after-heading",
+    "remark-lint-are-links-valid-duplicate",
+    "remark-validate-links"
+  ]
+}
