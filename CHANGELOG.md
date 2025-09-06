@@ -703,21 +703,21 @@ If all went well, you should now see PHPCompatibility listed again in the list o
     Unzipped release to arbitrary directory | `path/to/dir/abovePHPCompatibility` | `path/to/dir/abovePHPCompatibility/PHPCompatibility`
     Git checkout | `path/to/dir/abovePHPCompatibility` | `path/to/dir/abovePHPCompatibility/PHPCompatibility`
     PEAR         | If the old install instruction has been followed, not registered. | `path/to/PHPCompatibility`
-    
+
     > **Side-note**:
-	>
-	> If you used the old install instructions for a PEAR install, i.e. checking out the latest release to the `PHP/CodeSniffer/Standards/PHPCompatibility` directory, and you intend to upgrade to PHP CodeSniffer 3.x, it is recommended you move the PHPCompatibility folder out of the PEAR directory now, as the layout of the PHPCS directory has changed with PHPCS 3.x and you may otherwise lose your PHPCompatibility install when you upgrade PHP CodeSniffer via PEAR.
+    >
+    > If you used the old install instructions for a PEAR install, i.e. checking out the latest release to the `PHP/CodeSniffer/Standards/PHPCompatibility` directory, and you intend to upgrade to PHP CodeSniffer 3.x, it is recommended you move the PHPCompatibility folder out of the PEAR directory now, as the layout of the PHPCS directory has changed with PHPCS 3.x and you may otherwise lose your PHPCompatibility install when you upgrade PHP CodeSniffer via PEAR.
 
 3. There are two ways in which you can register the new `installed_paths` value with PHP CodeSniffer. Choose your preferred method:
     * Run `phpcs --config-set installed_paths ...` and include all previously installed paths including the _adjusted_ path for the PHPCompatibility standard.
 
         For example, if the previous value of `installed_paths` was
-		
-		`/path/to/MyStandard,/path/to/dir/abovePHPCompatibility`
 
-		you should now set it using
+        `/path/to/MyStandard,/path/to/dir/abovePHPCompatibility`
 
-		`phpcs --config-set installed_paths /path/to/MyStandard,/path/to/PHPCompatibility`
+        you should now set it using
+
+        `phpcs --config-set installed_paths /path/to/MyStandard,/path/to/PHPCompatibility`
 
     * If you use a custom ruleset in combination with PHPCS 2.6.0 or higher, you can pass the value to PHPCS from your custom ruleset:
         ```xml
