@@ -9,3 +9,4 @@ phpunit.xml
 .phpunit.result.cache
 .phpcs.cache
 *~
+/node_modules/
