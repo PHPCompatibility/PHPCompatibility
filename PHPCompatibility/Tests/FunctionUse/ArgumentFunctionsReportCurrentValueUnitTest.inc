@@ -186,7 +186,7 @@ function ignoreParamInExit ( $stuff ) {
 
 function ignoreParamInDie ( $stuff ) {
     if ( true === SOME_CONSTANT ) {
-        die ( 'Did ' . $stuff );
+        \die ( 'Did ' . $stuff );
     }
 
     $args = func_get_args(); // OK.
