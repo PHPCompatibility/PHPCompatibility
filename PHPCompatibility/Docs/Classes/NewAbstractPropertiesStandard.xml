@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Abstract Properties"
+    >
+    <standard>
+    <![CDATA[
+    Hooked OO properties can be declared as abstract since PHP 8.4.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: not using the abstract modifier.">
+        <![CDATA[
+class Foo {
+    public string $name;
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.4: using the abstract modifier.">
+        <![CDATA[
+abstract class Foo {
+    <em>abstract</em> public string $name { get; }
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
