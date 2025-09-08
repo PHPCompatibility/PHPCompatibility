@@ -17,6 +17,7 @@ use PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff;
 use PHPCompatibility\Sniffs\Syntax\NewFunctionArrayDereferencingSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 
 /**
  * Using the curly brace syntax to access array or string offsets has been deprecated in PHP 7.4
@@ -114,9 +115,10 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
         $targets = [
             [
                 \T_VARIABLE,
-                \T_STRING, // Constants.
             ],
         ];
+
+        $targets[] = Collections::nameTokens(); // Constants.
 
         // Registers T_ARRAY, T_OPEN_SHORT_ARRAY and T_CONSTANT_ENCAPSED_STRING.
         $additionalTargets                        = $this->newArrayStringDereferencing->register();
@@ -128,7 +130,7 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
         $this->newClassMemberAccessTargets = \array_flip($additionalTargets);
         $targets[]                         = $additionalTargets;
 
-        // Registers T_STRING.
+        // Registers Collections::nameTokens().
         $additionalTargets = $this->newFunctionArrayDereferencing->register();
         $this->newFunctionArrayDereferencingTargets = \array_flip($additionalTargets);
         $targets[] = $additionalTargets;
@@ -177,7 +179,7 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
             $braces = $this->newFunctionArrayDereferencing->isFunctionArrayDereferencing($phpcsFile, $stackPtr);
         }
 
-        if (empty($braces) && $tokens[$stackPtr]['code'] === \T_STRING) {
+        if (empty($braces) && isset(Collections::nameTokens()[$tokens[$stackPtr]['code']])) {
             $braces = $this->isConstantArrayAccess($phpcsFile, $stackPtr);
         }
 
@@ -298,7 +300,7 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
 
 
     /**
-     * Determine whether a T_STRING is a constant being dereferenced using curly brace syntax.
+     * Determine whether a name token is a constant being dereferenced using curly brace syntax.
      *
      * {@internal Note: the first braces for array access to a constant, for some unknown reason,
      *            can never be curlies, but have to be square brackets.
