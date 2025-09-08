@@ -80,7 +80,10 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
         // Handle case-insensitivity of function names.
         $this->targetFunctions = \array_change_key_case($this->targetFunctions, \CASE_LOWER);
 
-        return [\T_STRING];
+        return [
+            \T_STRING,
+            \T_NAME_FULLY_QUALIFIED,
+        ];
     }
 
 
@@ -103,7 +106,7 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
         }
 
         $tokens     = $phpcsFile->getTokens();
-        $function   = $tokens[$stackPtr]['content'];
+        $function   = \ltrim($tokens[$stackPtr]['content'], '\\');
         $functionLc = \strtolower($function);
 
         if (isset($this->targetFunctions[$functionLc]) === false) {
@@ -113,7 +116,9 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
         $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
         if ($nextToken === false
             || $tokens[$nextToken]['code'] !== \T_OPEN_PARENTHESIS
-            || isset($tokens[$nextToken]['parenthesis_owner']) === true
+            || (isset($tokens[$nextToken]['parenthesis_owner']) === true
+                // Don't bow out for PHP 8.4 exit as a function call, which is a parenthesis owner in PHPCS 4.x.
+                && $tokens[$tokens[$nextToken]['parenthesis_owner']]['code'] !== \T_EXIT)
         ) {
             return;
         }
@@ -123,26 +128,28 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
             return;
         }
 
-        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        if ($tokens[$stackPtr]['code'] === \T_STRING) {
+            $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
-        if ($this->isMethod === true) {
-            if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === false) {
-                // Not a call to a PHP method.
-                return;
-            }
-        } else {
-            if (isset($this->ignoreTokens[$tokens[$prevNonEmpty]['code']]) === true) {
-                // Not a call to a PHP function.
-                return;
-            }
-
-            if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR) {
-                $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
-                if ($tokens[$prevPrevToken]['code'] === \T_STRING
-                    || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
-                ) {
-                    // Namespaced function.
+            if ($this->isMethod === true) {
+                if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === false) {
+                    // Not a call to a PHP method.
                     return;
+                }
+            } else {
+                if (isset($this->ignoreTokens[$tokens[$prevNonEmpty]['code']]) === true) {
+                    // Not a call to a PHP function.
+                    return;
+                }
+
+                if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR) {
+                    $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
+                    if ($tokens[$prevPrevToken]['code'] === \T_STRING
+                        || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
+                    ) {
+                        // Namespaced function.
+                        return;
+                    }
                 }
             }
         }

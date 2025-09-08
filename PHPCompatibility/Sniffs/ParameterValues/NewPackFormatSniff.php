@@ -14,6 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -100,7 +101,7 @@ final class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
         $tokens = $phpcsFile->getTokens();
 
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
-            if ($tokens[$i]['code'] === \T_STRING
+            if (isset(Collections::namespacedNameTokens()[$tokens[$i]['code']]) === true
                 || $tokens[$i]['code'] === \T_VARIABLE
             ) {
                 // Variable, constant, function call. Ignore as undetermined.

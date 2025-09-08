@@ -66,6 +66,7 @@ final class ArgumentFunctionsUsageSniff extends Sniff
     {
         return [
             \T_STRING,
+            \T_NAME_FULLY_QUALIFIED,
             // Only registering arrow functions to allow for skipping over them.
             \T_FN,
         ];
@@ -95,7 +96,7 @@ final class ArgumentFunctionsUsageSniff extends Sniff
             return $tokens[$stackPtr]['scope_closer'];
         }
 
-        $functionLc = \strtolower($tokens[$stackPtr]['content']);
+        $functionLc = \strtolower(\ltrim($tokens[$stackPtr]['content'], '\\'));
         if (isset($this->targetFunctions[$functionLc]) === false) {
             return;
         }
@@ -128,7 +129,7 @@ final class ArgumentFunctionsUsageSniff extends Sniff
             if ($tokens[$prevPrevToken]['code'] === \T_STRING
                 || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
             ) {
-                // Namespaced function.
+                // Namespaced function on PHPCS 3.x.
                 return;
             }
         }
@@ -169,7 +170,7 @@ final class ArgumentFunctionsUsageSniff extends Sniff
         }
 
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), null, true);
-        if ($tokens[$prevNonEmpty]['code'] !== \T_STRING) {
+        if (isset(Collections::nameTokens()[$tokens[$prevNonEmpty]['code']]) === false) {
             // Not nested in a function call.
             return;
         }

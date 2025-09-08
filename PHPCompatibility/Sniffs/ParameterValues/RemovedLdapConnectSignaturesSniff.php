@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\PassedParameters;
 use PHP_CodeSniffer\Files\File;
 
@@ -129,7 +130,9 @@ final class RemovedLdapConnectSignaturesSniff extends AbstractFunctionCallParame
                 return;
             }
 
-            $hasVariableContent = $phpcsFile->findNext([\T_VARIABLE, \T_STRING], $portParam['start'], ($portParam['end'] + 1));
+            $find               = Collections::namespacedNameTokens();
+            $find[\T_VARIABLE]  = \T_VARIABLE;
+            $hasVariableContent = $phpcsFile->findNext($find, $portParam['start'], ($portParam['end'] + 1));
             if ($hasVariableContent !== false) {
                 // We don't have access to the contents of the parameter. Bow out.
                 return;

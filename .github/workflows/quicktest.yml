@@ -35,6 +35,12 @@ jobs:
         php: ['5.4', 'latest']
         phpcs_version: ['lowest', 'dev-master']
 
+        include:
+          - php: '7.2'
+            phpcs_version: '4.x-dev'
+          - php: 'latest'
+            phpcs_version: '4.x-dev'
+
     name: "QTest${{ matrix.phpcs_version == 'dev-master' && ' + Lint' || '' }}: PHP ${{ matrix.php }} - PHPCS ${{ matrix.phpcs_version }}"
 
     steps:
@@ -46,7 +52,7 @@ jobs:
       - name: Setup ini config
         id: set_ini
         run: |
-          if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
+          if [ "${{ contains( matrix.phpcs_version, 'dev') }}" == "false" ]; then
             echo 'PHP_INI=error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, display_startup_errors=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
           else
             echo 'PHP_INI=error_reporting=-1, display_errors=On, display_startup_errors=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
@@ -59,8 +65,12 @@ jobs:
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: none
 
-      - name: "Composer: set PHPCS version for tests (master)"
-        if: ${{ matrix.phpcs_version != 'lowest' }}
+      # Remove PHPCSDevCS as it would (for now) prevent the tests from being able to run against PHPCS 4.x.
+      - name: 'Composer: remove PHPCSDevCS'
+        run: composer remove --dev phpcsstandards/phpcsdevcs --no-update --no-interaction
+
+      - name: "Composer: set PHPCS version for tests (dev)"
+        if: ${{ contains( matrix.phpcs_version, 'dev') }}
         run: composer require squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-update --no-scripts --no-interaction
 
       - name: Enable creation of `composer.lock` file

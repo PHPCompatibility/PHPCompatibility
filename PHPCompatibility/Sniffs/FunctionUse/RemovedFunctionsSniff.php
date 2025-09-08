@@ -5710,7 +5710,10 @@ final class RemovedFunctionsSniff extends Sniff
         // Handle case-insensitivity of function names.
         $this->removedFunctions = \array_change_key_case($this->removedFunctions, \CASE_LOWER);
 
-        return [\T_STRING];
+        return [
+            \T_STRING,
+            \T_NAME_FULLY_QUALIFIED,
+        ];
     }
 
 
@@ -5729,7 +5732,7 @@ final class RemovedFunctionsSniff extends Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $function   = $tokens[$stackPtr]['content'];
+        $function   = \ltrim($tokens[$stackPtr]['content'], '\\');
         $functionLc = \strtolower($function);
 
         if (isset($this->removedFunctions[$functionLc]) === false) {
@@ -5752,7 +5755,9 @@ final class RemovedFunctionsSniff extends Sniff
             // Not a call to a PHP function.
             return;
 
-        } elseif ($tokens[$prevToken]['code'] === \T_NS_SEPARATOR) {
+        } elseif ($tokens[$stackPtr]['code'] === \T_STRING
+            && $tokens[$prevToken]['code'] === \T_NS_SEPARATOR
+        ) {
             $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true);
             if ($tokens[$prevPrevToken]['code'] === \T_STRING
                 || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE

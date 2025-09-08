@@ -270,7 +270,10 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
         }
 
         $maybeLabel = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($lastOpenParens - 1), null, true);
-        if ($maybeLabel === false || $tokens[$maybeLabel]['code'] !== \T_STRING) {
+        if ($maybeLabel === false
+            || ($tokens[$maybeLabel]['code'] !== \T_STRING
+            && $tokens[$maybeLabel]['code'] !== \T_NAME_FULLY_QUALIFIED)
+        ) {
             // Not a named function call.
             return false;
         }
@@ -282,7 +285,12 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
             $this->phpNativeFunctions = \array_change_key_case($functions, \CASE_LOWER);
         }
 
-        if (isset($this->phpNativeFunctions[\strtolower($tokens[$maybeLabel]['content'])]) === false) {
+        $functionName = \strtolower($tokens[$maybeLabel]['content']);
+        if ($tokens[$maybeLabel]['code'] === \T_NAME_FULLY_QUALIFIED) {
+            $functionName = \ltrim($functionName, '\\');
+        }
+
+        if (isset($this->phpNativeFunctions[$functionName]) === false) {
             // Definitely not a PHP native function call.
             return false;
         }

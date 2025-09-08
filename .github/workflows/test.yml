@@ -88,8 +88,21 @@ jobs:
         #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
         php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
-        phpcs_version: ['lowest', 'dev-master']
+        phpcs_version: ['lowest', 'dev-master', '4.x-dev']
         experimental: [false]
+
+        exclude:
+          - php: '5.5'
+            phpcs_version: '4.x-dev'
+          - php: '5.6'
+            phpcs_version: '4.x-dev'
+          - php: '7.0'
+            phpcs_version: '4.x-dev'
+          - php: '7.1'
+            phpcs_version: '4.x-dev'
+          # Also exclude the 7.2 build as that's run in code coverage, no need to duplicate.
+          - php: '7.2'
+            phpcs_version: '4.x-dev'
 
         include:
           - php: '7.2'
@@ -98,12 +111,12 @@ jobs:
             experimental: false
 
           # Experimental builds. These are allowed to fail.
-          #- php: '7.4'
-          #  phpcs_version: '4.0.x-dev@dev'
-          #  experimental: true
-
           - php: '8.5' # Nightly.
             phpcs_version: 'dev-master'
+            experimental: true
+
+          - php: '8.5' # Nightly.
+            phpcs_version: '4.x-dev'
             experimental: true
 
     name: "Test: PHP ${{ matrix.php }}${{ matrix.custom_ini && ' (ini)' || '' }} - PHPCS ${{ matrix.phpcs_version }}"
@@ -121,13 +134,13 @@ jobs:
           # Unit tests don't need to fail on those for stable releases where those issues won't get fixed anymore.
           # Also set the "short_open_tag" ini to make sure specific conditions are tested.
           if [ ${{ matrix.custom_ini }} == "true" ]; then
-            if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
+            if [ "${{ contains( matrix.phpcs_version, 'dev') }}" == "false" ]; then
               echo 'PHP_INI=error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, display_startup_errors=On, zend.assertions=1, short_open_tag=On' >> "$GITHUB_OUTPUT"
             else
               echo 'PHP_INI=error_reporting=-1, display_errors=On, display_startup_errors=On, short_open_tag=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
             fi
           else
-            if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
+            if [ "${{ contains( matrix.phpcs_version, 'dev') }}" == "false" ]; then
               echo 'PHP_INI=error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, display_startup_errors=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
             else
               echo 'PHP_INI=error_reporting=-1, display_errors=On, display_startup_errors=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
@@ -141,8 +154,12 @@ jobs:
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: none
 
-      - name: "Composer: set PHPCS version for tests (master)"
-        if: ${{ matrix.phpcs_version != 'lowest' }}
+      # Remove PHPCSDevCS as it would (for now) prevent the tests from being able to run against PHPCS 4.x.
+      - name: 'Composer: remove PHPCSDevCS'
+        run: composer remove --dev phpcsstandards/phpcsdevcs --no-update --no-interaction
+
+      - name: "Composer: set PHPCS version for tests (dev)"
+        if: ${{ contains( matrix.phpcs_version, 'dev') }}
         run: composer require squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-update --no-scripts --no-interaction
 
       - name: Enable creation of `composer.lock` file
@@ -158,7 +175,7 @@ jobs:
           # Bust the cache at least once a month - output format: YYYY-MM.
           custom-cache-suffix: $(date -u "+%Y-%m")
 
-      # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies allow it yet.
+      # For PHP "nightly", we need to install with ignore platform reqs as not all dependencies allow it yet.
       - name: Install Composer dependencies - with ignore platform
         if: ${{ matrix.php >= 8.5 }}
         uses: "ramsey/composer-install@v3"
@@ -207,10 +224,16 @@ jobs:
       matrix:
         include:
           - php: '8.4'
+            phpcs_version: '4.x-dev'
+          - php: '8.4'
             phpcs_version: 'dev-master'
             custom_ini: true
           - php: '8.4'
             phpcs_version: 'lowest'
+
+          - php: '7.2'
+            phpcs_version: '4.x-dev'
+            custom_ini: true
 
           - php: '5.4'
             phpcs_version: 'dev-master'
@@ -231,13 +254,13 @@ jobs:
           # Unit tests don't need to fail on those for stable releases where those issues won't get fixed anymore.
           # Also set the "short_open_tag" ini to make sure specific conditions are tested.
           if [ ${{ matrix.custom_ini }} == "true" ]; then
-            if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
+            if [ "${{ contains( matrix.phpcs_version, 'dev') }}" == "false" ]; then
               echo 'PHP_INI=error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, display_startup_errors=On, zend.assertions=1, short_open_tag=On' >> "$GITHUB_OUTPUT"
             else
-              echo 'PHP_INI=error_reporting=-1, display_errors=On, display_startup_errors=On, short_open_tag=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
+              echo 'PHP_INI=error_reporting=-1, display_errors=On, display_startup_errors=On, zend.assertions=1, short_open_tag=On' >> "$GITHUB_OUTPUT"
             fi
           else
-            if [ "${{ matrix.phpcs_version }}" != "dev-master" ]; then
+            if [ "${{ contains( matrix.phpcs_version, 'dev') }}" == "false" ]; then
               echo 'PHP_INI=error_reporting=E_ALL & ~E_DEPRECATED, display_errors=On, display_startup_errors=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
             else
               echo 'PHP_INI=error_reporting=-1, display_errors=On, display_startup_errors=On, zend.assertions=1' >> "$GITHUB_OUTPUT"
@@ -251,8 +274,12 @@ jobs:
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: xdebug
 
-      - name: "Composer: set PHPCS version for tests (master)"
-        if: ${{ matrix.phpcs_version != 'lowest' }}
+      # Remove PHPCSDevCS as it would (for now) prevent the tests from being able to run against PHPCS 4.x.
+      - name: 'Composer: remove PHPCSDevCS'
+        run: composer remove --dev phpcsstandards/phpcsdevcs --no-update --no-interaction
+
+      - name: "Composer: set PHPCS version for tests (dev)"
+        if: ${{ contains( matrix.phpcs_version, 'dev') }}
         run: composer require squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-update --no-scripts --no-interaction
 
       - name: Enable creation of `composer.lock` file

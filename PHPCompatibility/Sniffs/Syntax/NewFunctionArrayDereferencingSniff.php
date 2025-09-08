@@ -51,7 +51,7 @@ final class NewFunctionArrayDereferencingSniff extends Sniff
      */
     public function register()
     {
-        return [\T_STRING];
+        return Collections::nameTokens();
     }
 
     /**
@@ -132,28 +132,30 @@ final class NewFunctionArrayDereferencingSniff extends Sniff
             return [];
         }
 
-        // Is this T_STRING really a function or method call ?
-        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-        if ($prevToken !== false
-            && isset(Collections::objectOperators()[$tokens[$prevToken]['code']]) === false
-        ) {
-            if ($tokens[$prevToken]['code'] === \T_BITWISE_AND) {
-                // This may be a function declared by reference.
-                $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true);
-            }
+        // Is this token really a function or method call ?
+        if ($tokens[$stackPtr]['code'] === \T_STRING) {
+            $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            if ($prevToken !== false
+                && isset(Collections::objectOperators()[$tokens[$prevToken]['code']]) === false
+            ) {
+                if ($tokens[$prevToken]['code'] === \T_BITWISE_AND) {
+                    // This may be a function declared by reference.
+                    $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true);
+                }
 
-            $ignore = [
-                \T_FUNCTION  => true,
-                \T_CONST     => true,
-                \T_USE       => true,
-                \T_NEW       => true,
-                \T_CLASS     => true,
-                \T_INTERFACE => true,
-            ];
+                $ignore = [
+                    \T_FUNCTION  => true,
+                    \T_CONST     => true,
+                    \T_USE       => true,
+                    \T_NEW       => true,
+                    \T_CLASS     => true,
+                    \T_INTERFACE => true,
+                ];
 
-            if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
-                // Not a call to a PHP function or method.
-                return [];
+                if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
+                    // Not a call to a PHP function or method.
+                    return [];
+                }
             }
         }
 

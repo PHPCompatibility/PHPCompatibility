@@ -212,7 +212,8 @@ final class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
         }
 
         foreach ($exits as $ptr) {
-            MessageHelper::addMessage($phpcsFile, $error, $ptr, $hasDestruct, $errorCode, [$tokens[$ptr]['content']]);
+            $data = [\ltrim($tokens[$ptr]['content'], '\\')];
+            MessageHelper::addMessage($phpcsFile, $error, $ptr, $hasDestruct, $errorCode, $data);
         }
     }
 }

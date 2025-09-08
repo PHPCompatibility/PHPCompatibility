@@ -129,7 +129,7 @@ final class ForbiddenNamesSniff extends Sniff
     ];
 
     /**
-     * T_STRING keywords to recognize as forbidden names.
+     * Other keywords to recognize as forbidden names.
      *
      * These keywords cannot be used to name a class, interface or trait.
      * Prior to PHP 8.0, they were also prohibited from being used in namespaces.
@@ -155,7 +155,7 @@ final class ForbiddenNamesSniff extends Sniff
     ];
 
     /**
-     * T_STRING keywords to recognize as soft reserved names.
+     * Keywords to recognize as soft reserved names.
      *
      * Using any of these keywords to name a class, interface, trait or namespace
      * is highly discouraged since they may be used in future versions of PHP.
@@ -224,6 +224,7 @@ final class ForbiddenNamesSniff extends Sniff
         \T_FUNCTION,
         \T_CONST,
         \T_STRING, // Function calls to `define()`.
+        \T_NAME_FULLY_QUALIFIED, // FQN function calls to `define()`.
         \T_USE,
         \T_ANON_CLASS, // Only for a specific tokenizer issue.
     ];
@@ -331,6 +332,10 @@ final class ForbiddenNamesSniff extends Sniff
                     return;
                 }
 
+                $this->processString($phpcsFile, $stackPtr);
+                return;
+
+            case \T_NAME_FULLY_QUALIFIED:
                 $this->processString($phpcsFile, $stackPtr);
                 return;
 
@@ -680,6 +685,7 @@ final class ForbiddenNamesSniff extends Sniff
      * @since 5.5
      * @since 10.0.0 - Removed the $tokens parameter.
      *               - Visibility changed from `public` to `protected`.
+     *               - Now also handles T_NAME_FULLY_QUALIFIED tokens for PHPCS 4.x support.
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                         $stackPtr  The position of the current token in the
@@ -692,7 +698,7 @@ final class ForbiddenNamesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         // Look for function calls to `define()`.
-        if (\strtolower($tokens[$stackPtr]['content']) !== 'define') {
+        if (\strtolower(\ltrim($tokens[$stackPtr]['content'], '\\')) !== 'define') {
             return;
         }
 

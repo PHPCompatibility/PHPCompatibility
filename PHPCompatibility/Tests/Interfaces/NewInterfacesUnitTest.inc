@@ -175,7 +175,7 @@ try {
 class ConstructorProp {
     public function __construct(
         protected $property,
-        public Reflector | \ | ParseErrorMissingTypeBetweenUnion $reflProp,
+        public Reflector | AllGood $reflProp,
         private Stringable $stringProp,
     ) {}
 }

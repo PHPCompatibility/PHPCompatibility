@@ -302,6 +302,133 @@ class NameInConstantType {
     public const false|(PHP_VERSION_ID&Something) CONST_NAME_J = 'Type is class name, not constant';
 }
 
+/* test 96 */
+#[MyAttribute(), \PHP_VERSION_ID]
+function HasMultiAttribute() {}
+
+/* test 97 */
+attributeNestedInParenthesis1(
+    new #[MyAttribute(), \PHP_VERSION_ID] class () {}
+);
+
+/* test 98 */
+try {
+} catch (\PHP_VERSION_ID $e) {
+/* test 99 */
+} catch (\PHP_VERSION_ID) {}
+
+/* test 100 */
+if ( $abc instanceof \PHP_VERSION_ID ) {}
+
+class EverythingTypedFQN {
+    /* test 101 */
+    final const \PHP_VERSION_ID CONST_NAME_A = 'Type is class name, not constant';
+
+    /* test 102 */
+    public const ?\PHP_VERSION_ID CONST_NAME_B = 'Type is class name, not constant';
+
+    /* test 103 */
+    protected const \PHP_VERSION_ID|false CONST_NAME_C = 'Type is class name, not constant';
+
+    /* test 104 */
+    private const false|\PHP_VERSION_ID CONST_NAME_D = 'Type is class name, not constant';
+
+    /* test 105 */
+    const string|\PHP_VERSION_ID|false CONST_NAME_E = 'Type is class name, not constant';
+
+    /* test 106 */
+    final const \PHP_VERSION_ID&Something CONST_NAME_F = 'Type is class name, not constant';
+
+    /* test 107 */
+    public const Something&\PHP_VERSION_ID CONST_NAME_G = 'Type is class name, not constant';
+
+    /* test 108 */
+    protected const Something&\PHP_VERSION_ID&SomethingElse CONST_NAME_H = 'Type is class name, not constant';
+
+    /* test 109 */
+    private const (Something&\PHP_VERSION_ID)|null CONST_NAME_I = 'Type is class name, not constant';
+
+    /* test 110 */
+    public const false|(\PHP_VERSION_ID&Something) CONST_NAME_J = 'Type is class name, not constant';
+
+    /* test 111 */
+    final \PHP_VERSION_ID $typedPropA = 'Type is class name, not constant';
+
+    /* test 112 */
+    public ?\PHP_VERSION_ID $typedPropB = 'Type is class name, not constant';
+
+    /* test 113 */
+    protected \PHP_VERSION_ID|false $typedPropC = 'Type is class name, not constant';
+
+    /* test 114 */
+    private false|\PHP_VERSION_ID $typedPropD = 'Type is class name, not constant';
+
+    /* test 115 */
+    var string|\PHP_VERSION_ID|false $typedPropE = 'Type is class name, not constant';
+
+    /* test 116 */
+    static \PHP_VERSION_ID&Something $typedPropF = 'Type is class name, not constant';
+
+    /* test 117 */
+    readonly Something&\PHP_VERSION_ID $typedPropG = 'Type is class name, not constant';
+
+    /* test 118 */
+    public(set) Something&\PHP_VERSION_ID&SomethingElse $typedPropH = 'Type is class name, not constant';
+
+    /* test 119 */
+    protected(set) (Something&\PHP_VERSION_ID)|null $typedPropI = 'Type is class name, not constant';
+
+    /* test 120 */
+    private(set) false|(\PHP_VERSION_ID&Something) $typedPropJ = 'Type is class name, not constant';
+
+    public function paramTypes(
+        /* test 121 */
+        \PHP_VERSION_ID $typedParamA,
+        /* test 122 */
+        ?\PHP_VERSION_ID $typedParamB,
+        /* test 123 */
+        \PHP_VERSION_ID|false $typedParamC,
+        /* test 124 */
+        false|\PHP_VERSION_ID $typedParamD,
+        /* test 125 */
+        string|\PHP_VERSION_ID|false $typedParamE,
+        /* test 126 */
+        \PHP_VERSION_ID&Something $typedParamF,
+        /* test 127 */
+        Something&\PHP_VERSION_ID $typedParamG,
+        /* test 128 */
+        Something&\PHP_VERSION_ID&SomethingElse $typedParamH,
+        /* test 129 */
+        (Something&\PHP_VERSION_ID)|null $typedParamI,
+        /* test 130 */
+        false|(\PHP_VERSION_ID&Something) $typedParamJ,
+    ) {}
+
+    /* test 131 */
+    public function returnTypeA(): \PHP_VERSION_ID {}
+    /* test 132 */
+    public function returnTypeB(): ?\PHP_VERSION_ID {}
+    /* test 133 */
+    public function returnTypeC(): \PHP_VERSION_ID|false {}
+    /* test 134 */
+    public function returnTypeD(): false|\PHP_VERSION_ID {}
+    /* test 135 */
+    public function returnTypeE(): string|\PHP_VERSION_ID|false {}
+    /* test 136 */
+    public function returnTypeF(): \PHP_VERSION_ID&Something {}
+    /* test 137 */
+    public function returnTypeG(): Something&\PHP_VERSION_ID {}
+    /* test 138 */
+    public function returnTypeH(): Something&\PHP_VERSION_ID&SomethingElse {}
+    /* test 139 */
+    public function returnTypeI(): (Something&\PHP_VERSION_ID)|null {}
+    /* test 140 */
+    public function returnTypeJ(): false|(\PHP_VERSION_ID&Something) {}
+
+    /* test 141 */
+    abstract public function returnTypeK(): \PHP_VERSION_ID;
+}
+
 /*
  * Make sure that global constants are correctly identified.
  *
@@ -383,3 +510,12 @@ class UseOfGlobalConstantsWithinAClass {
         $var = $a + PHP_VERSION_ID;
     }
 }
+
+/* test A23 */
+#[MyAttribute(\PHP_VERSION_ID)]
+function HasAttribute() {}
+
+/* test A24 */
+attributeNestedInParenthesis2(
+    new #[MyAttribute(\PHP_VERSION_ID)] class () {}
+);

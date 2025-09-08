@@ -226,6 +226,9 @@ final class NewKeywordsSniff extends Sniff
             $tokens[]                      = \T_STRING;
         }
 
+        // Special case for namespace relative names for which the tokenization has changed in PHPCS 4.0.
+        $tokens[] = \T_NAME_RELATIVE;
+
         return $tokens;
     }
 
@@ -277,6 +280,15 @@ final class NewKeywordsSniff extends Sniff
                 }
             }
             unset($i);
+        }
+
+        // Special case for `namespace\something` code for which the tokenization has changed in PHPCS 4.0.
+        if ($tokenType === 'T_NAME_RELATIVE') {
+            $itemInfo = [
+                'name' => 'T_NAMESPACE',
+            ];
+            $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
+            return ($end + 1);
         }
 
         if (isset($this->newKeywords[$tokenType]) === false) {

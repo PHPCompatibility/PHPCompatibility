@@ -155,11 +155,13 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 continue;
             }
 
-            if ($tokens[$i]['code'] !== \T_STRING) {
+            if ($tokens[$i]['code'] !== \T_STRING
+                && $tokens[$i]['code'] !== \T_NAME_FULLY_QUALIFIED
+            ) {
                 continue;
             }
 
-            $foundFunctionName = \strtolower($tokens[$i]['content']);
+            $foundFunctionName = \strtolower(\ltrim($tokens[$i]['content'], '\\'));
 
             if (isset($this->changedFunctions[$foundFunctionName]) === false) {
                 // Not one of the target functions.
@@ -262,10 +264,11 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 if ($lastParenthesesOpener !== false) {
 
                     $maybeFunctionCall = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($lastParenthesesOpener - 1), null, true);
-                    if ($tokens[$maybeFunctionCall]['code'] === \T_STRING
+                    if (($tokens[$maybeFunctionCall]['code'] === \T_STRING
+                        || $tokens[$maybeFunctionCall]['code'] === \T_NAME_FULLY_QUALIFIED)
                         && $this->isCallToGlobalFunction($phpcsFile, $maybeFunctionCall) === true
                     ) {
-                        $functionNameLc = \strtolower($tokens[$maybeFunctionCall]['content']);
+                        $functionNameLc = \strtolower(\ltrim($tokens[$maybeFunctionCall]['content'], '\\'));
                         if ($functionNameLc === 'array_slice'
                             || $functionNameLc === 'array_splice'
                         ) {

@@ -142,26 +142,34 @@ final class RemovedHexadecimalNumericStringsSniff extends Sniff
         $nested = Parentheses::getLastOpener($phpcsFile, $stackPtr);
         if ($nested !== false) {
             $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($nested - 1), null, true);
-            $contentLc    = \strtolower($tokens[$prevNonEmpty]['content']);
             if ($tokens[$prevNonEmpty]['code'] === \T_STRING
-                && isset($this->excludedFunctions[$contentLc]) === true
-                && $this->isCallToGlobalFunction($phpcsFile, $prevNonEmpty) === true
+                || $tokens[$prevNonEmpty]['code'] === \T_NAME_FULLY_QUALIFIED
             ) {
-                /*
-                 * Okay, so the string is apparently used in a function call to a function which still supports it.
-                 * Now verify it is used in a valid parameter position.
-                 */
-                if ($this->excludedFunctions[$contentLc] === true) {
-                    // All parameters support hex numeric strings. Bow out.
-                    return;
+                $contentLc = \strtolower($tokens[$prevNonEmpty]['content']);
+                if ($tokens[$prevNonEmpty]['code'] === \T_NAME_FULLY_QUALIFIED) {
+                    $contentLc = \ltrim($contentLc, '\\');
                 }
 
-                $parameters = PassedParameters::getParameters($phpcsFile, $prevNonEmpty);
-                foreach ($this->excludedFunctions[$contentLc] as $paramOffset => $paramName) {
-                    $param = PassedParameters::getParameterFromStack($parameters, $paramOffset, $paramName);
-                    if ($stackPtr >= $param['start'] && $stackPtr <= $param['end']) {
-                        // Parameter used in a position which supports hex numeric strings. Bow out.
+                if (isset($this->excludedFunctions[$contentLc]) === true
+                    && ($tokens[$prevNonEmpty]['code'] === \T_NAME_FULLY_QUALIFIED
+                    || $this->isCallToGlobalFunction($phpcsFile, $prevNonEmpty) === true) // This check only needs to be executed for T_STRING.
+                ) {
+                    /*
+                     * Okay, so the string is apparently used in a function call to a function which still supports it.
+                     * Now verify it is used in a valid parameter position.
+                     */
+                    if ($this->excludedFunctions[$contentLc] === true) {
+                        // All parameters support hex numeric strings. Bow out.
                         return;
+                    }
+
+                    $parameters = PassedParameters::getParameters($phpcsFile, $prevNonEmpty);
+                    foreach ($this->excludedFunctions[$contentLc] as $paramOffset => $paramName) {
+                        $param = PassedParameters::getParameterFromStack($parameters, $paramOffset, $paramName);
+                        if ($stackPtr >= $param['start'] && $stackPtr <= $param['end']) {
+                            // Parameter used in a position which supports hex numeric strings. Bow out.
+                            return;
+                        }
                     }
                 }
             }
