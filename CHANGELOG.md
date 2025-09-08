@@ -456,7 +456,7 @@ Thanks go out to [Jonathan Champ] for his contribution to this version. :clap:
 
 ## [9.0.0] - 2018-10-07
 
-**IMPORTANT**: This release contains **breaking changes**. Please read the below information carefully before upgrading!
+**IMPORTANT**: This release contains **breaking changes**. Please read and follow the [Upgrade guide in the wiki][wiki-upgrade-to-9.0] carefully before upgrading!
 
 All sniffs have been placed in meaningful categories and a number of sniffs have been renamed to have more consistent, meaningful and future-proof names.
 
@@ -468,90 +468,8 @@ If your project uses one of these polyfills, please consider using these special
 
 Also as of this version, [Juliette Reinders Folmer] is now officially a co-maintainer of this package.
 
-### Upgrade instructions
+[wiki-upgrade-to-9.0]: https://github.com/PHPCompatibility/PHPCompatibility/wiki/Upgrading-to-PHPCompatibility-9.0
 
-* If you have `<exclude name="..."/>` directives in your own project's custom ruleset which relate to sniffs from the PHPCompatibility library, you will need to update your ruleset to use the new sniff names.
-* If you use the new [PHPCS 3.2+ inline annotations][phpcs-3.2.0-release], i.e. `// phpcs:ignore Standard.Category.SniffName`, in combination with PHPCompatibility sniff names, you will need to update these annotations.
-* If you use neither of the above, you should be fine and upgrading should be painless.
-
-### Overview of all the sniff renames:
-
-Old Category.SniffName | New Category.SniffName
---- | ---
-**PHP**.ArgumentFunctionsUsage | **FunctionUse**.ArgumentFunctionsUsage
-**PHP**.CaseSensitiveKeywords | **Keywords**.CaseSensitiveKeywords
-**PHP**.ConstantArraysUsingConst | **InitialValue**.**New**ConstantArraysUsingConst
-**PHP**.ConstantArraysUsingDefine | **InitialValue**.**New**ConstantArraysUsingDefine
-**PHP**.**Deprecated**Functions | **FunctionUse**.**Removed**Functions
-**PHP**.**Deprecated**IniDirectives | **IniDirectives**.**Removed**IniDirectives
-**PHP**.**Deprecated**MagicAutoload | **FunctionNameRestrictions**.**Removed**MagicAutoload
-**PHP**.**Deprecated**NewReference | **Syntax**.**Removed**NewReference
-**PHP**.**Deprecated**PHP4StyleConstructors | **FunctionNameRestrictions**.**Removed**PHP4StyleConstructors
-**PHP**.**Deprecated**TypeCasts | **TypeCasts**.**Removed**TypeCasts
-**PHP**.DiscouragedSwitchContinue | **ControlStructures**.DiscouragedSwitchContinue
-**PHP**.DynamicAccessToStatic | **Syntax**.**New**DynamicAccessToStatic
-**PHP**.EmptyNonVariable | **LanguageConstructs**.**New**EmptyNonVariable
-**PHP**.ForbiddenBreakContinueOutsideLoop | **ControlStructures**.ForbiddenBreakContinueOutsideLoop
-**PHP**.ForbiddenBreakContinueVariableArguments | **ControlStructures**.ForbiddenBreakContinueVariableArguments
-**PHP**.ForbiddenCallTimePassByReference | **Syntax**.ForbiddenCallTimePassByReference
-**PHP**.Forbidden**ClosureUseVariableNames** | **FunctionDeclarations**.Forbidden**VariableNamesInClosureUse**
-**PHP**.ForbiddenEmptyListAssignment | **Lists**.ForbiddenEmptyListAssignment
-**PHP**.Forbidden**Function**ParametersWithSameName | **FunctionDeclarations**.ForbiddenParametersWithSameName
-**PHP**.ForbiddenGlobalVariableVariable | **Variables**.ForbiddenGlobalVariableVariable
-**PHP**.ForbiddenNames | **Keywords**.ForbiddenNames
-**PHP**.ForbiddenNamesAsDeclared | **Keywords**.ForbiddenNamesAsDeclared
-**PHP**.ForbiddenNamesAsInvokedFunctions | **Keywords**.ForbiddenNamesAsInvokedFunctions
-**PHP**.ForbiddenNegativeBitshift | **Operators**.ForbiddenNegativeBitshift
-**PHP**.ForbiddenSwitchWithMultipleDefaultBlocks | **ControlStructures**.ForbiddenSwitchWithMultipleDefaultBlocks
-**PHP**.InternalInterfaces | **Interfaces**.InternalInterfaces
-**PHP**.LateStaticBinding | **Classes**.**New**LateStaticBinding
-**PHP**.**MbstringReplaceE**Modifier | **ParameterValues**.**RemovedMbstring**Modifier**s**
-**PHP**.NewAnonymousClasses | **Classes**.NewAnonymousClasses
-**PHP**.NewArrayStringDereferencing | **Syntax**.NewArrayStringDereferencing
-**PHP**.NewClasses | **Classes**.NewClasses
-**PHP**.NewClassMemberAccess | **Syntax**.NewClassMemberAccess
-**PHP**.NewClosure | **FunctionDeclarations**.NewClosure
-**PHP**.NewConstants | **Constants**.NewConstants
-**PHP**.NewConstantScalarExpressions | **InitialValue**.NewConstantScalarExpressions
-**PHP**.NewConstVisibility | **Classes**.NewConstVisibility
-**PHP**.NewExecutionDirectives | **ControlStructures**.NewExecutionDirectives
-**PHP**.NewFunctionArrayDereferencing | **Syntax**.NewFunctionArrayDereferencing
-**PHP**.NewFunctionParameters | **FunctionUse**.NewFunctionParameters
-**PHP**.NewFunctions | **FunctionUse**.NewFunctions
-**PHP**.NewGeneratorReturn | **Generators**.NewGeneratorReturn
-**PHP**.NewGroupUseDeclarations | **UseDeclarations**.NewGroupUseDeclarations
-**PHP**.NewHashAlgorithms | **ParameterValues**.NewHashAlgorithms
-**PHP**.NewHeredoc**Initialize** | **InitialValue**.NewHeredoc
-**PHP**.NewIniDirectives | **IniDirectives**.NewIniDirectives
-**PHP**.NewInterfaces | **Interfaces**.NewInterfaces
-**PHP**.NewKeywords | **Keywords**.NewKeywords
-**PHP**.NewLanguageConstructs | **LanguageConstructs**.NewLanguageConstructs
-**PHP**.NewMagicClassConstant | **Constants**.NewMagicClassConstant
-**PHP**.NewMagicMethods | **FunctionNameRestrictions**.NewMagicMethods
-**PHP**.NewMultiCatch | **ControlStructures**.NewMultiCatch
-**PHP**.NewNullableTypes | **FunctionDeclarations**.NewNullableTypes
-**PHP**.NewReturnTypeDeclarations | **FunctionDeclarations**.NewReturnTypeDeclarations
-**PHP**.New**Scalar**TypeDeclarations | **FunctionDeclarations**.New**Param**TypeDeclarations
-**PHP**.NewTrailingComma | **Syntax**.New**FunctionCall**TrailingComma
-**PHP**.NewTypeCasts | **TypeCasts**.NewTypeCasts
-**PHP**.NewUseConstFunction | **UseDeclarations**.NewUseConstFunction
-**PHP**.NonStaticMagicMethods | **FunctionDeclarations**.NonStaticMagicMethods
-**PHP**.OptionalRequiredFunctionParameters | **FunctionUse**.Optional**To**RequiredFunctionParameters
-**PHP**.ParameterShadowSuperGlobals | **FunctionDeclarations**.**Forbidden**ParameterShadowSuperGlobals
-**PHP**.**PCRENew**Modifiers | **ParameterValues**.**NewPCRE**Modifiers
-**PHP**.**PregReplaceE**Modifier | **ParameterValues**.**RemovedPCRE**Modifier**s**
-**PHP**.RemovedAlternativePHPTags | **Miscellaneous**.RemovedAlternativePHPTags
-**PHP**.RemovedConstants | **Constants**.RemovedConstants
-**PHP**.RemovedExtensions | **Extensions**.RemovedExtensions
-**PHP**.RemovedFunctionParameters | **FunctionUse**.RemovedFunctionParameters
-**PHP**.RemovedGlobalVariables | **Variables**.Removed**Predefined**GlobalVariables
-**PHP**.RemovedHashAlgorithms | **ParameterValues**.RemovedHashAlgorithms
-**PHP**.ReservedFunctionNames | **FunctionNameRestrictions**.ReservedFunctionNames
-**PHP**.RequiredOptionalFunctionParameters | **FunctionUse**.Required**To**OptionalFunctionParameters
-**PHP**.ShortArray | **Syntax**.**New**ShortArray
-**PHP**.Ternary**Operators** | **Operators**.**NewShort**Ternary
-**PHP**.ValidIntegers | **Miscellaneous**.ValidIntegers
-**PHP**.**VariableVariables** | **Variables**.**NewUniformVariableSyntax**
 
 ### Changelog for version 9.0.0
 
