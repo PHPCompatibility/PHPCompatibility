@@ -1036,106 +1036,14 @@ Thanks go out to [Juliette Reinders Folmer] for her contributions to this versio
 
 ## [8.0.0] - 2017-08-03
 
-**IMPORTANT**: This release contains a **breaking change**. Please read the below information carefully before upgrading!
+**IMPORTANT**: This release contains a **breaking change**. Please read and follow the [Upgrade guide in the wiki][wiki-upgrade-to-8.0] carefully before upgrading!
 
 The directory layout of the PHPCompatibility standard has been changed for improved compatibility with Composer.
 This means that the PHPCompatibility standard no longer extends from the root directory of the repository, but now lives in its own subdirectory `/PHPCompatibility`.
 
 This release also bring compatibility with PHPCS 3.x to the PHPCompatibility standard.
 
-There are two things you will need to be aware of:
-* The path to the PHPCompatibility standard has changed.
-* If you intend to upgrade to PHPCS 3.x, the path to the `phpcs` script has changed (upstream change).
-
-Please follow the below upgrade instructions carefully. This should be a one-time only action.
-
-### Upgrade instructions
-
-### Before upgrading
-
-If you had previously made accommodations for the old directory layout, you should remove any such _"hacks"_ (meant in the kindest of ways) now.
-
-By this we mean: symlinks for the PHPCompatibility install to the `PHP_CodeSniffer/CodeSniffer/Standards` directory, scripts to move the sniffs files to the PHPCS directory, scripts which made symlinks etc.
-
-So, please remove those first.
-
-> **Side-note**:
->
-> If you had previously forked this repository to solve this issue, please consider reverting your fork to the official version or removing it all together.
-
-### Upgrading: re-registering PHPCompatibility with PHP CodeSniffer
-
-External PHP CodeSniffer standards need to be registered with PHP CodeSniffer. You have probably done this the first time you used PHPCompatibility or have a script or Composer plugin in place to do this for you.
-
-As the directory layout of PHPCompatibility has changed, the path previously registered with PHP CodeSniffer will no longer work and running `phpcs -i` will **_not_** list PHPCompatibility as one of the registered standards.
-
-#### Using a Composer plugin
-
-If you use Composer, we recommend you use a Composer plugin to sort this out. In previous install instructions we recommended the SimplyAdmin plugin for this. This plugin has since been abandoned. We now recommend the DealerDirect plugin.
-```bash
-composer remove --dev simplyadmire/composer-plugins
-composer require --dev dealerdirect/phpcodesniffer-composer-installer:^0.4.3
-composer install
-composer update phpcompatibility/php-compatibility squizlabs/php_codesniffer
-vendor/bin/phpcs -i
-```
-If all went well, you should now see PHPCompatibility listed again in the list of installed standards.
-
-#### Manually re-registering PHPCompatibility
-
-1. First run `phpcs --config-show` to check which path(s) are currently registered with PHP CodeSniffer for external standards.
-2. Check in the below table what the new path for PHPCompatibility will be - the path should point to the root directory of your PHPCompatibility install (not to the sub-directory of the same name):
-
-    Install type | Old path | New path
-    ------------ | -------- | ---------
-    Composer     | `vendor/wimg` | `vendor/phpcompatibility/php-compatibility`
-    Unzipped release to arbitrary directory | `path/to/dir/abovePHPCompatibility` | `path/to/dir/abovePHPCompatibility/PHPCompatibility`
-    Git checkout | `path/to/dir/abovePHPCompatibility` | `path/to/dir/abovePHPCompatibility/PHPCompatibility`
-    PEAR         | If the old install instruction has been followed, not registered. | `path/to/PHPCompatibility`
-
-    > **Side-note**:
-    >
-    > If you used the old install instructions for a PEAR install, i.e. checking out the latest release to the `PHP/CodeSniffer/Standards/PHPCompatibility` directory, and you intend to upgrade to PHP CodeSniffer 3.x, it is recommended you move the PHPCompatibility folder out of the PEAR directory now, as the layout of the PHPCS directory has changed with PHPCS 3.x and you may otherwise lose your PHPCompatibility install when you upgrade PHP CodeSniffer via PEAR.
-
-3. There are two ways in which you can register the new `installed_paths` value with PHP CodeSniffer. Choose your preferred method:
-    * Run `phpcs --config-set installed_paths ...` and include all previously installed paths including the _adjusted_ path for the PHPCompatibility standard.
-
-        For example, if the previous value of `installed_paths` was
-
-        `/path/to/MyStandard,/path/to/dir/abovePHPCompatibility`
-
-        you should now set it using
-
-        `phpcs --config-set installed_paths /path/to/MyStandard,/path/to/PHPCompatibility`
-
-    * If you use a custom ruleset in combination with PHPCS 2.6.0 or higher, you can pass the value to PHPCS from your custom ruleset:
-        ```xml
-        <config name="installed_paths" value="vendor/phpcompatibility/php-compatibility" />
-        ```
-4. Run `phpcs -i` to verify that the PHPCompatibility standard is now listed again in the list of installed standards.
-
-
-### Upgrading to PHPCS 3.x
-
-The path to the `phpcs` script has changed in PHPCS 3.x which will impact how you call PHPCS.
-
-Version | PHPCS 2.x | PHPCS 3.x
-------- | --------- | ---------
-Generic `phpcs` Command | `path/to/PHP_CodeSniffer/scripts/phpcs ....` | `path/to/PHP_CodeSniffer/bin/phpcs ....`
-Composer command | `vendor/bin/phpcs ...` | `vendor/bin/phpcs ...`
-
-So, for Composer users, nothing changes. For everyone else, you may want to add the `path/to/PHP_CodeSniffer/bin/phpcs` path to your PATH environment variable or adjust any scripts - like build scripts - which call PHPCS.
-
-
-### Upgrading a Travis build script
-
-If you run PHPCompatibility against your code as part of your Travis build:
-* If you use Composer to install PHP CodeSniffer and PHPCompatibility on the travis image and you've made the above mentioned changes, your build should pass again.
-* If you use `git clone` to install PHP CodeSniffer and PHPCompatibility on the travis image, your build will fail until you make the following changes:
-    1. Check which branch of PHPCS is being checked out. If you previously fixed this to a pre-PHPCS 3.x branch or tag, you can now change this (back) to `master` or a PHPCS 3 tag.
-    2. Check to which path PHPCompatibility is being cloned and adjust the path if necessary.
-    3. Adjust the `phpcs --config-set installed_paths` command as described above to point to the root of the cloned PHPCompatibility repo.
-    4. If you switched to using PHPCS 3.x, adjust the call to PHPCS.
+[wiki-upgrade-to-8.0]: https://github.com/PHPCompatibility/PHPCompatibility/wiki/Upgrading-to-PHPCompatibility-8.0
 
 
 ### Changelog for version 8.0.0
