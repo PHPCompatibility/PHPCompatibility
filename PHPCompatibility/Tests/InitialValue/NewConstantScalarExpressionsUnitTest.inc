@@ -340,3 +340,24 @@ class TypedConstants {
     public const int MY_TYPED_CONST_MULTI_A = 1 + 1,
         MY_TYPED_CONST_MULTI_B = (1 + 1);
 }
+
+// Verify fully qualified and non-lowercase true/false/null are handled correctly.
+class NotScalarExpressionsWithFQNTrueFalseNull {
+    const MY_CONST = \true;
+    public $propA = NULL;
+    protected $propB = \Null;
+
+    private function testDefaults($a = \True, $b = FALSE, $c = \false, $d = \null) {
+        static $local = \False;
+    }
+}
+
+class ScalarExpressionsWithFQNTrueFalseNull {
+    const MY_CONST = \true + 10;
+    public $propA = SOMETHING === TRUE ? 10 : NULL;
+    protected $propB = \True << \False;
+
+    private function testDefaults($a = SOMETHING ? \True : FALSE, $c = SOMETHING_ELSE ? \false : \null) {
+        static $local = 'foo' . \False;
+    }
+}
