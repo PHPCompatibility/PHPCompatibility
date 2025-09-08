@@ -26,7 +26,7 @@ final class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTestCase
 {
 
     /**
-     * testTrailingComma
+     * Verify that trailing commas in function calls, call to isset() and unset() are flagged correctly.
      *
      * @dataProvider dataTrailingComma
      *
@@ -39,6 +39,9 @@ final class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTestCase
     {
         $file = $this->sniffFile(__FILE__, '7.2');
         $this->assertError($file, $line, "Trailing commas are not allowed in {$type} in PHP 7.2 or earlier");
+
+        $file = $this->sniffFile(__FILE__, '7.3');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
@@ -76,6 +79,37 @@ final class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTestCase
             [115],
             [116],
             [117],
+        ];
+    }
+
+
+    /**
+     * Verify that trailing commas in calls to exit() and die() are flagged correctly.
+     *
+     * @dataProvider dataTrailingCommaExit
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testTrailingCommaExit($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.3');
+        $this->assertError($file, $line, 'Trailing commas are not allowed in calls to exit() or die() in PHP 8.3 or earlier');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testTrailingCommaExit()
+     *
+     * @return array
+     */
+    public static function dataTrailingCommaExit()
+    {
+        return [
+            [126, 'calls to exit() or die()'],
+            [127, 'calls to exit() or die()'],
         ];
     }
 
@@ -123,6 +157,10 @@ final class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        for ($line = 119; $line <= 124; $line++) {
+            $data[] = [$line];
+        }
+
         return $data;
     }
 
@@ -134,7 +172,7 @@ final class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTestCase
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(__FILE__, '7.3');
+        $file = $this->sniffFile(__FILE__, '8.4');
         $this->assertNoViolation($file);
     }
 }

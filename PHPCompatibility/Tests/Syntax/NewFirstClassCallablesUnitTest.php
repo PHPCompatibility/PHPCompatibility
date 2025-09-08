@@ -38,6 +38,9 @@ final class NewFirstClassCallablesUnitTest extends BaseSniffTestCase
     {
         $file = $this->sniffFile(__FILE__, '8.0');
         $this->assertError($file, $line, 'First class callables using the CallableExpr(...) syntax are not supported in PHP 8.0 or earlier.');
+
+        $file = $this->sniffFile(__FILE__, '8.1');
+        $this->assertNoViolation($file, $line);
     }
 
     /**
@@ -62,6 +65,37 @@ final class NewFirstClassCallablesUnitTest extends BaseSniffTestCase
             [38],
             [39],
             [40],
+        ];
+    }
+
+
+    /**
+     * Verify that using exit/die as a first class callable is correctly detected.
+     *
+     * @dataProvider dataFirstClassCallableExit
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testFirstClassCallableExit($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.3');
+        $this->assertError($file, $line, 'Using exit/die as a first class callable is not supported in PHP 8.3 or earlier.');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testFirstClassCallableExit()
+     *
+     * @return array
+     */
+    public static function dataFirstClassCallableExit()
+    {
+        return [
+            [45],
+            [46],
         ];
     }
 
@@ -108,7 +142,7 @@ final class NewFirstClassCallablesUnitTest extends BaseSniffTestCase
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(__FILE__, '8.1');
+        $file = $this->sniffFile(__FILE__, '8.4');
         $this->assertNoViolation($file);
     }
 }

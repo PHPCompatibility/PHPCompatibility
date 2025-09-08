@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Exit as Function Call"
+    >
+    <standard>
+    <![CDATA[
+    As of PHP 8.4, `exit()` and `die()` when called with a parameter, will behave like a function call, which means that the standard parameter type compliance rules will be applied.
+
+    For files not subject to `strict_types`, this leads to the following behavioural changes:
+    - Boolean parameter values were previously interpreted as a status message, but will now be juggled to an integer and handled as an exit code.
+    - Floating point parameter values were previously interpreted as a status message, but will now be juggled to an integer and handled as an exit code.
+    - A "null" parameter value was previously interpreted as a status message, but will now be juggled to the integer 0 and handled as an exit code.
+
+    For files which are subject to `strict_types`, passing anything but an integer, string or stringable object as the parameter, will now result in a TypeError.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: passing an integer or string $status to exit()/die().">
+        <![CDATA[
+exit(<em>12</em>);
+die(<em>'process killed for reasons'</em>);
+
+exit(<em>(string) $statusMessage</em>);
+die(<em>(int) $exitCode</em>);
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: passing a non-integer, non-string $status to exit()/die() was silently accepted as a status message.">
+        <![CDATA[
+exit(<em>null</em>);
+die(<em>12.0</em>);
+
+exit(<em>$array</em>);
+die(<em>$resource</em>);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>

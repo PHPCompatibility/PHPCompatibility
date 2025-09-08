@@ -115,3 +115,13 @@ register_callback(strtolower(...,)); // Parse error, but throw an error anyway a
 namespace\callMe($a, $b,);
 \Fully\Qualified\callMe(1, 2, 3, 4, 5,);
 Partially\Qualified\callMe(1, 2, 3, 4, 5,);
+
+// OK cross-version.
+exit;
+die;
+exit($status);
+die($status);
+
+// Only allowed since PHP 8.4.
+exit($status,); // Error with PHP < 8.4.
+\die /*comment*/  ( 2, /*comment*/ ); // Error with PHP < 8.4.

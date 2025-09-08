@@ -82,10 +82,10 @@ test(...$values, param: $value); // Compile-time error
  * PHP 8.4 named parameters in calls to exit/die.
  */
 exit('message'); // OK.
-die( 128); // OK.
+\die( 128); // OK.
 
 // Parse error prior to PHP 8.4: exit is a language construct, not a function. Named params not supported until PHP 8.4.
-exit(status: $value);
+\exit(status: $value);
 die(status: $value);
 
 /*
