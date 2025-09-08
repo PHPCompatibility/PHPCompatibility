@@ -49,3 +49,6 @@ $a = 10 + 'not a numeric string' * 3;
 
 /* test B7 */
 $a = 10 * 3 + '123 numeric start of string';
+
+/* test B8 */
+$b = '5' + \true;
