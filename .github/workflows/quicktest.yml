@@ -33,15 +33,19 @@ jobs:
     strategy:
       matrix:
         php: ['5.4', 'latest']
-        phpcs_version: ['lowest', 'dev-master']
+        phpcs_version: ['lowest', '3.x-dev']
 
         include:
           - php: '7.2'
+            phpcs_version: '4.0.0'
+          - php: '7.2'
             phpcs_version: '4.x-dev'
+          - php: 'latest'
+            phpcs_version: '4.0.0'
           - php: 'latest'
             phpcs_version: '4.x-dev'
 
-    name: "QTest${{ matrix.phpcs_version == 'dev-master' && ' + Lint' || '' }}: PHP ${{ matrix.php }} - PHPCS ${{ matrix.phpcs_version }}"
+    name: "QTest${{ matrix.phpcs_version == '3.x-dev' && ' + Lint' || '' }}: PHP ${{ matrix.php }} - PHPCS ${{ matrix.phpcs_version }}"
 
     steps:
       - name: Checkout code
@@ -71,8 +75,8 @@ jobs:
       - name: 'Composer: remove PHPCSDevCS'
         run: composer remove --dev phpcsstandards/phpcsdevcs --no-update --no-interaction
 
-      - name: "Composer: set PHPCS version for tests (dev)"
-        if: ${{ contains( matrix.phpcs_version, 'dev') }}
+      - name: "Composer: set PHPCS version for tests"
+        if: ${{ matrix.phpcs_version != 'lowest' }}
         run: composer require squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-update --no-scripts --no-interaction
 
       - name: Enable creation of `composer.lock` file
@@ -92,7 +96,7 @@ jobs:
         run: composer update squizlabs/php_codesniffer phpcsstandards/phpcsutils --prefer-lowest --no-scripts --no-interaction
 
       - name: Lint against parse errors
-        if: ${{ matrix.phpcs_version == 'dev-master' }}
+        if: ${{ matrix.phpcs_version == '3.x-dev' }}
         run: composer lint
 
       - name: Grab PHPUnit version

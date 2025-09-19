@@ -88,19 +88,29 @@ jobs:
         #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
         php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
-        phpcs_version: ['lowest', 'dev-master', '4.x-dev']
+        phpcs_version: ['lowest', '3.x-dev', '4.0.0', '4.x-dev']
         experimental: [false]
 
         exclude:
           - php: '5.5'
+            phpcs_version: '4.0.0'
+          - php: '5.5'
             phpcs_version: '4.x-dev'
+          - php: '5.6'
+            phpcs_version: '4.0.0'
           - php: '5.6'
             phpcs_version: '4.x-dev'
           - php: '7.0'
+            phpcs_version: '4.0.0'
+          - php: '7.0'
             phpcs_version: '4.x-dev'
           - php: '7.1'
+            phpcs_version: '4.0.0'
+          - php: '7.1'
             phpcs_version: '4.x-dev'
-          # Also exclude the 7.2 build as that's run in code coverage, no need to duplicate.
+          # Also exclude the 7.2 builds as those are run in code coverage, no need to duplicate.
+          - php: '7.2'
+            phpcs_version: '4.0.0'
           - php: '7.2'
             phpcs_version: '4.x-dev'
 
@@ -112,7 +122,7 @@ jobs:
 
           # Experimental builds. These are allowed to fail.
           - php: '8.5' # Nightly.
-            phpcs_version: 'dev-master'
+            phpcs_version: '3.x-dev'
             experimental: true
 
           - php: '8.5' # Nightly.
@@ -160,8 +170,8 @@ jobs:
       - name: 'Composer: remove PHPCSDevCS'
         run: composer remove --dev phpcsstandards/phpcsdevcs --no-update --no-interaction
 
-      - name: "Composer: set PHPCS version for tests (dev)"
-        if: ${{ contains( matrix.phpcs_version, 'dev') }}
+      - name: "Composer: set PHPCS version for tests"
+        if: ${{ matrix.phpcs_version != 'lowest' }}
         run: composer require squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-update --no-scripts --no-interaction
 
       - name: Enable creation of `composer.lock` file
@@ -229,7 +239,9 @@ jobs:
           - php: '8.4'
             phpcs_version: '4.x-dev'
           - php: '8.4'
-            phpcs_version: 'dev-master'
+            phpcs_version: '4.0.0'
+          - php: '8.4'
+            phpcs_version: '3.x-dev'
             custom_ini: true
           - php: '8.4'
             phpcs_version: 'lowest'
@@ -237,9 +249,11 @@ jobs:
           - php: '7.2'
             phpcs_version: '4.x-dev'
             custom_ini: true
+          - php: '7.2'
+            phpcs_version: '4.0.0'
 
           - php: '5.4'
-            phpcs_version: 'dev-master'
+            phpcs_version: '3.x-dev'
           - php: '5.4'
             phpcs_version: 'lowest'
             custom_ini: true
@@ -283,8 +297,8 @@ jobs:
       - name: 'Composer: remove PHPCSDevCS'
         run: composer remove --dev phpcsstandards/phpcsdevcs --no-update --no-interaction
 
-      - name: "Composer: set PHPCS version for tests (dev)"
-        if: ${{ contains( matrix.phpcs_version, 'dev') }}
+      - name: "Composer: set PHPCS version for tests"
+        if: ${{ matrix.phpcs_version != 'lowest' }}
         run: composer require squizlabs/php_codesniffer:"${{ matrix.phpcs_version }}" --no-update --no-scripts --no-interaction
 
       - name: Enable creation of `composer.lock` file
