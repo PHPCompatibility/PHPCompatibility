@@ -361,6 +361,7 @@ jobs:
     if: always() && github.repository_owner == 'PHPCompatibility' && needs.coverage.result == 'success'
 
     runs-on: ubuntu-latest
+    name: Coveralls Finish
 
     steps:
       - name: Coveralls Finished
