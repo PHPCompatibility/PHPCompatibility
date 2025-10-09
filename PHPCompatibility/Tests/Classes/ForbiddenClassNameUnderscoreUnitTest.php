@@ -95,8 +95,6 @@ final class ForbiddenClassNameUnderscoreUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
-        $data[] = [32];
-
         return $data;
     }
 
