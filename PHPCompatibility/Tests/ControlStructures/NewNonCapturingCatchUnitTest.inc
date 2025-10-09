@@ -27,8 +27,3 @@ try {
 } catch (\Exception) {
    // ...
 }
-
-// Don't throw errors during live code review.
-try {
-   // Some code...
-} catch (
