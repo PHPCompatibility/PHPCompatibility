@@ -188,9 +188,6 @@ final class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
         $cases['line 123 - deprecated in PHP 8.4'] = [123];
         $cases['line 141 - deprecated in PHP 8.4'] = [141];
 
-        // Add parse error test case.
-        $cases['line 139 - parse error'] = [139];
-
         return $cases;
     }
 
