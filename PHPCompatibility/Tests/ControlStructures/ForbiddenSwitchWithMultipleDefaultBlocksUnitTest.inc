@@ -129,6 +129,3 @@ switch ($something) {
     default:
         break;
 }
-
-// Don't throw errors on live code review.
-switch ($something) {
