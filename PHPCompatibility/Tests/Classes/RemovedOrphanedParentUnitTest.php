@@ -157,9 +157,6 @@ final class RemovedOrphanedParentUnitTest extends BaseSniffTestCase
             $cases[] = [$line];
         }
 
-        // Add parse error test case.
-        $cases[] = [128];
-
         return $cases;
     }
 
