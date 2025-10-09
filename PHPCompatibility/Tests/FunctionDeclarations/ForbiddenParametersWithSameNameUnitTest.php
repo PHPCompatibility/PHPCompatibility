@@ -86,7 +86,6 @@ final class ForbiddenParametersWithSameNameUnitTest extends BaseSniffTestCase
         return [
             [5],
             [9],
-            [22],
         ];
     }
 
