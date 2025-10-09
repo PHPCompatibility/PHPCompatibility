@@ -68,7 +68,7 @@ final class GetFQClassNameFromNewTokenUnitTest extends UtilityMethodTestCase
             ['/* test 13 */', '\DateTime'],
             ['/* test 14 */', '\AnotherTesting\DateTime'],
             ['/* test 15 */', ''],
-            ['/* test 16 */', ''],
+            // Test 16 was moved to separate test file.
             ['/* test 17 */', ''],
             ['/* test 18 */', ''],
             ['/* test 19 */', ''],
