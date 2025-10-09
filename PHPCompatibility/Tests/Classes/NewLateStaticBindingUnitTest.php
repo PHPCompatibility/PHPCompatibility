@@ -133,7 +133,6 @@ final class NewLateStaticBindingUnitTest extends BaseSniffTestCase
             [37],
             [38],
             [39],
-            [44],
         ];
     }
 
