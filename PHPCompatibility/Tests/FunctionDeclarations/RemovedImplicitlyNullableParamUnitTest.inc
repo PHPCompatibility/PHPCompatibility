@@ -67,6 +67,3 @@ function fqnNullDefaultNoType($var = \null) {} // OK.
 function fqnNullDefaultWithNullInUnionType(Countable|null $var = \NULL) {} // OK.
 function fqnNullDefaultWithNonNullableType(Type $var = \null) {} // Not OK.
 $arrow = fn(iterable $i = \NULL /*comment*/): bool => doSomething($i); // Not OK.
-
-// Intentional parse error. This has to be the last test in the file.
-$closure = function( Type $a = null, $b
