@@ -88,9 +88,6 @@ final class NewYieldFromCommentUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
-        // Live coding test.
-        $data[] = [41];
-
         return $data;
     }
 
