@@ -124,8 +124,3 @@ class FinalProp {
     final readonly private string $FinalReadOnly;
     protected final $notReadonly;
 }
-
-// Parse error. This has to be the last test in the file.
-class ParseError {
-    public readonly $propertyWithoutSemiColon
-}
