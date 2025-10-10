@@ -50,9 +50,3 @@ class Foo {
 // Intentional parse error. These are not valid syntax. We should not identify any errors here.
 $array = [(...$test)];
 $array = array({...$test});
-$array = [{];
-
-// Intentional parse error. This has to be the last test in the file.
-$arr5 = array(
-    ...$arr1,
-    array(...$arr1
