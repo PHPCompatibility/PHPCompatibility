@@ -356,11 +356,6 @@ final class RemovedIndirectModificationOfGlobalsUnitTest extends BaseSniffTestCa
             $cases[] = [$line];
         }
 
-        // No errors for the parse errors at the end of the file.
-        for ($line = 173; $line <= 179; $line++) {
-            $cases[] = [$line];
-        }
-
         return $cases;
     }
 
