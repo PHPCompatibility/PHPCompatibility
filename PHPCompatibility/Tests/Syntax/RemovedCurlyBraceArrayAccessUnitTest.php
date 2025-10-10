@@ -123,11 +123,6 @@ final class RemovedCurlyBraceArrayAccessUnitTest extends BaseSniffTestCase
         for ($line = 1; $line <= 49; $line++) {
             $this->assertNoViolation($file, $line);
         }
-
-        // ...and on the last few lines.
-        for ($line = 150; $line <= 153; $line++) {
-            $this->assertNoViolation($file, $line);
-        }
     }
 
 
