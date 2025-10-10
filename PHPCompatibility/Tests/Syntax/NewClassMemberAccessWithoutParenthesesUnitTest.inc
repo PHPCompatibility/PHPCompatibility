@@ -115,10 +115,3 @@ var_dump(
     new readonly class (['value']) extends ArrayObject {}['key'],
     isset(new class implements ArrayAccess {}[0])
 );
-
-// Parse error test.
-$a = new (trim(' MyClass ');
-
-// Parse error test.
-// This must be the last test in the file.
-$a = new
