@@ -147,7 +147,3 @@ declare(STRICT_TYPES=0, encoding='utf-8') {
  */
 \exit();
 \die(10);
-
-// Parse error/Live coding test.
-// This should be the last test in the file.
-declare(
