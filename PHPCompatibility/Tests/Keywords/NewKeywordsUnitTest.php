@@ -693,8 +693,8 @@ final class NewKeywordsUnitTest extends BaseSniffTestCase
          * So testing that any violations created *after* the compiler is halted will
          * not be reported.
          */
-        $file = $this->sniffFile(__FILE__, '5.2');
-        $this->assertNoViolation($file, 286);
+        $file = $this->sniffFile(__DIR__ . '/NewKeywordsHaltCompilerUnitTest.inc', '5.2');
+        $this->assertNoViolation($file);
     }
 
 
