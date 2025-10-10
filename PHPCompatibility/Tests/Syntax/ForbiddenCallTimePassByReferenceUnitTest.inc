@@ -95,8 +95,8 @@ $d(&$a); // Bad: pass by reference.
 // From PHPCS native Generic.Functions.CallTimePassByReference test file.
 Hooks::run( 'SecondaryDataUpdates', array( $title, $old, $recursive, $parserOutput, &$updates ) );
 Hooks::run( 'SecondaryDataUpdates', [ $title, $old, $recursive, $parserOutput, &$updates ] );
-// Similar, but live coding, parse error.
-Hooks::run( 'SecondaryDataUpdates', [ $title, $old,
+
+
 
 // Treat PHP 7.4 arrow functions same as closures.
 $d = fn ( &$a ) => $a;

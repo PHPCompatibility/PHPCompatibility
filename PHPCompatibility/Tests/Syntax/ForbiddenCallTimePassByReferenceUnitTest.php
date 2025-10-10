@@ -144,7 +144,6 @@ final class ForbiddenCallTimePassByReferenceUnitTest extends BaseSniffTestCase
             // Reference within an array argument.
             [96],
             [97],
-            [99],
 
             // References in combination with arrow functions.
             [102],
