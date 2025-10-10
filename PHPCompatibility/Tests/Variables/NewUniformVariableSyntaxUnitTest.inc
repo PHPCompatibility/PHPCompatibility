@@ -46,6 +46,3 @@ echo $obj?->$var['key'];
 echo $obj?->$var['key']();
 echo $obj?->{$var['key']};
 echo $obj?->{$var['key']}();
-
-// Live coding.
-echo $$var['key'
