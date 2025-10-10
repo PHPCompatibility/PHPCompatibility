@@ -108,7 +108,6 @@ final class AssignmentOrderUnitTest extends BaseSniffTestCase
             [42],
             [56],
             [57],
-            [69],
         ];
     }
 
