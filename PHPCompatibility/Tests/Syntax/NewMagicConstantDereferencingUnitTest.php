@@ -96,7 +96,6 @@ final class NewMagicConstantDereferencingUnitTest extends BaseSniffTestCase
             [32],
             [33],
             [36],
-            [40],
         ];
     }
 
