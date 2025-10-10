@@ -78,6 +78,3 @@ namespace Odbc\Connect;
 namespace Soap\Something;
 NAMESPACE Pdo\Subbie;
 namespace BcMath;
-
-// Intentional parse error. This has to be the last test in the file.
-namespace PHP\Cli

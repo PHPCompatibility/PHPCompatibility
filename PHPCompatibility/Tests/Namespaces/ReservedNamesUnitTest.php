@@ -203,7 +203,6 @@ final class ReservedNamesUnitTest extends BaseSniffTestCase
             [30],
             [31],
             [32],
-            [81],
         ];
     }
 
