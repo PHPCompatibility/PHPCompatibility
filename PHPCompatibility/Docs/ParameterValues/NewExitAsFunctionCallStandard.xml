@@ -5,6 +5,26 @@
     >
     <standard>
     <![CDATA[
+    As of PHP 8.4, `exit()` and `die()` can be used as a function call, which also means they can be used as fully qualified function calls.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: using unqualified exit()/die().">
+        <![CDATA[
+<em>exit()</em>;
+<em>die</em>;
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.4: using exit()/die() as a fully qualified function call.">
+        <![CDATA[
+<em>\exit()</em>;
+<em>\die()</em>;
+        ]]>
+        </code>
+    </code_comparison>
+
+    <standard>
+    <![CDATA[
     As of PHP 8.4, `exit()` and `die()` when called with a parameter, will behave like a function call, which means that the standard parameter type compliance rules will be applied.
 
     For files not subject to `strict_types`, this leads to the following behavioural changes:
