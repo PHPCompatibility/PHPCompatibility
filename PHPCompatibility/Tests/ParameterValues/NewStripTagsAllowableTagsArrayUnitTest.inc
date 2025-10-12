@@ -37,7 +37,7 @@ $str = strip_tags(
     $input,
     array(
         'a', // <a href=...>
-        'p', // <p> 
+        'p', // <p>
     ),
 );
 

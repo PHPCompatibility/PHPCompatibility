@@ -26,9 +26,9 @@ $content = file_get_contents( $filename, false, $context, ($previous_offset + $c
 
 // Not OK.
 mb_ereg_search_setpos(
-	// Some comment.
-	-100
-	// phpcs:ignore Standard.Category.Sniff -- for reasons.
+    // Some comment.
+    -100
+    // phpcs:ignore Standard.Category.Sniff -- for reasons.
 );
 
 MB_ereg_search_setpos( -     100);

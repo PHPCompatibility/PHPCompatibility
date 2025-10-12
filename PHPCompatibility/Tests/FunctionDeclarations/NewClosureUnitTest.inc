@@ -62,19 +62,19 @@ function() {
 
 // Make sure $this in nested closures does not get reported twice.
 class NestedClosures {
-	public function testIt() {
-		$a = function() {
-			return function() {
-				return $this;
-			};
-		}
-	}
+    public function testIt() {
+        $a = function() {
+            return function() {
+                return $this;
+            };
+        }
+    }
 }
 
 // More PHP 5.4+: using self/parent/static in class context.
 class SelfTest
 {
-	const ABC = '';
+    const ABC = '';
 
     // PHP 5.4+: Using self/parent/static in a class context.
     public function testThis()
@@ -84,7 +84,7 @@ class SelfTest
             var_dump(self::ABC); // Let's make sure we get an error for each line using self.
             var_dump(parent::ABC);
             var_dump(static::ABC);
-            
+
             static $a = 'abc';
             static function() {};
         };

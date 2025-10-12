@@ -5,10 +5,10 @@ $hash = password_hash( $password, PASSWORD_DEFAULT, $options );
 $hash = password_hash( $password, \PASSWORD_BCRYPT, $options );
 $hash = \password_needs_rehash( $password, PASSWORD_ARGON2I, $options );
 $hash = password_hash(
-	password: $password,
-	options: $options
-	// comment.
-	algo: PASSWORD_ARGON2ID,
+    password: $password,
+    options: $options
+    // comment.
+    algo: PASSWORD_ARGON2ID,
 );
 
 // Undetermined. Ignore.

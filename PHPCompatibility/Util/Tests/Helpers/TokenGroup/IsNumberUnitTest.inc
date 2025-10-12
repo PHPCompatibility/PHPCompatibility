@@ -5,7 +5,7 @@
  *
  * The below should *NOT* be recognized as numbers.
  */
- 
+
 /* test 1 */
 $a = [];
 

@@ -21,9 +21,9 @@ class ABC {
 class DEF {
     function something()
     {
-		$clone = self::__clone();
-		$clone = static::__Clone();
-		$clone = parent::__CLONE();
+        $clone = self::__clone();
+        $clone = static::__Clone();
+        $clone = parent::__CLONE();
     }
 }
 

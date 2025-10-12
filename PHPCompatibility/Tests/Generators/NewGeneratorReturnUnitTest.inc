@@ -8,7 +8,7 @@ function gen_one_to_three() {
 }
 
 function gen_one_to_three() {
-	$a = array();
+    $a = array();
     for ($i = 1; $i <= 3; $i++) {
         $a[] = 'yield'.$i;
     }
@@ -84,32 +84,32 @@ function xrange($start, $limit, $step = 1) {
 }
 
 function nestedConditions( $a, $b ) {
-	try {
-		switch( $a ) {
-			case 'A':
-				if ( $b > $a ) {
-					for($a; $a < $b; $a++) {
-						yield $a;
-					}
-				}
-				break;
-			case 'B':
-				yield 2;
-				break;
-		}
-	} finally {
-		return 10; // Not OK.
-	}
+    try {
+        switch( $a ) {
+            case 'A':
+                if ( $b > $a ) {
+                    for($a; $a < $b; $a++) {
+                        yield $a;
+                    }
+                }
+                break;
+            case 'B':
+                yield 2;
+                break;
+        }
+    } finally {
+        return 10; // Not OK.
+    }
 }
 
 function nestedClosureReturn() {
-	$a = function() {
-		return 10; // OK.
-	};
+    $a = function() {
+        return 10; // OK.
+    };
 
-	$a();
+    $a();
 
-	yield 20;
+    yield 20;
 }
 
 function notAGeneratorNestedArrowGenerator($a) {

@@ -74,7 +74,7 @@ echo 'something';
 function testYieldFrom() {
     yield from [3, 4];
     yield
-		from [3, 4]; // This is yield from, but tokenized as two T_YIELD_FROM tokens.
+        from [3, 4]; // This is yield from, but tokenized as two T_YIELD_FROM tokens.
     yield /*something*/ From [3, 4]; // Test against false positive. Tokenized as T_YIELD + T_STRING prior to PHP 8.3.
 }
 

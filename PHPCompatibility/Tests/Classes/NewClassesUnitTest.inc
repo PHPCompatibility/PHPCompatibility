@@ -328,12 +328,12 @@ function NoDateTimeReturnTypeHint( $a ) : \SomeNamespace\DateTime\RealClass {}
 
 // Test abstract method declaration recognition.
 abstract class TestThis {
-	abstract protected function AbstractFunctionParamAndReturnTypeHint( \DateTimeZone $a ) : DateTime;
+    abstract protected function AbstractFunctionParamAndReturnTypeHint( \DateTimeZone $a ) : DateTime;
 }
 
 // Test interface method declaration recognition.
 interface TestThat {
-	public function InterfaceMethodParamAndReturnTypeHint( XMLReader $a ) : \SplFileObject;
+    public function InterfaceMethodParamAndReturnTypeHint( XMLReader $a ) : \SplFileObject;
 }
 
 throw new JsonException();
@@ -432,8 +432,8 @@ class MyAttribute extends \Attribute {}
 
 $generator = new IntlDatePatternGenerator();
 try {
-	$fiber = new Fiber();
-	$reflect = new ReflectionFiber($fiber);
+    $fiber = new Fiber();
+    $reflect = new ReflectionFiber($fiber);
 } catch( FiberError $e ) {}
 $file = new CURLStringFile($data, 'filename.txt', 'text/plain');
 
