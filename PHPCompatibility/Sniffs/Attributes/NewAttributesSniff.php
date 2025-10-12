@@ -191,11 +191,15 @@ final class NewAttributesSniff extends Sniff
 
         // Code Coverage.
         'CoversClass'                                => true,
+        'CoversClassesThatImplementInterface'        => true,
+        'CoversClassesThatExtendClass'               => true,
         'CoversTrait'                                => true,
         'CoversMethod'                               => true,
         'CoversFunction'                             => true,
         'CoversNothing'                              => true,
         'UsesClass'                                  => true,
+        'UsesClassesThatImplementInterface'          => true,
+        'UsesClassesThatExtendClass'                 => true,
         'UsesTrait'                                  => true,
         'UsesMethod'                                 => true,
         'UsesFunction'                               => true,
@@ -216,6 +220,11 @@ final class NewAttributesSniff extends Sniff
         'DependsOnClass'                             => true,
         'DependsOnClassUsingDeepClone'               => true,
         'DependsOnClassUsingShallowClone'            => true,
+
+        // TestDox.
+        'TestDox'                                    => true,
+        'TestDoxFormatter'                           => true,
+        'TestDoxFormatterExternal'                   => true,
 
         // Test Groups.
         'Group'                                      => true,
@@ -247,10 +256,12 @@ final class NewAttributesSniff extends Sniff
         'RequiresPhpExtension'                       => true,
         'RequiresSetting'                            => true,
         'RequiresPhpunit'                            => true,
+        'RequiresPhpunitExtension'                   => true,
         'RequiresFunction'                           => true,
         'RequiresMethod'                             => true,
         'RequiresOperatingSystem'                    => true,
         'RequiresOperatingSystemFamily'              => true,
+        'RequiresEnvironmentVariable'                => true,
     ];
 
     /**
