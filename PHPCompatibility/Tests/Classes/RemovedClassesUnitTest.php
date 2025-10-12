@@ -10,6 +10,7 @@
 
 namespace PHPCompatibility\Tests\Classes;
 
+use PHP_CodeSniffer\Files\LocalFile;
 use PHPCompatibility\Tests\BaseSniffTestCase;
 
 /**
@@ -161,5 +162,32 @@ final class RemovedClassesUnitTest extends BaseSniffTestCase
     {
         $file = $this->sniffFile(__FILE__, '5.0'); // Low version below the first deprecation.
         $this->assertNoViolation($file);
+    }
+
+    /**
+     * If classes with same name are used in other namespaces, they should not be flagged.
+     *
+     * @return void
+     */
+    public function testNoViolationsInFileIfOtherNamespace()
+    {
+        $file          = $this->sniffFile(__DIR__ . '/RemovedClassesUsesUnitTest.inc', '99.99');
+        $sharedRuleSet = $file->ruleset;
+        $sharedConfig  = $file->config;
+
+        $forgedLocalFile = new LocalFile(
+            \realpath(__DIR__ . '/RemovedClassesUsesNoLeakUnitTest.inc'),
+            $sharedRuleSet,
+            $sharedConfig
+        );
+        $forgedLocalFile->parse();
+        $forgedLocalFile->process();
+
+        $this->assertNoViolation($file);
+        $this->assertError(
+            $forgedLocalFile,
+            3,
+            'The built-in class HW_API_Error is removed since PHP 5.2'
+        );
     }
 }
