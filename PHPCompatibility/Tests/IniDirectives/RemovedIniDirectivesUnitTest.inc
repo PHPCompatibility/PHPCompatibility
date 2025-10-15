@@ -528,3 +528,5 @@ Partially\Qualified\ini_set('assert.bail', 0);
 
 ini_set('report_memleaks', 1);
 $test = ini_get('report_memleaks');
+ini_set('register_argc_argv', 1);
+$test = ini_get('register_argc_argv');
