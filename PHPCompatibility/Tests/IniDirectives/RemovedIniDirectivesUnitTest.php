@@ -435,6 +435,8 @@ final class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
             ['oci8.prefetch_lob_size', '8.4', [509, 510], '8.3'],
             ['oci8.privileged_connect', '8.4', [512, 513], '8.3'],
             ['oci8.statement_cache_size', '8.4', [515, 516], '8.3'],
+
+            ['disable_classes', '8.5', [533, 534], '8.4'],
         ];
     }
 

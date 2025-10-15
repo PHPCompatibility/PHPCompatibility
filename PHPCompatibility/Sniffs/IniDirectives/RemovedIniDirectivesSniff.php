@@ -746,6 +746,9 @@ final class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             'extension' => 'session',
         ],
 
+        'disable_classes' => [
+            '8.5' => true,
+        ],
         'register_argc_argv' => [
             '8.5' => false,
         ],
