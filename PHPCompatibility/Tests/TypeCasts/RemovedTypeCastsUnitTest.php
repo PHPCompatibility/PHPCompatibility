@@ -26,6 +26,51 @@ final class RemovedTypeCastsUnitTest extends BaseSniffTestCase
 {
 
     /**
+     * Verify deprecations are flagged correctly.
+     *
+     * @dataProvider dataDeprecatedTypeCastWithAlternative
+     *
+     * @param string $castDescription The type of type cast.
+     * @param string $deprecatedIn    The PHP version in which the function was deprecated.
+     * @param string $alternative     An alternative function.
+     * @param array  $lines           The line numbers in the test file which apply to this function.
+     * @param string $okVersion       A PHP version in which the function was still valid.
+     *
+     * @return void
+     */
+    public function testDeprecatedTypeCastWithAlternative($castDescription, $deprecatedIn, $alternative, $lines, $okVersion)
+    {
+        $file = $this->sniffFile(__FILE__, $okVersion);
+        foreach ($lines as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+
+        $file  = $this->sniffFile(__FILE__, $deprecatedIn);
+        $error = "{$castDescription} is deprecated since PHP {$deprecatedIn}; Use {$alternative} instead";
+        foreach ($lines as $line) {
+            $this->assertWarning($file, $line, $error);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testDeprecatedTypeCastWithAlternative()
+     *
+     * @return array
+     */
+    public static function dataDeprecatedTypeCastWithAlternative()
+    {
+        return [
+            ['The integer cast', '8.5', '(int)', [20], '8.4'],
+            ['The boolean cast', '8.5', '(bool)', [21], '8.4'],
+            ['The double cast', '8.5', '(float)', [17, 22], '8.4'],
+            ['The binary cast', '8.5', '(string)', [23], '8.4'],
+        ];
+    }
+
+
+   /**
      * testDeprecatedRemovedTypeCastWithAlternative
      *
      * @dataProvider dataDeprecatedRemovedTypeCastWithAlternative
@@ -108,7 +153,8 @@ final class RemovedTypeCastsUnitTest extends BaseSniffTestCase
         return [
             [4],
             [5],
-            [17],
+            [26],
+            [27],
         ];
     }
 

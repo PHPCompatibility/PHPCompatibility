@@ -38,24 +38,45 @@ final class RemovedTypeCastsSniff extends Sniff
      * A list of deprecated and removed type casts with their alternatives.
      *
      * The array lists : version number with false (deprecated) or true (removed) and an alternative function.
-     * If no alternative exists, it is NULL, i.e, the function should just not be used.
+     * If no alternative exists, it is NULL, i.e, the type cast should just not be used.
      *
      * @since 8.0.1
+     * @since 10.0.0 The array format was changed to allow for tokens covering multiple different casts.
      *
      * @var array<string, array<string, bool|string>>
      */
     protected $deprecatedTypeCasts = [
-        'T_UNSET_CAST' => [
+        'unset' => [
+            'token_type'  => 'T_UNSET_CAST',
             '7.2'         => false,
             '8.0'         => true,
             'alternative' => 'unset()',
-            'description' => 'unset',
         ],
-        'T_DOUBLE_CAST' => [
+        'real' => [
+            'token_type'  => 'T_DOUBLE_CAST',
             '7.4'         => false,
             '8.0'         => true,
             'alternative' => '(float)',
-            'description' => 'real',
+        ],
+        'integer' => [
+            'token_type'  => 'T_INT_CAST',
+            '8.5'         => false,
+            'alternative' => '(int)',
+        ],
+        'boolean' => [
+            'token_type'  => 'T_BOOL_CAST',
+            '8.5'         => false,
+            'alternative' => '(bool)',
+        ],
+        'double' => [
+            'token_type'  => 'T_DOUBLE_CAST',
+            '8.5'         => false,
+            'alternative' => '(float)',
+        ],
+        'binary' => [
+            'token_type'  => 'T_BINARY_CAST',
+            '8.5'         => false,
+            'alternative' => '(string)',
         ],
     ];
 
@@ -70,8 +91,9 @@ final class RemovedTypeCastsSniff extends Sniff
     public function register()
     {
         $tokens = [];
-        foreach ($this->deprecatedTypeCasts as $token => $versions) {
-            $tokens[] = \constant($token);
+        foreach ($this->deprecatedTypeCasts as $versions) {
+            $tokenConstant          = \constant($versions['token_type']);
+            $tokens[$tokenConstant] = $tokenConstant;
         }
 
         return $tokens;
@@ -91,18 +113,22 @@ final class RemovedTypeCastsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $tokens    = $phpcsFile->getTokens();
-        $tokenType = $tokens[$stackPtr]['type'];
+        $tokens = $phpcsFile->getTokens();
 
-        // Special case `T_DOUBLE_CAST` as the same token is used for (float) and (double) casts.
-        if ($tokenType === 'T_DOUBLE_CAST' && \strpos($tokens[$stackPtr]['content'], 'real') === false) {
-            // Float/double casts, not (real) cast.
+        // Type casts are case-insensitive and can contain whitespace, but no new lines.
+        // Normalize them to make them comparable.
+        $contents      = $tokens[$stackPtr]['content'];
+        $castToCompare = \substr($contents, 1, (\strlen($contents) - 2));
+        $castToCompare = \trim($castToCompare, " \t");
+        $castToCompare = \strtolower($castToCompare);
+
+        if (isset($this->deprecatedTypeCasts[$castToCompare]) === false) {
+            // Type cast which is still supported, using the same token as a deprecated type cast.
             return;
         }
 
         $itemInfo = [
-            'name'        => $tokenType,
-            'description' => $this->deprecatedTypeCasts[$tokenType]['description'],
+            'name' => $castToCompare,
         ];
         $this->handleFeature($phpcsFile, $stackPtr, $itemInfo);
     }
@@ -170,7 +196,7 @@ final class RemovedTypeCastsSniff extends Sniff
         // Overrule the default message template.
         $this->msgTemplate = 'The %s cast is ';
 
-        $msgInfo = $this->getMessageInfo($itemInfo['description'], $itemInfo['name'], $versionInfo);
+        $msgInfo = $this->getMessageInfo($itemInfo['name'], $itemInfo['name'], $versionInfo);
 
         MessageHelper::addMessage(
             $phpcsFile,
