@@ -525,3 +525,6 @@ $test = ini_get('session.sid_bits_per_character');
 namespace\ini_set('pfpro.defaulthost', 'string');
 \Fully\Qualified\ini_get('phar.extract_list');
 Partially\Qualified\ini_set('assert.bail', 0);
+
+ini_set('report_memleaks', 1);
+$test = ini_get('report_memleaks');

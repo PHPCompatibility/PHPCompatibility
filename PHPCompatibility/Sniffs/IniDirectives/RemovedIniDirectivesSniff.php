@@ -745,6 +745,10 @@ final class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.4'       => false,
             'extension' => 'session',
         ],
+
+        'report_memleaks' => [
+            '8.5' => false,
+        ],
     ];
 
     /**
