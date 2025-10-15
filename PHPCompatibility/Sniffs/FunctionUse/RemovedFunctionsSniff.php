@@ -5701,6 +5701,12 @@ final class RemovedFunctionsSniff extends Sniff
             'alternative' => 'a fully formed callback in a xml_set_*_handler() function',
             'extension'   => 'xml',
         ],
+
+        'socket_set_timeout' => [
+            '8.5'         => false,
+            'alternative' => 'stream_set_timeout()',
+            'extension'   => 'streams',
+        ],
     ];
 
 

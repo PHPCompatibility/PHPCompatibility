@@ -1393,3 +1393,6 @@ mysqli_ping();
 mysqli_refresh();
 mysqli_kill();
 lcg_value();
+
+// PHP 8.5.
+\socket_set_timeout();
