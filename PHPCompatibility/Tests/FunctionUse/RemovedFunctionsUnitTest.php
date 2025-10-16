@@ -70,6 +70,11 @@ final class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['openssl_free_key', '8.0', 1218, '7.4'],
             ['odbc_result_all', '8.1', 1229, '8.0'],
             ['assert_options', '8.3', 1237, '8.2'],
+            ['finfo_close', '8.5', 1399, '8.4'],
+            ['xml_parser_free', '8.5', 1400, '8.4'],
+            ['curl_close', '8.5', 1401, '8.4'],
+            ['curl_share_close', '8.5', 1402, '8.4'],
+            ['imagedestroy', '8.5', 1403, '8.4'],
         ];
     }
 
