@@ -189,6 +189,7 @@ final class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
             ['mysqli_store_result', 'mode', '8.4', [71], '8.3'],
             ['get_defined_functions', 'exclude_disabled', '8.5', [81], '8.4'],
             ['openssl_pkey_derive', 'key_length', '8.5', [84], '8.4'],
+            ['finfo_buffer', 'context', '8.5', [87], '8.4'],
         ];
     }
 
@@ -237,6 +238,7 @@ final class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
             [78],
             [80],
             [83],
+            [86],
         ];
     }
 

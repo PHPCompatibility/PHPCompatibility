@@ -82,3 +82,6 @@ get_defined_functions($exclude_disabled); // Warning.
 
 openssl_pkey_derive($public_key, $private_key); // OK.
 openssl_pkey_derive($public_key, $private_key, key_length: $key_length); // Warning.
+
+finfo_buffer($finfo, $string); // OK.
+finfo_buffer($finfo, $string, $flags, $context); // Warning.
