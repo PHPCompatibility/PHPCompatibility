@@ -78,3 +78,6 @@ namespace Odbc\Connect;
 namespace Soap\Something;
 NAMESPACE Pdo\Subbie;
 namespace BcMath;
+
+// Error PHP 8.5+.
+namespace Filter;

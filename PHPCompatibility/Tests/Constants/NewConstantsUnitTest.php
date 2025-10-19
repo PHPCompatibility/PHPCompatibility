@@ -1750,6 +1750,8 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['T_PUBLIC_SET', '8.3', 1678, '8.4'],
             ['T_PROTECTED_SET', '8.3', 1679, '8.4'],
             ['T_PRIVATE_SET', '8.3', 1680, '8.4'],
+
+            ['FILTER_THROW_ON_FAILURE', '8.4', 1700, '8.5'],
         ];
     }
 

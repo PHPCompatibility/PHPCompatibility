@@ -333,6 +333,8 @@ final class NewClassesUnitTest extends BaseSniffTestCase
             ['DateMalformedIntervalStringException', '8.2', [622], '8.3'],
             ['DateMalformedPeriodStringException', '8.2', [622], '8.3'],
             ['RequestParseBodyException', '8.3', [559], '8.4'],
+            ['Filter\FilterFailedException', '8.4', [629], '8.5'],
+            ['Filter\FilterException', '8.4', [630], '8.5'],
         ];
     }
 
