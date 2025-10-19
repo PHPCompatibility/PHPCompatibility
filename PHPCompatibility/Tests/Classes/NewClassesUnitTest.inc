@@ -342,7 +342,7 @@ class MyClosedGeneratorException extends ClosedGeneratorException {}
 function SodiumExceptionTypeHint( SodiumException $a ) {}
 $test = new com_exception();
 $test = new ReflectionReference;
-function DateTimeReturnTypeHintToo( $a ) : WeakReference {}
+function WeakReferenceReturnTypeHint( $a ) : WeakReference {}
 FFI::load(__DIR__ . "/dummy.h");
 function FFITypeHints( FFI\CData $a, FFI\CType $b ) {}
 try {
