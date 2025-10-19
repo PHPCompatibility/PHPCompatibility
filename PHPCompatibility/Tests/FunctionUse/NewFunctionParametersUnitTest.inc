@@ -158,3 +158,11 @@ $obj->php_uname ("a");
 namespace\memory_get_usage(true);
 \Fully\Qualified\getopt($options, $longopts, $optind);
 Partially\Qualified\hash($algo, $data, $binary, []);
+
+grapheme_strpos($haystack, $needle, $offset, $locale);
+\grapheme_stripos($haystack, $needle, locale: $locale);
+grapheme_strrpos($haystack, $needle, $offset, $locale);
+grapheme_strripos($haystack, $needle, locale: $locale);
+grapheme_substr($string, $offset, $length, $locale);
+\grapheme_strstr($haystack, $needle, locale: $locale);
+grapheme_stristr( $haystack, $needle, $beforeNeedle, $locale );

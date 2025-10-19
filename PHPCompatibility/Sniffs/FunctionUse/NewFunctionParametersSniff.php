@@ -270,6 +270,55 @@ final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSnif
                 '5.2.4' => true,
             ],
         ],
+        'grapheme_strpos' => [
+            4 => [
+                'name' => 'locale',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
+        'grapheme_stripos' => [
+            4 => [
+                'name' => 'locale',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
+        'grapheme_strrpos' => [
+            4 => [
+                'name' => 'locale',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
+        'grapheme_strripos' => [
+            4 => [
+                'name' => 'locale',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
+        'grapheme_substr' => [
+            4 => [
+                'name' => 'locale',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
+        'grapheme_strstr' => [
+            4 => [
+                'name' => 'locale',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
+        'grapheme_stristr' => [
+            4 => [
+                'name' => 'locale',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
         'gzcompress' => [
             3 => [
                 'name' => 'encoding',
