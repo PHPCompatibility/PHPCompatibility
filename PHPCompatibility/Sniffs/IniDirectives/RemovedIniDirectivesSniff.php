@@ -755,6 +755,11 @@ final class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         'report_memleaks' => [
             '8.5' => false,
         ],
+        'intl.error_level' => [
+            '8.5'         => false,
+            'extension'   => 'intl',
+            'alternative' => 'intl.use_exceptions',
+        ],
     ];
 
     /**
