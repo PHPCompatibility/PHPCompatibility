@@ -184,6 +184,12 @@ final class RemovedFunctionParametersSniff extends AbstractFunctionCallParameter
                 '8.0'  => true,
             ],
         ],
+        'openssl_pkey_derive' => [
+            3 => [
+                'name' => 'key_length',
+                '8.5'  => false,
+            ],
+        ],
         'pg_connect' => [
             // These were already deprecated before, but version in which deprecation took place is unclear.
             3 => [

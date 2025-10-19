@@ -79,3 +79,6 @@ Partially\Qualified\mysqli_store_result($mysql, $mode);
 
 get_defined_functions(); // OK.
 get_defined_functions($exclude_disabled); // Warning.
+
+openssl_pkey_derive($public_key, $private_key); // OK.
+openssl_pkey_derive($public_key, $private_key, key_length: $key_length); // Warning.
