@@ -176,6 +176,7 @@ final class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['lcg_value', '8.4', 'Random\Randomizer::getFloat()', 1395, '8.3'],
 
             ['socket_set_timeout', '8.5', 'stream_set_timeout()', 1398, '8.4'],
+            ['mysqli_execute', '8.5', 'mysqli_stmt_execute()', 1404, '8.4'],
         ];
     }
 
