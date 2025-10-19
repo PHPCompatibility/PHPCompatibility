@@ -2401,62 +2401,76 @@ final class NewConstantsSniff extends Sniff
 
         // Date/Time:
         'DATE_ATOM' => [
-            '5.1.0' => false,
-            '5.1.1' => true,
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'datetime',
         ],
         'DATE_COOKIE' => [
-            '5.1.0' => false,
-            '5.1.1' => true,
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'datetime',
         ],
         'DATE_ISO8601' => [
-            '5.1.0' => false,
-            '5.1.1' => true,
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'datetime',
         ],
         'DATE_RFC822' => [
-            '5.1.0' => false,
-            '5.1.1' => true,
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'datetime',
         ],
         'DATE_RFC850' => [
-            '5.1.0' => false,
-            '5.1.1' => true,
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'datetime',
         ],
         'DATE_RFC1036' => [
-            '5.1.0' => false,
-            '5.1.1' => true,
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'datetime',
         ],
         'DATE_RFC1123' => [
-            '5.1.0' => false,
-            '5.1.1' => true,
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'datetime',
         ],
         'DATE_RFC2822' => [
-            '5.1.0' => false,
-            '5.1.1' => true,
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'datetime',
         ],
         'DATE_RFC3339' => [
-            '5.1.0' => false,
-            '5.1.1' => true,
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'datetime',
         ],
         'DATE_RSS' => [
-            '5.1.0' => false,
-            '5.1.1' => true,
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'datetime',
         ],
         'DATE_W3C' => [
-            '5.1.0' => false,
-            '5.1.1' => true,
+            '5.1.0'     => false,
+            '5.1.1'     => true,
+            'extension' => 'datetime',
         ],
 
         // Date/Time:
         'SUNFUNCS_RET_TIMESTAMP' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'datetime',
         ],
         'SUNFUNCS_RET_STRING' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'datetime',
         ],
         'SUNFUNCS_RET_DOUBLE' => [
-            '5.1.1' => false,
-            '5.1.2' => true,
+            '5.1.1'     => false,
+            '5.1.2'     => true,
+            'extension' => 'datetime',
         ],
         // Hash:
         'HASH_HMAC' => [
@@ -4905,8 +4919,9 @@ final class NewConstantsSniff extends Sniff
         ],
         // DateTime:
         'DATE_RFC3339_EXTENDED' => [
-            '5.6' => false,
-            '7.0' => true,
+            '5.6'       => false,
+            '7.0'       => true,
+            'extension' => 'datetime',
         ],
         // JSON:
         'JSON_ERROR_INVALID_PROPERTY_NAME' => [
@@ -5399,8 +5414,9 @@ final class NewConstantsSniff extends Sniff
         ],
 
         'DATE_RFC7231' => [
-            '7.0.18' => false,
-            '7.0.19' => true,
+            '7.0.18'    => false,
+            '7.0.19'    => true,
+            'extension' => 'datetime',
         ],
 
         'PHP_FD_SETSIZE' => [

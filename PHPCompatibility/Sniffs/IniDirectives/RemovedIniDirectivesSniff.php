@@ -639,15 +639,15 @@ final class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         ],
         'date.default_latitude' => [
             '8.1'       => false,
-            'extension' => 'date',
+            'extension' => 'datetime',
         ],
         'date.default_longitude' => [
             '8.1'       => false,
-            'extension' => 'date',
+            'extension' => 'datetime',
         ],
         'date.sunset_zenith' => [
             '8.1'       => false,
-            'extension' => 'date',
+            'extension' => 'datetime',
         ],
         'filter.default' => [
             '8.1'       => false,

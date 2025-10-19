@@ -434,12 +434,14 @@ final class NewClassesSniff extends Sniff
         ],
 
         'DateTime' => [
-            '5.1' => false,
-            '5.2' => true,
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'datetime',
         ],
         'DateTimeZone' => [
-            '5.1' => false,
-            '5.2' => true,
+            '5.1'       => false,
+            '5.2'       => true,
+            'extension' => 'datetime',
         ],
         'RegexIterator' => [
             '5.1'       => false,
@@ -467,12 +469,14 @@ final class NewClassesSniff extends Sniff
             '5.3' => true,
         ],
         'DateInterval' => [
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'datetime',
         ],
         'DatePeriod' => [
-            '5.2' => false,
-            '5.3' => true,
+            '5.2'       => false,
+            '5.3'       => true,
+            'extension' => 'datetime',
         ],
         'finfo' => [
             '5.2'       => false,
@@ -651,8 +655,9 @@ final class NewClassesSniff extends Sniff
             'extension' => 'curl',
         ],
         'DateTimeImmutable' => [
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'datetime',
         ],
         'IntlCalendar' => [
             '5.4'       => false,
