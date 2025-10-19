@@ -3319,6 +3319,11 @@ final class RemovedConstantsSniff extends Sniff
             '8.4'       => false,
             'extension' => 'soap',
         ],
+
+        'DATE_RFC7231' => [
+            '8.5'       => false,
+            'extension' => 'datetime',
+        ],
     ];
 
 
