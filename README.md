@@ -1,27 +1,32 @@
-# PHP Compatibility Coding Standard for PHP CodeSniffer
+# PHP Compatibility Coding Standard for PHP_CodeSniffer
+
+<div aria-hidden="true">
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/phpcompatibility/php-compatibility?label=stable)](https://packagist.org/packages/phpcompatibility/php-compatibility)
 [![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcompatibility/php-compatibility#dev-develop)
 ![Awesome](https://img.shields.io/badge/awesome%3F-yes!-brightgreen.svg)
-[![License](https://img.shields.io/github/license/PHPCompatibility/PHPCompatibility)](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/PHPCompatibility/PHPCompatibility?color=00a7a7)](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/LICENSE)
 
 [![CS Build Status](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/basics.yml/badge.svg?branch=develop)](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/basics.yml)
 [![Test Build Status](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/test.yml/badge.svg?branch=develop)](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/PHPCompatibility/PHPCompatibility/badge.svg?branch=develop)](https://coveralls.io/github/PHPCompatibility/PHPCompatibility?branch=develop)
 
 [![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcompatibility/php-compatibility.svg?maxAge=3600)](https://packagist.org/packages/phpcompatibility/php-compatibility)
-[![Tested on PHP 5.4 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20|%208.0%20|%208.1%20|%208.2%20|%208.3%20|%208.4%20|%20nightly%20-brightgreen.svg?maxAge=2419200)](https://github.com/PHPCompatibility/PHPCompatibility/actions?query=workflow%3ATest)
+[![Tested on PHP 5.4 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20|%208.0%20|%208.1%20|%208.2%20|%208.3%20|%208.4%20|%20nightly%20-brightgreen.svg?maxAge=2419200)](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/test.yml)
 
+</div>
 
-This is a set of sniffs for [PHP CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) that checks for PHP cross-version compatibility.
+This is a set of sniffs for [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) that checks for PHP cross-version compatibility.
 It will allow you to analyse your code for compatibility with higher and lower versions of PHP.
 
 * [PHP Version Support](#php-version-support)
+* [Funding](#funding)
 * [Requirements](#requirements)
-* [Thank you](#thank-you)
-* [Upgrading to PHPCompatibility 9.0.0](#warning-upgrading-to-phpcompatibility-900-warning)
-* [Installation in a Composer project (method 1)](#installation-in-a-composer-project-method-1)
-* [Installation via a git check-out to an arbitrary directory (method 2)](#installation-via-a-git-check-out-to-an-arbitrary-directory-method-2)
+* [Installation](#installation)
+    - [Composer Project-based Installation](#composer-project-based-installation)
+    - [Composer Global Installation](#composer-global-installation)
+    - [Updating your PHPCompatibility install to a newer version](#updating-your-phpcompatibility-install-to-a-newer-version)
+    - [Using your PHPCompatibility install](#using-your-phpcompatibility-install)
 * [Sniffing your code for compatibility with specific PHP version(s)](#sniffing-your-code-for-compatibility-with-specific-php-versions)
     - [Using a framework/CMS/polyfill specific ruleset](#using-a-frameworkcmspolyfill-specific-ruleset)
 * [Using a custom ruleset](#using-a-custom-ruleset)
@@ -35,104 +40,82 @@ It will allow you to analyse your code for compatibility with higher and lower v
 
 The project aims to cover all PHP compatibility changes introduced since PHP 5.0 up to the latest PHP release. This is an ongoing process and coverage is not yet 100% (if, indeed, it ever could be). Progress is tracked on [our GitHub issue tracker](https://github.com/PHPCompatibility/PHPCompatibility/issues).
 
-Pull requests that check for compatibility issues in PHP 4 code - in particular between PHP 4 and PHP 5.0 - are very welcome as there are still situations where people need help upgrading legacy systems. However, coverage for changes introduced before PHP 5.1 will remain patchy as sniffs for this are not actively being developed at this time.
+Pull requests that check for compatibility issues in PHP 4 code - in particular between PHP 4 and PHP 5.0 - are welcome as there are still situations where people need help upgrading legacy systems. However, coverage for changes introduced before PHP 5.1 will remain patchy as sniffs for this are not actively being developed at this time.
+
+
+## Funding
+
+**This project needs funding.**
+
+The project team has spend thousands of hours creating and maintaining this package. This is unsustainable without funding.
+
+If you use PHPCompatibility, please fund this work by donating to the [PHP_CodeSniffer Open Collective](https://opencollective.com/php_codesniffer).
+
 
 ## Requirements
 
 * PHP 5.4+
-* PHP CodeSniffer: 3.13.3+ / 4.0.0+.
+* PHP_CodeSniffer: 3.13.3+ / 4.0.0+.
+* PHPCSUtils: 1.1.2+
 
-The sniffs are designed to give the same results regardless of which PHP version you are using to run PHP CodeSniffer. You should get consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on a recent PHP version in combination with a recent PHP_CodeSniffer version.
+The sniffs are designed to give the same results regardless of which PHP version you are using to run PHP_CodeSniffer. You should get consistent results independently of the PHP version used in your test environment, though for the best results it is recommended to run the sniffs on a recent PHP version in combination with a recent PHP_CodeSniffer version.
 
-As of version 8.0.0, the PHPCompatibility standard can also be used with PHP CodeSniffer 3.x.
-As of version 9.0.0, support for PHP CodeSniffer 1.5.x and low 2.x versions < 2.3.0 has been dropped.
-As of version 10.0.0, support for PHP < 5.4 and PHP CodeSniffer < 3.13.3 has been dropped.
-
-
-## Thank you
-
-Thanks to all [contributors](https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors) for their valuable contributions.
-
-Thanks to [WP Engine](https://wpengine.com) for their support on the PHP 7.0 sniffs.
+As of version 8.0.0, the PHPCompatibility standard can also be used with PHP_CodeSniffer 3.x.  
+As of version 9.0.0, support for PHP_CodeSniffer 1.5.x and low 2.x versions < 2.3.0 has been dropped.  
+As of version 10.0.0, support for PHP < 5.4 and PHP_CodeSniffer < 3.13.3 has been dropped and support for PHP_CodeSniffer 4.x has been added.
 
 
-## :warning: Upgrading to PHPCompatibility 9.0.0 :warning:
+## Installation
 
-This library has been reorganized. All sniffs have been placed in categories and a significant number of sniffs have been renamed.
+As of PHPCompatibility 10.0.0, installation via [Composer](https://getcomposer.org/) using the below instructions is the only supported type of installation.
 
-If you use the complete `PHPCompatibility` standard without `exclude` directives in a custom ruleset and do not (yet) use the new-style PHP_CodeSniffer annotation as introduced in [PHP_CodeSniffer 3.2.0](https://github.com/PHPCSStandards/PHP_CodeSniffer/releases/tag/3.2.0), this will have no noticeable effect and everything should work as before.
+Composer will automatically install the project dependencies and register the PHPCompatibility ruleset with PHP_CodeSniffer using the [Composer PHPCS plugin](https://github.com/PHPCSStandards/composer-installer).
 
-However, if you do use `exclude` directives for PHPCompatibility sniffs in a custom ruleset or if you use the [new-style PHP_CodeSniffer inline annotations](https://github.com/PHPCSStandards/PHP_CodeSniffer/releases/3.2.0), you will need to update these when upgrading. This should be a one-time only change.
-The changelog contains detailed information about all the sniff renames.
+> If you are upgrading from an older PHPCompatibility version to version 10.0.0, please read the [Upgrade guide](https://github.com/PHPCompatibility/PHPCompatibility/wiki/Upgrading-to-PHPCompatibility-10.0) first!
 
-Please read the changelog for version [9.0.0](https://github.com/PHPCompatibility/PHPCompatibility/releases/tag/9.0.0) carefully before upgrading.
+### Composer Project-based Installation
 
+Run the following from the root of your project:
+```bash
+composer config allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+composer require --dev phpcompatibility/php-compatibility:"^10.0.0@dev"
+```
 
-## Installation in a Composer project (method 1)
+### Composer Global Installation
 
-* Add the following lines to the `require-dev` section of your `composer.json` file.
-    ```json
-    "require-dev": {
-        "phpcompatibility/php-compatibility": "*"
-    },
-    "prefer-stable" : true
-    ```
-* Next, PHP CodeSniffer has to be informed of the location of the standard.
-    - If PHPCompatibility is the **_only_** external PHP CodeSniffer standard you use, you can add the following to your `composer.json` file to automatically run the necessary command:
-        ```json
-        "scripts": {
-            "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility",
-            "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility"
-        }
-        ```
-    - Alternatively - and **_strongly recommended_** if you use more than one external PHP CodeSniffer standard - you can use any of the following Composer plugins to handle this for you.
+Alternatively, you may want to install this standard globally:
+```bash
+composer global config allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+composer global require --dev phpcompatibility/php-compatibility:"^10.0.0@dev"
+```
 
-        Just add the Composer plugin you prefer to the `require-dev` section of your `composer.json` file.
+### Updating your PHPCompatibility install to a newer version
 
-        * [DealerDirect/phpcodesniffer-composer-installer](https://github.com/DealerDirect/phpcodesniffer-composer-installer):"^0.6.0"
-        * [higidi/composer-phpcodesniffer-standards-plugin](https://github.com/higidi/composer-phpcodesniffer-standards-plugin)
-        * [SimplyAdmire/ComposerPlugins](https://github.com/SimplyAdmire/ComposerPlugins). This plugin _might_ still work, but appears to be abandoned.
-    - As a last alternative in case you use a custom ruleset, you can tell PHP CodeSniffer the path to the PHPCompatibility standard by adding the following snippet to your custom ruleset:
-        ```xml
-        <config name="installed_paths" value="vendor/phpcompatibility/php-compatibility" />
-        ```
-* Run `composer update --lock` to install both PHP CodeSniffer, the PHPCompatibility coding standard and - optionally - the Composer plugin.
-* Verify that the PHPCompatibility standard is registered correctly by running `./vendor/bin/phpcs -i` on the command line. PHPCompatibility should be listed as one of the available standards.
-* Now you can use the following command to inspect your code:
-    ```bash
-    ./vendor/bin/phpcs -p . --standard=PHPCompatibility
-    ```
+If you installed PHPCompatibility using either of the above commands, you can upgrade to a newer version as follows:
+```bash
+# Project local install
+composer update phpcompatibility/php-compatibility --with-dependencies
 
-## Installation via a git check-out to an arbitrary directory (method 2)
+# Global install
+composer global update phpcompatibility/php-compatibility --with-dependencies
+```
 
-* Install [PHP CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) via [your preferred method](https://github.com/PHPCSStandards/PHP_CodeSniffer#installation).
+### Using your PHPCompatibility install
 
-    PHP CodeSniffer offers a variety of installation methods to suit your work-flow: Composer, [PEAR](http://pear.php.net/PHP_CodeSniffer), a Phar file, zipped/tarred release archives or checking the repository out using Git.
+You can verify that the PHPCompatibility standard is registered correctly by running `vendor/bin/phpcs -i` on the command line.
+PHPCompatibility and PHPCSUtils should both be listed as available standards.
 
-    **Pro-tip:** Register the path to PHPCS in your system `$PATH` environment variable to make the `phpcs` command available from anywhere in your file system.
-* Download the [latest PHPCompatibility release](https://github.com/PHPCompatibility/PHPCompatibility/releases) and unzip/untar it into an arbitrary directory.
+Once you have installed PHPCompatibility using either of the above commands, use it as follows:
+```bash
+# Project local install
+vendor/bin/phpcs -ps . --standard=PHPCompatibility
 
-    You can also choose to clone the repository using git to easily update your install regularly.
-* Add the path to the directory in which you placed your copy of the PHPCompatibility repo to the PHP CodeSniffer configuration using the below command from the command line:
-   ```bash
-   phpcs --config-set installed_paths /path/to/PHPCompatibility
-   ```
-   I.e. if you placed the `PHPCompatibility` repository in the `/my/custom/standards/PHPCompatibility` directory, you will need to add that directory to the PHP CodeSniffer [`installed_paths` configuration variable](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-installed-standard-paths).
+# Global install
+%USER_DIRECTORY%/Composer/vendor/bin/phpcs -ps . --standard=PHPCompatibility
+```
 
-   **Warning**: :warning: The `installed_paths` command overwrites any previously set `installed_paths`. If you have previously set `installed_paths` for other external standards, run `phpcs --config-show` first and then run the `installed_paths` command with all the paths you need separated by commas, i.e.:
-   ```bash
-   phpcs --config-set installed_paths /path/1,/path/2,/path/3
-   ```
+> **Pro-tip**: For the convenience of using `phpcs` as a global command, use the _Global install_ method and add the path to the `%USER_DIRECTORY%/Composer/vendor/bin` directory to the `PATH` environment variable for your operating system.
 
-   **Pro-tip:** Alternatively, in case you use a custom ruleset, you can tell PHP CodeSniffer the path to the PHPCompatibility standard(s) by adding the following snippet to your custom ruleset:
-   ```xml
-   <config name="installed_paths" value="/path/to/PHPCompatibility" />
-   ```
-* Verify that the PHPCompatibility standard is registered correctly by running `phpcs -i` on the command line. PHPCompatibility should be listed as one of the available standards.
-* Now you can use the following command to inspect your code:
-    ```bash
-    phpcs -p . --standard=PHPCompatibility
-    ```
 
 ## Sniffing your code for compatibility with specific PHP version(s)
 
@@ -143,7 +126,7 @@ Please read the changelog for version [9.0.0](https://github.com/PHPCompatibilit
     - You can also specify a range of PHP versions that your code needs to support. In this situation, compatibility issues that affect any of the PHP versions in that range will be reported: `--runtime-set testVersion 5.3-5.5`.
     - As of PHPCompatibility 7.1.3, you can omit one part of the range if you want to support everything above or below a particular version, i.e. use `--runtime-set testVersion 7.0-` to run all the checks for PHP 7.0 and above.
 * By default the report will be sent to the console, if you want to save the report to a file, add the following to the command line command: `--report-full=path/to/report-file`.
-    For more information and other reporting options, check the [PHP CodeSniffer wiki](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Reporting).
+    For more information and other reporting options, check the [PHP_CodeSniffer wiki](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Reporting).
 
 
 ### Using a framework/CMS/polyfill specific ruleset
@@ -164,12 +147,12 @@ If you want to make sure you have all PHPCompatibility rulesets available at any
 
 ## Using a custom ruleset
 
-Like with any PHP CodeSniffer standard, you can add PHPCompatibility to a custom PHP CodeSniffer ruleset.
+Like with any PHP_CodeSniffer standard, you can add PHPCompatibility to a custom PHP_CodeSniffer ruleset.
 
 ```xml
 <?xml version="1.0"?>
 <ruleset name="Custom ruleset">
-    <description>My rules for PHP CodeSniffer</description>
+    <description>My rules for PHP_CodeSniffer</description>
 
     <!-- Run against the PHPCompatibility ruleset -->
     <rule ref="PHPCompatibility"/>
@@ -182,18 +165,19 @@ Like with any PHP CodeSniffer standard, you can add PHPCompatibility to a custom
 
 You can also set the `testVersion` from within the ruleset:
 ```xml
-    <!-- Check for cross-version support for PHP 5.6 and higher. -->
-    <config name="testVersion" value="5.6-"/>
+    <!-- Check for cross-version support for PHP 7.2 and higher. -->
+    <config name="testVersion" value="7.2-"/>
 ```
 
 Other advanced options, such as changing the message type or severity of select sniffs, as described in the [PHPCS Annotated ruleset](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Annotated-ruleset.xml) wiki page are, of course, also supported.
 
 ### `testVersion` in the ruleset versus command-line
 
-In PHPCS 3.2.0 and lower, once you set the `testVersion` in the ruleset, you could not overrule it from the command-line anymore.
-Starting with PHPCS 3.3.0, a `testVersion` set via the command-line will overrule the `testVersion` in the ruleset.
+Starting with PHP_CodeSniffer 3.3.0, a `testVersion` set via the command-line will overrule the `testVersion` in the ruleset.
 
 This allows for more flexibility when, for instance, your project needs to comply with PHP `5.5-`, but you have a bootstrap file which needs to be compatible with PHP `5.2-`.
+
+Additionally, as of PHP_CodeSniffer 4.0.0, a `testVersion` set in an included ruleset can now be overruled from your project (root) ruleset.
 
 
 ### PHPCompatibility specific options

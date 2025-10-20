@@ -55,9 +55,8 @@ The communities behind these PHP frameworks/CMSes/polyfill libraries are strongl
 
 **Note:**
 * It is recommended to include a link to the framework/CMS/polyfill source file where the backfill is declared when sending in a pull request adding a new backfill for one of these rulesets.
-* If the backfills provided by different major versions of frameworks/CMSes/polyfill libraries are signficantly different, separate rulesets for the relevant major versions of frameworks/CMSes/polyfill libraries will be accepted.
+* If the backfills provided by different major versions of frameworks/CMSes/polyfill libraries are significantly different, separate rulesets for the relevant major versions of frameworks/CMSes/polyfill libraries will be accepted.
 * Framework/CMS specific ruleset should **_not_** contain a `<config name="testVersion" value="..."/>` directive.
-
     While a framework/CMS/polyfill may have a certain minimum PHP version, projects based on or using the framework/CMS/polyfill might have a different (higher) minimum PHP version.
     As support for overruling a `<config>` directive [is patchy](https://github.com/squizlabs/PHP_CodeSniffer/issues/1821), it should be recommended to set the desired `testVersion` either from the command line or in a project-specific custom ruleset.
 
@@ -93,24 +92,24 @@ All the sniffs are fully tested with PHPUnit tests and have `@group` annotations
 
 In order to run the tests on the sniffs, the following installation steps are required.
 
-1. Install PHP CodeSniffer and PHP Compatibility by following the instructions in the Readme for either [installing with Composer](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/README.md#installation-in-a-composer-project-method-1) or via a [Git Checkout to an arbitrary directory](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/README.md#installation-via-a-git-check-out-to-an-arbitrary-directory-method-2).
+1. Install PHP CodeSniffer and PHP Compatibility by following the [installation instructions in the Readme](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/README.md#installating-phpcompatibility).
 
-    If you install using Composer, make sure you run `composer install --prefer-source` to get access to the unit tests and other development related files.
+    Run `composer install --prefer-source` to get access to the unit tests and other development related files.
 
     **Pro-tip**: If you develop regularly for the PHPCompatibility standard, it may be preferable to use a git clone based install of PHP CodeSniffer to allow you to easily test sniffs with different PHP CodeSniffer versions by switching between tags/branches.
 
 2. If you used Composer, PHPUnit should be installed automatically and you are done.
 
-    Run the tests by running `phpunit` in the root directory of PHPCompatibility.
-    It will read the `phpunit.xml.dist` file and execute the tests.
+    Run the tests by running `composer test` (PHP < 8.1) or `composer test10` (PHP 8.1+) in the root directory of PHPCompatibility.
+    It will read the appropriate `phpunit.xml.dist` file and execute the tests.
 
-3. If you used any of the other installation methods and don't have PHPUnit installed on your system yet, download and [install PHPUnit](https://phpunit.de/getting-started.html).
+3. Alternatively, you can run the tests using a [PHPUnit PHAR file](https://phpunit.de/getting-started.html), though you would still need to run `composer install` on the project before that will work.
 
 4. To get the unit tests running with a non-Composer-based install, you need to set an environment variable so the PHPCompatibility unit test suite will know where to find PHPCS.
 
     The most flexible way to do this, is by setting this variable in a custom `phpunit.xml` file.
 
-    1. Copy the existing `phpunit.xml.dist` file in the root directory of the PHPCompatibility repository and name it `phpunit.xml`.
+    1. Copy the existing `phpunit[10].xml.dist` file in the root directory of the PHPCompatibility repository and name it `phpunit.xml`.
     2. Add the following snippet to the new file, replacing the value `/path/to/PHPCS` with the path to the directory in which you installed PHP CodeSniffer on your system:
         ```xml
         <php>
