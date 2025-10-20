@@ -217,17 +217,6 @@ final class NewExecutionDirectivesUnitTest extends BaseSniffTestCase
     }
 
 
-    /**
-     * Verify that the sniff stays silent for incomplete declare statements (live coding/parse error).
-     *
-     * @return void
-     */
-    public function testIncompleteDirective()
-    {
-        $this->assertNoViolation($this->sniffResult, 47);
-    }
-
-
     /*
      * `testNoViolationsInFileOnValidVersion` test omitted as the directive value checks are version independent.
      */

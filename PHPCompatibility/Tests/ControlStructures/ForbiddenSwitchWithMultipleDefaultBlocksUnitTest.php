@@ -90,7 +90,6 @@ final class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTe
             [23],
             [43],
             [120],
-            [134], // Live coding.
         ];
     }
 

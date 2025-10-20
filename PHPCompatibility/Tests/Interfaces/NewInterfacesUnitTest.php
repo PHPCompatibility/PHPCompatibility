@@ -225,7 +225,7 @@ final class NewInterfacesUnitTest extends BaseSniffTestCase
             [241],
         ];
 
-        for ($line = 237; $line <= 262; $line++) {
+        for ($line = 237; $line <= 256; $line++) {
             $data[] = [$line];
         }
 

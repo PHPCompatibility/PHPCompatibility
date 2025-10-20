@@ -207,7 +207,3 @@ enum LimitedMagic {
     function __autoload() {} // Error.
     function __myFunction() {} // Error.
 }
-
-// Live coding/parse error.
-// This has to be the last test in the file.
-function

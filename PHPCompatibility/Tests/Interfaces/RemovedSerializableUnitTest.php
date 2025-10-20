@@ -98,9 +98,6 @@ final class RemovedSerializableUnitTest extends BaseSniffTestCase
         $data[] = [188];
         $data[] = [189];
 
-        // Parse error.
-        $data[] = [203];
-
         return $data;
     }
 

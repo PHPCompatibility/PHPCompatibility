@@ -100,8 +100,6 @@ final class ForbiddenVariableNamesInClosureUseUnitTest extends BaseSniffTestCase
             [32],
             [33],
             [36],
-            [41],
-            [44],
         ];
     }
 

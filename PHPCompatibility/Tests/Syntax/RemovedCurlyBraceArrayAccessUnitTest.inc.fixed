@@ -147,6 +147,3 @@ Partially\Qualified\ClassName::FOO[1][0];
 namespace\callMe()[0];
 \Fully\Qualified\callMe($input)[0];
 Partially\Qualified\callMe($a, $b)[0];
-
-/* Live coding. Intentional parse error. This has to be the last test in the file. */
-$a = $b[0] + $c['something']{

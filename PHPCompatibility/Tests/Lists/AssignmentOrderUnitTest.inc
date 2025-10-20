@@ -63,7 +63,3 @@ list("id" => $id, "name" => $name, $label => $id) = $data[0];
 // Safeguard handling of PHP 7.3+ lists with reference assignment.
 list($a, &$b, &$a) = $array;
 [$a, &$b, &$a] = $array;
-
-// Don't trigger on unfinished code during live code review.
-// This has to be the last test in the file!
-list(

@@ -123,9 +123,3 @@ enum PlainEnum
         return parent::test();
     }
 }
-
-// Intentional parse error. This has to be the last test in the file.
-class SomeClass extends Something
-    public function test() {
-        return parent::test();
-    }

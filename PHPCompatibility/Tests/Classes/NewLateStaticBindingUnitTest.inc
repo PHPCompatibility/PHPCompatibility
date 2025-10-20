@@ -38,7 +38,3 @@ class Foo {
     public function hasStaticReturnIntersectionType(): static&MyInterface {}
     public function static() {}
 }
-
-// Live coding/parse error.
-// This has to be the last test in the file.
-static

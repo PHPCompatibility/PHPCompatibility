@@ -256,11 +256,6 @@ final class NewExitAsFunctionCallUnitTest extends BaseSniffTestCase
             $data[] = [124];
         }
 
-        // Parse error/live coding.
-        for ($line = 150; $line <= 153; $line++) {
-            $data[] = [$line];
-        }
-
         return $data;
     }
 

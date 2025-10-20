@@ -103,7 +103,6 @@ final class NewListReferenceAssignmentUnitTest extends BaseSniffTestCase
             [31],
             [32],
             [44],
-            [52],
         ];
     }
 

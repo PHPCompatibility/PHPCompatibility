@@ -89,7 +89,6 @@ final class ForbiddenNegativeBitshiftUnitTest extends BaseSniffTestCase
             [12],
             [13],
             [16],
-            [19],
         ];
     }
 

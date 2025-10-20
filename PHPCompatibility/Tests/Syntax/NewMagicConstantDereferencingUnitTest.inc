@@ -34,7 +34,3 @@ __namespace__[0][1][2] *= 'x';
 
 // Dereferencing using curly braces is not supported.
 echo __LINE__{0};
-
-// Live coding.
-// Intentional parse error, this has to be the last test case in the file.
-echo __METHOD__[

@@ -17,6 +17,3 @@ interface Foo {
 abstract class Foo {
     abstract public function bar( $a, $a );
 }
-
-// Don't throw errors during live code review.
-function foobar($a,$a

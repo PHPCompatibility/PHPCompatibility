@@ -123,10 +123,6 @@ final class NewClassMemberAccessWithoutParenthesesUnitTest extends BaseSniffTest
             $data[] = [$line];
         }
 
-        // Live coding/parse error.
-        $data[] = [120];
-        $data[] = [124];
-
         return $data;
     }
 

@@ -670,8 +670,3 @@ function alwaysFlagUseAsFirstClassCallableDebugBacktrace($a, $b) {
     var_dump($fcc1(0)); // This will print 11 for $a.
     $fcc2(); // This will print 11 for $a.
 }
-
-// Parse error on purpose (missing closing scope brace). This has to be the last test in the file.
-function LiveCoding($x) {
-    $x = function_call($x);
-    func_get_args(); // Ignored.

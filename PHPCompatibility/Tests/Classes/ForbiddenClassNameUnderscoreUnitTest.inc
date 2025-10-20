@@ -27,6 +27,3 @@ class _ {}
 interface _ {}
 Trait _ {}
 eNuM /*comment*/_ {}
-
-// Live coding, this has to be the last test in the file.
-class

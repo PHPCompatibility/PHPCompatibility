@@ -111,7 +111,6 @@ final class NewUniformVariableSyntaxUnitTest extends BaseSniffTestCase
             [42],
             [47],
             [48],
-            [51],
         ];
     }
 

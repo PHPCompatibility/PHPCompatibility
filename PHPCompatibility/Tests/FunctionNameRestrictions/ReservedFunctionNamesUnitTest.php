@@ -188,9 +188,6 @@ final class ReservedFunctionNamesUnitTest extends BaseSniffTestCase
             [203],
             [204],
             [205],
-
-            // Live coding/parse error test.
-            [214],
         ];
     }
 

@@ -45,7 +45,3 @@ class Foobar {
     use const Baz;
     use function Bar;
 }
-
-// Live coding.
-// Intentional parse error. This should be the last test in the file.
-use function

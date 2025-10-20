@@ -134,9 +134,6 @@ final class NewEmptyNonVariableUnitTest extends BaseSniffTestCase
             [59],
             [60],
             [61],
-
-            // Live coding.
-            [65],
         ];
     }
 

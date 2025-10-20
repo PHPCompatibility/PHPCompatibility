@@ -82,6 +82,8 @@ The communities behind these PHP frameworks/CMSes/polyfill libraries are strongl
 * Unit test files should be named the same as the sniff, replacing the `Sniff` suffix with `UnitTest`.
 * The test case file for the unit tests should be named the same as the unit test file, but should use the `.inc` file extension.
     If several test case files are needed to test a sniff, the convention is to number the files starting with `1`, i.e. `SniffNameUnitTest.1.inc`, `SniffNameUnitTest.2.inc` etc.
+* Tests specifically testing the handling of live coding/parse error code which could impact the token stream for any code after that code sample, should be placed in a stand-alone, separate test case file with a `ParseError` + number annotation between the sniff name name and the `UnitTest` suffix.
+    This means that for a live coding/parse error test for the `NewLateStaticBinding` sniff, the test case file could be called `NewLateStaticBindingParseError1UnitTest.inc` with the associated test code in a `NewLateStaticBindingParseError1UnitTest.php` file.
 * Test case files should be placed in the same directory as the unit test file.
 
 

@@ -42,6 +42,3 @@ declare(
 ); // All valid.
 
 declare(ticks = new stdClass, encoding=$encoding, strict_types=false, unknown = 'invalid', ); // All invalid in one way or another; also: trailing comma not allowed.
-
-// Incomplete directive.
-declare(

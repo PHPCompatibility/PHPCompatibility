@@ -87,7 +87,6 @@ final class NewNonCapturingCatchUnitTest extends BaseSniffTestCase
             [8],
             [10],
             [12],
-            [34], // Live coding.
         ];
     }
 

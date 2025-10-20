@@ -137,7 +137,6 @@ final class ForbiddenGlobalVariableVariableUnitTest extends BaseSniffTestCase
             [15],
             [16],
             [50],
-            [58],
         ];
     }
 

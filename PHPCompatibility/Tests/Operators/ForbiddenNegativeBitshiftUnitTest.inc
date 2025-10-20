@@ -14,6 +14,3 @@ var_dump(1 >> ($variable - 1)); // Ok - as we don't know whether the contents of
 
 // Issue #294/#466.
 return ($a >> $b) & ~(1 << (8 * PHP_INT_SIZE - 1) >> ($b - 1));
-
-// Don't throw errors on live code review.
-var_dump(1 >>

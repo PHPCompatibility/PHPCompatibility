@@ -59,7 +59,3 @@ empty(a::${$b});
 empty($a::${$b});
 empty(a::${$b . 'c'});
 empty($a::${$b . 'c'});
-
-
-// Unclosed - live coding, don't examine.
-empty(

@@ -87,7 +87,6 @@ final class NewMultiCatchUnitTest extends BaseSniffTestCase
             [12],
             [23],
             [32],
-            [39], // Live coding.
         ];
     }
 

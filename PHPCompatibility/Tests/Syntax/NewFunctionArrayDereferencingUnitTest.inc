@@ -40,6 +40,3 @@ echo $foo?->bar()[1];
 namespace\test()[0];
 \Fully\Qualified\test()[0];
 Partially\Qualified\test()[0];
-
-// Don't throw errors during live code review.
-echo test(

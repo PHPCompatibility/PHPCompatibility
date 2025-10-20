@@ -254,8 +254,3 @@ class NamespacedNames {
     ): \Fully\Qualified\Reflector {
     }
 }
-
-// Test parse error/live coding.
-// This MUST be the last test in the file!
-try {
-} catch (

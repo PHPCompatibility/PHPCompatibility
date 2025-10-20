@@ -198,6 +198,3 @@ enum HasSerializable implements Serializable { // Deprecation warning.
     }
 }
 enum HasSerializableToo: string implements Serializable, ArrayAccess {} // Deprecation warning.
-
-// Must be last test: testing class without scope closer.
-class Something implements Serializable {

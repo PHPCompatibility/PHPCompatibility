@@ -94,7 +94,6 @@ final class NewUseConstFunctionUnitTest extends BaseSniffTestCase
             [39],
             [45],
             [46],
-            [51],
         ];
     }
 

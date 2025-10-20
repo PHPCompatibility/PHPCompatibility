@@ -112,7 +112,6 @@ final class NewKeyedListUnitTest extends BaseSniffTestCase
             [49],
             [69],
             [73],
-            [77],
         ];
     }
 

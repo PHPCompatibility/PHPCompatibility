@@ -170,9 +170,3 @@ array_shift($GLOBALS);
 // Note: these tests will only work on PHP 8.0 due to PHP having renamed the relevant parameters in PHP 8.0...
 array_splice(offset: 0, array: $GLOBALS, length: count($GLOBALS));
 array_walk(callback: functionName, arg: $extra, array: $GLOBALS);
-
-// Live coding.
-// These tests have to be the last tests in the file.
-$GLOBALS[ = 'x';
-
-$GLOBALS
