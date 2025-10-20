@@ -1,7 +1,7 @@
 ---
 name: "\U0001F41B Bug report for sniffs"
 about: I got unexpected behavior and think it is a bug.
-
+title: ''
 ---
 
 <!--
@@ -75,4 +75,5 @@ To find out the versions used:
 
 
 ## Tested Against `develop` branch?
+
 - [ ] I have verified the issue still exists in the `develop` branch of PHPCompatibility.

@@ -1,5 +1,5 @@
-PHP Compatibility Coding Standard for PHP CodeSniffer
-=====================================================
+# PHP Compatibility Coding Standard for PHP CodeSniffer
+
 [![Latest Stable Version](https://img.shields.io/packagist/v/phpcompatibility/php-compatibility?label=stable)](https://packagist.org/packages/phpcompatibility/php-compatibility)
 [![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcompatibility/php-compatibility#dev-develop)
 ![Awesome](https://img.shields.io/badge/awesome%3F-yes!-brightgreen.svg)
@@ -14,7 +14,7 @@ PHP Compatibility Coding Standard for PHP CodeSniffer
 
 
 This is a set of sniffs for [PHP CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) that checks for PHP cross-version compatibility.
-It will allow you to analyse your code for compatibility with higher and lower versions of PHP. 
+It will allow you to analyse your code for compatibility with higher and lower versions of PHP.
 
 * [PHP Version Support](#php-version-support)
 * [Requirements](#requirements)
@@ -23,23 +23,21 @@ It will allow you to analyse your code for compatibility with higher and lower v
 * [Installation in a Composer project (method 1)](#installation-in-a-composer-project-method-1)
 * [Installation via a git check-out to an arbitrary directory (method 2)](#installation-via-a-git-check-out-to-an-arbitrary-directory-method-2)
 * [Sniffing your code for compatibility with specific PHP version(s)](#sniffing-your-code-for-compatibility-with-specific-php-versions)
-    + [Using a framework/CMS/polyfill specific ruleset](#using-a-frameworkcmspolyfill-specific-ruleset)
+    - [Using a framework/CMS/polyfill specific ruleset](#using-a-frameworkcmspolyfill-specific-ruleset)
 * [Using a custom ruleset](#using-a-custom-ruleset)
-    + [`testVersion` in the ruleset versus command-line](#testversion-in-the-ruleset-versus-command-line)
-    + [PHPCompatibility specific options](#phpcompatibility-specific-options)
+    - [`testVersion` in the ruleset versus command-line](#testversion-in-the-ruleset-versus-command-line)
+    - [PHPCompatibility specific options](#phpcompatibility-specific-options)
 * [Projects extending PHPCompatibility](#projects-extending-phpcompatibility)
 * [Contributing](#contributing)
 * [License](#license)
 
-PHP Version Support
--------
+## PHP Version Support
 
 The project aims to cover all PHP compatibility changes introduced since PHP 5.0 up to the latest PHP release. This is an ongoing process and coverage is not yet 100% (if, indeed, it ever could be). Progress is tracked on [our GitHub issue tracker](https://github.com/PHPCompatibility/PHPCompatibility/issues).
 
 Pull requests that check for compatibility issues in PHP 4 code - in particular between PHP 4 and PHP 5.0 - are very welcome as there are still situations where people need help upgrading legacy systems. However, coverage for changes introduced before PHP 5.1 will remain patchy as sniffs for this are not actively being developed at this time.
 
-Requirements
--------
+## Requirements
 
 * PHP 5.4+
 * PHP CodeSniffer: 3.13.3+ / 4.0.0+.
@@ -51,15 +49,15 @@ As of version 9.0.0, support for PHP CodeSniffer 1.5.x and low 2.x versions < 2.
 As of version 10.0.0, support for PHP < 5.4 and PHP CodeSniffer < 3.13.3 has been dropped.
 
 
-Thank you
----------
+## Thank you
+
 Thanks to all [contributors](https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors) for their valuable contributions.
 
 Thanks to [WP Engine](https://wpengine.com) for their support on the PHP 7.0 sniffs.
 
 
-:warning: Upgrading to PHPCompatibility 9.0.0 :warning:
---------
+## :warning: Upgrading to PHPCompatibility 9.0.0 :warning:
+
 This library has been reorganized. All sniffs have been placed in categories and a significant number of sniffs have been renamed.
 
 If you use the complete `PHPCompatibility` standard without `exclude` directives in a custom ruleset and do not (yet) use the new-style PHP_CodeSniffer annotation as introduced in [PHP_CodeSniffer 3.2.0](https://github.com/PHPCSStandards/PHP_CodeSniffer/releases/tag/3.2.0), this will have no noticeable effect and everything should work as before.
@@ -70,8 +68,7 @@ The changelog contains detailed information about all the sniff renames.
 Please read the changelog for version [9.0.0](https://github.com/PHPCompatibility/PHPCompatibility/releases/tag/9.0.0) carefully before upgrading.
 
 
-Installation in a Composer project (method 1)
--------------------------------------------
+## Installation in a Composer project (method 1)
 
 * Add the following lines to the `require-dev` section of your `composer.json` file.
     ```json
@@ -90,11 +87,11 @@ Installation in a Composer project (method 1)
         ```
     - Alternatively - and **_strongly recommended_** if you use more than one external PHP CodeSniffer standard - you can use any of the following Composer plugins to handle this for you.
 
-       Just add the Composer plugin you prefer to the `require-dev` section of your `composer.json` file.
+        Just add the Composer plugin you prefer to the `require-dev` section of your `composer.json` file.
 
-       * [DealerDirect/phpcodesniffer-composer-installer](https://github.com/DealerDirect/phpcodesniffer-composer-installer):"^0.6.0"
-       * [higidi/composer-phpcodesniffer-standards-plugin](https://github.com/higidi/composer-phpcodesniffer-standards-plugin)
-       * [SimplyAdmire/ComposerPlugins](https://github.com/SimplyAdmire/ComposerPlugins). This plugin *might* still work, but appears to be abandoned.
+        * [DealerDirect/phpcodesniffer-composer-installer](https://github.com/DealerDirect/phpcodesniffer-composer-installer):"^0.6.0"
+        * [higidi/composer-phpcodesniffer-standards-plugin](https://github.com/higidi/composer-phpcodesniffer-standards-plugin)
+        * [SimplyAdmire/ComposerPlugins](https://github.com/SimplyAdmire/ComposerPlugins). This plugin _might_ still work, but appears to be abandoned.
     - As a last alternative in case you use a custom ruleset, you can tell PHP CodeSniffer the path to the PHPCompatibility standard by adding the following snippet to your custom ruleset:
         ```xml
         <config name="installed_paths" value="vendor/phpcompatibility/php-compatibility" />
@@ -106,8 +103,7 @@ Installation in a Composer project (method 1)
     ./vendor/bin/phpcs -p . --standard=PHPCompatibility
     ```
 
-Installation via a git check-out to an arbitrary directory (method 2)
------------------------
+## Installation via a git check-out to an arbitrary directory (method 2)
 
 * Install [PHP CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) via [your preferred method](https://github.com/PHPCSStandards/PHP_CodeSniffer#installation).
 
@@ -138,8 +134,8 @@ Installation via a git check-out to an arbitrary directory (method 2)
     phpcs -p . --standard=PHPCompatibility
     ```
 
-Sniffing your code for compatibility with specific PHP version(s)
-------------------------------
+## Sniffing your code for compatibility with specific PHP version(s)
+
 * Run the coding standard from the command-line with `phpcs -p . --standard=PHPCompatibility`.
 * By default, you will only receive notifications about deprecated and/or removed PHP features.
 * To get the most out of the PHPCompatibility standard, you should specify a `testVersion` to check against. That will enable the checks for both deprecated/removed PHP features as well as the detection of code using new PHP features.
@@ -166,8 +162,8 @@ If you want to make sure you have all PHPCompatibility rulesets available at any
 **IMPORTANT:** Framework/CMS/Polyfill specific rulesets do not set the minimum PHP version for your project, so you will still need to pass a `testVersion` to get the most accurate results.
 
 
-Using a custom ruleset
-------------------------------
+## Using a custom ruleset
+
 Like with any PHP CodeSniffer standard, you can add PHPCompatibility to a custom PHP CodeSniffer ruleset.
 
 ```xml
@@ -235,8 +231,8 @@ To inform the sniff about additional interfaces providing the Serializable inter
     </rule>
 ```
 
-Projects extending PHPCompatibility
---------------------------------------
+## Projects extending PHPCompatibility
+
 There are hundreds of public projects using PHPCompatibility or extending on top of it. A short list of some that you might know or have a look at :
 * [adamculp/php-code-quality](https://github.com/adamculp/php-code-quality) - a Docker image doing a lot of code quality checks
 * PHPCompatibility Checker WordPress plugin : [Wordpress site](https://wordpress.org/plugins/php-compatibility-checker/) and [Github](https://github.com/wpengine/phpcompat/)
@@ -245,10 +241,10 @@ There are hundreds of public projects using PHPCompatibility or extending on top
 * [Moodle codechecker](https://github.com/moodlehq/moodle-local_codechecker) - A [plugin](https://moodle.org/plugins/local_codechecker) for Moodle [coding style](https://docs.moodle.org/dev/Coding_style), including PHPCompatibility.
 * [Github Action](https://github.com/marketplace/actions/php-compatibility) - A Github Action that runs this PHPCS standard on your source code.
 
-Contributing
--------
+## Contributing
+
 Contributions are very welcome. Please read the [CONTRIBUTING](.github/CONTRIBUTING.md) documentation to get started.
 
-License
--------
-This code is released under the GNU Lesser General Public License (LGPL). For more information, visit http://www.gnu.org/copyleft/lesser.html
+## License
+
+This code is released under the GNU Lesser General Public License (LGPL). For more information, visit <http://www.gnu.org/copyleft/lesser.html>

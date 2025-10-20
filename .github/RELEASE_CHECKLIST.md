@@ -1,5 +1,4 @@
-Release checklist
------------------
+# Release checklist
 
 Use the below text for a release PR to merge `develop` into `master` and adjust the placeholders between [square brackets] to the correct information for that release:
 
@@ -17,7 +16,7 @@ PR for tracking changes for the [x.x.x] release. Target release date: **[Weekday
 - [ ] [Major releases only] Update the `COMPOSER_ROOT_VERSION` in the `.travis.yml` file
 - [ ] Add changelog for the release - PR #[#]
     :pencil2: _Remember to create a link to the milestone and to the diff at the bottom of the file._
-    
+
 ### Release
 - [ ] Merge this PR
 - [ ] Add release tag against `master` (careful, GH defaults to `develop`!) & copy & paste the changelog to it
@@ -28,5 +27,3 @@ PR for tracking changes for the [x.x.x] release. Target release date: **[Weekday
 - [ ] Tweet about the release.
 - [ ] Post about it in Slack. (WordPress #tide channel and any others people deem relevant)
 - [ ] Fast-forward `develop` to be equal to `master`
-
----

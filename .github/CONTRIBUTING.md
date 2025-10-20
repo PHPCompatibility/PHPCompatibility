@@ -1,22 +1,21 @@
+# Contributing to PHPCompatibility
+
 Hi, thank you for your interest in contributing to PHPCompatibility! We look forward to working with you.
 
-Reporting bugs
---------------
+## Reporting bugs
 
 Before reporting a bug, you should check what sniff an error is coming from.
 Running `phpcs` with the `-s` flag will show the name of the sniff with each error.
 
 Bug reports containing a minimal code sample which can be used to reproduce the issue are highly appreciated as those are most easily actionable.
 
-Requesting features
--------------------
+## Requesting features
 
 The PHPCompatibility standard only concerns itself with cross-version PHP compatibility of code.
 
 When requesting a new feature, please add a link to a relevant page in the [PHP Manual](http://php.net/manual/en/) / PHP Changelog / [PHP RFC website](https://wiki.php.net/rfc) which illustrates the feature you are requesting.
 
-Pull requests
--------------
+## Pull requests
 
 Contributions in the form of pull requests are very welcome.
 
@@ -63,10 +62,9 @@ The communities behind these PHP frameworks/CMSes/polyfill libraries are strongl
     As support for overruling a `<config>` directive [is patchy](https://github.com/squizlabs/PHP_CodeSniffer/issues/1821), it should be recommended to set the desired `testVersion` either from the command line or in a project-specific custom ruleset.
 
 
-Naming conventions and repository structure
------------------------
+## Naming conventions and repository structure
 
-### Regarding sniff names:
+### Regarding sniff names
 * Per PHPCS convention, sniff files and class names have the `Sniff` suffix.
 * The name of sniffs relating to new PHP features should start with `New`.
 * The name of sniffs relating to deprecated or removed PHP features should start with `Removed` - as everything which has been deprecated is slated for removal in a later PHP version -.
@@ -80,15 +78,15 @@ Naming conventions and repository structure
     Additionally:
     - The `Miscellaneous` category should be avoided if at all possible and should only be used as a last resort.
 
-### About the unit tests:
+### About the unit tests
 * Unit test files should be named the same as the sniff, replacing the `Sniff` suffix with `UnitTest`.
 * The test case file for the unit tests should be named the same as the unit test file, but should use the `.inc` file extension.
     If several test case files are needed to test a sniff, the convention is to number the files starting with `1`, i.e. `SniffNameUnitTest.1.inc`, `SniffNameUnitTest.2.inc` etc.
 * Test case files should be placed in the same directory as the unit test file.
 
 
-Running the Sniff Tests
------------------------
+## Running the Sniff Tests
+
 All the sniffs are fully tested with PHPUnit tests and have `@group` annotations matching their categorization to allow for running subsets of the unit tests more easily.
 
 In order to run the tests on the sniffs, the following installation steps are required.
@@ -112,16 +110,16 @@ In order to run the tests on the sniffs, the following installation steps are re
 
     1. Copy the existing `phpunit.xml.dist` file in the root directory of the PHPCompatibility repository and name it `phpunit.xml`.
     2. Add the following snippet to the new file, replacing the value `/path/to/PHPCS` with the path to the directory in which you installed PHP CodeSniffer on your system:
-    ```xml
-    <php>
-        <env name="PHPCS_DIR" value="/path/to/PHPCS"/>
-    </php>
-    ```
+        ```xml
+        <php>
+            <env name="PHPCS_DIR" value="/path/to/PHPCS"/>
+        </php>
+        ```
     3. Run the tests by running `phpunit` from the root directory of your PHPCompatibility install.
        It will automatically read the `phpunit.xml` file and execute the tests.
 
 
-#### Issues when running the PHPCS Unit tests for another standard
+### Issues when running the PHPCS Unit tests for another standard
 
 This sniff library uses its own PHPUnit setup rather than the PHP CodeSniffer native unit testing framework to allow for testing the sniffs with various settings for the `testVersion` config variable.
 
@@ -139,8 +137,7 @@ To fix these errors, add the following to the `phpunit.xml` file for the sniff l
 This will prevent PHPCS trying to include the PHPCompatibility unit tests when creating the test suite.
 
 
-Checking Code Style Locally
------------------------
+## Checking Code Style Locally
 
 PHPCompatibility uses the [PHPCSDevCS](https://github.com/PHPCSStandards/PHPCSDevCS) standard for code style.
 

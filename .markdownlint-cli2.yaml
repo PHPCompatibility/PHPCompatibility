@@ -1,0 +1,119 @@
+#
+# Configuration file for MarkdownLint-CLI2.
+#
+# Example file with all options:
+# https://github.com/DavidAnson/markdownlint-cli2/blob/main/test/markdownlint-cli2-yaml-example/.markdownlint-cli2.yaml
+#
+
+# Do not fix any fixable errors.
+fix: false
+
+# Define glob expressions to use (only valid at root).
+globs:
+  - "**/*.md"
+  - ".github/**/*.md"
+
+# Show found files on stdout (only valid at root)
+showFound: true
+
+# Define glob expressions to ignore.
+ignores:
+  - "node_modules/"
+  - "vendor/"
+
+# Disable inline config comments.
+noInlineConfig: true
+
+# Disable progress on stdout (only valid at root).
+noProgress: false
+
+# Adjust the configuration for some built-in rules.
+# For full information on the options and defaults, see:
+# https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.yaml
+config:
+  ######################
+  # Disable a few rules.
+  ######################
+  # MD031/blanks-around-fences - Fenced code blocks should be surrounded by blank lines.
+  MD031: false
+  # MD032/blanks-around-lists - Lists should be surrounded by blank lines.
+  MD032: false
+
+  ##############################
+  # Customize a few other rules.
+  ##############################
+  # MD003/heading-style/header-style - Heading style.
+  MD003:
+    # Heading style - Always use hashes.
+    style: "atx"
+
+  # MD004/ul-style - Unordered list style.
+  MD004:
+    # List style - each level has a different, but consistent symbol.
+    style: "sublist"
+
+  # MD007/ul-indent - Unordered list indentation.
+  MD007:
+    indent: 4
+    # Whether to indent the first level of the list.
+    start_indented: false
+
+  # MD012/no-multiple-blanks - Multiple consecutive blank lines.
+  MD012:
+    maximum: 2
+
+  # MD013/line-length - Line length.
+  MD013:
+    # Number of characters. No need for being too fussy.
+    line_length: 1000
+    # Number of characters for headings.
+    heading_line_length: 100
+    # Number of characters for code blocks.
+    code_block_line_length: 130
+    # Stern length checking (applies to tables, code blocks etc which have their own max line length).
+    stern: true
+
+  # MD022/blanks-around-headings : Headings should be surrounded by blank lines.
+  MD022:
+    # Blank lines above heading
+    lines_above: [2, 1, 1, 1, 1]
+    # Blank lines below heading
+    lines_below: [1, 1, -1, -1, -1]
+
+  # MD024/no-duplicate-heading/no-duplicate-header - Multiple headings with the same content.
+  MD024:
+    # Only check sibling headings.
+    siblings_only: true
+
+  # MD033/no-inline-html - Inline HTML.
+  MD033:
+    # Allowed elements.
+    allowed_elements:
+      - div
+      - details
+      - summary
+      - b
+      - code
+
+  # MD044/proper-names - Proper names should have the correct capitalization.
+  MD044:
+    # List of proper names.
+    names: ["PHPCompatibility", "PHPCSUtils", "PHP_CodeSniffer", "CodeSniffer", "PHPUnit"]
+    # Include code blocks.
+    code_blocks: false
+
+  # MD046/code-block-style - Code block style
+  MD046:
+    style: "fenced"
+
+  # MD048/code-fence-style - Code fence style
+  MD048:
+    style: "backtick"
+
+  # MD049/emphasis-style - Emphasis style should be consistent
+  MD049:
+    style: "underscore"
+
+  # MD050/strong-style - Strong style should be consistent
+  MD050:
+    style: "asterisk"
