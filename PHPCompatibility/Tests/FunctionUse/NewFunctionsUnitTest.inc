@@ -1098,3 +1098,4 @@ namespace\intltz_get_id();
 \Fully\Qualified\array_is_list();
 
 curl_share_init_persistent();
+grapheme_levenshtein();
