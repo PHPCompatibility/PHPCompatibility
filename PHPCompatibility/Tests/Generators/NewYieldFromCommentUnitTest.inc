@@ -34,8 +34,3 @@ function YieldFromMultiLineWithAnnotation() {
     // phpcs:ignore Stnd.Cat -- for reasons.
     From foo();
 }
-
-// Intentional parse error.
-// Only needed for PHPCS < 3.11.0 with PHP < 8.3. This test can be removed once support for PHPCS < 3.11.0 has been dropped.
-function YieldLiveCoding() {
-    yield
