@@ -11,13 +11,13 @@
     ]]>
     </standard>
     <code_comparison>
-        <code title="Valid: calling mb_check_encoding() with at least one argument.">
+        <code title="Cross-version compatible: calling mb_check_encoding() with at least one argument.">
         <![CDATA[
 $check = <em>mb_check_encoding($value, $encoding)</em>;
 $check = <em>mb_check_encoding(encoding: $charset)</em>;
         ]]>
         </code>
-        <code title="Invalid: calling mb_check_encoding() without any arguments.">
+        <code title="PHP &lt; 8.1: calling mb_check_encoding() without any arguments.">
         <![CDATA[
 $check = <em>mb_check_encoding()</em>;
         ]]>

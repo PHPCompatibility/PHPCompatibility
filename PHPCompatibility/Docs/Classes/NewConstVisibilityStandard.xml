@@ -16,7 +16,7 @@ class Foo {
 }
         ]]>
         </code>
-        <code title="PHP >= 7.1: using a visibility modifier.">
+        <code title="PHP &gt;= 7.1: using a visibility modifier.">
         <![CDATA[
 class Foo {
     <em>protected</em> const BAR = 10;
