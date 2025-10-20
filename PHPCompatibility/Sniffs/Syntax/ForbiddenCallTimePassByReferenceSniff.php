@@ -58,10 +58,7 @@ final class ForbiddenCallTimePassByReferenceSniff extends Sniff
     {
         $this->assignOrCompare = Tokens::$assignmentTokens + Tokens::$equalityTokens;
 
-        $targets              = Collections::nameTokens();
-        $targets[\T_VARIABLE] = \T_VARIABLE;
-
-        return $targets;
+        return Collections::functionCallTokens();
     }
 
     /**
