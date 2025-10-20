@@ -19,7 +19,7 @@ fooanonclass(new class {
 });
 
 namespace ScopedNS {
-	function AsSeRt($something) {}
+    function AsSeRt($something) {}
 }
 
 class nested {

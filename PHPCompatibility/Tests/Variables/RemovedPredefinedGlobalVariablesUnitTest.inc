@@ -56,7 +56,7 @@ class TestClass {
 
 // Anonymous classes: Issue #333
 $a = new class {
-	// OK.
+    // OK.
     private $HTTP_POST_VARS;
     protected $HTTP_GET_VARS;
     public static $HTTP_ENV_VARS;
@@ -67,7 +67,7 @@ $a = new class {
     var static $HTTP_RAW_POST_DATA;
 
     function testing() {
-		 // Bad.
+         // Bad.
         $HTTP_POST_VARS;
         $HTTP_GET_VARS;
         $HTTP_ENV_VARS;
@@ -77,7 +77,7 @@ $a = new class {
         $HTTP_POST_FILES;
         echo $HTTP_RAW_POST_DATA;
 
-		// Ok.
+        // Ok.
         self::$HTTP_POST_VARS;
         self::$HTTP_GET_VARS;
         static::$HTTP_ENV_VARS;
@@ -87,7 +87,7 @@ $a = new class {
         $this->HTTP_POST_FILES;
         static::$HTTP_RAW_POST_DATA;
 
-		// Bad.
+        // Bad.
         self::{$HTTP_POST_VARS};
         self::{$HTTP_SERVER_VARS};
         self::{$HTTP_SESSION_VARS};
@@ -102,68 +102,68 @@ echo $php_errormsg; // Bad.
 
 // Test jumping over classes and such.
 class ABC {
-	function abc() {
-		$php_errormsg = error_get_last(); // OK.
-	}
+    function abc() {
+        $php_errormsg = error_get_last(); // OK.
+    }
 }
 
 if (isset($php_errormsg)) { // Bad.
-	trigger_error($php_errormsg); // Bad.
+    trigger_error($php_errormsg); // Bad.
 }
 
 echo $php_errormsg['message']; // OK, array.
 
 function something( $php_errormsg ) // OK, param.
 {
-	echo $php_errormsg; // OK, param shadowing.
+    echo $php_errormsg; // OK, param shadowing.
 }
 
 $a = function ( $php_errormsg ) // OK, param.
 {
-	echo $php_errormsg; // OK, param shadowing.
+    echo $php_errormsg; // OK, param shadowing.
 };
 
 $f = function () use (&$php_errormsg) { // Bad.
-	echo $php_errormsg; // OK, uses imported var. Error will be on imported var, not here.
+    echo $php_errormsg; // OK, uses imported var. Error will be on imported var, not here.
 };
 
 $php_errormsg = error_get_last(); // OK.
 
 echo $php_errormsg; // OK - uses the value from the above assignment.
 if (isset($php_errormsg)) { // OK - uses the value from the above assignment.
-	trigger_error($php_errormsg); // OK - uses the value from the above assignment.
+    trigger_error($php_errormsg); // OK - uses the value from the above assignment.
 }
 
 
 function something_else()
 {
-	global $php_errormsg; // Bad.
-	echo $php_errormsg; // Bad.
+    global $php_errormsg; // Bad.
+    echo $php_errormsg; // Bad.
 
-	$php_errormsg = error_get_last(); // OK.
+    $php_errormsg = error_get_last(); // OK.
 
-	echo $php_errormsg; // OK, uses the value from the above assignment.
-	if (isset($php_errormsg)) { // OK, uses the value from the above assignment.
-		trigger_error($php_errormsg); // OK, uses the value from the above assignment.
-	}
+    echo $php_errormsg; // OK, uses the value from the above assignment.
+    if (isset($php_errormsg)) { // OK, uses the value from the above assignment.
+        trigger_error($php_errormsg); // OK, uses the value from the above assignment.
+    }
 
-	$f = function () use (&$php_errormsg) { // OK, uses the value from the above assignment.
-		echo $php_errormsg; // OK, uses imported var.
-	};
+    $f = function () use (&$php_errormsg) { // OK, uses the value from the above assignment.
+        echo $php_errormsg; // OK, uses imported var.
+    };
 
-	$a = function ()
-	{
-		echo $php_errormsg; // Bad.
-	};
+    $a = function ()
+    {
+        echo $php_errormsg; // Bad.
+    };
 }
 
 $a = class {};
 
 // Test jumping over traits and such.
 trait ABC {
-	function abc() {
-		$php_errormsg = error_get_last(); // OK.
-	}
+    function abc() {
+        $php_errormsg = error_get_last(); // OK.
+    }
 }
 
 echo $php_errormsg; // OK - uses the value from the assignment on line 37.

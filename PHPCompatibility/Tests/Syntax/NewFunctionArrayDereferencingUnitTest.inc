@@ -30,7 +30,7 @@ echo $foo->bar()->baz(){0}[2]; // Should give two errors (depending on supported
 
 // Prevent curly braces false positive on function declared by reference.
 function &test() {
-	echo '123';
+    echo '123';
 }
 
 // Also recognize this with PHP 8.0 nullsafe object operator.

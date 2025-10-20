@@ -179,7 +179,7 @@ for ($z = 0; $z < 8; $z++) {
 
 // More tests with namespaced names.
 for ($a = 0; $a < 5; $a++) {
-	// OK: Namespaced name for constant.
+    // OK: Namespaced name for constant.
     if ($a < 5) {
         continue namespace\E_WARNING;
     }

@@ -33,20 +33,20 @@ foreach ($data as ['id' => $id, 'name' => $name]) {}
 
 // Test detecting nested keyed lists and throwing the error at the correct line.
 list(
-	list("x" => $x1, "y" => $y1),
-	list("x" => $x2, "y" => $y2)
+    list("x" => $x1, "y" => $y1),
+    list("x" => $x2, "y" => $y2)
 ) = $points;
 
 [
-	["x" => $x1, "y" => $y1],
-	["x" => $x2, "y" => $y2],
+    ["x" => $x1, "y" => $y1],
+    ["x" => $x2, "y" => $y2],
 ] = $points;
 
 list(
-	'a' => 
-		list($x1, $y1),
-	'b' =>
-		list($x2, $y2),
+    'a' => 
+        list($x1, $y1),
+    'b' =>
+        list($x2, $y2),
 ) = $points;
 
 // Test handling of tokenizer issue in older PHPCS versions.

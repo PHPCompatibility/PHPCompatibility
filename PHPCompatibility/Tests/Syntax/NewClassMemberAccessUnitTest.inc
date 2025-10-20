@@ -29,9 +29,9 @@ var_dump(new foo()->baz()->baz()->bar());
 var_dump(new foo()->xyz());
 
 try {
-	$X = new foo->Inexistent(3);
+    $X = new foo->Inexistent(3);
 } catch (Exception $e) {
-	var_dump($e->getMessage());
+    var_dump($e->getMessage());
 }
 
 
@@ -54,17 +54,17 @@ $clone = clone (new bar)->getZ();
 $X = (new foo)->setX(10)->getX();
 
 var_dump(
-	(new foo())
-		-> bar()
+    (new foo())
+        -> bar()
 );
 var_dump((new foo())->baz()->x);
 var_dump((new foo())->baz()->baz()->bar());
 var_dump((new foo())->xyz());
 
 try {
-	$X = (new foo)->Inexistent(3);
+    $X = (new foo)->Inexistent(3);
 } catch (Exception $e) {
-	var_dump($e->getMessage());
+    var_dump($e->getMessage());
 }
 
         $container->setDefinition('child', (new ChildDefinition('parent'))->setArguments(array(

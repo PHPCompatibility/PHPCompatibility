@@ -6,8 +6,8 @@
 const NON_OO_CONST = Foo::CONST_NAME;
 
 function containsStaticVars() {
-	static $var = Foo::class, $bar = 'static value';
-	static $boo = [];
+    static $var = Foo::class, $bar = 'static value';
+    static $boo = [];
 }
 
 function bar($a, $b = (10 + 5)) {}
@@ -22,9 +22,9 @@ $closure = static function() { return new Foo; };
 $fn = static fn() => new Foo;
 
 class Something {
-	public function foo() {
-		$bool = new Foo() instanceof static;
-	}
+    public function foo() {
+        $bool = new Foo() instanceof static;
+    }
 }
 
 $var = new Foo();
@@ -41,57 +41,57 @@ const NON_OO_CONST_SHORT_ARRAY = array(new Foo());
 
 // Static variable declarations.
 function containsStaticVars() {
-	static $var = new Foo(1), $bar = new \Fully\Qualified('static value'); // x2.
-	static $boo = [new Partially\Qualified()];
+    static $var = new Foo(1), $bar = new \Fully\Qualified('static value'); // x2.
+    static $boo = [new Partially\Qualified()];
 }
 
 // Default values for function declarations in all forms.
 function bar($a, $b = new Foo()) {}
 $array = array(
-	'k1' => function ($a, $b = new Foo()) {},
-	'k2' => function ($a, $b = array(new Foo())) {},
-	'k3' => function ($a, $b = [new Foo()]) {},
-	'k4' => function ($a, $b = array(array(new Foo()))) {},
+    'k1' => function ($a, $b = new Foo()) {},
+    'k2' => function ($a, $b = array(new Foo())) {},
+    'k3' => function ($a, $b = [new Foo()]) {},
+    'k4' => function ($a, $b = array(array(new Foo()))) {},
 );
 $ar = fn (Foo $a = new Foo()) => $a;
 
 class ClassMethodsCanUseNew extends Something {
     public function __construct(
-		public Foo $constructorProp = new Foo(),
-		$normalVar = new self(x: 2),
-	) {}
+        public Foo $constructorProp = new Foo(),
+        $normalVar = new self(x: 2),
+    ) {}
 
     private function bar($a = new parent()) {}
 }
 
 $anon = new class {
     public function __construct(
-		public Foo $constructorProp = new Foo(),
-		$normalVar = new Bar(),
-	) {}
+        public Foo $constructorProp = new Foo(),
+        $normalVar = new Bar(),
+    ) {}
 
     private function bar($a = new Foo()) {}
 };
 
 interface InterfaceMethodsCanUseNew {
     public function __construct(
-		$normalVar = new Bar,
-	);
+        $normalVar = new Bar,
+    );
 
     public function bar($a = new Foo());
 }
 
 trait TraitMethodsCanUseNew {
     public function __construct(
-		public Foo $constructorProp = new Foo,
-		$normalVar = new Bar(),
-	) {}
+        public Foo $constructorProp = new Foo,
+        $normalVar = new Bar(),
+    ) {}
 
     private function bar($a = new Foo()) {}
 }
 
 enum EnumMethodsCanUseNew: string {
-	case Example = 'test';
+    case Example = 'test';
     private function bar($a = new Foo) {}
 }
 

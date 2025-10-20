@@ -76,15 +76,15 @@ LABEL;
 
 // Make sure that (nested) arrays are handled correctly.
 class NestedArrays {
-	protected $table_and_column_defs = array(
-		array(
-			'definition'      => array(
-				'a' => array(
-					'( a INT, b FLOAT )',
-				),
-			),
-		),
-	);
+    protected $table_and_column_defs = array(
+        array(
+            'definition'      => array(
+                'a' => array(
+                    '( a INT, b FLOAT )',
+                ),
+            ),
+        ),
+    );
 
     protected $defaultAcl = [
         [
@@ -94,28 +94,28 @@ class NestedArrays {
         ],
     ];
 
-	var $span_gamut = array(
-		"parseSpan"    => -30,
-		-20            =>  10,
-	);
+    var $span_gamut = array(
+        "parseSpan"    => -30,
+        -20            =>  10,
+    );
 
-	public $defaultSecondarySettings = array(
-		'options' => array(),
-		'post_type' => 'post',
-		'num' => -1,
-		'order' => 'DESC',
-	);
+    public $defaultSecondarySettings = array(
+        'options' => array(),
+        'post_type' => 'post',
+        'num' => -1,
+        'order' => 'DESC',
+    );
 
-	public static $status_map = array(-1=>'auto-draft',
-										 0=>'draft',
-										 1=>'pending',
-										 4=>'trash');
+    public static $status_map = array(-1=>'auto-draft',
+                                       0=>'draft',
+                                       1=>'pending',
+                                       4=>'trash');
 
-	function post_data_export( $prefix = '_aioseop', $query = array( 'posts_per_page' => - 1 ) ) {}
+    function post_data_export( $prefix = '_aioseop', $query = array( 'posts_per_page' => - 1 ) ) {}
 }
 
 trait Something {
-	protected $prop = __TRAIT__;
+    protected $prop = __TRAIT__;
 }
 
 // PHP 5.6: Test throwing errors for all newly allowed operators.
@@ -185,7 +185,7 @@ $a = new class {
     public $bar = [
         1 + 1 => 'value',
         1 << 2 => 'value',
-		// Note: Heredoc with variables is still not allowed, but not our concern.
+        // Note: Heredoc with variables is still not allowed, but not our concern.
         Foo::BAZ => "foo ".<<<EOT
 some text with a $variable
 EOT
@@ -224,9 +224,9 @@ $closure = function ($a = 30 / HALF, $b = array( 1, THREE, 'string'.'concat') ) 
 function foo($a = (1 + 1), $b = 2 << 3, $c = ((BAR)?10:100), $d = 123, $e = array(), $f = 10 * 5) {}
 
 $closure = function (
-	$a = (1 + 1),
-	$b = 2 << 3,
-	$c = ((BAR)?10:100)
+    $a = (1 + 1),
+    $b = 2 << 3,
+    $c = ((BAR)?10:100)
 ) {};
 
 // PHP 5.6: Static constant expressions in static variable declarations.
@@ -241,7 +241,7 @@ static $i = namespace ABC\DEF; // Parse error, but testing part of the code.
 static $j = - namespace\Foo::BAR;
 const ABC = + \ABC\Bar::BAR;
 class ABC {
-	public static $foo = - Foo::THREE;
+    public static $foo = - Foo::THREE;
 }
 const ABC = + FOOBAR;
 const ABC = - M_PI;

@@ -13,16 +13,16 @@ global $test, $$test, $$$test;
 // OK: simple variables.
 global $var,
     $var['key'], // Always parse error, but not our concern.
-	$var->key, // Always parse error, but not our concern.
-	$$var, // Warning about using non-bare variable.
-	$$$var; // Warning about using non-bare variable.
+    $var->key, // Always parse error, but not our concern.
+    $$var, // Warning about using non-bare variable.
+    $$$var; // Warning about using non-bare variable.
 
 // Error: complex variables, not allowed since PHP 7.0.
 global $$var['key'],
     $$var->key,
-	$$var->key['key'],
+    $$var->key['key'],
     $$var::$staticvar,
-	$$var::$staticvar['key'];
+    $$var::$staticvar['key'];
 
 // Test to make sure that the sniff works code-style independently.
 // Whitespace and comments are allowed between the $ and $var.
@@ -34,9 +34,9 @@ global $   $test->bar, $
 // These will all throw a warning about using non-bare variables.
 global ${$var['key']},
     ${$var->key},
-	${$var->key['key']},
+    ${$var->key['key']},
     ${$var::$staticvar},
-	${$var::$staticvar['key']};
+    ${$var::$staticvar['key']};
 
 // Warning for using something other than a bare variable.
 global ${$test};
@@ -49,7 +49,7 @@ global ${$obj->{$var['key']}};
 // Variant on issue #460, the last two should throw a warning.
 global $test,
     $$test,
-	$$$test ?> <?php
+    $$$test ?> <?php
 
 // Prevent false negatives on PHP 8.0+ nullsafe property access.
 global $$var?->key;

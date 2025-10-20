@@ -5,7 +5,7 @@ $obj->notToString($param);
 $obj->__toString();
 $obj::__toString();
 MyClass::__toString(
-	// Comment.
+    // Comment.
 );
 
 class MyClass {
@@ -26,11 +26,11 @@ MyClass::__TOSTRING; // Constant, not method.
 $obj->__tostring; // Property, not method.
 
 class Bar {
-	public function foo() {
+    public function foo() {
         $this->__toString; // Property.
         self::$__toString; // Property.
         self::__toString; // Constant.
-	}
+    }
 }
 
 // PHP 5.3: The __toString() magic method can no longer accept arguments.
@@ -40,7 +40,7 @@ MyClass::__toString($param);
 
 class MyClass {
     public function foo() {
-		// Includes testing case-insensitivity as function names in PHP are (case-insensitive).
+        // Includes testing case-insensitivity as function names in PHP are (case-insensitive).
         self::__toString($param);
         static::__tostring($param);
         parent::__toSTRING($param);

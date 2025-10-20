@@ -18,7 +18,7 @@ $a = function($paramA, $paramB, $this, $paramC, $this) {}; // Error x 2, throws 
 
 class NestedClosures {
     function thisInNestedClosure() {
-		$a = function($this) {};
+        $a = function($this) {};
     }
 }
 
@@ -79,12 +79,12 @@ foreach ($a as $that => $this) {}
  * Disable ability to unset() $this.
  */
 class UnsetInMethod {
-	public function foo() {
-		unset($this->property, $this?->nullsafe_property); // OK.
-		
-		// This throws an "Attempt to unset static property" error across all versions, so not our concern.
-		unset($this::$property);
-	}
+    public function foo() {
+        unset($this->property, $this?->nullsafe_property); // OK.
+
+        // This throws an "Attempt to unset static property" error across all versions, so not our concern.
+        unset($this::$property);
+    }
 }
 
 class MyBar implements ArrayAccess {
@@ -97,16 +97,16 @@ class MyBar implements ArrayAccess {
 unset($this);
 unset($that, $theOther, $this, $somethingElse, $this); // Error x 2.
 unset(
-	$that,
-	$this->something,
-	$this,
+    $that,
+    $this->something,
+    $this,
 );
 
 /*
  * Using $this when not in object context now throws a fatal error.
  */
 abstract class AbstractClass {
-	abstract function bar();
+    abstract function bar();
 
     function foo() {
         var_dump($this);
@@ -129,9 +129,9 @@ class ThisInStaticMethod {
 
 class Nested {
     public function getAnonymousClass() {
-		$a = function() {
-			var_dump($this);
-		};
+        $a = function() {
+            var_dump($this);
+        };
 
         return new class() {
             public function nestedFunction() {

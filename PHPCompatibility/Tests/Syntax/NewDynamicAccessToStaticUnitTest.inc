@@ -1,7 +1,7 @@
 <?php
 
 class StaticAllThings {
-	const BAR = 'xyz';
+    const BAR = 'xyz';
 
     public static $foo = 123;
 

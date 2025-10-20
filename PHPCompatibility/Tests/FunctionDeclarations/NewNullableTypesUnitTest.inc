@@ -64,21 +64,21 @@ function (): ?string {};
 function(?callable $nullable) {};
 
 function testTypeDeclarationsInterspersedWithComments(
-	// This is a parameter declaration.
-	?string $nullable,
-	// phpcs:ignore Standard.Category.Sniff -- ignore something about a param type declaration.
-	?
-	/* Comment. */
-	\myNamespace\
-	// Comment.
-	Baz $nullable
+    // This is a parameter declaration.
+    ?string $nullable,
+    // phpcs:ignore Standard.Category.Sniff -- ignore something about a param type declaration.
+    ?
+    /* Comment. */
+    \myNamespace\
+    // Comment.
+    Baz $nullable
 ) :
-	// Comment.
-	?
-	// phpcs:ignore Standard.Category.Sniff -- ignore something about a return type declaration.
-	\myNamespace\
-	/* Comment. */
-	Baz
+    // Comment.
+    ?
+    // phpcs:ignore Standard.Category.Sniff -- ignore something about a return type declaration.
+    \myNamespace\
+    /* Comment. */
+    Baz
 {
 }
 

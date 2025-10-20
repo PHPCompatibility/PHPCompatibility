@@ -20,7 +20,7 @@ echo Bar::$bar::BAZ;
 
 // Test code style independent sniffing.
 echo $obj  ->   /* comment */ $var()
-	 :: $bar; // Bad.
+     :: $bar; // Bad.
 
 // PHP 7.0 change, but outside the scope of this sniff
 // (dereferencing operations can now be applied to arbitrary parenthesis-expressions).
