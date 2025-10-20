@@ -1341,7 +1341,7 @@ final class NewClassesSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @var array<string,true>
+     * @var array<string, true>
      */
     private $importedClasses = [];
 

@@ -660,7 +660,7 @@ The `9.0.0` release is expected to be ready later this summer.
 - :star2: New `NewGeneratorReturn` sniff to detect `return` statements within generators as introduced in PHP 7.0. [#618]
 - :star2: New `PCRENewModifiers` sniff to initially detect the new `J` regex modifier as introduced in PHP 7.2. [#600]. Fixes [#556].
 - :star2: New `ReservedFunctionNames` sniff to report on double underscore prefixed functions and methods. This was previously reported via an upstream sniff. [#581]
-- :star2: New `NewTrailingComma` sniff to detect trailing comma's in function calls, method calls, `isset()`  and `unset()` as will be introduced in PHP 7.3. [#632]
+- :star2: New `NewTrailingComma` sniff to detect trailing commas in function calls, method calls, `isset()`  and `unset()` as will be introduced in PHP 7.3. [#632]
 - :star2: New `Upgrade/LowPHPCS` sniff to give users of old PHP_CodeSniffer versions advance warning when support will be dropped in the near future. [#693]
 - :star: `NewClasses` sniff: check for some 40+ additional PHP native classes added in various PHP versions. [#573]
 - :star: `NewClosure` sniff: check for usage of `self`/`parent`/`static::` being used within closures, support for which was only added in PHP 5.4. [#669]. Fixes [#668].
@@ -921,7 +921,7 @@ See all related issues and PRs in the [8.0.1 milestone].
 ### Added
 - :star2: New `DeprecatedTypeCasts` sniff to detect deprecated and removed type casts, such as the `(unset)` type cast as deprecated in PHP 7.2. [#498]
 - :star2: New `NewTypeCasts` sniff to detect type casts not present in older PHP versions such as the `(binary)` type cast as added in PHP 5.2.1. [#497]
-- :star: `NewGroupUseDeclaration`: Detection of PHP 7.2 trailing comma's in group use statements. [#504]
+- :star: `NewGroupUseDeclaration`: Detection of PHP 7.2 trailing commas in group use statements. [#504]
 - :star: `DeprecatedFunctions` sniff: recognize some more PHP 7.2 deprecated functions. [#501]
 - :star: `DeprecatedIniDirectives` sniff: recognize more PHP 7.2 deprecated ini directives. [#500]
 - :star: `ForbiddenNames` sniff: recognize `object` as a forbidden keyword since PHP 7.2. [#499]

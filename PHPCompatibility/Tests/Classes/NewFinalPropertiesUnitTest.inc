@@ -75,7 +75,7 @@ class ClassWithFinalProperties
 
     final $multiPropA, $multiPropB, $multiPropC;
 
-    // Fatal error as final with private is an oxymoron, but that's the concern of this sniff.
+    // Fatal error as final with private is an oxymoron, but that's not the concern of this sniff.
     final private $finalPrivate = 7;
     private final $privateFinal = 8;
 }
