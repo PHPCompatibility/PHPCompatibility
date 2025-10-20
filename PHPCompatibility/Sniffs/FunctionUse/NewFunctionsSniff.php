@@ -5203,6 +5203,14 @@ final class NewFunctionsSniff extends Sniff
             'extension' => 'sodium',
         ],
 
+        'array_first' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
+        'array_last' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
         'get_error_handler' => [
             '8.4' => false,
             '8.5' => true,
