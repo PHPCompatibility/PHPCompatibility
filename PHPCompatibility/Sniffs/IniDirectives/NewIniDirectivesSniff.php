@@ -82,20 +82,24 @@ final class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '5.0' => true,
         ],
         'date.default_latitude' => [
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'datetime',
         ],
         'date.default_longitude' => [
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'datetime',
         ],
         'date.sunrise_zenith' => [
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'datetime',
         ],
         'date.sunset_zenith' => [
-            '4.4' => false,
-            '5.0' => true,
+            '4.4'       => false,
+            '5.0'       => true,
+            'extension' => 'datetime',
         ],
         'ibase.default_charset' => [
             '4.4'       => false,
@@ -200,8 +204,9 @@ final class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
         ],
 
         'date.timezone' => [
-            '5.0' => false,
-            '5.1' => true,
+            '5.0'       => false,
+            '5.1'       => true,
+            'extension' => 'datetime',
         ],
         'detect_unicode' => [
             '5.0' => false,

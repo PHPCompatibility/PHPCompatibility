@@ -2970,6 +2970,7 @@ final class RemovedFunctionsSniff extends Sniff
         'datefmt_set_timezone_id' => [
             '5.5'         => false,
             '7.0'         => true,
+            'extension'   => 'datetime',
             'alternative' => 'IntlDateFormatter::setTimeZone()',
         ],
         'mcrypt_ecb' => [
@@ -5015,22 +5016,27 @@ final class RemovedFunctionsSniff extends Sniff
 
         'date_sunrise' => [
             '8.1'         => false,
+            'extension'   => 'datetime',
             'alternative' => 'date_sun_info()',
         ],
         'date_sunset' => [
             '8.1'         => false,
+            'extension'   => 'datetime',
             'alternative' => 'date_sun_info()',
         ],
         'strptime' => [
             '8.1'         => false,
+            'extension'   => 'datetime',
             'alternative' => 'date_parse_from_format() or IntlDateFormatter::parse()',
         ],
         'strftime' => [
             '8.1'         => false,
+            'extension'   => 'datetime',
             'alternative' => 'date() or IntlDateFormatter::format()',
         ],
         'gmstrftime' => [
             '8.1'         => false,
+            'extension'   => 'datetime',
             'alternative' => 'date() or IntlDateFormatter::format()',
         ],
         'mhash_count' => [

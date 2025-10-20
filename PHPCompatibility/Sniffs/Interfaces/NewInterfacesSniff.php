@@ -109,8 +109,9 @@ final class NewInterfacesSniff extends Sniff
         ],
 
         'DateTimeInterface' => [
-            '5.4' => false,
-            '5.5' => true,
+            '5.4'       => false,
+            '5.5'       => true,
+            'extension' => 'datetime',
         ],
 
         'SessionIdInterface' => [
