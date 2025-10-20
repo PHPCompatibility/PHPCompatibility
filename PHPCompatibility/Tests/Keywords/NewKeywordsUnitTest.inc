@@ -279,8 +279,3 @@ class WithAsym {
         public(set) int $pubYear,
     ) {}
 }
-
-__halt_compiler();
-
-bla();
-const ok = 'a';
