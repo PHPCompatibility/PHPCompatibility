@@ -610,3 +610,6 @@ class TestC extends Partially\Qualified\CallbackFilterIterator {}
 
 try {
 } catch (namespace\Exception | \Fully\Qualified\DomainException | Partially\Qualified\UnderflowException $e) {
+
+try {
+} catch (SQLite3Exception $e) {}

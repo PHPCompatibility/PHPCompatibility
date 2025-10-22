@@ -1320,6 +1320,12 @@ final class NewClassesSniff extends Sniff
             'extension' => 'random',
         ],
 
+        'SQLite3Exception' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'sqlite3',
+        ],
+
         'RequestParseBodyException' => [
             '8.3' => false,
             '8.4' => true,
