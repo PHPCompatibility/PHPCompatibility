@@ -1320,6 +1320,51 @@ final class NewClassesSniff extends Sniff
             'extension' => 'random',
         ],
 
+        'DateError' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'datetime',
+        ],
+        'DateObjectError' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'datetime',
+        ],
+        'DateRangeError' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'datetime',
+        ],
+        'DateException' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'datetime',
+        ],
+        'DateInvalidTimeZoneException' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'datetime',
+        ],
+        'DateInvalidOperationException' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'datetime',
+        ],
+        'DateMalformedStringException' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'datetime',
+        ],
+        'DateMalformedIntervalStringException' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'datetime',
+        ],
+        'DateMalformedPeriodStringException' => [
+            '8.2'       => false,
+            '8.3'       => true,
+            'extension' => 'datetime',
+        ],
         'SQLite3Exception' => [
             '8.2'       => false,
             '8.3'       => true,
