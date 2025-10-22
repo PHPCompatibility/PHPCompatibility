@@ -323,6 +323,15 @@ final class NewClassesUnitTest extends BaseSniffTestCase
             ['Random\BrokenRandomEngineError', '8.1', [481], '8.2'],
             ['Random\RandomException', '8.1', [482], '8.2'],
             ['SQLite3Exception', '8.2', [615], '8.3'],
+            ['DateError', '8.2', [625], '8.3'],
+            ['DateObjectError', '8.2', [624], '8.3'],
+            ['DateRangeError', '8.2', [624], '8.3'],
+            ['DateException', '8.2', [619], '8.3'],
+            ['DateInvalidTimeZoneException', '8.2', [617], '8.3'],
+            ['DateInvalidOperationException', '8.2', [618], '8.3'],
+            ['DateMalformedStringException', '8.2', [623], '8.3'],
+            ['DateMalformedIntervalStringException', '8.2', [622], '8.3'],
+            ['DateMalformedPeriodStringException', '8.2', [622], '8.3'],
             ['RequestParseBodyException', '8.3', [559], '8.4'],
         ];
     }

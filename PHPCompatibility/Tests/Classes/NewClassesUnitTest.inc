@@ -613,3 +613,14 @@ try {
 
 try {
 } catch (SQLite3Exception $e) {}
+
+class MyOwnDateException extends DateInvalidTimeZoneException {}
+throw new DateInvalidOperationException();
+function handleDateException(DateException $e) {}
+
+try {
+} catch(DateMalformedIntervalStringException | DateMalformedPeriodStringException $e) {
+} catch(DateMalformedStringException $e) {
+} catch(DateObjectError | DateRangeError $e) {
+} catch(DateError) {
+}
