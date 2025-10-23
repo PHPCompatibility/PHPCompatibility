@@ -3324,6 +3324,162 @@ final class RemovedConstantsSniff extends Sniff
             '8.5'       => false,
             'extension' => 'datetime',
         ],
+        'MHASH_ADLER32' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_CRC32' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_CRC32B' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_CRC32C' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_FNV132' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_FNV1A32' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_FNV164' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_FNV1A64' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_GOST' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_HAVAL128' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_HAVAL160' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_HAVAL192' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_HAVAL224' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_HAVAL256' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_JOAAT' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_MD2' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_MD4' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_MD5' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_MURMUR3A' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_MURMUR3C' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_MURMUR3F' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_RIPEMD128' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_RIPEMD160' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_RIPEMD256' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_RIPEMD320' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_SHA1' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_SHA224' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_SHA256' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_SHA384' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_SHA512' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_SNEFRU256' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_TIGER' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_TIGER128' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_TIGER160' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_WHIRLPOOL' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_XXH32' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_XXH64' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_XXH3' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
+        'MHASH_XXH128' => [
+            '8.5'       => false,
+            'extension' => 'mhash',
+        ],
     ];
 
 
