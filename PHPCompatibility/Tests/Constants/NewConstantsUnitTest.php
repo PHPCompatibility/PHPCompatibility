@@ -1425,6 +1425,7 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
 
             ['IMG_FILTER_SCATTER', '7.3', 863, '7.4'],
             ['MB_ONIGURUMA_VERSION', '7.3', 824, '7.4'],
+            ['MHASH_CRC32C', '7.3', 1695, '7.4'],
             ['SO_LABEL', '7.3', 825, '7.4'],
             ['SO_PEERLABEL', '7.3', 826, '7.4'],
             ['SO_LISTENQLIMIT', '7.3', 827, '7.4'],
@@ -1493,6 +1494,9 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLOPT_SSLKEY_BLOB', '8.0', 1421, '8.1'],
             ['IMG_AVIF', '8.0', 1422, '8.1'],
             ['IMG_WEBP_LOSSLESS', '8.0', 1423, '8.1'],
+            ['MHASH_MURMUR3A', '8.0', 1696, '8.1'],
+            ['MHASH_MURMUR3C', '8.0', 1697, '8.1'],
+            ['MHASH_MURMUR3F', '8.0', 1698, '8.1'],
             ['MYSQLI_REFRESH_REPLICA', '8.0', 1424, '8.1'],
             ['POSIX_RLIMIT_KQUEUES', '8.0', 1425, '8.1'],
             ['POSIX_RLIMIT_NPTS', '8.0', 1426, '8.1'],

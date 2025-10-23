@@ -6786,6 +6786,11 @@ final class NewConstantsSniff extends Sniff
             '7.4'       => true,
             'extension' => 'mbstring',
         ],
+        'MHASH_CRC32C' => [
+            '7.3'       => false,
+            '7.4'       => true,
+            'extension' => 'mhash',
+        ],
         'SO_LABEL' => [
             '7.3' => false,
             '7.4' => true,
@@ -7117,6 +7122,21 @@ final class NewConstantsSniff extends Sniff
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'gd',
+        ],
+        'MHASH_MURMUR3A' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'mhash',
+        ],
+        'MHASH_MURMUR3C' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'mhash',
+        ],
+        'MHASH_MURMUR3F' => [
+            '8.0'       => false,
+            '8.1'       => true,
+            'extension' => 'mhash',
         ],
         'MYSQLI_REFRESH_REPLICA' => [
             '8.0'       => false,
