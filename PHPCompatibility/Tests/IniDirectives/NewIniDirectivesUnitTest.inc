@@ -633,3 +633,6 @@ $obj->ini_get('opcache.jit_hot_func');
 namespace\ini_set('max_file_uploads', 1);
 \Fully\Qualified\ini_get('exit_on_timeout');
 Partially\Qualified\ini_set('soap.wsdl_cache_dir', 1);
+
+ini_set('fatal_error_backtraces', 1);
+$test = ini_get('fatal_error_backtraces');
