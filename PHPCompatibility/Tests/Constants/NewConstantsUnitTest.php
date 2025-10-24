@@ -1764,6 +1764,8 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLFOLLOW_ALL', '8.4', 1710, '8.5'],
             ['CURLFOLLOW_OBEYCODE', '8.4', 1711, '8.5'],
             ['CURLFOLLOW_FIRSTONLY', '8.4', 1712, '8.5'],
+            ['DECIMAL_COMPACT_LONG', '8.4', 1713, '8.5'],
+            ['DECIMAL_COMPACT_SHORT', '8.4', 1714, '8.5'],
         ];
     }
 

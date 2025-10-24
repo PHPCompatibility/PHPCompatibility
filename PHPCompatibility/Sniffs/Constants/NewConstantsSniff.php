@@ -8442,6 +8442,16 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'curl',
         ],
+        'DECIMAL_COMPACT_LONG' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'intl',
+        ],
+        'DECIMAL_COMPACT_SHORT' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'intl',
+        ],
         'FILTER_THROW_ON_FAILURE' => [
             '8.4'       => false,
             '8.5'       => true,
