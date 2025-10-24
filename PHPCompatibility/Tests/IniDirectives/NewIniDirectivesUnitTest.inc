@@ -639,3 +639,6 @@ $test = ini_get('fatal_error_backtraces');
 
 ini_set('max_memory_limit', 1);
 $test = ini_get('max_memory_limit');
+
+ini_set('opcache.file_cache_read_only', 1);
+$test = ini_get('opcache.file_cache_read_only');

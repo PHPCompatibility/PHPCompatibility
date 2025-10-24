@@ -1090,6 +1090,11 @@ final class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.4' => false,
             '8.5' => true,
         ],
+        'opcache.file_cache_read_only' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'opcache',
+        ],
     ];
 
     /**
