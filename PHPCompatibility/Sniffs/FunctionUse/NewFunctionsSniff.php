@@ -5229,6 +5229,11 @@ final class NewFunctionsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'curl',
         ],
+        'enchant_dict_remove' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'enchant',
+        ],
         'enchant_dict_remove_from_session' => [
             '8.4'       => false,
             '8.5'       => true,

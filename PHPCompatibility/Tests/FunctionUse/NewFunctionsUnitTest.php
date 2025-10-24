@@ -1161,6 +1161,7 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['array_last', '8.4', 1105, '8.5'],
             ['curl_multi_get_handles', '8.4', 1106, '8.5'],
             ['enchant_dict_remove_from_session', '8.4', 1107, '8.5'],
+            ['enchant_dict_remove', '8.4', 1108, '8.5'],
         ];
     }
 
