@@ -1761,6 +1761,9 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLINFO_CONN_ID', '8.4', 1707, '8.5'],
             ['CURLINFO_QUEUE_TIME_T', '8.4', 1708, '8.5'],
             ['CURLOPT_INFILESIZE_LARGE', '8.4', 1709, '8.5'],
+            ['CURLFOLLOW_ALL', '8.4', 1710, '8.5'],
+            ['CURLFOLLOW_OBEYCODE', '8.4', 1711, '8.5'],
+            ['CURLFOLLOW_FIRSTONLY', '8.4', 1712, '8.5'],
         ];
     }
 

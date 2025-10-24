@@ -8397,6 +8397,21 @@ final class NewConstantsSniff extends Sniff
             '8.4' => false,
             '8.5' => true,
         ],
+        'CURLFOLLOW_ALL' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLFOLLOW_OBEYCODE' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLFOLLOW_FIRSTONLY' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
         'CURLINFO_CONN_ID' => [
             '8.4'       => false,
             '8.5'       => true,
