@@ -8393,6 +8393,10 @@ final class NewConstantsSniff extends Sniff
             '8.4' => false,
             '8.5' => true,
         ],
+        'PHP_BUILD_PROVIDER' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
         'FILTER_THROW_ON_FAILURE' => [
             '8.4'       => false,
             '8.5'       => true,
