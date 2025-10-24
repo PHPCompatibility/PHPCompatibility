@@ -1095,6 +1095,11 @@ final class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.5'       => true,
             'extension' => 'opcache',
         ],
+        'openssl.libctx' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'openssl',
+        ],
     ];
 
     /**
