@@ -173,7 +173,9 @@ final class NewFunctionParametersUnitTest extends BaseSniffTestCase
             ['openssl_public_encrypt', 'digest_algo', '8.4', [171], '8.5'],
             ['openssl_seal', 'cipher_algo', '5.2', [62], '7.0'], // OK version > version in which last parameter was added to the function.
             ['openssl_seal', 'iv', '5.6', [62], '7.0'],
+            ['openssl_sign', 'padding', '8.4', [173], '8.5'],
             ['openssl_verify', 'algorithm', '5.1', [63], '5.2'],
+            ['openssl_verify', 'padding', '8.4', [174], '8.5'],
             ['parse_ini_file', 'scanner_mode', '5.2', [64], '5.3'],
             ['parse_url', 'component', '5.1.1', [65, 147], '5.2', '5.1'],
             ['posix_getrlimit', 'resource', '8.2', [150], '8.3'],

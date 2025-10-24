@@ -774,11 +774,23 @@ final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSnif
                 '7.0'  => true,
             ],
         ],
+        'openssl_sign' => [
+            5 => [
+                'name' => 'padding',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
         'openssl_verify' => [
             4 => [
                 'name' => 'algorithm',
                 '5.1'  => false,
                 '5.2'  => true,
+            ],
+            5 => [
+                'name' => 'padding',
+                '8.4'  => false,
+                '8.5'  => true,
             ],
         ],
         'parse_ini_file' => [
