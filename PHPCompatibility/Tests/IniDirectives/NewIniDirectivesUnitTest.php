@@ -299,6 +299,7 @@ final class NewIniDirectivesUnitTest extends BaseSniffTestCase
             ['opcache.jit_max_trace_length', '8.3', [627, 628], '8.2'],
 
             ['fatal_error_backtraces', '8.5', [637, 638], '8.4'],
+            ['max_memory_limit', '8.5', [640, 641], '8.4'],
         ];
     }
 
