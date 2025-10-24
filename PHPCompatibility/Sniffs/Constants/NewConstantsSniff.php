@@ -8412,6 +8412,11 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'curl',
         ],
+        'CURLINFO_QUEUE_TIME_T' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
         'CURLINFO_USED_PROXY' => [
             '8.4'       => false,
             '8.5'       => true,
