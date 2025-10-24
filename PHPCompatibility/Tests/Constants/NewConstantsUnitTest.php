@@ -1755,6 +1755,9 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['OPENSSL_PKCS1_PSS_PADDING', '8.4', 1701, '8.5'],
             ['PHP_BUILD_DATE', '8.4', 1702, '8.5'],
             ['PHP_BUILD_PROVIDER', '8.4', 1703, '8.5'],
+            ['CURLINFO_HTTPAUTH_USED', '8.4', 1704, '8.5'],
+            ['CURLINFO_PROXYAUTH_USED', '8.4', 1705, '8.5'],
+            ['CURLINFO_USED_PROXY', '8.4', 1706, '8.5'],
         ];
     }
 

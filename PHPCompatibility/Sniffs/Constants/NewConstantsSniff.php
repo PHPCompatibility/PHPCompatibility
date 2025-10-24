@@ -8397,6 +8397,21 @@ final class NewConstantsSniff extends Sniff
             '8.4' => false,
             '8.5' => true,
         ],
+        'CURLINFO_HTTPAUTH_USED' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_PROXYAUTH_USED' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_USED_PROXY' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
         'FILTER_THROW_ON_FAILURE' => [
             '8.4'       => false,
             '8.5'       => true,
