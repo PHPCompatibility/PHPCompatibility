@@ -63,6 +63,9 @@ final class ChangedIntToBoolParamTypeUnitTest extends BaseSniffTestCase
             [26, '8.0', '$auto_release', 'sem_get'],
             [27, '8.0', '$enable', 'ob_implicit_flush'],
             [28, '8.0', '$enable', 'ob_implicit_flush'],
+            [42, '8.5', '$use_include_path', 'gzfile'],
+            [43, '8.5', '$use_include_path', 'gzopen'],
+            [44, '8.5', '$use_include_path', 'readgzfile'],
         ];
     }
 
@@ -98,7 +101,7 @@ final class ChangedIntToBoolParamTypeUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
-        for ($line = 30; $line <= 36; $line++) {
+        for ($line = 30; $line <= 41; $line++) {
             $data[] = [$line];
         }
 

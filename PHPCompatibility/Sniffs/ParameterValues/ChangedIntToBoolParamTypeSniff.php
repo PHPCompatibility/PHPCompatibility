@@ -37,10 +37,28 @@ final class ChangedIntToBoolParamTypeSniff extends AbstractFunctionCallParameter
      * @var array<string, array<int, array<string, string>>>
      */
     protected $targetFunctions = [
+        'gzfile' => [
+            2 => [
+                'name'  => 'use_include_path',
+                'since' => '8.5',
+            ],
+        ],
+        'gzopen' => [
+            3 => [
+                'name'  => 'use_include_path',
+                'since' => '8.5',
+            ],
+        ],
         'ob_implicit_flush' => [
             1 => [
                 'name'  => 'enable',
                 'since' => '8.0',
+            ],
+        ],
+        'readgzfile' => [
+            2 => [
+                'name'  => 'use_include_path',
+                'since' => '8.5',
             ],
         ],
         'sem_get' => [
