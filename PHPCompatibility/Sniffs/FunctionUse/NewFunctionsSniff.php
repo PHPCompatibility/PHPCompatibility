@@ -5244,6 +5244,11 @@ final class NewFunctionsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'intl',
         ],
+        'locale_is_right_to_left' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'intl',
+        ],
     ];
 
 

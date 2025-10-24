@@ -1162,6 +1162,7 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['curl_multi_get_handles', '8.4', 1106, '8.5'],
             ['enchant_dict_remove_from_session', '8.4', 1107, '8.5'],
             ['enchant_dict_remove', '8.4', 1108, '8.5'],
+            ['locale_is_right_to_left', '8.4', 1109, '8.5'],
         ];
     }
 
