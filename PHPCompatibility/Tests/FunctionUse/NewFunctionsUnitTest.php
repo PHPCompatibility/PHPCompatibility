@@ -1159,6 +1159,7 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['get_exception_handler', '8.4', 1103, '8.5'],
             ['array_first', '8.4', 1104, '8.5'],
             ['array_last', '8.4', 1105, '8.5'],
+            ['curl_multi_get_handles', '8.4', 1106, '8.5'],
         ];
     }
 

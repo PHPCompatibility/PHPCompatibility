@@ -1103,3 +1103,4 @@ get_error_handler();
 get_exception_handler();
 array_first();
 array_last();
+curl_multi_get_handles();

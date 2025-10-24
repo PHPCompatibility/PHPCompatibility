@@ -5219,6 +5219,11 @@ final class NewFunctionsSniff extends Sniff
             '8.4' => false,
             '8.5' => true,
         ],
+        'curl_multi_get_handles' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
         'curl_share_init_persistent' => [
             '8.4'       => false,
             '8.5'       => true,
