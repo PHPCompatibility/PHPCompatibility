@@ -8422,6 +8422,11 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'curl',
         ],
+        'CURLOPT_INFILESIZE_LARGE' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
         'FILTER_THROW_ON_FAILURE' => [
             '8.4'       => false,
             '8.5'       => true,
