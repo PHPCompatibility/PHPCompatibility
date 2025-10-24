@@ -1107,3 +1107,4 @@ curl_multi_get_handles();
 enchant_dict_remove_from_session();
 enchant_dict_remove();
 locale_is_right_to_left();
+opcache_is_script_cached_in_file_cache();

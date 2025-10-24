@@ -5249,6 +5249,11 @@ final class NewFunctionsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'intl',
         ],
+        'opcache_is_script_cached_in_file_cache' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'opcache',
+        ],
     ];
 
 

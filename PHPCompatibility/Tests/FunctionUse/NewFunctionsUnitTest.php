@@ -1163,6 +1163,7 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['enchant_dict_remove_from_session', '8.4', 1107, '8.5'],
             ['enchant_dict_remove', '8.4', 1108, '8.5'],
             ['locale_is_right_to_left', '8.4', 1109, '8.5'],
+            ['opcache_is_script_cached_in_file_cache', '8.4', 1110, '8.5'],
         ];
     }
 
