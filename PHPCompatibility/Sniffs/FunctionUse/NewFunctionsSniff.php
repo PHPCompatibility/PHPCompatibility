@@ -5254,6 +5254,11 @@ final class NewFunctionsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'opcache',
         ],
+        'pg_close_stmt' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'pgsql',
+        ],
     ];
 
 
