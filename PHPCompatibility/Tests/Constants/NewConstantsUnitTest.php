@@ -1752,6 +1752,7 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['T_PRIVATE_SET', '8.3', 1680, '8.4'],
 
             ['FILTER_THROW_ON_FAILURE', '8.4', 1700, '8.5'],
+            ['OPENSSL_PKCS1_PSS_PADDING', '8.4', 1701, '8.5'],
         ];
     }
 

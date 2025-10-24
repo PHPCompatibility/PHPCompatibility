@@ -8394,6 +8394,11 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'filter',
         ],
+        'OPENSSL_PKCS1_PSS_PADDING' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'openssl',
+        ],
     ];
 
 
