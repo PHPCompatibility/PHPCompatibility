@@ -5259,6 +5259,11 @@ final class NewFunctionsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'pgsql',
         ],
+        'pg_service' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'pgsql',
+        ],
     ];
 
 
