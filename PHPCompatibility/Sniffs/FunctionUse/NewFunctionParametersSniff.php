@@ -748,6 +748,20 @@ final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSnif
                 '7.2'  => true,
             ],
         ],
+        'openssl_private_decrypt' => [
+            5 => [
+                'name' => 'digest_algo',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
+        'openssl_public_encrypt' => [
+            5 => [
+                'name' => 'digest_algo',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
         'openssl_seal' => [
             5 => [
                 'name' => 'cipher_algo',

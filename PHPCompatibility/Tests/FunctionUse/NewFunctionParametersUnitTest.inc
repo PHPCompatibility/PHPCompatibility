@@ -166,3 +166,6 @@ grapheme_strripos($haystack, $needle, locale: $locale);
 grapheme_substr($string, $offset, $length, $locale);
 \grapheme_strstr($haystack, $needle, locale: $locale);
 grapheme_stristr( $haystack, $needle, $beforeNeedle, $locale );
+
+openssl_private_decrypt($data, $decrypted_data, $private_key, $padding, $digest_algo);
+\openssl_public_encrypt($data, $encrypted_data, $public_key, digest_algo: $digest_algo);

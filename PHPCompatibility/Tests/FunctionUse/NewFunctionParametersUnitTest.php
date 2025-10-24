@@ -169,6 +169,8 @@ final class NewFunctionParametersUnitTest extends BaseSniffTestCase
             ['openssl_open', 'iv', '5.6', [103], '7.0'],
             ['openssl_pkcs7_verify', 'content', '5.0', [61], '7.2'], // OK version > version in which last parameter was added to the function.
             ['openssl_pkcs7_verify', 'output_filename', '7.1', [61], '7.2'],
+            ['openssl_private_decrypt', 'digest_algo', '8.4', [170], '8.5'],
+            ['openssl_public_encrypt', 'digest_algo', '8.4', [171], '8.5'],
             ['openssl_seal', 'cipher_algo', '5.2', [62], '7.0'], // OK version > version in which last parameter was added to the function.
             ['openssl_seal', 'iv', '5.6', [62], '7.0'],
             ['openssl_verify', 'algorithm', '5.1', [63], '5.2'],
