@@ -1773,6 +1773,7 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['POSIX_SC_OPEN_MAX', '8.4', 1719, '8.5'],
             ['IPPROTO_ICMP', '8.4', 1720, '8.5'],
             ['IPPROTO_ICMPV6', '8.4', 1721, '8.5'],
+            ['TCP_FUNCTION_BLK', '8.4', 1722, '8.5'],
         ];
     }
 

@@ -8497,6 +8497,11 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'sockets',
         ],
+        'TCP_FUNCTION_BLK' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
     ];
 
 
