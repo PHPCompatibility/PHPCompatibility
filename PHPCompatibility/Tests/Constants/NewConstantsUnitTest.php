@@ -1790,6 +1790,7 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['SHUT_RD', '8.4', 1736, '8.5'],
             ['SHUT_WR', '8.4', 1737, '8.5'],
             ['SHUT_RDWR', '8.4', 1738, '8.5'],
+            ['IMAGETYPE_SVG', '8.4', 1739, '8.5'],
         ];
     }
 

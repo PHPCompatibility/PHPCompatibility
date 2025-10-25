@@ -8389,6 +8389,10 @@ final class NewConstantsSniff extends Sniff
             'extension' => 'xml',
         ],
 
+        'IMAGETYPE_SVG' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
         'PHP_BUILD_DATE' => [
             '8.4' => false,
             '8.5' => true,

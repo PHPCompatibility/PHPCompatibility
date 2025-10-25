@@ -1736,3 +1736,4 @@ echo UDP_SEGMENT;
 echo SHUT_RD;
 echo SHUT_WR;
 echo SHUT_RDWR;
+echo IMAGETYPE_SVG;
