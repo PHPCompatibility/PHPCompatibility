@@ -8562,6 +8562,11 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'sockets',
         ],
+        'UDP_SEGMENT' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
     ];
 
 

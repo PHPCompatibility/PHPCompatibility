@@ -1732,3 +1732,4 @@ echo ETH_P_LOOP;
 echo ETH_P_ALL;
 echo IP_BINDANY;
 echo SO_BUSY_POLL;
+echo UDP_SEGMENT;
