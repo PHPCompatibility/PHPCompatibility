@@ -8527,6 +8527,11 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'sockets',
         ],
+        'SO_BUSY_POLL' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
         'TCP_BBR_ALGORITHM' => [
             '8.4'       => false,
             '8.5'       => true,

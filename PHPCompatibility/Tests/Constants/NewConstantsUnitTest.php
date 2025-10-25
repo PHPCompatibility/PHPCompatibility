@@ -1785,6 +1785,7 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['ETH_P_LOOP', '8.4', 1731, '8.5'],
             ['ETH_P_ALL', '8.4', 1732, '8.5'],
             ['IP_BINDANY', '8.4', 1733, '8.5'],
+            ['SO_BUSY_POLL', '8.4', 1734, '8.5'],
         ];
     }
 
