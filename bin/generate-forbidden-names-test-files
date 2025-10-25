@@ -97,6 +97,8 @@ $invalidNames = [
 
 // This array is pulled from PHPCompatibility/Sniffs/Keywords/ForbiddenNamesSniff.php
 $otherInvalidNames = [
+    'parent'   => '5.0',
+    'self'     => '5.0',
     'null'     => '7.0',
     'true'     => '7.0',
     'false'    => '7.0',
@@ -152,7 +154,8 @@ $tests = [
                     || $invalidNames[$name][0] === '5'
                     || $invalidNames[$name][0] === '7'))
             || (isset($otherInvalidNames[$name])
-                && $otherInvalidNames[$name][0] === '7')
+                && ($otherInvalidNames[$name][0] === '7'
+                    || $otherInvalidNames[$name][0] === '5'))
         ) {
             return "namespace $name;\n";
         }
@@ -168,7 +171,8 @@ $tests = [
                     || $invalidNames[$name][0] === '5'
                     || $invalidNames[$name][0] === '7'))
             || (isset($otherInvalidNames[$name])
-                && $otherInvalidNames[$name][0] === '7')
+                && ($otherInvalidNames[$name][0] === '7'
+                    || $otherInvalidNames[$name][0] === '5'))
         ) {
             $name = ucfirst($name);
             return "namespace Foo\\{$name}\\Bar;\n";

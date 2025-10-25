@@ -77,6 +77,8 @@ use My\NS\{ Foobar as __LINE__ };
 use My\NS\{ Foobar as __METHOD__ };
 use My\NS\{ Foobar as __NAMESPACE__ };
 use My\NS\{ Foobar as __TRAIT__ };
+use My\NS\{ Foobar as parent };
+use My\NS\{ Foobar as self };
 use My\NS\{ Foobar as null };
 use My\NS\{ Foobar as true };
 use My\NS\{ Foobar as false };

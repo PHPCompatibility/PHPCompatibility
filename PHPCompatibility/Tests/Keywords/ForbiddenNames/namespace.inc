@@ -74,6 +74,8 @@ namespace __LINE__;
 namespace __METHOD__;
 namespace __NAMESPACE__;
 namespace __TRAIT__;
+namespace parent;
+namespace self;
 namespace null;
 namespace true;
 namespace false;

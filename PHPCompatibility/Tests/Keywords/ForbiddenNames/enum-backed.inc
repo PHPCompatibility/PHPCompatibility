@@ -77,6 +77,8 @@ enum __LINE__: string implements Foo {}
 enum __METHOD__: string implements Foo {}
 enum __NAMESPACE__: string implements Foo {}
 enum __TRAIT__: string implements Foo {}
+enum Parent: string implements Foo {}
+enum Self: string implements Foo {}
 enum Null: string implements Foo {}
 enum True: string implements Foo {}
 enum False: string implements Foo {}

@@ -77,6 +77,8 @@ use Foobar as Foo, BarFoo as __LINE__;
 use Foobar as Foo, BarFoo as __METHOD__;
 use Foobar as Foo, BarFoo as __NAMESPACE__;
 use Foobar as Foo, BarFoo as __TRAIT__;
+use Foobar as Foo, BarFoo as parent;
+use Foobar as Foo, BarFoo as self;
 use Foobar as Foo, BarFoo as null;
 use Foobar as Foo, BarFoo as true;
 use Foobar as Foo, BarFoo as false;

@@ -75,6 +75,8 @@ namespace Foo\__LINE__\Bar;
 namespace Foo\__METHOD__\Bar;
 namespace Foo\__NAMESPACE__\Bar;
 namespace Foo\__TRAIT__\Bar;
+namespace Foo\Parent\Bar;
+namespace Foo\Self\Bar;
 namespace Foo\Null\Bar;
 namespace Foo\True\Bar;
 namespace Foo\False\Bar;
