@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Class Alias Internal Class"
+    >
+    <standard>
+    <![CDATA[
+    Internal PHP classes can be aliased to another name since PHP 8.3.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: aliasing a userland PHP class.">
+        <![CDATA[
+class_alias(<em>'MyClass'</em>, 'MyAlias');
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.3: aliasing a PHP native class.">
+        <![CDATA[
+class_alias(<em>'DateTime'</em>, 'MyAlias');
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
