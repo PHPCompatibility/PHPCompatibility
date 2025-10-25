@@ -8487,6 +8487,16 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'posix',
         ],
+        'IPPROTO_ICMP' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'IPPROTO_ICMPV6' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
     ];
 
 

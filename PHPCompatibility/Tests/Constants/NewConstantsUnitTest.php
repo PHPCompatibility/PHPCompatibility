@@ -1771,6 +1771,8 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['PKCS7_NOCRL', '8.4', 1717, '8.5'],
             ['PKCS7_NOSMIMECAP', '8.4', 1718, '8.5'],
             ['POSIX_SC_OPEN_MAX', '8.4', 1719, '8.5'],
+            ['IPPROTO_ICMP', '8.4', 1720, '8.5'],
+            ['IPPROTO_ICMPV6', '8.4', 1721, '8.5'],
         ];
     }
 
