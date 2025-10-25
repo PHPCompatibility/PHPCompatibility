@@ -8512,6 +8512,11 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'sockets',
         ],
+        'IP_BINDANY' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
         'IPPROTO_ICMP' => [
             '8.4'       => false,
             '8.5'       => true,

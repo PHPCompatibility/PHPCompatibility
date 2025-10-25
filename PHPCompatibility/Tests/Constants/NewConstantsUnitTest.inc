@@ -1730,3 +1730,4 @@ echo ETH_P_IP;
 echo ETH_P_IPV6;
 echo ETH_P_LOOP;
 echo ETH_P_ALL;
+echo IP_BINDANY;
