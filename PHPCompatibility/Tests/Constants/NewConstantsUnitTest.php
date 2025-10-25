@@ -1774,6 +1774,11 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['IPPROTO_ICMP', '8.4', 1720, '8.5'],
             ['IPPROTO_ICMPV6', '8.4', 1721, '8.5'],
             ['TCP_FUNCTION_BLK', '8.4', 1722, '8.5'],
+            ['TCP_BBR_ALGORITHM', '8.4', 1723, '8.5'],
+            ['TCP_FUNCTION_ALIAS', '8.4', 1724, '8.5'],
+            ['TCP_REUSPORT_LB_NUMA', '8.4', 1725, '8.5'],
+            ['TCP_REUSPORT_LB_NUMA_CURDOM', '8.4', 1726, '8.5'],
+            ['TCP_REUSPORT_LB_NUMA_NODOM', '8.4', 1727, '8.5'],
         ];
     }
 

@@ -8497,7 +8497,32 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'sockets',
         ],
+        'TCP_BBR_ALGORITHM' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
         'TCP_FUNCTION_BLK' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_FUNCTION_ALIAS' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_REUSPORT_LB_NUMA' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_REUSPORT_LB_NUMA_CURDOM' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_REUSPORT_LB_NUMA_NODOM' => [
             '8.4'       => false,
             '8.5'       => true,
             'extension' => 'sockets',
