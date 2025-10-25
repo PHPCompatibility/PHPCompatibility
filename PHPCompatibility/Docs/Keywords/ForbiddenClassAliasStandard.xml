@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Forbidden Class Alias"
+    >
+    <standard>
+    <![CDATA[
+    Type keywords are not allowed to be used as class aliases.
+
+    An initial set of type keywords were forbidden for use as class alias names in PHP 7.0.
+    Additional type keywords were forbidden in later PHP versions.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: using an alias which is not a type keyword.">
+        <![CDATA[
+class_alias('MyClass', <em>'NotTypeKeyword'</em>);
+        ]]>
+        </code>
+        <code title="PHP &lt; 7.0: using an alias which is a type keyword.">
+        <![CDATA[
+class_alias('MyClass', <em>'int'</em>);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
