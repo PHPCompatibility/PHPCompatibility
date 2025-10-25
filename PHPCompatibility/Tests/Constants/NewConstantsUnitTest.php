@@ -1787,6 +1787,9 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['IP_BINDANY', '8.4', 1733, '8.5'],
             ['SO_BUSY_POLL', '8.4', 1734, '8.5'],
             ['UDP_SEGMENT', '8.4', 1735, '8.5'],
+            ['SHUT_RD', '8.4', 1736, '8.5'],
+            ['SHUT_WR', '8.4', 1737, '8.5'],
+            ['SHUT_RDWR', '8.4', 1738, '8.5'],
         ];
     }
 

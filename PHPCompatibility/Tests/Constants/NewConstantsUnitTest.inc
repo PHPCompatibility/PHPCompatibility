@@ -1733,3 +1733,6 @@ echo ETH_P_ALL;
 echo IP_BINDANY;
 echo SO_BUSY_POLL;
 echo UDP_SEGMENT;
+echo SHUT_RD;
+echo SHUT_WR;
+echo SHUT_RDWR;

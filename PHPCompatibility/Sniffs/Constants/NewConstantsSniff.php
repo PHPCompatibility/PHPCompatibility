@@ -8532,6 +8532,21 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'sockets',
         ],
+        'SHUT_RD' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'SHUT_WR' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'SHUT_RDWR' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
         'TCP_BBR_ALGORITHM' => [
             '8.4'       => false,
             '8.5'       => true,
