@@ -1779,6 +1779,11 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['TCP_REUSPORT_LB_NUMA', '8.4', 1725, '8.5'],
             ['TCP_REUSPORT_LB_NUMA_CURDOM', '8.4', 1726, '8.5'],
             ['TCP_REUSPORT_LB_NUMA_NODOM', '8.4', 1727, '8.5'],
+            ['AF_PACKET', '8.4', 1728, '8.5'],
+            ['ETH_P_IP', '8.4', 1729, '8.5'],
+            ['ETH_P_IPV6', '8.4', 1730, '8.5'],
+            ['ETH_P_LOOP', '8.4', 1731, '8.5'],
+            ['ETH_P_ALL', '8.4', 1732, '8.5'],
         ];
     }
 

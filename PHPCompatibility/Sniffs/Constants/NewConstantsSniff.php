@@ -8487,6 +8487,31 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'posix',
         ],
+        'AF_PACKET' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'ETH_P_IP' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'ETH_P_IPV6' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'ETH_P_LOOP' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'ETH_P_ALL' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
         'IPPROTO_ICMP' => [
             '8.4'       => false,
             '8.5'       => true,
