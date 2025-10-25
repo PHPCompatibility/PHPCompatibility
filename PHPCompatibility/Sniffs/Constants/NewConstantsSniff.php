@@ -8482,6 +8482,11 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'openssl',
         ],
+        'POSIX_SC_OPEN_MAX' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'posix',
+        ],
     ];
 
 
