@@ -8462,6 +8462,26 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'openssl',
         ],
+        'PKCS7_CRLFEOL' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'openssl',
+        ],
+        'PKCS7_NO_DUAL_CONTENT' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'openssl',
+        ],
+        'PKCS7_NOCRL' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'openssl',
+        ],
+        'PKCS7_NOSMIMECAP' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'openssl',
+        ],
     ];
 
 

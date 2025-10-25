@@ -1766,6 +1766,10 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLFOLLOW_FIRSTONLY', '8.4', 1712, '8.5'],
             ['DECIMAL_COMPACT_LONG', '8.4', 1713, '8.5'],
             ['DECIMAL_COMPACT_SHORT', '8.4', 1714, '8.5'],
+            ['PKCS7_CRLFEOL', '8.4', 1715, '8.5'],
+            ['PKCS7_NO_DUAL_CONTENT', '8.4', 1716, '8.5'],
+            ['PKCS7_NOCRL', '8.4', 1717, '8.5'],
+            ['PKCS7_NOSMIMECAP', '8.4', 1718, '8.5'],
         ];
     }
 
