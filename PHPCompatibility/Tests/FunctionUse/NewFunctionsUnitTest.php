@@ -1157,6 +1157,8 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['grapheme_levenshtein', '8.4', 1101, '8.5'],
             ['get_error_handler', '8.4', 1102, '8.5'],
             ['get_exception_handler', '8.4', 1103, '8.5'],
+            ['array_first', '8.4', 1104, '8.5'],
+            ['array_last', '8.4', 1105, '8.5'],
         ];
     }
 

@@ -1101,3 +1101,5 @@ curl_share_init_persistent();
 grapheme_levenshtein();
 get_error_handler();
 get_exception_handler();
+array_first();
+array_last();
