@@ -833,3 +833,5 @@ echo ClassName::SWF_SOUND_22KHZ;
 echo namespace\IBASE_SVC_SERVER_VERSION;
 echo \Fully\Qualified\NCURSES_KEY_PPAGE;
 echo Partially\Qualified\MCRYPT_RIJNDAEL_256;
+
+echo DATE_RFC7231;
