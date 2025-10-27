@@ -77,6 +77,8 @@ trait __LINE__ {}
 trait __METHOD__ {}
 trait __NAMESPACE__ {}
 trait __TRAIT__ {}
+trait Parent {}
+trait Self {}
 trait Null {}
 trait True {}
 trait False {}

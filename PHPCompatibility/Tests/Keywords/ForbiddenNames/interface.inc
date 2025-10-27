@@ -77,6 +77,8 @@ interface __LINE__ {}
 interface __METHOD__ {}
 interface __NAMESPACE__ {}
 interface __TRAIT__ {}
+interface Parent {}
+interface Self {}
 interface Null {}
 interface True {}
 interface False {}

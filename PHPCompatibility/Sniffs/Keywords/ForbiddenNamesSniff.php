@@ -140,6 +140,8 @@ final class ForbiddenNamesSniff extends Sniff
      * @var array<string, string>
      */
     protected $otherForbiddenNames = [
+        'parent'   => '5.0',
+        'self'     => '5.0',
         'null'     => '7.0',
         'true'     => '7.0',
         'false'    => '7.0',

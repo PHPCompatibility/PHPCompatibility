@@ -77,6 +77,8 @@ enum __LINE__ {}
 enum __METHOD__ {}
 enum __NAMESPACE__ {}
 enum __TRAIT__ {}
+enum Parent {}
+enum Self {}
 enum Null {}
 enum True {}
 enum False {}

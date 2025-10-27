@@ -77,6 +77,8 @@ class __LINE__ {}
 class __METHOD__ {}
 class __NAMESPACE__ {}
 class __TRAIT__ {}
+class parent {}
+class self {}
 class null {}
 class true {}
 class false {}
