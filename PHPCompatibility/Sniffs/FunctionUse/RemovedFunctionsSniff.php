@@ -5702,10 +5702,30 @@ final class RemovedFunctionsSniff extends Sniff
             'extension'   => 'xml',
         ],
 
+        'curl_close' => [
+            '8.5'       => false,
+            'extension' => 'curl',
+        ],
+        'curl_share_close' => [
+            '8.5'       => false,
+            'extension' => 'curl',
+        ],
+        'finfo_close' => [
+            '8.5'       => false,
+            'extension' => 'fileinfo',
+        ],
+        'imagedestroy' => [
+            '8.5'       => false,
+            'extension' => 'gd',
+        ],
         'socket_set_timeout' => [
             '8.5'         => false,
             'alternative' => 'stream_set_timeout()',
             'extension'   => 'streams',
+        ],
+        'xml_parser_free' => [
+            '8.5'       => false,
+            'extension' => 'xml',
         ],
     ];
 

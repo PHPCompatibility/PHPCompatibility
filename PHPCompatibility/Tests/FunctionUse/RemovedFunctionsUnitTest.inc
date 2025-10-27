@@ -1396,3 +1396,8 @@ lcg_value();
 
 // PHP 8.5.
 \socket_set_timeout();
+finfo_close();
+xml_parser_free();
+curl_close();
+curl_share_close();
+imagedestroy();
