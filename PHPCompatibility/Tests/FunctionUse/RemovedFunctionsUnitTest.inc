@@ -1401,3 +1401,4 @@ xml_parser_free();
 curl_close();
 curl_share_close();
 imagedestroy();
+mysqli_execute();

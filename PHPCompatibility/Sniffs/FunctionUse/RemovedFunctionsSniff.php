@@ -5718,6 +5718,11 @@ final class RemovedFunctionsSniff extends Sniff
             '8.5'       => false,
             'extension' => 'gd',
         ],
+        'mysqli_execute' => [
+            '8.5'         => false,
+            'alternative' => 'mysqli_stmt_execute()',
+            'extension'   => 'mysqli',
+        ],
         'socket_set_timeout' => [
             '8.5'         => false,
             'alternative' => 'stream_set_timeout()',
