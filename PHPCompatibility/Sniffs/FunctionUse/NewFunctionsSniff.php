@@ -5208,6 +5208,11 @@ final class NewFunctionsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'curl',
         ],
+        'grapheme_levenshtein' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'intl',
+        ],
     ];
 
 

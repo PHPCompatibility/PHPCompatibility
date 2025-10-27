@@ -1154,6 +1154,7 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['bcdivmod', '8.3', 1093, '8.4'],
             ['opcache_jit_blacklist', '8.3', 1094, '8.4'],
             ['curl_share_init_persistent', '8.4', 1100, '8.5'],
+            ['grapheme_levenshtein', '8.4', 1101, '8.5'],
         ];
     }
 
