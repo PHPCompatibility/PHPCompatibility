@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Asymmetric Visibility on Static Properties"
+    >
+    <standard>
+    <![CDATA[
+    Static properties can be declared with asymmetric visibility since PHP 8.5.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: static properties without asymmetric visibility.">
+        <![CDATA[
+class NoAviz
+{
+    <em>public static</em> $foo;
+    <em>static protected</em> ClassName $baz;
+    <em>private static</em> ?string $bar;
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.5: static properties with asymmetric visibility.">
+        <![CDATA[
+class Aviz
+{
+    <em>public(set) static</em> $foo;
+    <em>static protected(set)</em> ClassName $baz;
+    <em>protected private(set) static</em> ?string $bar;
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
