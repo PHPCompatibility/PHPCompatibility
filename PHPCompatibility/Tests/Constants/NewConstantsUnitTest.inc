@@ -1691,3 +1691,8 @@ echo ClassName::PHP_ZTS;
 echo namespace\PHP_INT_MIN;
 echo \Fully\Qualified\IDNA_ALLOW_UNASSIGNED;
 echo Partially\Qualified\TIDY_TAG_BDO;
+
+echo MHASH_CRC32C;
+echo MHASH_MURMUR3A;
+echo MHASH_MURMUR3C;
+echo MHASH_MURMUR3F;

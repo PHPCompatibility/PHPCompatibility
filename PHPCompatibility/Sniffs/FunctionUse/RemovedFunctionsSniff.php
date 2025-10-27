@@ -5042,27 +5042,27 @@ final class RemovedFunctionsSniff extends Sniff
         'mhash_count' => [
             '8.1'         => false,
             'alternative' => 'the hash_*() functions',
-            'extension'   => 'hash',
+            'extension'   => 'mhash',
         ],
         'mhash_get_block_size' => [
             '8.1'         => false,
             'alternative' => 'the hash_*() functions',
-            'extension'   => 'hash',
+            'extension'   => 'mhash',
         ],
         'mhash_get_hash_name' => [
             '8.1'         => false,
             'alternative' => 'the hash_*() functions',
-            'extension'   => 'hash',
+            'extension'   => 'mhash',
         ],
         'mhash_keygen_s2k' => [
             '8.1'         => false,
             'alternative' => 'the hash_*() functions',
-            'extension'   => 'hash',
+            'extension'   => 'mhash',
         ],
         'mhash' => [
             '8.1'         => false,
             'alternative' => 'the hash_*() functions',
-            'extension'   => 'hash',
+            'extension'   => 'mhash',
         ],
         'odbc_result_all' => [
             '8.1'       => false,
