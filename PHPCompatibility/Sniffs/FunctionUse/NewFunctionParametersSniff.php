@@ -748,6 +748,20 @@ final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSnif
                 '7.2'  => true,
             ],
         ],
+        'openssl_private_decrypt' => [
+            5 => [
+                'name' => 'digest_algo',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
+        'openssl_public_encrypt' => [
+            5 => [
+                'name' => 'digest_algo',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
         'openssl_seal' => [
             5 => [
                 'name' => 'cipher_algo',
@@ -760,11 +774,23 @@ final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSnif
                 '7.0'  => true,
             ],
         ],
+        'openssl_sign' => [
+            5 => [
+                'name' => 'padding',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
         'openssl_verify' => [
             4 => [
                 'name' => 'algorithm',
                 '5.1'  => false,
                 '5.2'  => true,
+            ],
+            5 => [
+                'name' => 'padding',
+                '8.4'  => false,
+                '8.5'  => true,
             ],
         ],
         'parse_ini_file' => [
