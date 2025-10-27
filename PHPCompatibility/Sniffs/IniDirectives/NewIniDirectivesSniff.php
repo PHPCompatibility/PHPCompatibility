@@ -1081,6 +1081,11 @@ final class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.3'       => true,
             'extension' => 'opcache',
         ],
+
+        'fatal_error_backtraces' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
     ];
 
     /**
