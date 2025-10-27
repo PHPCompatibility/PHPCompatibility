@@ -530,3 +530,5 @@ ini_set('report_memleaks', 1);
 $test = ini_get('report_memleaks');
 ini_set('register_argc_argv', 1);
 $test = ini_get('register_argc_argv');
+ini_set('disable_classes', 1);
+$test = ini_get('disable_classes');
