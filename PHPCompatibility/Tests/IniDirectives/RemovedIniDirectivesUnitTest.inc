@@ -532,3 +532,5 @@ ini_set('register_argc_argv', 1);
 $test = ini_get('register_argc_argv');
 ini_set('disable_classes', 1);
 $test = ini_get('disable_classes');
+ini_set('intl.error_level', 1);
+$test = ini_get('intl.error_level');

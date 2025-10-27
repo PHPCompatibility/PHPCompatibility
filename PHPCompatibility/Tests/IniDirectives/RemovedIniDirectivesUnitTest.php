@@ -217,6 +217,7 @@ final class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
             ['assert.callback', '8.3', 'zend.assertions', [476, 477], '8.2'],
             ['assert.exception', '8.3', 'zend.assertions', [479, 480], '8.2'],
             ['assert.warning', '8.3', 'zend.assertions', [482, 483], '8.2'],
+            ['intl.error_level', '8.5', 'intl.use_exceptions', [535, 536], '8.4'],
         ];
     }
 
