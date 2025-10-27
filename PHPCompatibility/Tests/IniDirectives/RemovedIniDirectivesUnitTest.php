@@ -167,6 +167,7 @@ final class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
             ['session.sid_bits_per_character', '8.4', [521, 522], '8.3'],
 
             ['report_memleaks', '8.5', [529, 530], '8.4'],
+            ['register_argc_argv', '8.5', [531, 532], '8.4'],
         ];
     }
 
