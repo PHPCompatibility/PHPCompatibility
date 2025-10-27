@@ -178,6 +178,7 @@ final class NewFunctionParametersUnitTest extends BaseSniffTestCase
             ['openssl_verify', 'padding', '8.4', [174], '8.5'],
             ['parse_ini_file', 'scanner_mode', '5.2', [64], '5.3'],
             ['parse_url', 'component', '5.1.1', [65, 147], '5.2', '5.1'],
+            ['pcntl_waitid', 'resource_usage', '8.4', [177, 178], '8.5'],
             ['posix_getrlimit', 'resource', '8.2', [150], '8.3'],
             ['pg_escape_bytea', 'connection', '5.1', [123], '5.2'],
             ['pg_escape_string', 'connection', '5.1', [124], '5.2'],
@@ -261,6 +262,7 @@ final class NewFunctionParametersUnitTest extends BaseSniffTestCase
             [158],
             [159],
             [160],
+            [176],
         ];
     }
 

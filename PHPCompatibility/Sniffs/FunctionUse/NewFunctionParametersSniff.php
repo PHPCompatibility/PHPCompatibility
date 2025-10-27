@@ -807,6 +807,13 @@ final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSnif
                 '5.1.2' => true,
             ],
         ],
+        'pcntl_waitid' => [
+            5 => [
+                'name' => 'resource_usage',
+                '8.4'  => false,
+                '8.5'  => true,
+            ],
+        ],
         'posix_getrlimit' => [
             1 => [
                 'name' => 'resource',

@@ -172,3 +172,7 @@ openssl_private_decrypt($data, $decrypted_data, $private_key, $padding, $digest_
 
 \openssl_sign($data, $signature, $private_key, $algorithm, $padding);
 openssl_verify($data, $signature, $public_key, padding: $padding);
+
+pcntl_waitid($idtype, $id, $info, $flags); // OK.
+pcntl_waitid($idtype, $id, $info, $flags, $resource_usage); // Error.
+pcntl_waitid($idtype, resource_usage: $resource_usage); // Error.
