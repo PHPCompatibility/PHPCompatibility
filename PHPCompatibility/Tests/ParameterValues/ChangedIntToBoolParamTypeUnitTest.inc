@@ -34,3 +34,11 @@ $obj?->sem_get( $key, $max_acquire, $perm, 0 );
 namespace\ob_implicit_flush(0);
 \Fully\Qualified\sem_get( $key, $max_acquire, $perm, 0 );
 Partially\Qualified\ob_implicit_flush(0);
+
+// PHP 8.5.
+gzfile($filename, true); // OK.
+gzopen($filename, $mode, true); // OK.
+readgzfile($filename, true); // OK.
+gzfile($filename, 1); // Error.
+gzopen($filename, $mode, 0); // Error.
+readgzfile($filename, 1); // Error.
