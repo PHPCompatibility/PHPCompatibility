@@ -8389,10 +8389,202 @@ final class NewConstantsSniff extends Sniff
             'extension' => 'xml',
         ],
 
+        'IMAGETYPE_SVG' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
+        'PHP_BUILD_DATE' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
+        'PHP_BUILD_PROVIDER' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
+        'CURLFOLLOW_ALL' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLFOLLOW_OBEYCODE' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLFOLLOW_FIRSTONLY' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_CONN_ID' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_HTTPAUTH_USED' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_PROXYAUTH_USED' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_QUEUE_TIME_T' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLINFO_USED_PROXY' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_INFILESIZE_LARGE' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
+        'DECIMAL_COMPACT_LONG' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'intl',
+        ],
+        'DECIMAL_COMPACT_SHORT' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'intl',
+        ],
         'FILTER_THROW_ON_FAILURE' => [
             '8.4'       => false,
             '8.5'       => true,
             'extension' => 'filter',
+        ],
+        'OPENSSL_PKCS1_PSS_PADDING' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'openssl',
+        ],
+        'PKCS7_CRLFEOL' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'openssl',
+        ],
+        'PKCS7_NO_DUAL_CONTENT' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'openssl',
+        ],
+        'PKCS7_NOCRL' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'openssl',
+        ],
+        'PKCS7_NOSMIMECAP' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'openssl',
+        ],
+        'POSIX_SC_OPEN_MAX' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'posix',
+        ],
+        'AF_PACKET' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'ETH_P_IP' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'ETH_P_IPV6' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'ETH_P_LOOP' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'ETH_P_ALL' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'IP_BINDANY' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'IPPROTO_ICMP' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'IPPROTO_ICMPV6' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_BUSY_POLL' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'SHUT_RD' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'SHUT_WR' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'SHUT_RDWR' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_BBR_ALGORITHM' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_FUNCTION_BLK' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_FUNCTION_ALIAS' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_REUSPORT_LB_NUMA' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_REUSPORT_LB_NUMA_CURDOM' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_REUSPORT_LB_NUMA_NODOM' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
+        ],
+        'UDP_SEGMENT' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'sockets',
         ],
     ];
 
