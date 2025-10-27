@@ -169,6 +169,8 @@ final class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['mysqli_refresh', '8.4', 'a FLUSH SQL statement', 1393, '8.3'],
             ['mysqli_kill', '8.4', 'a KILL CONNECTION/QUERY SQL statement', 1394, '8.3'],
             ['lcg_value', '8.4', 'Random\Randomizer::getFloat()', 1395, '8.3'],
+
+            ['socket_set_timeout', '8.5', 'stream_set_timeout()', 1398, '8.4'],
         ];
     }
 
