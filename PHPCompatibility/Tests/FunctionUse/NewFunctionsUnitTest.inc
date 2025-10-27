@@ -1096,3 +1096,5 @@ opcache_jit_blacklist();
 // Safeguard against false positives on namespaced function calls.
 namespace\intltz_get_id();
 \Fully\Qualified\array_is_list();
+
+curl_share_init_persistent();

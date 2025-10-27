@@ -628,3 +628,5 @@ try {
 try {
 } catch (\Filter\FilterFailedException $e ) {
 } catch (Filter\FilterException) {}
+
+function doSomethingWithCurl(CurlSharePersistentHandle $curlHandle) {}

@@ -273,6 +273,8 @@ final class NewClassesUnitTest extends BaseSniffTestCase
             ['BcMath\Number', '8.3', [561], '8.4'],
             ['ReflectionConstant', '8.3', [562, 577], '8.4'],
 
+            ['CurlSharePersistentHandle', '8.4', [632], '8.5'],
+
             ['DATETIME', '5.1', [146], '5.2'],
             ['datetime', '5.1', [147, 320], '5.2'],
             ['dATeTiMe', '5.1', [148], '5.2'],
