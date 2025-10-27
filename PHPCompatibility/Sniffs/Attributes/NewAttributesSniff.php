@@ -183,7 +183,6 @@ final class NewAttributesSniff extends Sniff
     private $phpunitAttributes = [
         // Generic.
         'Test'                                       => true,
-        'TestDox'                                    => true,
         'DisableReturnValueGenerationForTestDoubles' => true,
         'DoesNotPerformAssertions'                   => true,
         'IgnoreDeprecations'                         => true,
