@@ -624,3 +624,7 @@ try {
 } catch(DateObjectError | DateRangeError $e) {
 } catch(DateError) {
 }
+
+try {
+} catch (\Filter\FilterFailedException $e ) {
+} catch (Filter\FilterException) {}

@@ -8388,6 +8388,12 @@ final class NewConstantsSniff extends Sniff
             '8.4'       => true,
             'extension' => 'xml',
         ],
+
+        'FILTER_THROW_ON_FAILURE' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'filter',
+        ],
     ];
 
 

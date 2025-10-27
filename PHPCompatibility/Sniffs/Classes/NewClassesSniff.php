@@ -1375,6 +1375,15 @@ final class NewClassesSniff extends Sniff
             '8.3' => false,
             '8.4' => true,
         ],
+
+        'Filter\FilterException' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
+        'Filter\FilterFailedException' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
     ];
 
     /**

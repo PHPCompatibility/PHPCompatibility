@@ -73,6 +73,7 @@ final class ReservedNamesUnitTest extends BaseSniffTestCase
             [78, 'Soap', '8.4', '8.3'],
             [79, 'Pdo', '8.4', '8.3'],
             [80, 'BcMath', '8.4', '8.3'],
+            [83, 'Filter', '8.5', '8.4'],
         ];
     }
 
