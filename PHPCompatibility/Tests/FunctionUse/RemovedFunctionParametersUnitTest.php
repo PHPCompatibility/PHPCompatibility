@@ -187,6 +187,7 @@ final class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
             ['session_set_save_handler', 'validate_sid', '8.4', [68], '8.3'],
             ['session_set_save_handler', 'update_timestamp', '8.4', [68], '8.3'],
             ['mysqli_store_result', 'mode', '8.4', [71], '8.3'],
+            ['get_defined_functions', 'exclude_disabled', '8.5', [81], '8.4'],
         ];
     }
 
@@ -233,6 +234,7 @@ final class RemovedFunctionParametersUnitTest extends BaseSniffTestCase
             [76],
             [77],
             [78],
+            [80],
         ];
     }
 

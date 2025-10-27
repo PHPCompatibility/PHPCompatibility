@@ -21,6 +21,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * > Calling `get_defined_functions()` with `$exclude_disabled` explicitly set to `false`
  * > is deprecated. `get_defined_functions()` will never include disabled functions.
  *
+ * Note: as of PHP 8.5, the parameter is completely deprecated.
+ * This is handled via the PHPCompatibility.FunctionUse.RemovedFunctionParameters sniff.
+ *
  * PHP version 8.0
  *
  * @link https://github.com/php/php-src/blob/69888c3ff1f2301ead8e37b23ff8481d475e29d2/UPGRADING#L514-L516

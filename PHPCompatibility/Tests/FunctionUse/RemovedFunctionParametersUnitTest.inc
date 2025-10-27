@@ -76,3 +76,6 @@ $obj->odbc_do($connection_id, $query_string, $flags);
 namespace\mysqli_get_client_info($mysql);
 \Fully\Qualified\imagerotate($image, $angle, $bg_color, $ignore_transparent);
 Partially\Qualified\mysqli_store_result($mysql, $mode);
+
+get_defined_functions(); // OK.
+get_defined_functions($exclude_disabled); // Warning.

@@ -69,6 +69,17 @@ final class RemovedFunctionParametersSniff extends AbstractFunctionCallParameter
                 '8.0'  => true,
             ],
         ],
+        /*
+         * Closely related to the `PHPCompatibility.ParameterValues.RemovedGetDefinedFunctionsExcludeDisabledFalse` sniff.
+         * That sniff detects the change in PHP 8.0, this sniff detect the follow-up step of deprecating the parameter
+         * completely in PHP 8.5.
+         */
+        'get_defined_functions' => [
+            1 => [
+                'name' => 'exclude_disabled',
+                '8.5'  => false,
+            ],
+        ],
         'gmmktime' => [
             7 => [
                 'name' => 'isDST',
