@@ -28,38 +28,79 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     /**
      * testViolation
      *
-     * @dataProvider dataViolation
+     * @dataProvider dataSoftDeprecations
      *
-     * @param int $lineNumber The line number of the violation
-     * @param string $method
-     * @param string $alternative
+     * @param string $version     Target version
+     * @param string $method      Method name
+     * @param string $alternative Alternative proposed
+     * @param int[]  $lineNumbers The line numbers of the violation
      *
      * @return void
      */
-    public function testViolation($lineNumber, $method, $alternative)
+    public function testSoftDeprecations($version, $method, $alternative, $lineNumbers)
     {
-        $file = $this->sniffFile(__FILE__, '8.5');
-
+        $file            = $this->sniffFile(__FILE__, $version);
         $expectedMessage = sprintf(
-            'Magic method %s is soft-deprecated since PHP 8.5. Use %s instead.',
+            'Magic method %s is maintained for backward compatibility since PHP %s. Use %s instead.',
             $method,
+            $version,
             $alternative
         );
-        $this->assertWarning($file, $lineNumber, $expectedMessage);
+        foreach ($lineNumbers as $lineNumber) {
+            $this->assertWarning($file, $lineNumber, $expectedMessage);
+        }
     }
 
     /**
      * Data provider.
      *
-     * @see testViolation()
+     * @see testSoftDeprecations()
      *
      * @return array
      */
-    public static function dataViolation()
+    public static function dataSoftDeprecations()
     {
         return [
-            [5, '__sleep()', '__serialize'],
-            [6, '__wakeup()', '__unserialize'],
+            ['8.5', '__sleep()', '__serialize', [13, 19, 30]],
+            ['8.5', '__wakeup()', '__unserialize', [14, 20, 31]],
+        ];
+    }
+
+    /**
+     * testViolation
+     *
+     * @dataProvider dataNoViolation
+     *
+     * @param string $version     Target version
+     * @param string $method      Method name
+     * @param int[]  $lineNumbers The line numbers of the violation
+     *
+     * @return void
+     */
+    public function testNoViolation($version, $method, $lineNumbers)
+    {
+        $file = $this->sniffFile(__FILE__, $version);
+        foreach ($lineNumbers as $lineNumber) {
+            $this->assertNoViolation($file, $lineNumber);
+        }
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testSoftDeprecations()
+     *
+     * @return array
+     */
+    public static function dataNoViolation()
+    {
+        return [
+            // Pre-deprecation/removal
+            ['8.4', '__sleep()', [13]],
+            ['8.4', '__wakeup()', [14]],
+            // Post-deprecation/removal
+            ['8.5', '__sleep()', [5, 25, 38, 44]],
+            ['8.5', '__wakeup()', [6, 26, 39, 45]],
         ];
     }
 }

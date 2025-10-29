@@ -16,6 +16,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
 
 /**
@@ -106,16 +107,17 @@ final class RemovedMagicMethodsSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the current token in the
-     *                                               stack passed in $tokens.
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the current token in the
+     *                        stack passed in $tokens.
      *
      * @return void
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-
-        if (!Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::$ooScopeTokens)) {
+        $magicMethodScopes = [T_CLASS, T_ANON_CLASS, T_TRAIT];
+        $parentScope       = Scopes::validDirectScope($phpcsFile, $stackPtr, $magicMethodScopes);
+        if (!$parentScope) {
             return;
         }
 
@@ -130,8 +132,14 @@ final class RemovedMagicMethodsSniff extends Sniff
         $violation = $this->testOnTargetVersion(
             $this->methodCompatibilityMatrix[$scannedMethod]
         );
-
         if ($violation === null) {
+            return;
+        }
+
+        $allMethodsInClass          = ObjectDeclarations::getDeclaredMethods($phpcsFile, $parentScope);
+        $mutuallyExclusiveMethod    = $this->methodCompatibilityMatrix[$scannedMethod]['mutuallyExclusiveWith'];
+        $hasMutuallyExclusiveMethod = array_key_exists($mutuallyExclusiveMethod, $allMethodsInClass);
+        if ($hasMutuallyExclusiveMethod) {
             return;
         }
 
@@ -180,15 +188,15 @@ final class RemovedMagicMethodsSniff extends Sniff
     private function addMessage(File $phpcsFile, $stackPtr, $scannedMethod, array $foundViolation)
     {
         $compatibilityMatrix = $this->methodCompatibilityMatrix[$scannedMethod];
-
-        $version        = $compatibilityMatrix[$foundViolation['type']];
-        $hasAlternative = isset($compatibilityMatrix['alternative']);
+        $version             = $compatibilityMatrix[$foundViolation['type']];
+        $hasAlternative      = isset($compatibilityMatrix['alternative']);
 
         $message = sprintf(
             $foundViolation['messageTemplate'],
             $scannedMethod,
             $version
         );
+
         if ($hasAlternative) {
             $message .= sprintf(' Use %s instead.', $compatibilityMatrix['alternative']);
         }
