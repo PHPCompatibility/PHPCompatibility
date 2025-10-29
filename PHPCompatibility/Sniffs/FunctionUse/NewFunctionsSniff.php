@@ -5219,15 +5219,50 @@ final class NewFunctionsSniff extends Sniff
             '8.4' => false,
             '8.5' => true,
         ],
+        'curl_multi_get_handles' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'curl',
+        ],
         'curl_share_init_persistent' => [
             '8.4'       => false,
             '8.5'       => true,
             'extension' => 'curl',
         ],
+        'enchant_dict_remove' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'enchant',
+        ],
+        'enchant_dict_remove_from_session' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'enchant',
+        ],
         'grapheme_levenshtein' => [
             '8.4'       => false,
             '8.5'       => true,
             'extension' => 'intl',
+        ],
+        'locale_is_right_to_left' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'intl',
+        ],
+        'opcache_is_script_cached_in_file_cache' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'opcache',
+        ],
+        'pg_close_stmt' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'pgsql',
+        ],
+        'pg_service' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'pgsql',
         ],
     ];
 
