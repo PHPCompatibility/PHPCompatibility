@@ -57,7 +57,7 @@ final class RemovedMagicMethodsSniff extends Sniff
         self::SOFT_DEPRECATED => [
             'type' => self::SOFT_DEPRECATED,
             'errorCode' => 'SoftDeprecated',
-            'messageTemplate' => 'Magic method %s() is soft-deprecated since PHP %s.',
+            'messageTemplate' => 'Magic method %s() is maintained for backward compatibility since PHP %s.',
             'isError' => false,
         ],
     ];
@@ -73,11 +73,15 @@ final class RemovedMagicMethodsSniff extends Sniff
      * }>
      */
     protected $methodCompatibilityMatrix = [
+        // @see https://wiki.php.net/rfc/soft-deprecate-sleep-wakeup#proposal
+        // @see https://www.php.net/manual/en/language.oop5.magic.php#object.serialize
         '__sleep' => [
             self::SOFT_DEPRECATED => '8.5',
             'mutuallyExclusiveWith' => '__serialize',
             'alternative' => '__serialize',
         ],
+        // @see https://wiki.php.net/rfc/soft-deprecate-sleep-wakeup#proposal
+        // @see https://www.php.net/manual/en/language.oop5.magic.php#object.unserialize
         '__wakeup' => [
             self::SOFT_DEPRECATED => '8.5',
             'mutuallyExclusiveWith' => '__unserialize',
