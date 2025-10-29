@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Sniffs\FunctionNameRestrictions;
 
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\FunctionDeclarations;
