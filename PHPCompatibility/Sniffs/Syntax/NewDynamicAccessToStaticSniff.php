@@ -24,7 +24,7 @@ use PHPCSUtils\Tokens\Collections;
  *
  * PHP version 5.3
  *
- * @link https://www.php.net/manual/en/migration53.new-features.php
+ * @link https://php-legacy-docs.zend.com/manual/php5/en/migration53.new-features
  *
  * @since 8.1.0
  * @since 9.0.0  Renamed from `DynamicAccessToStaticSniff` to `NewDynamicAccessToStaticSniff`.
@@ -48,7 +48,7 @@ final class NewDynamicAccessToStaticSniff extends Sniff
     }
 
     /**
-     * Processes this test, when one of its tokens is encountered.
+     * Processes this test when one of its tokens is encountered.
      *
      * @since 8.1.0
      *
