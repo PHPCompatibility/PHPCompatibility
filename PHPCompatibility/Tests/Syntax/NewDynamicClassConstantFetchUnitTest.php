@@ -50,6 +50,38 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
     {
         return [
             [3],
+            [4],
+            [5],
+        ];
+    }
+
+    /**
+     * Ensure a warning message in NOT found syntax on supported versions.
+     *
+     * @dataProvider dataSupportedVersion
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testSupportedVersion($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.3');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array
+     * @see    testSupportedVersion()
+     */
+    public static function dataSupportedVersion()
+    {
+        return [
+            [3],
+            [4],
+            [5],
         ];
     }
 }
