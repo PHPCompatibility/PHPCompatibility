@@ -66,7 +66,8 @@ final class RemovedClassConstantsSniff extends Sniff
      *     softDeprecated?: string,
      *     deprecated?: string,
      *     removed?: string,
-     *     alternative?: string
+     *     alternative?: string,
+     *     extension?: string
      * }>
      */
     protected $classConstantCompatibilityMatrix = [
@@ -75,6 +76,7 @@ final class RemovedClassConstantsSniff extends Sniff
         // @link https://www.php.net/manual/en/class.numberformatter.php#numberformatter.constants.type-currency
         'NumberFormatter::TYPE_CURRENCY' => [
             self::DEPRECATED => '8.3',
+            'extension' => 'intl',
         ],
     ];
 
@@ -89,7 +91,6 @@ final class RemovedClassConstantsSniff extends Sniff
     {
         return [\T_DOUBLE_COLON];
     }
-
 
     /**
      * Processes this test when one of its tokens is encountered.
