@@ -107,21 +107,21 @@ final class RemovedClassConstantsSniff extends Sniff
     {
         // We can't know runtime values, so tokens on each side of the double colon can only be strings for this sniff.
         $previousNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true);
+        $nextNonEmpty     = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true);
         if (!$previousNonEmpty || !$nextNonEmpty) {
             return;
         }
 
-        $tokens = $phpcsFile->getTokens();
+        $tokens           = $phpcsFile->getTokens();
         $previousIsString = $tokens[$previousNonEmpty]['code'] === \T_STRING;
-        $nextIsString = $tokens[$nextNonEmpty]['code'] === \T_STRING;
+        $nextIsString     = $tokens[$nextNonEmpty]['code'] === \T_STRING;
 
         if (!$previousIsString || !$nextIsString) {
             return;
         }
 
-        $previous = $tokens[$previousNonEmpty]['content'];
-        $next = $tokens[$nextNonEmpty]['content'];
+        $previous             = $tokens[$previousNonEmpty]['content'];
+        $next                 = $tokens[$nextNonEmpty]['content'];
         $scannedClassConstant = sprintf('%s::%s', $previous, $next);
 
         if (!isset($this->classConstantCompatibilityMatrix[$scannedClassConstant])) {
