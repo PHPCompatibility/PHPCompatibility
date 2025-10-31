@@ -1,46 +1,57 @@
 <?php
 
-class MutuallyExclusiveMethods
+// Not sniff's target: using similar tokens or syntax
+
+// Not sniff's target: excluded from certain contexts
+interface DeclaredInInterface // only implementations are impacted
 {
-    function __sleep() {} // no violation because __serialize is present, so __sleep is already not called
-    function __wakeup() {} // no violation because __unserialize is present, so __wakeup is already not called
+    function __sleep();
+    function __wakeup();
+}
+
+class MutuallyExclusiveMethods // disregarded when another method is already overriding our target method
+{
+    function __sleep() {} // __serialize is already present
+    function __wakeup() {} // __unserialize is already present
     function __serialize() {}
     function __unserialize(array $data) {}
 }
 
+class DeclaredInNested // don't act like magic methods when nested in functions/methods
+{
+    function nested()
+    {
+        function __sleep() {}
+        function __wakeup() {}
+    }
+}
+
+enum DeclaredInEnum { // don't act like magic methods in enums
+    public function __sleep() {}
+    public function __wakeup() {}
+}
+
+// Sniff's target: deprecated/removed in specific versions
+// @see RemovedMagicMethodsUnitTest::testSoftDeprecations
 class DeclaredInClass
 {
-    function __sleep() {} // violation
-    function __wakeup() {} // violation
+    function __sleep() {} // soft-deprecated since PHP 8.5
+    function __wakeup() {} // soft-deprecated since PHP 8.5
+}
+
+abstract class DeclaredInAbstractClass
+{
+    function __sleep() {} // soft-deprecated since PHP 8.5
+    function __wakeup() {} // soft-deprecated since PHP 8.5
 }
 
 trait DeclaredInTrait
 {
-    function __sleep() {} // violation
-    function __wakeup() {} // violation
-}
-
-interface DeclaredInInterface
-{
-    function __sleep(); // no violation
-    function __wakeup(); // no violation
+    function __sleep() {} // soft-deprecated since PHP 8.5
+    function __wakeup() {} // soft-deprecated since PHP 8.5
 }
 
 $DeclaredInAnonymousClass = new class {
-    function __sleep() {} // violation
-    function __wakeup() {} // violation
+    function __sleep() {} // soft-deprecated since PHP 8.5
+    function __wakeup() {} // soft-deprecated since PHP 8.5
 };
-
-class DeclaredInNested
-{
-    function nested()
-    {
-        function __sleep() {} // no violation because not a valid magic method in this context
-        function __wakeup() {} // no violation because not a valid magic method in this context
-    }
-}
-
-enum DeclaredInEnum {
-    public function __sleep() {} // no violation because not a valid magic method in this context
-    public function __wakeup() {} // no violation because not a valid magic method in this context
-}

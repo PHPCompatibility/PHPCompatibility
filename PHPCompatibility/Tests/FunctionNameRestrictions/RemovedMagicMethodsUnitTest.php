@@ -26,7 +26,7 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
 {
 
     /**
-     * testViolation
+     * Ensure a warning message when found in versions that sof-deprecated the magic method.
      *
      * @dataProvider dataSoftDeprecations
      *
@@ -61,15 +61,15 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     public static function dataSoftDeprecations()
     {
         return [
-            ['8.5', '__sleep()', '__serialize', [13, 19, 30]],
-            ['8.5', '__wakeup()', '__unserialize', [14, 20, 31]],
+            ['8.5', '__sleep()', '__serialize', [38, 44, 50, 55]],
+            ['8.5', '__wakeup()', '__unserialize', [39, 45, 51, 56]],
         ];
     }
 
     /**
-     * testViolation
+     * Ensure NO false positives due to misleading syntax out excluded scopes.
      *
-     * @dataProvider dataNoViolation
+     * @dataProvider dataNoFalsePositives
      *
      * @param string $version     Target version
      * @param string $method      Method name
@@ -77,7 +77,7 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
      *
      * @return void
      */
-    public function testNoViolation($version, $method, $lineNumbers)
+    public function testNoFalsePositives($version, $method, $lineNumbers)
     {
         $file = $this->sniffFile(__FILE__, $version);
         foreach ($lineNumbers as $lineNumber) {
@@ -86,21 +86,51 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * Data provider.
+     * All versions are _invalid_ for the associated constants, but the snippet should not be picked up by the sniff.
      *
-     * @see testSoftDeprecations()
+     * @see testNoFalsePositives()
      *
      * @return array
      */
-    public static function dataNoViolation()
+    public static function dataNoFalsePositives()
     {
         return [
-            // Pre-deprecation/removal
-            ['8.4', '__sleep()', [13]],
-            ['8.4', '__wakeup()', [14]],
-            // Post-deprecation/removal
-            ['8.5', '__sleep()', [5, 25, 38, 44]],
-            ['8.5', '__wakeup()', [6, 26, 39, 45]],
+            ['8.4', '__sleep()', [8, 14, 24, 30]],
+            ['8.4', '__wakeup()', [9, 15, 25, 31]],
+        ];
+    }
+
+    /**
+     * Ensure NO messages when found in supported versions.
+     *
+     * @dataProvider dataNoViolationsOnValidVersion
+     *
+     * @param string $version     Target version
+     * @param string $method      Method name
+     * @param int[]  $lineNumbers The line numbers of the violation
+     *
+     * @return void
+     */
+    public function testNoViolationsOnValidVersion($version, $method, $lineNumbers)
+    {
+        $file = $this->sniffFile(__FILE__, $version);
+        foreach ($lineNumbers as $lineNumber) {
+            $this->assertNoViolation($file, $lineNumber);
+        }
+    }
+
+    /**
+     * All versions are _valid_ for the associated magic methods, and the sniff shouldn't flag warnings or errors
+     *
+     * @see testNoViolationsOnValidVersion()
+     *
+     * @return array
+     */
+    public static function dataNoViolationsOnValidVersion()
+    {
+        return [
+            ['8.4', '__sleep()', [38, 44, 50, 55]],
+            ['8.4', '__wakeup()', [39, 45, 51, 56]],
         ];
     }
 }
