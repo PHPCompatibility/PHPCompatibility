@@ -70,7 +70,7 @@ final class NewDynamicClassConstantFetchSniff extends Sniff
 
         $phpcsFile->addError(
             'Dynamic class constant fetch is not available in PHP 8.2 or earlier.',
-            $stackPtr,
+            $nextNonEmpty,
             'Found'
         );
     }
