@@ -67,7 +67,7 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * Ensure NO false positives due to misleading syntax out excluded scopes.
+     * Ensure no false positives due to misleading syntax out excluded scopes.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -86,7 +86,7 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * All versions are _invalid_ for the associated constants, but the snippet should not be picked up by the sniff.
+     * All versions are invalid for the associated constants, but the snippet should not be picked up by the sniff.
      *
      * @see testNoFalsePositives()
      *
@@ -101,7 +101,7 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * Ensure NO messages when found in supported versions.
+     * Ensure no messages when found in supported versions.
      *
      * @dataProvider dataNoViolationsOnValidVersion
      *
@@ -120,7 +120,7 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * All versions are _valid_ for the associated magic methods, and the sniff shouldn't flag warnings or errors
+     * All versions are valid for the associated magic methods, and the sniff shouldn't flag warnings or errors
      *
      * @see testNoViolationsOnValidVersion()
      *
