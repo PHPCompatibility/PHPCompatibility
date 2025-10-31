@@ -28,13 +28,13 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
     /**
      * Ensure a warning message when found syntax on earlier versions.
      *
-     * @dataProvider dataUnsupportedVersion
+     * @dataProvider dataDynamicClassConstantFetch
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testUnsupportedVersion($line)
+    public function testDynamicClassConstantFetch($line)
     {
         $file = $this->sniffFile(__FILE__, '8.2');
         $this->assertError($file, $line, 'Dynamic class constant fetch is not available in PHP 8.2 or earlier.');
@@ -44,27 +44,29 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
      * Data provider.
      *
      * @return array
-     * @see    testUnsupportedVersion()
+     * @see    testDynamicClassConstantFetch()
      */
-    public static function dataUnsupportedVersion()
+    public static function dataDynamicClassConstantFetch()
     {
         return [
-            [3],
-            [4],
-            [5],
+            [17],
+            [18],
+            [19],
+            [20],
+            [23],
         ];
     }
 
     /**
      * Ensure a warning message in NOT found syntax on supported versions.
      *
-     * @dataProvider dataSupportedVersion
+     * @dataProvider dataNoViolationsOnValidVersion
      *
      * @param int $line The line number.
      *
      * @return void
      */
-    public function testSupportedVersion($line)
+    public function testNoViolationsOnValidVersion($line)
     {
         $file = $this->sniffFile(__FILE__, '8.3');
         $this->assertNoViolation($file, $line);
@@ -74,15 +76,55 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
      * Data provider.
      *
      * @return array
-     * @see    testSupportedVersion()
+     * @see    testNoViolationsOnValidVersion()
      */
-    public static function dataSupportedVersion()
+    public static function dataNoViolationsOnValidVersion()
     {
         return [
-            [3],
+            [17],
+            [18],
+            [19],
+            [20],
+            [23],
+        ];
+    }
+
+    /**
+     * Ensure a warning message in NOT found in syntax that is not explicitly targeted by this sniff.
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.3');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array
+     * @see    testNoFalsePositives()
+     */
+    public static function dataNoFalsePositives()
+    {
+        return [
             [4],
             [5],
             [6],
+            [7],
+            [8],
+            [9],
+            [10],
+            [11],
+            [12],
+            [13],
+            [14],
+            [23], // last because parse error
         ];
     }
 }
