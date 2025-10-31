@@ -71,6 +71,7 @@ final class RemovedMagicMethodsSniff extends Sniff
      *     softDeprecated?: string,
      *     deprecated?: string,
      *     removed?: string,
+     *     mutuallyExclusiveWith?: string,
      *     alternative?: string
      * }>
      */
