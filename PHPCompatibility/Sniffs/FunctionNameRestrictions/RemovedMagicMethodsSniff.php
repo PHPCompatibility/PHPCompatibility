@@ -119,14 +119,13 @@ final class RemovedMagicMethodsSniff extends Sniff
     {
         $magicMethodScopes = [T_CLASS, T_ANON_CLASS, T_TRAIT];
         $parentScope       = Scopes::validDirectScope($phpcsFile, $stackPtr, $magicMethodScopes);
-        if (!$parentScope) {
+        if ($parentScope === false) {
             return;
         }
 
         $scannedMethod = \strtolower(
             FunctionDeclarations::getName($phpcsFile, $stackPtr)
         );
-
         if (!isset($this->methodCompatibilityMatrix[$scannedMethod])) {
             return;
         }
@@ -138,10 +137,9 @@ final class RemovedMagicMethodsSniff extends Sniff
             return;
         }
 
-        $allMethodsInClass          = ObjectDeclarations::getDeclaredMethods($phpcsFile, $parentScope);
-        $mutuallyExclusiveMethod    = $this->methodCompatibilityMatrix[$scannedMethod]['mutuallyExclusiveWith'];
-        $hasMutuallyExclusiveMethod = array_key_exists($mutuallyExclusiveMethod, $allMethodsInClass);
-        if ($hasMutuallyExclusiveMethod) {
+        $allMethodsInClass       = ObjectDeclarations::getDeclaredMethods($phpcsFile, $parentScope);
+        $mutuallyExclusiveMethod = $this->methodCompatibilityMatrix[$scannedMethod]['mutuallyExclusiveWith'];
+        if (array_key_exists($mutuallyExclusiveMethod, $allMethodsInClass)) {
             return;
         }
 
