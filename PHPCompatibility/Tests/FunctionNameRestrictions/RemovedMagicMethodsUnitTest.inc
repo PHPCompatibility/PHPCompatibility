@@ -1,8 +1,17 @@
 <?php
 
 // Not sniff's target: using similar tokens or syntax
+// @see RemovedMagicMethodsUnitTest::dataNoFalsePositives
+$function = __sleep();
+function foo($__sleep) {};
+function() use ($__sleep) {};
 
 // Not sniff's target: excluded from certain contexts
+// @see RemovedMagicMethodsUnitTest::dataSoftDeprecations
+// @see RemovedMagicMethodsUnitTest::dataNoViolationsOnValidVersion
+function __sleep() {} // bare functions are not magic methods
+function __wakeup() {} // bare functions are not magic methods
+
 interface DeclaredInInterface // only implementations are impacted
 {
     function __sleep();
@@ -55,3 +64,10 @@ $DeclaredInAnonymousClass = new class {
     function __sleep() {} // soft-deprecated since PHP 8.5
     function __wakeup() {} // soft-deprecated since PHP 8.5
 };
+
+// Parse error / live coding
+// @see RemovedMagicMethodsUnitTest::dataNoFalsePositives
+class Foo
+{
+    function __sleep(
+}

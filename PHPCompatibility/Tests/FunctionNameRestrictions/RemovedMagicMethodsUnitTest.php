@@ -61,8 +61,8 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     public static function dataSoftDeprecations()
     {
         return [
-            ['8.5', '__sleep()', '__serialize', [38, 44, 50, 55]],
-            ['8.5', '__wakeup()', '__unserialize', [39, 45, 51, 56]],
+            ['8.5', '__sleep()', '__serialize', [47, 53, 59, 64]],
+            ['8.5', '__wakeup()', '__unserialize', [48, 54, 60, 65]],
         ];
     }
 
@@ -95,8 +95,15 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     public static function dataNoFalsePositives()
     {
         return [
-            ['8.4', '__sleep()', [8, 14, 24, 30]],
-            ['8.4', '__wakeup()', [9, 15, 25, 31]],
+            // misleading syntax
+            ['8.4', '__sleep()', [5, 6, 7]],
+
+            // inapplicable contexts
+            ['8.4', '__sleep()', [12, 17, 23, 33, 39]],
+            ['8.4', '__wakeup()', [13, 18, 24, 33, 40]],
+
+            // parse error
+            ['8.4', '__sleep()', [72]],
         ];
     }
 
@@ -129,8 +136,8 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     public static function dataNoViolationsOnValidVersion()
     {
         return [
-            ['8.4', '__sleep()', [38, 44, 50, 55]],
-            ['8.4', '__wakeup()', [39, 45, 51, 56]],
+            ['8.4', '__sleep()', [47, 53, 59, 64]],
+            ['8.4', '__wakeup()', [48, 54, 60, 65]],
         ];
     }
 }
