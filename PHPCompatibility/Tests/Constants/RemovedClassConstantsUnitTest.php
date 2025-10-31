@@ -28,7 +28,7 @@ final class RemovedClassConstantsUnitTest extends BaseSniffTestCase
     /**
      * Ensure a warning message when found in versions that deprecated the class constant.
      *
-     * @dataProvider dataDeprecated
+     * @dataProvider dataDeprecatedConstants
      *
      * @param string $version    Target version
      * @param string $constant   Class constant
@@ -36,7 +36,7 @@ final class RemovedClassConstantsUnitTest extends BaseSniffTestCase
      *
      * @return void
      */
-    public function testDeprecated($version, $constant, $lineNumber)
+    public function testDeprecatedConstants($version, $constant, $lineNumber)
     {
         $file            = $this->sniffFile(__FILE__, $version);
         $expectedMessage = sprintf('Class constant %s is deprecated since PHP %s.', $constant, $version);
@@ -47,43 +47,76 @@ final class RemovedClassConstantsUnitTest extends BaseSniffTestCase
      * Data provider.
      *
      * @return array
-     * @see    testDeprecated()
+     * @see    testDeprecatedConstants()
      */
-    public static function dataDeprecated()
+    public static function dataDeprecatedConstants()
     {
         return [
-            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 3],
+            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 15],
         ];
     }
 
     /**
-     * Ensure NO messages when found in supported versions.
      * Ensure NO false positives due to misleading syntax
      *
-     * @dataProvider dataNoViolations
+     * @dataProvider dataNoFalsePositives
      *
      * @param string $version    Target version
      * @param int    $lineNumber The line number of the violation
      *
      * @return void
      */
-    public function testNoViolations($version, $lineNumber)
+    public function testNoFalsePositives($version, $lineNumber)
     {
         $file = $this->sniffFile(__FILE__, $version);
         $this->assertNoViolation($file, $lineNumber);
     }
 
     /**
-     * Data provider.
+     * All versions are _invalid_ for the associated constants, but the snippet should not be picked up by the sniff.
      *
      * @return array
-     * @see    testNoViolations()
+     * @see    testNoFalsePositives()
      */
-    public static function dataNoViolations()
+    public static function dataNoFalsePositives()
     {
+        // The constant name is here for test readability purposes
         return [
-            ['8.2', 3],
-            ['8.3', 4],
+            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 6],
+            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 7],
+            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 8],
+        ];
+    }
+
+    /**
+     * Ensure NO messages when found in supported versions.
+     *
+     * @dataProvider dataNoViolationsOnValidVersion
+     *
+     * @param string $version    Target version
+     * @param int    $lineNumber The line number of the violation
+     *
+     * @return void
+     */
+    public function testNoViolationsOnValidVersion($version, $lineNumber)
+    {
+        $file = $this->sniffFile(__FILE__, $version);
+        $this->assertNoViolation($file, $lineNumber);
+    }
+
+    /**
+     * All versions are _valid_ for the associated constants, and the sniff shouldn't flag warnings or errors
+     *
+     * @return array
+     * @see    testNoViolationsOnValidVersion()
+     */
+    public static function dataNoViolationsOnValidVersion()
+    {
+        // The constant name is here for test readability purposes
+        return [
+            ['8.2', 'NumberFormatter::TYPE_CURRENCY', 6],
+            ['8.2', 'NumberFormatter::TYPE_CURRENCY', 7],
+            ['8.2', 'NumberFormatter::TYPE_CURRENCY', 8],
         ];
     }
 }

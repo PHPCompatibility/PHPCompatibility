@@ -137,7 +137,7 @@ final class RemovedClassConstantsSniff extends Sniff
 
         $this->addMessage(
             $phpcsFile,
-            $stackPtr,
+            $nextNonEmpty,
             $scannedClassConstant,
             $violation
         );
