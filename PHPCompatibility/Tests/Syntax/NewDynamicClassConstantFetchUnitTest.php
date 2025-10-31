@@ -82,6 +82,7 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
             [3],
             [4],
             [5],
+            [6],
         ];
     }
 }
