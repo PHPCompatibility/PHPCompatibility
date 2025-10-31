@@ -75,15 +75,15 @@ final class RemovedMagicMethodsSniff extends Sniff
      * }>
      */
     protected $methodCompatibilityMatrix = [
-        // @see https://wiki.php.net/rfc/soft-deprecate-sleep-wakeup#proposal
-        // @see https://www.php.net/manual/en/language.oop5.magic.php#object.serialize
+        // @link https://wiki.php.net/rfc/soft-deprecate-sleep-wakeup#proposal
+        // @link https://www.php.net/manual/language.oop5.magic.php#object.serialize
         '__sleep' => [
             self::SOFT_DEPRECATED => '8.5',
             'mutuallyExclusiveWith' => '__serialize',
             'alternative' => '__serialize',
         ],
-        // @see https://wiki.php.net/rfc/soft-deprecate-sleep-wakeup#proposal
-        // @see https://www.php.net/manual/en/language.oop5.magic.php#object.unserialize
+        // @link https://wiki.php.net/rfc/soft-deprecate-sleep-wakeup#proposal
+        // @link https://www.php.net/manual/language.oop5.magic.php#object.unserialize
         '__wakeup' => [
             self::SOFT_DEPRECATED => '8.5',
             'mutuallyExclusiveWith' => '__unserialize',
