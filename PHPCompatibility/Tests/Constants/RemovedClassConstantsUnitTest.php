@@ -52,7 +52,7 @@ final class RemovedClassConstantsUnitTest extends BaseSniffTestCase
     public static function dataDeprecatedConstants()
     {
         return [
-            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 15],
+            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 20],
         ];
     }
 
@@ -85,6 +85,11 @@ final class RemovedClassConstantsUnitTest extends BaseSniffTestCase
             ['8.3', 'NumberFormatter::TYPE_CURRENCY', 6],
             ['8.3', 'NumberFormatter::TYPE_CURRENCY', 7],
             ['8.3', 'NumberFormatter::TYPE_CURRENCY', 8],
+            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 9],
+            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 10],
+            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 11],
+            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 12],
+            ['8.3', 'NumberFormatter::TYPE_CURRENCY', 13],
         ];
     }
 
@@ -114,9 +119,7 @@ final class RemovedClassConstantsUnitTest extends BaseSniffTestCase
     {
         // The constant name is here for test readability purposes
         return [
-            ['8.2', 'NumberFormatter::TYPE_CURRENCY', 6],
-            ['8.2', 'NumberFormatter::TYPE_CURRENCY', 7],
-            ['8.2', 'NumberFormatter::TYPE_CURRENCY', 8],
+            ['8.2', 'NumberFormatter::TYPE_CURRENCY', 25],
         ];
     }
 }
