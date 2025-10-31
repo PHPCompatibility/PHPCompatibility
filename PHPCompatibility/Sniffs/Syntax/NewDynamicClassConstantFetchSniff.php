@@ -60,12 +60,11 @@ final class NewDynamicClassConstantFetchSniff extends Sniff
 
         $tokens       = $phpcsFile->getTokens();
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true);
-        if (!$nextNonEmpty) {
+        if ($nextNonEmpty === false) {
             return;
         }
 
-        $isNextNonEmptyAnOpenCurlyBracket = $tokens[$nextNonEmpty]['code'] === \T_OPEN_CURLY_BRACKET;
-        if (!$isNextNonEmptyAnOpenCurlyBracket) {
+        if ($tokens[$nextNonEmpty]['code'] !== \T_OPEN_CURLY_BRACKET) {
             return;
         }
 
