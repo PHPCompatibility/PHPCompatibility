@@ -37,7 +37,9 @@ final class RemovedMagicMethodsSniff extends Sniff
      * List of all violation types and their semantic meaning.
      *
      * @var array<string, array{
+     *     type: string,
      *     errorCode: string,
+     *     messageTemplate: string,
      *     isError: bool,
      * }>
      */
