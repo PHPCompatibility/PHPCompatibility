@@ -23,6 +23,9 @@ jobs:
           labels: |
             PR: quick merge
             PR: ready for review
+            Status: awaiting feedback
+            Status: has merge conflict
+            Status: triage
 
   on-pr-close:
     runs-on: ubuntu-latest
@@ -37,6 +40,8 @@ jobs:
           labels: |
             PR: quick merge
             PR: ready for review
+            Status: awaiting feedback
+            Status: triage
 
   on-issue-close:
     runs-on: ubuntu-latest
@@ -49,4 +54,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           labels: |
-            good first issue
+            Status: awaiting feedback
+            Status: good first issue
+            Status: needs investigation
+            Status: to be implemented
+            Status: triage

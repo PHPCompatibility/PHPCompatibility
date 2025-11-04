@@ -13,7 +13,7 @@ updates:
     commit-message:
       prefix: "GH Actions:"
     labels:
-      - "chores/QA"
+      - "Type: chores/QA"
     groups:
       action-runners:
         applies-to: version-updates
