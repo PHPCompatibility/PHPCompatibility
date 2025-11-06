@@ -5,18 +5,6 @@
 
 version: 2
 updates:
-  - package-ecosystem: "composer"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5 # Set to 0 to (temporarily) disable.
-    versioning-strategy: widen
-    commit-message:
-      prefix: "Composer:"
-      include: "scope"
-    labels:
-      - "chores/QA"
-
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
