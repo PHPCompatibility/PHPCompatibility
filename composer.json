@@ -42,9 +42,6 @@
   "replace": {
     "wimg/php-compatibility": "*"
   },
-  "suggest": {
-    "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
-  },
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
