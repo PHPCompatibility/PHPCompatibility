@@ -20,6 +20,6 @@ static::{$array['index']}; // class is static
 static::{Foo::class}; // inner expression double colon `::` shouldn't interfere
 Foo::
     /* multiline, comment between relevant tokens */
-    {$bar}
+    {$bar};
 
 MyClass:: // parse error / live coding
