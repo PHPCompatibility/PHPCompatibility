@@ -96,7 +96,7 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
      */
     public function testNoFalsePositives($line)
     {
-        $file = $this->sniffFile(__FILE__, '8.3');
+        $file = $this->sniffFile(__FILE__, '8.2');
         $this->assertNoViolation($file, $line);
     }
 
