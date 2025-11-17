@@ -86,7 +86,7 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * Ensure a warning message in NOT found in syntax that is not explicitly targeted by this sniff.
+     * Verify there are no false positives on valid code.
      *
      * @dataProvider dataNoFalsePositives
      *
