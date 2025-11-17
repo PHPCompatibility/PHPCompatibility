@@ -8594,6 +8594,11 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'sockets',
         ],
+        'T_VOID_CAST' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'tokenizer',
+        ],
     ];
 
 
