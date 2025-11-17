@@ -26,7 +26,7 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
 {
 
     /**
-     * Ensure a warning message when found syntax on earlier versions.
+     * Ensure an error is thrown when the new syntax is used.
      *
      * @dataProvider dataDynamicClassConstantFetch
      *
