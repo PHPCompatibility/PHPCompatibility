@@ -19,3 +19,7 @@ $also_binary = b'124';
 
 // Just making sure / no false positives.
 $ordinary = 'b"something"';
+
+// PHP 8.5: new `(void)` cast.
+(void) $a;
+(   VOID   ) callMe();

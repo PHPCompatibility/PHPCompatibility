@@ -51,6 +51,11 @@ final class NewTypeCastsSniff extends Sniff
             '5.2.1'       => true,
             'description' => 'The binary cast',
         ],
+        'T_VOID_CAST' => [
+            '8.4'         => false,
+            '8.5'         => true,
+            'description' => 'The void cast',
+        ],
     ];
 
 
