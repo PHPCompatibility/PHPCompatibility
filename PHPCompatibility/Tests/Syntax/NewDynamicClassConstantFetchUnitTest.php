@@ -120,7 +120,7 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
             [12],
             [13],
             [14],
-            [23], // last because parse error
+            [25], // last because parse error
         ];
     }
 }
