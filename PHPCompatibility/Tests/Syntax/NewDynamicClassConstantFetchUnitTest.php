@@ -58,18 +58,14 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * Ensure a warning message in NOT found syntax on supported versions.
-     *
-     * @dataProvider dataNoViolationsOnValidVersion
-     *
-     * @param int $line The line number.
+     * Verify no notices are thrown at all on PHP versions on which the syntax is supported.
      *
      * @return void
      */
-    public function testNoViolationsOnValidVersion($line)
+    public function testNoViolationsOnValidVersion()
     {
         $file = $this->sniffFile(__FILE__, '8.3');
-        $this->assertNoViolation($file, $line);
+        $this->assertNoViolation($file);
     }
 
     /**
