@@ -108,19 +108,16 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
      */
     public static function dataNoFalsePositives()
     {
-        return [
-            [4],
-            [5],
-            [6],
-            [7],
-            [8],
-            [9],
-            [10],
-            [11],
-            [12],
-            [13],
-            [14],
-            [25], // last because parse error
-        ];
+        $cases = [];
+
+        // No errors expected on the first 15 lines.
+        for ($line = 1; $line <= 15; $line++) {
+            $cases[] = [$line];
+        }
+
+        // Parse error test.
+        $cases[] = [25];
+
+        return $cases;
     }
 }
