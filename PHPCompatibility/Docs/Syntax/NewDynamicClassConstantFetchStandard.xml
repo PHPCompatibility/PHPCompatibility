@@ -10,7 +10,7 @@
     </standard>
     <code_comparison>
         <code title="Cross-version compatible: using the constant() function.">
-            <![CDATA[
+        <![CDATA[
 <em>constant</em>(Foo::class . '::' . $bar);
         ]]>
         </code>
