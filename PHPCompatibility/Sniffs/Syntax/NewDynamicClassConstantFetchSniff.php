@@ -68,10 +68,22 @@ final class NewDynamicClassConstantFetchSniff extends Sniff
             return;
         }
 
-        $closingBracket = $phpcsFile->findNext(\T_CLOSE_CURLY_BRACKET, $nextNonEmpty + 1);
-        $nextNonEmpty   = $phpcsFile->findNext(Tokens::$emptyTokens, $closingBracket + 1, null, true);
+        $bracketOpener = $nextNonEmpty;
+        // Example: Foo::{ is a live coding or parse error
+        if (isset($tokens[$bracketOpener]['bracket_closer']) === false) {
+            return;
+        }
+
+        $bracketCloser = $tokens[$bracketOpener]['bracket_closer'];
+        $nextNonEmpty  = $phpcsFile->findNext(Tokens::$emptyTokens, $bracketCloser + 1, null, true);
         // Example: Foo::{$bar}() is a false positive
         if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_OPEN_PARENTHESIS) {
+            return;
+        }
+
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $bracketOpener + 1, $bracketCloser, true);
+        // Example: Foo::{{$bar->name}()} is a parse error that might seem like a valid constant fetch due to Foo::{...}
+        if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_OPEN_CURLY_BRACKET) {
             return;
         }
 

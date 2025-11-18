@@ -11,7 +11,7 @@ $foo::bar(); // call static method on object’s class using explicit method nam
 $array{'index'}; // curly brace array access, string index
 $array{10}; // curly brace array access, numeric index
 $className::class; // fetch static constant
-MyClass::class; // explicit class name, fetch static constant
+Foo::class; // explicit class name, fetch static constant
 
 // Sniff's target: invalid syntax on <=8.2
 Foo::{$bar}->prop;
@@ -27,4 +27,5 @@ Foo::
     /* multiline, comment between relevant tokens */
     {$bar};
 
-MyClass:: // parse error / live coding
+Foo::{ // parse error / live coding
+Foo::{{$bar->name}()}; // extra curly brackets to make sure we match the correct closer, and skip it as a parse error
