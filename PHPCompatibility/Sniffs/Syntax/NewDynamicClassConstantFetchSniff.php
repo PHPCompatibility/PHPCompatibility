@@ -54,7 +54,7 @@ final class NewDynamicClassConstantFetchSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if (!ScannedCode::shouldRunOnOrBelow('8.2')) {
+        if (ScannedCode::shouldRunOnOrBelow('8.2') === false) {
             return;
         }
 
