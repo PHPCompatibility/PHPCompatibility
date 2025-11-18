@@ -63,8 +63,15 @@ final class NewDynamicClassConstantFetchSniff extends Sniff
         if ($nextNonEmpty === false) {
             return;
         }
-
+        // Example: Foo::{$bar}
         if ($tokens[$nextNonEmpty]['code'] !== \T_OPEN_CURLY_BRACKET) {
+            return;
+        }
+
+        $closingBracket = $phpcsFile->findNext(\T_CLOSE_CURLY_BRACKET, $nextNonEmpty + 1);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $closingBracket + 1, null, true);
+        // Example: Foo::{$bar}() is a false positive
+        if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_OPEN_PARENTHESIS) {
             return;
         }
 
