@@ -14,6 +14,11 @@ $className::class; // fetch static constant
 MyClass::class; // explicit class name, fetch static constant
 
 // Sniff's target: invalid syntax on <=8.2
+Foo::{$bar}->prop;
+Foo::{$bar}->method();
+Foo::{$bar}?->prop;
+Foo::{$bar}?->method();
+Foo::{$bar}::CONSTANT_NAME;
 Foo::{$bar->get('index')}; // complex expression as constant name
 self::{$bar}; // class is self
 static::{$array['index']}; // class is static

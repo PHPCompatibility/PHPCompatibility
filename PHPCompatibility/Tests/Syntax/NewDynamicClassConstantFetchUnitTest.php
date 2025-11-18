@@ -116,7 +116,7 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
         }
 
         // Parse error test.
-        $cases[] = [25];
+        $cases[] = [30];
 
         return $cases;
     }
