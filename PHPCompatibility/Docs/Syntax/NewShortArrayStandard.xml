@@ -11,12 +11,12 @@
     <code_comparison>
         <code title="Cross-version compatible: array() syntax.">
         <![CDATA[
-$array = <em>array(1, 2, 3)</em>;
+$array = <em>array(</em>1, 2, 3<em>)</em>;
         ]]>
         </code>
         <code title="PHP &gt;= 5.4: short array syntax.">
         <![CDATA[
-$array = <em>[1, 2, 3]</em>;
+$array = <em>[</em>1, 2, 3<em>]</em>;
         ]]>
         </code>
     </code_comparison>
