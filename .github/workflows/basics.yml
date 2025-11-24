@@ -37,9 +37,8 @@ jobs:
 
       - name: 'Composer: adjust dependencies'
         run: |
-          # Using PHPCS `3.x` as an early detection system for bugs upstream.
-          # This should be changed to 4.x, but we'll need to wait for PHPCSDevCS to be compatible with 4.x.
-          composer require --no-update squizlabs/php_codesniffer:"3.x-dev" --no-interaction
+          # Using PHPCS `4.x` as an early detection system for bugs upstream.
+          composer require --no-update squizlabs/php_codesniffer:"4.x-dev" --no-interaction
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer

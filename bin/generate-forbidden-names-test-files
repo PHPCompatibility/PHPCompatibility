@@ -115,7 +115,7 @@ $otherInvalidNames = [
     // Soft reserved.
     'resource' => '7.0',
     'numeric'  => '7.0',
-    'enum'     => '8.1'
+    'enum'     => '8.1',
 ];
 
 // The "other" reserved names are fine to use for function or constant names, so should only be injected in select tests.
@@ -289,7 +289,7 @@ $tests = [
         return "use My\NS\{ const FOOBAR as $name, };\n";
     },
     'class-use-trait-alias-method'           => function ($name) {
-        if (in_array($name, array('public', 'protected', 'private', 'final'), true) === true) {
+        if (in_array($name, ['public', 'protected', 'private', 'final'], true) === true) {
             return '';
         } else {
             return "class Foobar { use BazTrait { oldfunction as $name; } }\n";
@@ -297,11 +297,7 @@ $tests = [
     },
 ];
 
-$path = realpath(dirname(__DIR__))
-    . DIRECTORY_SEPARATOR . 'PHPCompatibility'
-    . DIRECTORY_SEPARATOR . 'Tests'
-    . DIRECTORY_SEPARATOR . 'Keywords'
-    . DIRECTORY_SEPARATOR . 'ForbiddenNames';
+$path = realpath(dirname(__DIR__) . '/PHPCompatibility/Tests/Keywords/ForbiddenNames');
 
 foreach ($tests as $name => $callback) {
     $filename = $path . DIRECTORY_SEPARATOR . $name . '.inc';

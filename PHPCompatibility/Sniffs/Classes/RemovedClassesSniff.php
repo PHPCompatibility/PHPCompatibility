@@ -618,7 +618,7 @@ final class RemovedClassesSniff extends Sniff
      */
     private function processUseToken(File $phpcsFile, $stackPtr)
     {
-        if (!UseStatements::isImportUse($phpcsFile, $stackPtr)) {
+        if (UseStatements::isImportUse($phpcsFile, $stackPtr) === false) {
             return;
         }
 

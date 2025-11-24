@@ -361,7 +361,7 @@ final class NewTypedPropertiesSniff extends Sniff
     }
 
 
-   /**
+    /**
      * Handle the retrieval of relevant information and - if necessary - throwing of an
      * error for a matched item.
      *

@@ -62,7 +62,7 @@ trait ComplexVersionDeprecatedRemovedFeatureTrait
      *                  from the $itemArray or an empty string if the value for a key was unavailable
      *                  or could not be determined.
      */
-    protected function getVersionInfo(array $itemArray)
+    final protected function getVersionInfo(array $itemArray)
     {
         $versionInfo = [
             'deprecated'  => '',
@@ -100,7 +100,7 @@ trait ComplexVersionDeprecatedRemovedFeatureTrait
      *
      * @return array<string, string|array>
      */
-    protected function getMessageInfo($itemName, $itemBaseCode, array $versionInfo)
+    final protected function getMessageInfo($itemName, $itemBaseCode, array $versionInfo)
     {
         $message   = $this->msgTemplate;
         $errorCode = MessageHelper::stringToErrorCode($itemBaseCode, true);
