@@ -47,8 +47,9 @@ final class NewDynamicClassConstantFetchSniff extends Sniff
      *
      * @since 10.0.0
      *
-     * @param File $phpcsFile The file being scanned.
-     * @param int  $stackPtr  The position of the current token in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position of the current token in the
+     *                                               stack passed in $tokens.
      *
      * @return void
      */
@@ -63,26 +64,27 @@ final class NewDynamicClassConstantFetchSniff extends Sniff
         if ($nextNonEmpty === false) {
             return;
         }
-        // Example: Foo::{$bar}
+
+        // We're looking for `Foo::{$bar}`.
         if ($tokens[$nextNonEmpty]['code'] !== \T_OPEN_CURLY_BRACKET) {
             return;
         }
 
         $bracketOpener = $nextNonEmpty;
-        // Example: Foo::{ is a live coding or parse error
+        // Example: `Foo::{` is a live coding or parse error.
         if (isset($tokens[$bracketOpener]['bracket_closer']) === false) {
             return;
         }
 
         $bracketCloser = $tokens[$bracketOpener]['bracket_closer'];
         $nextNonEmpty  = $phpcsFile->findNext(Tokens::$emptyTokens, $bracketCloser + 1, null, true);
-        // Example: Foo::{$bar}() is a false positive
+        // Prevent false positive for syntax which has been supported since PHP 5.4: `Foo::{$bar}()`.
         if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_OPEN_PARENTHESIS) {
             return;
         }
 
         $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $bracketOpener + 1, $bracketCloser, true);
-        // Example: Foo::{{$bar->name}()} is a parse error that might seem like a valid constant fetch due to Foo::{...}
+        // Example: `Foo::{{$bar->name}()}` is a parse error that might seem like a valid constant fetch due to `Foo::{...}`.
         if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_OPEN_CURLY_BRACKET) {
             return;
         }

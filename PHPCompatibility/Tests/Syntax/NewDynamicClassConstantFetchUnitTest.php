@@ -43,8 +43,9 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
     /**
      * Data provider.
      *
+     * @see testDynamicClassConstantFetch()
+     *
      * @return array<array<int>>
-     * @see    testDynamicClassConstantFetch()
      */
     public static function dataDynamicClassConstantFetch()
     {
@@ -81,8 +82,9 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
     /**
      * Data provider.
      *
+     * @see testNoFalsePositives()
+     *
      * @return array<array<int>>
-     * @see    testNoFalsePositives()
      */
     public static function dataNoFalsePositives()
     {
