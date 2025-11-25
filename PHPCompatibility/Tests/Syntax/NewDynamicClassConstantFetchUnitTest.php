@@ -1,0 +1,111 @@
+<?php
+/**
+ * PHPCompatibility, an external standard for PHP_CodeSniffer.
+ *
+ * @package   PHPCompatibility
+ * @copyright 2012-2020 PHPCompatibility Contributors
+ * @license   https://opensource.org/licenses/LGPL-3.0 LGPL3
+ * @link      https://github.com/PHPCompatibility/PHPCompatibility
+ */
+
+namespace PHPCompatibility\Tests\Syntax;
+
+use PHPCompatibility\Tests\BaseSniffTestCase;
+
+/**
+ * Test the NewDynamicClassConstantFetch sniff.
+ *
+ * @group newDynamicClassConstantFetch
+ * @group syntax
+ *
+ * @covers \PHPCompatibility\Sniffs\Syntax\NewDynamicClassConstantFetchSniff
+ *
+ * @since 10.0.0
+ */
+final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
+{
+
+    /**
+     * Ensure an error is thrown when the new syntax is used.
+     *
+     * @dataProvider dataDynamicClassConstantFetch
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testDynamicClassConstantFetch($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.2');
+        $this->assertError($file, $line, 'Dynamic class constant fetch is not available in PHP 8.2 or earlier.');
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testDynamicClassConstantFetch()
+     *
+     * @return array<array<int>>
+     */
+    public static function dataDynamicClassConstantFetch()
+    {
+        return [
+            [17],
+            [18],
+            [19],
+            [20],
+            [21],
+            [22],
+            [23],
+            [24],
+            [25],
+            [28],
+            [29],
+        ];
+    }
+
+    /**
+     * Verify there are no false positives on valid code.
+     *
+     * @dataProvider dataNoFalsePositives
+     *
+     * @param int $line The line number.
+     *
+     * @return void
+     */
+    public function testNoFalsePositives($line)
+    {
+        $file = $this->sniffFile(__FILE__, '8.2');
+        $this->assertNoViolation($file, $line);
+    }
+
+    /**
+     * Data provider.
+     *
+     * @see testNoFalsePositives()
+     *
+     * @return array<array<int>>
+     */
+    public static function dataNoFalsePositives()
+    {
+        $cases = [];
+
+        // No errors expected on the first 15 lines.
+        for ($line = 1; $line <= 15; $line++) {
+            $cases[] = [$line];
+        }
+
+        return $cases;
+    }
+
+    /**
+     * Verify no notices are thrown at all on PHP versions on which the syntax is supported.
+     *
+     * @return void
+     */
+    public function testNoViolationsOnValidVersion()
+    {
+        $file = $this->sniffFile(__FILE__, '8.3');
+        $this->assertNoViolation($file);
+    }
+}

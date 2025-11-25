@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Dynamic Class Constant Fetch"
+    >
+    <standard>
+    <![CDATA[
+    PHP 8.3 introduced the dynamic fetching of class constants. The new syntax is not compatible with previous versions and would emit a parse error in PHP 8.2 and earlier.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: using the constant() function.">
+        <![CDATA[
+<em>constant</em>(Foo::class . '::' . $bar);
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.3: dynamic class constant fetch.">
+        <![CDATA[
+Foo<em>::{</em>$bar<em>}</em>;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
