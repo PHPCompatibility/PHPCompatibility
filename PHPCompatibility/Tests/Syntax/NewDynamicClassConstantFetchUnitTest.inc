@@ -26,3 +26,4 @@ static::{Foo::class}; // inner expression double colon `::` shouldn't interfere
 Foo::
     /* multiline, comment between relevant tokens */
     {$bar};
+Foo::{$bar}['key'];
