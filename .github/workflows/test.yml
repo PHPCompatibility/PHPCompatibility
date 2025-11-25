@@ -30,10 +30,10 @@ jobs:
 
     strategy:
       matrix:
-        php: ['5.4', '5.6', '7.0', '7.4', '8.0', '8.4', '8.5']
+        php: ['5.4', '5.6', '7.0', '7.4', '8.0', '8.5', 'nightly']
 
     name: "Lint: PHP ${{ matrix.php }}"
-    continue-on-error: ${{ matrix.php == '8.5' }}
+    continue-on-error: ${{ matrix.php == 'nightly' }}
 
     steps:
       - name: Checkout code
@@ -58,15 +58,17 @@ jobs:
       - name: Install Composer dependencies
         uses: "ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520" # 3.1.1
         with:
+          # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies may allow it yet.
+          composer-options: ${{ matrix.php == 'nightly' && '--ignore-platform-req=php+' || '' }}
           # Bust the cache at least once a month - output format: YYYY-MM.
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Lint against parse errors
-        if: ${{ matrix.php != '5.4' && matrix.php != '8.4' }}
+        if: ${{ matrix.php != '5.4' && matrix.php != '8.5' }}
         run: composer lint
 
       - name: Lint against parse errors
-        if: ${{ matrix.php == '5.4' || matrix.php == '8.4' }}
+        if: ${{ matrix.php == '5.4' || matrix.php == '8.5' }}
         run: composer lint -- --checkstyle | cs2pr
 
   #### TEST STAGE ####
@@ -89,7 +91,7 @@ jobs:
         # @link https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
         #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
-        php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+        php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
         phpcs_version: ['lowest', '3.x-dev', '4.0.0', '4.x-dev']
         experimental: [false]
 
@@ -123,11 +125,11 @@ jobs:
             experimental: false
 
           # Experimental builds. These are allowed to fail.
-          - php: '8.5' # Nightly.
+          - php: '8.6' # Nightly.
             phpcs_version: '3.x-dev'
             experimental: true
 
-          - php: '8.5' # Nightly.
+          - php: '8.6' # Nightly.
             phpcs_version: '4.x-dev'
             experimental: true
 
@@ -184,19 +186,12 @@ jobs:
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
-      - name: Install Composer dependencies - normal
-        if: ${{ matrix.php < 8.5 }}
+      - name: Install Composer dependencies
         uses: "ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520" # 3.1.1
         with:
+          # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies may allow it yet.
+          composer-options: ${{ matrix.php == '8.6' && '--ignore-platform-req=php+' || '' }}
           # Bust the cache at least once a month - output format: YYYY-MM.
-          custom-cache-suffix: $(date -u "+%Y-%m")
-
-      # For PHP "nightly", we need to install with ignore platform reqs as not all dependencies allow it yet.
-      - name: Install Composer dependencies - with ignore platform
-        if: ${{ matrix.php >= 8.5 }}
-        uses: "ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520" # 3.1.1
-        with:
-          composer-options: --ignore-platform-req=php
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: "Composer: set PHPCS version for tests (lowest)"
@@ -240,14 +235,14 @@ jobs:
       #   code conditions.
       matrix:
         include:
-          - php: '8.4'
+          - php: '8.5'
             phpcs_version: '4.x-dev'
-          - php: '8.4'
+          - php: '8.5'
             phpcs_version: '4.0.0'
-          - php: '8.4'
+          - php: '8.5'
             phpcs_version: '3.x-dev'
             custom_ini: true
-          - php: '8.4'
+          - php: '8.5'
             phpcs_version: 'lowest'
 
           - php: '7.2'
