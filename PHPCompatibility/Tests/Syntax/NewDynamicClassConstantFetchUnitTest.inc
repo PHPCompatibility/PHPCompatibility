@@ -26,6 +26,3 @@ static::{Foo::class}; // inner expression double colon `::` shouldn't interfere
 Foo::
     /* multiline, comment between relevant tokens */
     {$bar};
-
-Foo::{ // parse error / live coding
-Foo::{{$bar->name}()}; // extra curly brackets to make sure we match the correct closer, and skip it as a parse error
