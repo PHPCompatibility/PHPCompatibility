@@ -58,34 +58,6 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * Verify no notices are thrown at all on PHP versions on which the syntax is supported.
-     *
-     * @return void
-     */
-    public function testNoViolationsOnValidVersion()
-    {
-        $file = $this->sniffFile(__FILE__, '8.3');
-        $this->assertNoViolation($file);
-    }
-
-    /**
-     * Data provider.
-     *
-     * @return array<array<int>>
-     * @see    testNoViolationsOnValidVersion()
-     */
-    public static function dataNoViolationsOnValidVersion()
-    {
-        return [
-            [17],
-            [18],
-            [19],
-            [20],
-            [23],
-        ];
-    }
-
-    /**
      * Verify there are no false positives on valid code.
      *
      * @dataProvider dataNoFalsePositives
@@ -116,5 +88,16 @@ final class NewDynamicClassConstantFetchUnitTest extends BaseSniffTestCase
         }
 
         return $cases;
+    }
+
+    /**
+     * Verify no notices are thrown at all on PHP versions on which the syntax is supported.
+     *
+     * @return void
+     */
+    public function testNoViolationsOnValidVersion()
+    {
+        $file = $this->sniffFile(__FILE__, '8.3');
+        $this->assertNoViolation($file);
     }
 }
