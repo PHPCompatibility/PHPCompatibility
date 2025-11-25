@@ -242,12 +242,10 @@ final class TokenGroup
                 } else {
                     $content = (float) \trim($intMatch[0]);
                 }
+            } elseif ($intString !== 1 && $floatString !== 1) {
+                $content = 0.0;
             } else {
-                if ($intString !== 1 && $floatString !== 1) {
-                    $content = 0.0;
-                } else {
-                    $content = ($floatString === 1) ? (float) \trim($floatMatch[0]) : (float) \trim($intMatch[0]);
-                }
+                $content = ($floatString === 1) ? (float) \trim($floatMatch[0]) : (float) \trim($intMatch[0]);
             }
 
             // Allow for different behaviour for hex numeric strings between PHP 5 vs PHP 7.

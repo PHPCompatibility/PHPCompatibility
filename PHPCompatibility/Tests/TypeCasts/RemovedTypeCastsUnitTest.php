@@ -70,7 +70,7 @@ final class RemovedTypeCastsUnitTest extends BaseSniffTestCase
     }
 
 
-   /**
+    /**
      * testDeprecatedRemovedTypeCastWithAlternative
      *
      * @dataProvider dataDeprecatedRemovedTypeCastWithAlternative

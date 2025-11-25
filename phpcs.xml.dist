@@ -11,6 +11,8 @@
     -->
 
     <file>.</file>
+    <!-- Files without extension need to be explicitly requested for scan. -->
+    <file>./bin/generate-forbidden-names-test-files</file>
 
     <!-- Exclude Composer vendor directory. -->
     <exclude-pattern>*/vendor/*</exclude-pattern>
@@ -54,11 +56,7 @@
         <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose"/>
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
 
-        <!-- Allow for the file docblock on the line directly following the PHP open tag.
-             As the sniff in PHPCS does not use modular error codes (yet - see upstream PR #2729),
-             the complete error code needs to be disabled, not just the bit involving
-             the file docblocks.
-        -->
+        <!-- Only needed for PHPCS 3.x. This exclusion can be removed when PHPCSDevCS drops support for PHPCS 3.x. -->
         <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
 
         <!-- All nice and good, but too much of a fuss for the outer array of nested arrays. -->
@@ -86,6 +84,11 @@
 
     <rule ref="PHPCompatibility.Attributes.NewAttributes.PHPUnitAttributeFound">
         <exclude-pattern>*/PHPCompatibility/Tests/BaseSniffTestCase\.php$</exclude-pattern>
+    </rule>
+
+    <!-- Disregard this rule in code which doesn't need to be tested (or rather: generates test code). -->
+    <rule ref="Universal.FunctionDeclarations.NoLongClosures.ExceedsMaximum">
+        <exclude-pattern>/bin/generate-forbidden-names-test-files$</exclude-pattern>
     </rule>
 
 </ruleset>

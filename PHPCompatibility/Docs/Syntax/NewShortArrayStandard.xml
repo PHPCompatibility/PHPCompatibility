@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Short Array Syntax"
+    >
+    <standard>
+    <![CDATA[
+    Since PHP 5.4, arrays can be created using square brackets [].
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: array() syntax.">
+        <![CDATA[
+$array = <em>array(</em>1, 2, 3<em>)</em>;
+        ]]>
+        </code>
+        <code title="PHP &gt;= 5.4: short array syntax.">
+        <![CDATA[
+$array = <em>[</em>1, 2, 3<em>]</em>;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>

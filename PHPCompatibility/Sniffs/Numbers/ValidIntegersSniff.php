@@ -171,8 +171,8 @@ final class ValidIntegersSniff extends Sniff
     {
         // For invalid explicit octal, we need to also check the next token.
         if (($numberInfo['content'] === '0'
-             && \strtolower($tokens[($stackPtr + 1)]['content'][0]) === 'o')
-             || \stripos($numberInfo['content'], '0o') === 0
+            && \strtolower($tokens[($stackPtr + 1)]['content'][0]) === 'o')
+            || \stripos($numberInfo['content'], '0o') === 0
         ) {
             if (\preg_match('`^(?:[o_][0-7_]*)?[8-9]+[_0-9]*$`iD', $tokens[($stackPtr + 1)]['content']) === 1) {
                 return $tokens[$stackPtr]['content'] . $tokens[($stackPtr + 1)]['content'];

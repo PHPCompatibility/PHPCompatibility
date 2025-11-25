@@ -35,7 +35,7 @@ final class DisableSniffMsgUnitTest extends TestCase
         $expectedPattern = '`' . \PHP_EOL . \PHP_EOL
             . 'To disable this notice, add --exclude=Stnd\.Cat\.Sniff to your command or'
             . ' add <exclude name="Stnd\.Cat\.Sniff\.Code"/> to your custom ruleset\.'
-             . \PHP_EOL . \PHP_EOL
+            . \PHP_EOL . \PHP_EOL
             . 'Thank you for using PHPCompatibility!`';
 
         $result = DisableSniffMsg::create('Stnd.Cat.Sniff', 'Code');

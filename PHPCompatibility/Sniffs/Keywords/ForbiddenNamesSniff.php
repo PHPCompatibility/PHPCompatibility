@@ -488,11 +488,9 @@ final class ForbiddenNamesSniff extends Sniff
                         $this->checkOtherName($phpcsFile, $i, $part, 'namespace declaration');
                     }
                 }
-            } else {
-                if ($this->isKeywordReservedPriorToPHP8($tokens[$i]['content']) === true) {
-                    $this->checkName($phpcsFile, $i, $tokens[$i]['content']);
-                    $this->checkOtherName($phpcsFile, $i, $tokens[$i]['content'], 'namespace declaration');
-                }
+            } elseif ($this->isKeywordReservedPriorToPHP8($tokens[$i]['content']) === true) {
+                $this->checkName($phpcsFile, $i, $tokens[$i]['content']);
+                $this->checkOtherName($phpcsFile, $i, $tokens[$i]['content'], 'namespace declaration');
             }
         }
     }

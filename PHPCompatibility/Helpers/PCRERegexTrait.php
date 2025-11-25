@@ -71,7 +71,7 @@ trait PCRERegexTrait
      *
      * @throws \PHP_CodeSniffer\Exceptions\RuntimeException If the $paramInfo passed is invalid.
      */
-    public function getRegexPatternsFromParameter(File $phpcsFile, $functionName, array $paramInfo)
+    final public function getRegexPatternsFromParameter(File $phpcsFile, $functionName, array $paramInfo)
     {
         if (isset($paramInfo['start'], $paramInfo['end']) === false) {
             throw new RuntimeException(
@@ -148,7 +148,7 @@ trait PCRERegexTrait
      *
      * @throws \PHP_CodeSniffer\Exceptions\RuntimeException If the $patternInfo passed is invalid.
      */
-    protected function getRegexModifiers(File $phpcsFile, array $patternInfo)
+    final protected function getRegexModifiers(File $phpcsFile, array $patternInfo)
     {
         if (isset($patternInfo['start'], $patternInfo['end']) === false) {
             throw new RuntimeException(
