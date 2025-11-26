@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Typed Properties"
+    >
+    <standard>
+    <![CDATA[
+    Typed properties are supported since PHP 7.4.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: untyped class properties.">
+        <![CDATA[
+class Example
+{
+    <em>public $a</em>;
+    <em>protected $b</em>;
+    <em>private $c</em>;
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 7.4: typed class properties.">
+        <![CDATA[
+class Example
+{
+    <em>public int $a</em>;
+    <em>protected ?string $b</em>;
+    <em>private ClassName $c</em>;
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
