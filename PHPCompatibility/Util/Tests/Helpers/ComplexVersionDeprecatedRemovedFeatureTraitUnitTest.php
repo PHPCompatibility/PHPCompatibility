@@ -33,17 +33,7 @@ final class ComplexVersionDeprecatedRemovedFeatureTraitUnitTest extends TestCase
      */
     public function testGetVersionInfoInvalidParamType()
     {
-        if (\method_exists($this, 'expectException')) {
-            // PHPUnit 5+.
-            if (\PHP_VERSION_ID >= 70000) {
-                $this->expectException('TypeError');
-            } else {
-                $this->expectException('PHPUnit_Framework_Error');
-            }
-        } else {
-            // PHPUnit 4.
-            $this->setExpectedException('PHPUnit_Framework_Error');
-        }
+        $this->expectException('TypeError');
 
         $this->getVersionInfo(null);
     }
@@ -238,17 +228,7 @@ final class ComplexVersionDeprecatedRemovedFeatureTraitUnitTest extends TestCase
      */
     public function testGetMessageInvalidParamType()
     {
-        if (\method_exists($this, 'expectException')) {
-            // PHPUnit 5+.
-            if (\PHP_VERSION_ID >= 70000) {
-                $this->expectException('TypeError');
-            } else {
-                $this->expectException('PHPUnit_Framework_Error');
-            }
-        } else {
-            // PHPUnit 4.
-            $this->setExpectedException('PHPUnit_Framework_Error');
-        }
+        $this->expectException('TypeError');
 
         $this->getMessageInfo(null, null, null);
     }
