@@ -41,6 +41,136 @@ Legend to the icons used: https://github.com/PHPCompatibility/PHPCompatibility/p
 _Nothing yet._
 
 
+## [10.0.0-alpha2] - 2025-11-xx
+
+**IMPORTANT**: This release contains **breaking changes**. Please read and follow the [Upgrade guide in the wiki][wiki-upgrade-to-10.0] carefully before upgrading!
+
+This release includes all improvements and bugfixes from PHPCompatibility [10.0.0-alpha1].
+
+See all related issues and PRs in the [10.0.0-alpha2 milestone].
+
+### Added
+- PHP cross-version:
+    * :star2: New `PHPCompatibility.Keywords.ForbiddenClassAlias` sniff. [#1952]
+    * :star2: New `PHPCompatibility.LanguageConstructs.RemovedLanguageConstructs` sniff. [#1948]
+        This sniff in its initial version will detect the PHP 8.5 deprecation of the backtick operator.
+- PHP 8.3:
+    * :star2: New `PHPCompatibility.ParameterValues.NewClassAliasInternalClass` sniff. [#1951]
+    * :star2: New `PHPCompatibility.Syntax.NewDynamicClassConstantFetch` sniff. [#1974]
+- PHP 8.5:
+    * :star2: New `PHPCompatibility.Classes.NewStaticAvizProperties` sniff. [#1950]
+- :star: `PHPCompatibility.Classes.NewClasses` sniff: recognize the new DateTime and SQLite extension related error and exception classes as introduced in PHP 8.3. [#1936], [#1937]
+- :star: `PHPCompatibility.Constants.NewConstants` sniff: recognize various constants from the Mhash extension. [#1938]
+- :star: `PHPCompatibility.ParameterValues.ChangedIntToBoolParamType` sniff: detect the Zlib `$use_include_path` parameter type change as per PHP 8.5. [#1949]
+- :star: The "list based" sniffs, like `NewFunctions`, `RemovedIniDirectives`, `ForbiddenNames` etc, have received updates to account for new/deprecated/removed PHP classes, constants, functions, function parameters, ini directives, reserved namespaces and type casts as per PHP 8.5.
+    <details>
+    <summary>Associated PRs</summary>
+
+    [#1941],
+    [#1942],
+    [#1943],
+    [#1944],
+    [#1945],
+    [#1946],
+    [#1947],
+    [#1953],
+    [#1954],
+    [#1955],
+    [#1956],
+    [#1957],
+    [#1958],
+    [#1959],
+    [#1960],
+    [#1961],
+    [#1962],
+    [#1963],
+    [#1965],
+    [#1966],
+    [#1967],
+    [#1968],
+    [#1969],
+    [#1970],
+    [#1971]
+
+    </details>
+- :books: Documentation for the following sniffs:
+    * PHPCompatibility.Syntax.NewShortArray [#1997]
+
+### Changed
+- :twisted_rightwards_arrows: `PHPCompatibility.TypeCasts.RemovedTypeCasts` has new error codes. [#1941]
+    * The `t_unset_castDeprecatedRemoved` has been changed to `unsetDeprecatedRemoved`.
+    * The `t_double_castDeprecatedRemoved` has been changed to `realDeprecatedRemoved`.
+- :pushpin: `PHPCompatibility.Keywords.ForbiddenNames` will now also detect incompatible use of the "other" reserved keywords `parent` and `self`. [#1940]
+- :wrench: :umbrella: Various housekeeping, including general maintenance, improvements to speed up the sniffs, improvements to CI, the tests and documentation.
+    <details>
+    <summary>Associated PRs</summary>
+
+    [#1934],
+    [#1939],
+    [#1964],
+    [#1973],
+    [#1976],
+    [#1983],
+    [#1984],
+    [#1993],
+    [#1995],
+    [#1998],
+    [#1999]
+
+    </details>
+
+### Credits
+Thanks go out to [Anna Filina] and [Shota Okunaka] for their contributions to this version. :clap:
+
+[#1934]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1934
+[#1936]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1936
+[#1937]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1937
+[#1938]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1938
+[#1939]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1939
+[#1940]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1940
+[#1941]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1941
+[#1942]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1942
+[#1943]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1943
+[#1944]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1944
+[#1945]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1945
+[#1946]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1946
+[#1947]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1947
+[#1948]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1948
+[#1949]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1949
+[#1950]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1950
+[#1951]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1951
+[#1952]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1952
+[#1953]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1953
+[#1954]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1954
+[#1955]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1955
+[#1956]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1956
+[#1957]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1957
+[#1958]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1958
+[#1959]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1959
+[#1960]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1960
+[#1961]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1961
+[#1962]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1962
+[#1963]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1963
+[#1964]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1964
+[#1965]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1965
+[#1966]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1966
+[#1967]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1967
+[#1968]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1968
+[#1969]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1969
+[#1970]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1970
+[#1971]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1971
+[#1973]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1973
+[#1974]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1974
+[#1976]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1976
+[#1983]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1983
+[#1984]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1984
+[#1993]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1993
+[#1995]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1995
+[#1997]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1997
+[#1998]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1998
+[#1999]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1999
+
+
 ## [10.0.0-alpha1] - 2025-10-21
 
 **IMPORTANT**: This release contains **breaking changes**. Please read and follow the [Upgrade guide in the wiki][wiki-upgrade-to-10.0] carefully before upgrading!
@@ -3966,6 +4096,7 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 [Unreleased]:    https://github.com/PHPCompatibility/PHPCompatibility/compare/master...HEAD
+[10.0.0-alpha2]: https://github.com/PHPCompatibility/PHPCompatibility/compare/10.0.0-alpha1...10.0.0-alpha2
 [10.0.0-alpha1]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.5...10.0.0-alpha1
 [9.3.5]:         https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.4...9.3.5
 [9.3.4]:         https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.3...9.3.4
@@ -3998,6 +4129,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]:           https://github.com/PHPCompatibility/PHPCompatibility/compare/5.6...7.0
 [5.6]:           https://github.com/PHPCompatibility/PHPCompatibility/compare/5.5...5.6
 
+[10.0.0-alpha2 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/35
 [10.0.0-alpha1 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/26
 [9.3.5 milestone]:         https://github.com/PHPCompatibility/PHPCompatibility/milestone/34
 [9.3.4 milestone]:         https://github.com/PHPCompatibility/PHPCompatibility/milestone/33
@@ -4069,9 +4201,10 @@ See all related issues and PRs in the [5.5 milestone].
 [Sam Van der Borght]:       https://github.com/samvdb
 [Sebastian Knott]:          https://github.com/rdss-sknott
 [Sergii Bondarenko]:        https://github.com/BR0kEN-
+[Shota Okunaka]:            https://github.com/okkun-sh
 [Steve Grunwell]:           https://github.com/stevegrunwell
 [Tadas Juozapaitis]:        https://github.com/kasp3r
 [Tim Millwood]:             https://github.com/timmillwood
 [William Entriken]:         https://github.com/fulldecent
-[Yılmaz]:                  https://github.com/edigu
+[Yılmaz]:                   https://github.com/edigu
 [Yoshiaki Yoshida]:         https://github.com/kakakakakku
