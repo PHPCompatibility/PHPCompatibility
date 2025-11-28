@@ -11,7 +11,6 @@
 namespace PHPCompatibility\Tests\Numbers;
 
 use PHPCompatibility\Tests\BaseSniffTestCase;
-use PHPCSUtils\BackCompat\Helper;
 
 /**
  * New Numeric Literal Separator Sniff tests
@@ -37,10 +36,6 @@ final class NewNumericLiteralSeparatorUnitTest extends BaseSniffTestCase
      */
     public function testNewNumericLiteralSeparator($line)
     {
-        if (\version_compare(Helper::getVersion(), '3.5.3', '==')) {
-            $this->markTestSkipped('PHPCS 3.5.3 is not supported for this sniff');
-        }
-
         $file = $this->sniffFile(__FILE__, '7.3');
         $this->assertError($file, $line, 'The use of underscore separators in numeric literals is not supported in PHP 7.3 or lower. Found:');
     }
