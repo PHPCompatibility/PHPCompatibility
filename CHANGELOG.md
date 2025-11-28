@@ -41,7 +41,7 @@ Legend to the icons used: https://github.com/PHPCompatibility/PHPCompatibility/p
 _Nothing yet._
 
 
-## [10.0.0-alpha2] - 2025-11-xx
+## [10.0.0-alpha2] - 2025-11-28
 
 **IMPORTANT**: This release contains **breaking changes**. Please read and follow the [Upgrade guide in the wiki][wiki-upgrade-to-10.0] carefully before upgrading!
 
