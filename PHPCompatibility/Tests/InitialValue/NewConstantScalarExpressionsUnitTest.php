@@ -224,20 +224,8 @@ final class NewConstantScalarExpressionsUnitTest extends BaseSniffTestCase
     {
         $data = [];
 
-        // No errors expected on the first 78 lines.
-        for ($line = 1; $line <= 78; $line++) {
-            $data[] = [$line];
-        }
-
-        if (\PHP_VERSION_ID < 50500 || \PHP_VERSION_ID >= 50600) {
-            // Skip one particular test on PHP 5.5 as it just keeps being problematic.
-            for ($line = 79; $line <= 87; $line++) {
-                $data[] = [$line];
-            }
-        }
-
-        // ... nor on line 88 - 120.
-        for ($line = 88; $line <= 120; $line++) {
+        // No errors expected on the first 120 lines.
+        for ($line = 1; $line <= 120; $line++) {
             $data[] = [$line];
         }
 

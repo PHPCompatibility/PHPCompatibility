@@ -12,7 +12,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/PHPCompatibility/PHPCompatibility/badge.svg?branch=develop)](https://coveralls.io/github/PHPCompatibility/PHPCompatibility?branch=develop)
 
 [![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcompatibility/php-compatibility.svg?maxAge=3600)](https://packagist.org/packages/phpcompatibility/php-compatibility)
-[![Tested on PHP 5.4 to nightly](https://img.shields.io/badge/tested%20on-PHP%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20|%208.0%20|%208.1%20|%208.2%20|%208.3%20|%208.4%20|%208.5%20|%20nightly%20-brightgreen.svg?maxAge=2419200)](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/test.yml)
+[![Tested on PHP 7.2 to nightly](https://img.shields.io/badge/tested%20on-PHP%207.2%20|%207.3%20|%207.4%20|%208.0%20|%208.1%20|%208.2%20|%208.3%20|%208.4%20|%208.5%20|%20nightly%20-brightgreen.svg?maxAge=2419200)](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/test.yml)
 
 </div>
 
@@ -54,7 +54,7 @@ If you use PHPCompatibility, please fund this work by donating to the [PHP_CodeS
 
 ## Requirements
 
-* PHP 5.4+
+* PHP 7.2+
 * PHP_CodeSniffer: 3.13.3+ / 4.0.0+.
 * PHPCSUtils: 1.1.2+
 
@@ -62,7 +62,7 @@ The sniffs are designed to give the same results regardless of which PHP version
 
 As of version 8.0.0, the PHPCompatibility standard can also be used with PHP_CodeSniffer 3.x.  
 As of version 9.0.0, support for PHP_CodeSniffer 1.5.x and low 2.x versions < 2.3.0 has been dropped.  
-As of version 10.0.0, support for PHP < 5.4 and PHP_CodeSniffer < 3.13.3 has been dropped and support for PHP_CodeSniffer 4.x has been added.
+As of version 10.0.0, support for PHP < 7.2 and PHP_CodeSniffer < 3.13.3 has been dropped and support for PHP_CodeSniffer 4.x has been added.
 
 
 ## Installation

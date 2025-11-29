@@ -33,15 +33,6 @@ final class RemovedAlternativePHPTagsSniff extends Sniff
 {
 
     /**
-     * Whether ASP tags are enabled or not.
-     *
-     * @since 7.0.4
-     *
-     * @var bool
-     */
-    private $aspTags = false;
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 7.0.4
@@ -50,11 +41,6 @@ final class RemovedAlternativePHPTagsSniff extends Sniff
      */
     public function register()
     {
-        if (\PHP_VERSION_ID < 70000) {
-            // phpcs:ignore PHPCompatibility.IniDirectives.RemovedIniDirectives.asp_tagsRemoved
-            $this->aspTags = (bool) \ini_get('asp_tags');
-        }
-
         $targets                 = Collections::phpOpenTags();
         $targets[\T_INLINE_HTML] = \T_INLINE_HTML;
 
@@ -89,14 +75,7 @@ final class RemovedAlternativePHPTagsSniff extends Sniff
 
         if (isset(Collections::phpOpenTags()[$openTag['code']]) === true) {
 
-            if ($content === '<%' || $content === '<%=') {
-                $data      = [
-                    'ASP',
-                    $content,
-                ];
-                $errorCode = 'ASPOpenTagFound';
-
-            } elseif (\strpos($content, '<script ') !== false) {
+            if (\strpos($content, '<script ') !== false) {
                 $data      = [
                     'Script',
                     $content,
@@ -129,7 +108,7 @@ final class RemovedAlternativePHPTagsSniff extends Sniff
         }
 
         // If we're still here, we can't be sure if what we found was really intended as ASP open tags.
-        if ($openTag['code'] === \T_INLINE_HTML && $this->aspTags === false) {
+        if ($openTag['code'] === \T_INLINE_HTML) {
             if (\strpos($content, '<%') !== false) {
                 $error   = 'Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: %s';
                 $snippet = $this->getSnippet($content, '<%');

@@ -26,14 +26,6 @@ final class RemovedAlternativePHPTagsUnitTest extends BaseSniffTestCase
 {
 
     /**
-     * Whether or not ASP tags are on.
-     *
-     * @var bool
-     */
-    protected static $aspTags = false;
-
-
-    /**
      * Set up skip condition.
      *
      * @beforeClass
@@ -49,11 +41,6 @@ final class RemovedAlternativePHPTagsUnitTest extends BaseSniffTestCase
     {
         // Run the parent `@beforeClass` method.
         parent::resetSniffFiles();
-
-        if (\PHP_VERSION_ID < 70000) {
-            // phpcs:ignore PHPCompatibility.IniDirectives.RemovedIniDirectives.asp_tagsRemoved
-            self::$aspTags = (bool) \ini_get('asp_tags');
-        }
     }
 
 
@@ -70,11 +57,6 @@ final class RemovedAlternativePHPTagsUnitTest extends BaseSniffTestCase
      */
     public function testAlternativePHPTags($type, $snippet, $line)
     {
-        if ($type === 'ASP' && self::$aspTags === false) {
-            $this->markTestSkipped('ASP tags are unavailable (PHP 7+) or disabled.');
-            return;
-        }
-
         $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertError($file, $line, "{$type} style opening tags have been removed in PHP 7.0. Found \"{$snippet}\"");
     }
@@ -93,10 +75,6 @@ final class RemovedAlternativePHPTagsUnitTest extends BaseSniffTestCase
             ['Script', "<script language='php'>", 10],
             ['Script', '<script type="text/php" language="php">', 13],
             ['Script', "<script language='PHP' type='text/php'>", 16],
-            ['ASP', '<%', 21],
-            ['ASP', '<%', 22],
-            ['ASP', '<%=', 23],
-            ['ASP', '<%=', 24],
         ];
     }
 
@@ -113,11 +91,6 @@ final class RemovedAlternativePHPTagsUnitTest extends BaseSniffTestCase
      */
     public function testMaybeASPOpenTag($line, $snippet)
     {
-        if (self::$aspTags === true) {
-            $this->markTestSkipped('ASP tags are unavailable (PHP 7+) or disabled.');
-            return;
-        }
-
         $file    = $this->sniffFile(__FILE__, '7.0');
         $warning = "Possible use of ASP style opening tags detected. ASP style opening tags have been removed in PHP 7.0. Found: {$snippet}";
         $this->assertWarning($file, $line, $warning);

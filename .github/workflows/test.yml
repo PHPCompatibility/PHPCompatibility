@@ -30,7 +30,7 @@ jobs:
 
     strategy:
       matrix:
-        php: ['5.4', '5.6', '7.0', '7.4', '8.0', '8.5', 'nightly']
+        php: ['7.2', '7.4', '8.0', '8.5', 'nightly']
 
     name: "Lint: PHP ${{ matrix.php }}"
     continue-on-error: ${{ matrix.php == 'nightly' }}
@@ -64,11 +64,11 @@ jobs:
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Lint against parse errors
-        if: ${{ matrix.php != '5.4' && matrix.php != '8.5' }}
+        if: ${{ matrix.php != '7.2' && matrix.php != '8.5' }}
         run: composer lint
 
       - name: Lint against parse errors
-        if: ${{ matrix.php == '5.4' || matrix.php == '8.5' }}
+        if: ${{ matrix.php == '7.2' || matrix.php == '8.5' }}
         run: composer lint -- --checkstyle | cs2pr
 
   #### TEST STAGE ####
@@ -91,36 +91,18 @@ jobs:
         # @link https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
         #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
-        php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+        php: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
         phpcs_version: ['lowest', '3.x-dev', '4.0.0', '4.x-dev']
         experimental: [false]
-
-        exclude:
-          - php: '5.5'
-            phpcs_version: '4.0.0'
-          - php: '5.5'
-            phpcs_version: '4.x-dev'
-          - php: '5.6'
-            phpcs_version: '4.0.0'
-          - php: '5.6'
-            phpcs_version: '4.x-dev'
-          - php: '7.0'
-            phpcs_version: '4.0.0'
-          - php: '7.0'
-            phpcs_version: '4.x-dev'
-          - php: '7.1'
-            phpcs_version: '4.0.0'
-          - php: '7.1'
-            phpcs_version: '4.x-dev'
-          # Also exclude the 7.2 builds as those are run in code coverage, no need to duplicate.
-          - php: '7.2'
-            phpcs_version: '4.0.0'
-          - php: '7.2'
-            phpcs_version: '4.x-dev'
 
         include:
           - php: '7.2'
             phpcs_version: '^3.13.3'
+            custom_ini: true
+            experimental: false
+
+          - php: '8.4'
+            phpcs_version: '^4.0.0'
             custom_ini: true
             experimental: false
 
@@ -250,10 +232,9 @@ jobs:
             custom_ini: true
           - php: '7.2'
             phpcs_version: '4.0.0'
-
-          - php: '5.4'
+          - php: '7.2'
             phpcs_version: '3.x-dev'
-          - php: '5.4'
+          - php: '7.2'
             phpcs_version: 'lowest'
             custom_ini: true
 
