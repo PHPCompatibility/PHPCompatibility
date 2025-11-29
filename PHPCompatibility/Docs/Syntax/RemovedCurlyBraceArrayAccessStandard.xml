@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed Curly Brace Array Access"
+    >
+    <standard>
+    <![CDATA[
+    The curly brace syntax for array and string offset access has been deprecated in PHP 7.4 and removed in PHP 8.0.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: square bracket syntax.">
+        <![CDATA[
+$a = $array<em>[</em>0<em>]</em>;
+$b = $str<em>[</em>0<em>]</em>;
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.0: curly brace syntax (deprecated in 7.4).">
+        <![CDATA[
+$a = $array<em>{</em>0<em>}</em>;
+$b = $str<em>{</em>0<em>}</em>;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
