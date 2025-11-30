@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Typed Properties"
+    >
+    <standard>
+    <![CDATA[
+    Typed properties are supported since PHP 7.4.
+
+    At introduction, scalar types, array, object and class/interface name types were supported, including the nullable version of these.
+    Type syntax introduced in later PHP versions, like union types (PHP 8.0) or the `true` type (PHP 8.2), is also supported for typed properties as of the PHP version in which the type syntax was introduced.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: untyped class properties.">
+        <![CDATA[
+class Example
+{
+    <em>public $a</em>;
+    <em>protected $b</em>;
+    <em>private $c</em>;
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 7.4: typed class properties.">
+        <![CDATA[
+class Example
+{
+    public <em>int</em> $a;
+    protected <em>?string</em> $b;
+    private <em>ClassName</em> $c;
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
