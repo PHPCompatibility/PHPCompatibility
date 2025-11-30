@@ -113,12 +113,5 @@ if (defined('__PHPUNIT_PHAR__')) {
     require_once $vendorDir . '/autoload.php';
 }
 
-// PHPUnit cross version compatibility.
-if (class_exists('PHPUnit_Framework_TestCase') === true
-    && class_exists('PHPUnit\Framework\TestCase') === false
-) {
-    class_alias('PHPUnit_Framework_TestCase', 'PHPUnit\Framework\TestCase');
-}
-
 require_once __DIR__ . '/PHPCompatibility/Tests/BaseSniffTestCase.php';
 unset($phpcsUtilsDir, $phpcsDir, $vendorDir);
