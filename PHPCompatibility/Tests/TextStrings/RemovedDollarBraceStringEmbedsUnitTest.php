@@ -30,17 +30,17 @@ final class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTestCase
      *
      * @var string
      */
-    const TEST_FILE = 'RemovedDollarBraceStringEmbedsUnitTest.1.inc';
+    private const TEST_FILE = 'RemovedDollarBraceStringEmbedsUnitTest.1.inc';
 
     /**
      * The name of a secondary test case file containing PHP 7.3+ indented heredocs.
      *
      * @var string
      */
-    const TEST_FILE_PHP73HEREDOCS = 'RemovedDollarBraceStringEmbedsUnitTest.2.inc';
+    private const TEST_FILE_PHP73HEREDOCS = 'RemovedDollarBraceStringEmbedsUnitTest.2.inc';
 
     /**
-     * Test that variable embeds of "type 3" - Braces after the dollar sign (“${foo}”) -
+     * Test that variable embeds of "type 3" - Braces after the dollar sign (`${foo}`) -
      * are correctly detected.
      *
      * @dataProvider dataRemovedDollarBraceStringEmbedsType3
@@ -77,7 +77,7 @@ final class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTestCase
 
 
     /**
-     * Test that variable embeds of "type 4" - Variable variables (“${expr}”, equivalent to
+     * Test that variable embeds of "type 4" - Variable variables (`${expr}`, equivalent to
      * (string) ${expr}) - are correctly detected.
      *
      * @dataProvider dataRemovedDollarBraceStringEmbedsType4
@@ -123,7 +123,7 @@ final class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTestCase
 
 
     /**
-     * Test that variable embeds of "type 3" - Braces after the dollar sign (“${foo}”) -
+     * Test that variable embeds of "type 3" - Braces after the dollar sign (`${foo}`) -
      * are correctly detected in PHP 7.3+ indented heredocs.
      *
      * @dataProvider dataRemovedDollarBraceStringEmbedsType3InIndentedHeredoc
@@ -159,7 +159,7 @@ final class RemovedDollarBraceStringEmbedsUnitTest extends BaseSniffTestCase
 
 
     /**
-     * Test that variable embeds of "type 4" - Variable variables (“${expr}”, equivalent to
+     * Test that variable embeds of "type 4" - Variable variables (`${expr}`, equivalent to
      * (string) ${expr}) - are correctly detected in PHP 7.3+ indented heredocs.
      *
      * @dataProvider dataRemovedDollarBraceStringEmbedsType4InIndentedHeredoc

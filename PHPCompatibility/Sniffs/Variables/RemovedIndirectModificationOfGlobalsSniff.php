@@ -48,7 +48,7 @@ use ReflectionFunction;
 final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
 {
 
-    const WRITE_ERROR = 'Only individual keys in the $GLOBALS variable can be modified. The top-level $GLOBALS variable is read-only since PHP 8.1. Detected: %s';
+    private const WRITE_ERROR = 'Only individual keys in the $GLOBALS variable can be modified. The top-level $GLOBALS variable is read-only since PHP 8.1. Detected: %s';
 
     /**
      * List of PHP native functions.

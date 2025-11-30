@@ -50,7 +50,7 @@ abstract class BaseSniffTestCase extends TestCase
      *
      * @var string
      */
-    const STANDARD_NAME = 'PHPCompatibility';
+    private const STANDARD_NAME = 'PHPCompatibility';
 
     /**
      * An array of PHPCS results by filename and PHP version.

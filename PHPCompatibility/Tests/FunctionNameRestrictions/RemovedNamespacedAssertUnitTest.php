@@ -30,14 +30,14 @@ final class RemovedNamespacedAssertUnitTest extends BaseSniffTestCase
      *
      * @var string
      */
-    const TEST_FILE = 'RemovedNamespacedAssertUnitTest.1.inc';
+    private const TEST_FILE = 'RemovedNamespacedAssertUnitTest.1.inc';
 
     /**
      * The name of a secondary test case file containing code in a unscoped namespace.
      *
      * @var string
      */
-    const TEST_FILE_NAMESPACED = 'RemovedNamespacedAssertUnitTest.2.inc';
+    private const TEST_FILE_NAMESPACED = 'RemovedNamespacedAssertUnitTest.2.inc';
 
     /**
      * Test deprecation of namespaced free-standing assert() function declaration.

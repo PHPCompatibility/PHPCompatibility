@@ -30,7 +30,7 @@ final class NewPHPOpenTagEOFUnitTest extends BaseSniffTestCase
      *
      * @var string
      */
-    const TEST_FILE = 'NewPHPOpenTagEOFUnitTest.%d.inc';
+    private const TEST_FILE = 'NewPHPOpenTagEOFUnitTest.%d.inc';
 
     /**
      * Test detection of stand alone PHP open tag at end of file.

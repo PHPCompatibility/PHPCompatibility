@@ -30,14 +30,14 @@ final class NewAttributesUnitTest extends BaseSniffTestCase
      *
      * @var string
      */
-    const TEST_FILE = 'NewAttributesUnitTest.1.inc';
+    private const TEST_FILE = 'NewAttributesUnitTest.1.inc';
 
     /**
      * The name of a secondary test case file containing tests with a PHP close tag in a text string.
      *
      * @var string
      */
-    const TEST_CLOSE_TAG = 'NewAttributesUnitTest.2.inc';
+    private const TEST_CLOSE_TAG = 'NewAttributesUnitTest.2.inc';
 
     /**
      * Verify that multi-line attributes are identified and flagged correctly.

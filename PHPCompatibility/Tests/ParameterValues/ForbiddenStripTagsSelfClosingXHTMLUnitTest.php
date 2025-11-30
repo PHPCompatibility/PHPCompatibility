@@ -30,14 +30,14 @@ final class ForbiddenStripTagsSelfClosingXHTMLUnitTest extends BaseSniffTestCase
      *
      * @var string
      */
-    const TEST_FILE = 'ForbiddenStripTagsSelfClosingXHTMLUnitTest.1.inc';
+    private const TEST_FILE = 'ForbiddenStripTagsSelfClosingXHTMLUnitTest.1.inc';
 
     /**
      * The name of a secondary test case file containing PHP 7.3+ indented heredocs.
      *
      * @var string
      */
-    const TEST_FILE_PHP73HEREDOCS = 'ForbiddenStripTagsSelfClosingXHTMLUnitTest.2.inc';
+    private const TEST_FILE_PHP73HEREDOCS = 'ForbiddenStripTagsSelfClosingXHTMLUnitTest.2.inc';
 
     /**
      * Verify detection of the issue.

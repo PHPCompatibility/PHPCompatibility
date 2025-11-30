@@ -46,7 +46,7 @@ final class NewNewInInitializersSniff extends AbstractInitialValueSniff
      *
      * @var string
      */
-    const ERROR_PHRASE = 'New in initializers is not supported in PHP 8.0 or earlier for %s.';
+    private const ERROR_PHRASE = 'New in initializers is not supported in PHP 8.0 or earlier for %s.';
 
     /**
      * Partial error phrases to be used in combination with the error message constant.

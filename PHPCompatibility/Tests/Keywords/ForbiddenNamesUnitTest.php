@@ -32,7 +32,7 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
      *
      * @var int
      */
-    const OTHER_KEYWORD_COUNT = 17;
+    private const OTHER_KEYWORD_COUNT = 17;
 
     /**
      * Count of "soft" reserved keywords.
@@ -41,7 +41,7 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
      *
      * @var int
      */
-    const SOFT_KEYWORD_COUNT = 3;
+    private const SOFT_KEYWORD_COUNT = 3;
 
     /**
      * Test case files containing tests for the "other" reserved keywords.

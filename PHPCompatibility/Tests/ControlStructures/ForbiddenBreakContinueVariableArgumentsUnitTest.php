@@ -30,14 +30,14 @@ final class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTes
      *
      * @var string
      */
-    const ERROR_TYPE_VARIABLE = 'a variable argument';
+    private const ERROR_TYPE_VARIABLE = 'a variable argument';
 
     /**
      * Error message snippet for the zero argument error.
      *
      * @var string
      */
-    const ERROR_TYPE_ZERO = '0 as an argument';
+    private const ERROR_TYPE_ZERO = '0 as an argument';
 
     /**
      * testBreakAndContinueVariableArgument

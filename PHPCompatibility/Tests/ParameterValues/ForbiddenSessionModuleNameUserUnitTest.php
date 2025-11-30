@@ -30,14 +30,14 @@ final class ForbiddenSessionModuleNameUserUnitTest extends BaseSniffTestCase
      *
      * @var string
      */
-    const TEST_FILE = 'ForbiddenSessionModuleNameUserUnitTest.1.inc';
+    private const TEST_FILE = 'ForbiddenSessionModuleNameUserUnitTest.1.inc';
 
     /**
      * The name of a secondary test case file containing PHP 7.3+ indented heredocs.
      *
      * @var string
      */
-    const TEST_FILE_PHP73HEREDOCS = 'ForbiddenSessionModuleNameUserUnitTest.2.inc';
+    private const TEST_FILE_PHP73HEREDOCS = 'ForbiddenSessionModuleNameUserUnitTest.2.inc';
 
     /**
      * Verify detection of the issue.

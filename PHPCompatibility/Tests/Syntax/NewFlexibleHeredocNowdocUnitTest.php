@@ -30,7 +30,7 @@ final class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTestCase
      *
      * @var string
      */
-    const TEST_FILE = 'NewFlexibleHeredocNowdocUnitTest.%d.inc';
+    private const TEST_FILE = 'NewFlexibleHeredocNowdocUnitTest.%d.inc';
 
     /**
      * Whether PHP 7.3+ is used.
