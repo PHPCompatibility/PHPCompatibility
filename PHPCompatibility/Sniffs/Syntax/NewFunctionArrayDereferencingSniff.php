@@ -51,7 +51,7 @@ final class NewFunctionArrayDereferencingSniff extends Sniff
      */
     public function register()
     {
-        return Collections::nameTokens();
+        return Tokens::NAME_TOKENS;
     }
 
     /**

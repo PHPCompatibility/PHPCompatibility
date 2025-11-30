@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 
 /**
  * Detect dynamic access to static methods and properties, as well as class constants.
@@ -85,7 +84,7 @@ final class NewDynamicAccessToStaticSniff extends Sniff
             }
         }
 
-        if (isset(Collections::nameTokens()[$tokens[$prevNonEmpty]['code']]) === true
+        if (isset(Tokens::NAME_TOKENS[$tokens[$prevNonEmpty]['code']]) === true
             && $tokens[$prevNonEmpty]['code'] !== \T_STRING
         ) {
             return;

@@ -15,7 +15,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\MessageHelper;
@@ -101,7 +100,7 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
          * This can be neigh anything, but for any usage except constants,
          * the namespaced name will be combined with non-allowed tokens, so we should be good.
          */
-        $this->safeOperands += Collections::nameTokens();
+        $this->safeOperands += Tokens::NAME_TOKENS;
     }
 
     /**
@@ -204,7 +203,7 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
                     // No need to worry about parent/self, that's handled above and
                     // the double colon is skipped over in that case.
                     if ($prevNonEmpty === false
-                        || isset(Collections::nameTokens()[$tokens[$prevNonEmpty]['code']]) === false
+                        || isset(Tokens::NAME_TOKENS[$tokens[$prevNonEmpty]['code']]) === false
                     ) {
                         return false;
                     }

@@ -276,7 +276,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
                 return;
             }
 
-            if (isset(Collections::nameTokens()[$tokenCode]) || $tokenCode === \T_VARIABLE) {
+            if (isset(Tokens::NAME_TOKENS[$tokenCode]) || $tokenCode === \T_VARIABLE) {
                 // Function call, constant or variable encountered.
                 // No matter what this is combined with, we won't be able to reliably determine the value.
                 return;

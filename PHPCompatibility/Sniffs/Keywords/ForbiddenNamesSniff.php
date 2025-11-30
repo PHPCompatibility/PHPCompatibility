@@ -450,7 +450,7 @@ final class ForbiddenNamesSniff extends Sniff
                 continue;
             }
 
-            if (isset(Collections::nameTokens()[$tokens[$i]['code']]) === true
+            if (isset(Tokens::NAME_TOKENS[$tokens[$i]['code']]) === true
                 && $tokens[$i]['code'] !== \T_STRING
             ) {
                 /*

@@ -136,7 +136,7 @@ final class NewNewInInitializersSniff extends AbstractInitialValueSniff
 
         $data = [$phrase];
 
-        $allowedNameTokens            = Collections::nameTokens();
+        $allowedNameTokens            = Tokens::NAME_TOKENS;
         $allowedNameTokens[\T_SELF]   = \T_SELF;
         $allowedNameTokens[\T_PARENT] = \T_PARENT;
 

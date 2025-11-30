@@ -14,7 +14,6 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -104,7 +103,7 @@ final class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterS
          * Get the content of any string tokens in the options parameter and remove the quotes and variables.
          */
         for ($i = $optionsParam['start']; $i <= $optionsParam['end']; $i++) {
-            if (isset(Collections::nameTokens()[$tokens[$i]['code']]) === true
+            if (isset(Tokens::NAME_TOKENS[$tokens[$i]['code']]) === true
                 || $tokens[$i]['code'] === \T_VARIABLE
             ) {
                 // Variable, constant, function call. Ignore as undetermined.

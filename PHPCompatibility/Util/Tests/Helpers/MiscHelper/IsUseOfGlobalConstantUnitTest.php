@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility\Util\Tests\Helpers\MiscHelper;
 
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\MiscHelper;
 use PHPCSUtils\TestUtils\UtilityMethodTestCase;
-use PHPCSUtils\Tokens\Collections;
 
 /**
  * Tests for the `isUseOfGlobalConstant()` utility function.
@@ -63,7 +63,7 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
      */
     public function testIsUseOfGlobalConstant($commentString, $expected, $targetContent = 'PHP_VERSION_ID')
     {
-        $stackPtr = $this->getTargetToken($commentString, Collections::nameTokens(), $targetContent);
+        $stackPtr = $this->getTargetToken($commentString, Tokens::NAME_TOKENS, $targetContent);
         $result   = MiscHelper::isUseOfGlobalConstant(self::$phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }

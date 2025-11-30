@@ -17,7 +17,6 @@ use PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff;
 use PHPCompatibility\Sniffs\Syntax\NewFunctionArrayDereferencingSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 
 /**
  * Using the curly brace syntax to access array or string offsets has been deprecated in PHP 7.4
@@ -118,7 +117,7 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
             ],
         ];
 
-        $targets[] = Collections::nameTokens(); // Constants.
+        $targets[] = Tokens::NAME_TOKENS; // Constants.
 
         // Registers T_ARRAY, T_OPEN_SHORT_ARRAY and T_CONSTANT_ENCAPSED_STRING.
         $additionalTargets                        = $this->newArrayStringDereferencing->register();
@@ -130,7 +129,7 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
         $this->newClassMemberAccessTargets = \array_flip($additionalTargets);
         $targets[]                         = $additionalTargets;
 
-        // Registers Collections::nameTokens().
+        // Registers Tokens::NAME_TOKENS.
         $additionalTargets = $this->newFunctionArrayDereferencing->register();
         $this->newFunctionArrayDereferencingTargets = \array_flip($additionalTargets);
         $targets[] = $additionalTargets;
@@ -179,7 +178,7 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
             $braces = $this->newFunctionArrayDereferencing->isFunctionArrayDereferencing($phpcsFile, $stackPtr);
         }
 
-        if (empty($braces) && isset(Collections::nameTokens()[$tokens[$stackPtr]['code']])) {
+        if (empty($braces) && isset(Tokens::NAME_TOKENS[$tokens[$stackPtr]['code']])) {
             $braces = $this->isConstantArrayAccess($phpcsFile, $stackPtr);
         }
 

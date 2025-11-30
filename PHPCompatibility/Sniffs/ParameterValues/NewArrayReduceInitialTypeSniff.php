@@ -14,6 +14,7 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -68,7 +69,7 @@ final class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameter
     public function register()
     {
         // Enrich the variable value tokens array only once.
-        $this->variableValueTokens += Collections::nameTokens();
+        $this->variableValueTokens += Tokens::NAME_TOKENS;
         $this->variableValueTokens += Collections::ooHierarchyKeywords();
 
         return parent::register();

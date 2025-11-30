@@ -162,7 +162,7 @@ final class ArgumentFunctionsUsageSniff extends Sniff
         }
 
         $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), null, true);
-        if (isset(Collections::nameTokens()[$tokens[$prevNonEmpty]['code']]) === false) {
+        if (isset(Tokens::NAME_TOKENS[$tokens[$prevNonEmpty]['code']]) === false) {
             // Not nested in a function call.
             return;
         }

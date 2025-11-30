@@ -14,7 +14,6 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -113,7 +112,7 @@ final class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallPara
 
             foreach ($items as $item) {
                 for ($i = $item['start']; $i <= $item['end']; $i++) {
-                    if (isset(Collections::nameTokens()[$tokens[$i]['code']]) === true
+                    if (isset(Tokens::NAME_TOKENS[$tokens[$i]['code']]) === true
                         || $tokens[$i]['code'] === \T_VARIABLE
                     ) {
                         // Variable, constant, function call. Ignore complete item as undetermined.
