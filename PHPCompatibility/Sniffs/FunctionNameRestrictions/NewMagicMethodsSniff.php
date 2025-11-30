@@ -143,7 +143,7 @@ final class NewMagicMethodsSniff extends Sniff
             return;
         }
 
-        $scopePtr = Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
+        $scopePtr = Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::OO_SCOPE_TOKENS);
         if ($scopePtr === false) {
             return;
         }

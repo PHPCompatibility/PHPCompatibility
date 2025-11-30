@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Parentheses;
 
 /**
@@ -150,9 +149,9 @@ final class NewClassMemberAccessSniff extends Sniff
 
         $parenthesisCloser = $tokens[$parenthesisOpener]['parenthesis_closer'];
 
-        $prevBeforeParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($parenthesisOpener - 1), null, true);
+        $prevBeforeParenthesis = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($parenthesisOpener - 1), null, true);
         if ($prevBeforeParenthesis !== false
-            && isset(Collections::nameTokens()[$tokens[$prevBeforeParenthesis]['code']]) === true
+            && isset(Tokens::NAME_TOKENS[$tokens[$prevBeforeParenthesis]['code']]) === true
         ) {
             // This is most likely a function call with the new/cloned object as a parameter.
             return [];
@@ -162,7 +161,7 @@ final class NewClassMemberAccessSniff extends Sniff
         $end    = $parenthesisCloser;
 
         do {
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($end + 1), null, true, null, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($end + 1), null, true, null, true);
             if ($nextNonEmpty === false) {
                 break;
             }

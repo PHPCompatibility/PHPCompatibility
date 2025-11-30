@@ -136,7 +136,7 @@ final class NewNewInInitializersSniff extends AbstractInitialValueSniff
 
         $data = [$phrase];
 
-        $allowedNameTokens            = Collections::nameTokens();
+        $allowedNameTokens            = Tokens::NAME_TOKENS;
         $allowedNameTokens[\T_SELF]   = \T_SELF;
         $allowedNameTokens[\T_PARENT] = \T_PARENT;
 
@@ -167,7 +167,7 @@ final class NewNewInInitializersSniff extends AbstractInitialValueSniff
             }
 
             // Only throw an error if this is a non-dynamic object instantiation. Dynamic is still not supported.
-            $isNameInvalid     = $phpcsFile->findNext($allowedNameTokens + Tokens::$emptyTokens, ($hasNew + 1), $end, true);
+            $isNameInvalid     = $phpcsFile->findNext($allowedNameTokens + Tokens::EMPTY_TOKENS, ($hasNew + 1), $end, true);
             $hasValidNameToken = $phpcsFile->findNext($allowedNameTokens, ($hasNew + 1), $end);
 
             if ($hasValidNameToken !== false

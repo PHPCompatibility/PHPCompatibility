@@ -14,7 +14,6 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -77,7 +76,7 @@ final class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallPara
         }
 
         $tokens       = $phpcsFile->getTokens();
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], $targetParam['end'], true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $targetParam['start'], $targetParam['end'], true);
 
         if ($nextNonEmpty === false) {
             // Shouldn't be possible.
@@ -113,14 +112,14 @@ final class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallPara
 
             foreach ($items as $item) {
                 for ($i = $item['start']; $i <= $item['end']; $i++) {
-                    if (isset(Collections::nameTokens()[$tokens[$i]['code']]) === true
+                    if (isset(Tokens::NAME_TOKENS[$tokens[$i]['code']]) === true
                         || $tokens[$i]['code'] === \T_VARIABLE
                     ) {
                         // Variable, constant, function call. Ignore complete item as undetermined.
                         break;
                     }
 
-                    if (isset(Tokens::$textStringTokens[$tokens[$i]['code']]) === true
+                    if (isset(Tokens::TEXT_STRING_TOKENS[$tokens[$i]['code']]) === true
                         && \strpos($tokens[$i]['content'], '>') !== false
                     ) {
                         $phpcsFile->addWarning(

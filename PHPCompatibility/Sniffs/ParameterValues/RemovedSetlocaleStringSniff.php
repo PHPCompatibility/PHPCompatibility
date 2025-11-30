@@ -14,7 +14,6 @@ use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
 
@@ -83,14 +82,14 @@ final class RemovedSetlocaleStringSniff extends AbstractFunctionCallParameterSni
 
         $tokens = $phpcsFile->getTokens();
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
-            if (isset(Collections::nameTokens()[$tokens[$i]['code']]) === true
+            if (isset(Tokens::NAME_TOKENS[$tokens[$i]['code']]) === true
                 || $tokens[$i]['code'] === \T_VARIABLE
             ) {
                 // Variable, constant, function call. Ignore as undetermined.
                 return;
             }
 
-            if (isset(Tokens::$stringTokens[$tokens[$i]['code']]) === false) {
+            if (isset(Tokens::STRING_TOKENS[$tokens[$i]['code']]) === false) {
                 continue;
             }
 

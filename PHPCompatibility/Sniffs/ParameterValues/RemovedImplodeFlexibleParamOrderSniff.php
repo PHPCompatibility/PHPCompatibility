@@ -142,7 +142,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
         $end         = ($targetParam['end'] + 1);
         $isOnlyText  = true;
 
-        $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $start, $end, true);
+        $firstNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $start, $end, true);
         if ($firstNonEmpty === false) {
             // Parse error. Shouldn't be possible.
             return;
@@ -164,7 +164,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
         for ($i = $start; $i < $end; $i++) {
             $tokenCode = $tokens[$i]['code'];
 
-            if (isset(Tokens::$emptyTokens[$tokenCode])) {
+            if (isset(Tokens::EMPTY_TOKENS[$tokenCode])) {
                 continue;
             }
 
@@ -178,7 +178,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
                 continue;
             }
 
-            if (isset(Tokens::$stringTokens[$tokenCode]) === false) {
+            if (isset(Tokens::STRING_TOKENS[$tokenCode]) === false) {
                 $isOnlyText = false;
             }
 
@@ -191,7 +191,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
                 /*
                  * Check for specific functions which return an array (i.e. $pieces).
                  */
-                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), $end, true);
+                $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($i + 1), $end, true);
                 if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS) {
                     continue;
                 }
@@ -210,7 +210,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
 
                 if ($tokenCode === \T_STRING) {
                     // Now make sure it's the PHP native function being called.
-                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($i - 1), $start, true);
+                    $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($i - 1), $start, true);
                     if (isset(Collections::objectOperators()[$tokens[$prevNonEmpty]['code']]) === true) {
                         // Method call, not a call to the PHP native function.
                         continue;
@@ -237,7 +237,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
         $start       = $targetParam['start'];
         $end         = ($targetParam['end'] + 1);
 
-        $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $start, $end, true);
+        $firstNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $start, $end, true);
         if ($firstNonEmpty === false) {
             // Parse error. Shouldn't be possible.
             return;
@@ -259,7 +259,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
         for ($i = $start; $i < $end; $i++) {
             $tokenCode = $tokens[$i]['code'];
 
-            if (isset(Tokens::$emptyTokens[$tokenCode])) {
+            if (isset(Tokens::EMPTY_TOKENS[$tokenCode])) {
                 continue;
             }
 
@@ -276,13 +276,13 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
                 return;
             }
 
-            if (isset(Collections::nameTokens()[$tokenCode]) || $tokenCode === \T_VARIABLE) {
+            if (isset(Tokens::NAME_TOKENS[$tokenCode]) || $tokenCode === \T_VARIABLE) {
                 // Function call, constant or variable encountered.
                 // No matter what this is combined with, we won't be able to reliably determine the value.
                 return;
             }
 
-            if (isset(Tokens::$textStringTokens[$tokenCode]) === true) {
+            if (isset(Tokens::TEXT_STRING_TOKENS[$tokenCode]) === true) {
                 $this->throwNotice($phpcsFile, $stackPtr, $functionName);
                 return;
             }

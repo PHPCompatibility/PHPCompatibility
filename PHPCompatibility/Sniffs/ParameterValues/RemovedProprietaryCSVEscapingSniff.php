@@ -141,7 +141,7 @@ final class RemovedProprietaryCSVEscapingSniff extends AbstractFunctionCallParam
             return;
         }
 
-        $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
+        $firstNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $targetParam['start'], ($targetParam['end'] + 1), true);
 
         // Special case the changed behaviour for str_getcsv().
         if ($functionLC === 'str_getcsv') {

@@ -46,31 +46,11 @@ final class ForbiddenSessionModuleNameUserSniff extends AbstractFunctionCallPara
     /**
      * Tokens which we are looking for in the parameter.
      *
-     * This property is set in the register() method.
-     *
      * @since 10.0.0
      *
      * @var array<int|string, int|string>
      */
-    private $targetTokens = [];
-
-    /**
-     * Returns an array of tokens this test wants to listen for.
-     *
-     * @since 10.0.0
-     *
-     * @return array<int|string>
-     */
-    public function register()
-    {
-        // Only set the $targetTokens property once.
-        $this->targetTokens  = Tokens::$emptyTokens;
-        $this->targetTokens += Tokens::$heredocTokens;
-        $this->targetTokens += Tokens::$stringTokens;
-
-        return parent::register();
-    }
-
+    private $targetTokens = Tokens::EMPTY_TOKENS + Tokens::HEREDOC_TOKENS + Tokens::STRING_TOKENS;
 
     /**
      * Do a version check to determine if this sniff needs to run at all.
@@ -105,7 +85,7 @@ final class ForbiddenSessionModuleNameUserSniff extends AbstractFunctionCallPara
             return;
         }
 
-        $firstNonEmpty   = $phpcsFile->findNext(Tokens::$emptyTokens, $param['start'], ($param['end'] + 1), true);
+        $firstNonEmpty   = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $param['start'], ($param['end'] + 1), true);
         $hasNonTextToken = $phpcsFile->findNext($this->targetTokens, $firstNonEmpty, ($param['end'] + 1), true);
         if ($hasNonTextToken !== false) {
             // Non text string token found.

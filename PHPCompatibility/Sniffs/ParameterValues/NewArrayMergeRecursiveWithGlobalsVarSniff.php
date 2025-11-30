@@ -76,7 +76,7 @@ final class NewArrayMergeRecursiveWithGlobalsVarSniff extends AbstractFunctionCa
             $hasNonVarToken = false;
 
             for ($i = $param['start']; $i <= $param['end']; $i++) {
-                if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
+                if (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']])) {
                     continue;
                 }
 

@@ -274,7 +274,7 @@ final class NewKeywordsSniff extends Sniff
                     break;
                 }
 
-                if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === false && $tokens[$i]['code'] !== \T_YIELD_FROM) {
+                if (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']]) === false && $tokens[$i]['code'] !== \T_YIELD_FROM) {
                     // Shouldn't be possible. Just to be on the safe side.
                     break; // @codeCoverageIgnore
                 }
@@ -295,8 +295,8 @@ final class NewKeywordsSniff extends Sniff
             return;
         }
 
-        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($end + 1), null, true);
-        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $nextToken = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($end + 1), null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
 
         if ($prevToken !== false
             && isset(Collections::objectOperators()[$tokens[$prevToken]['code']]) === true

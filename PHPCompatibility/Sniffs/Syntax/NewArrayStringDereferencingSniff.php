@@ -160,7 +160,7 @@ final class NewArrayStringDereferencingSniff extends Sniff
         $braces = [];
 
         do {
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($end + 1), null, true, null, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($end + 1), null, true, null, true);
             if ($nextNonEmpty === false) {
                 break;
             }

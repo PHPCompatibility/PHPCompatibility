@@ -91,7 +91,7 @@ final class RemovedCallingDestructAfterConstructorExitSniff extends Sniff
         $functionClose = $tokens[$constructPtr]['scope_closer'];
         $exits         = [];
         for ($current = ($functionOpen + 1); $current < $functionClose; $current++) {
-            if (isset(Tokens::$emptyTokens[$tokens[$current]['code']]) === true) {
+            if (isset(Tokens::EMPTY_TOKENS[$tokens[$current]['code']]) === true) {
                 continue;
             }
 

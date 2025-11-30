@@ -102,7 +102,7 @@ final class ArgumentFunctionsUsageSniff extends Sniff
         }
 
         // Next non-empty token should be the open parenthesis.
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false
             || $tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS
             || isset($tokens[$nextNonEmpty]['parenthesis_owner'])
@@ -120,7 +120,7 @@ final class ArgumentFunctionsUsageSniff extends Sniff
         ];
         $ignore += Collections::objectOperators();
 
-        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevNonEmpty]['code']]) === true) {
             // Not a call to a PHP function.
             return;
@@ -161,8 +161,8 @@ final class ArgumentFunctionsUsageSniff extends Sniff
             return;
         }
 
-        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($opener - 1), null, true);
-        if (isset(Collections::nameTokens()[$tokens[$prevNonEmpty]['code']]) === false) {
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($opener - 1), null, true);
+        if (isset(Tokens::NAME_TOKENS[$tokens[$prevNonEmpty]['code']]) === false) {
             // Not nested in a function call.
             return;
         }

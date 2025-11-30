@@ -288,7 +288,7 @@ final class RemovedFunctionParametersSniff extends AbstractFunctionCallParameter
                     }
                 }
 
-                $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
+                $firstNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $targetParam['start'], ($targetParam['end'] + 1), true);
 
                 $itemInfo = [
                     'name'   => $functionName,

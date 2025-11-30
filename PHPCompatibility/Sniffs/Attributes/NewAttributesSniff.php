@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 
 /**
  * Attributes as a form of structured, syntactic metadata to declarations of classes, properties,
@@ -320,7 +319,7 @@ final class NewAttributesSniff extends Sniff
             );
         }
 
-        $nextAfter = $phpcsFile->findNext(Tokens::$emptyTokens, ($closer + 1), null, true);
+        $nextAfter = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($closer + 1), null, true);
         if ($nextAfter !== false
             && $tokens[$nextAfter]['code'] !== \T_ATTRIBUTE
             && $tokens[$closer]['line'] === $tokens[$nextAfter]['line']
@@ -357,7 +356,7 @@ final class NewAttributesSniff extends Sniff
         $startsAt       = null;
 
         for ($i = ($opener + 1); $i <= $closer; $i++) {
-            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
+            if (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']])) {
                 continue;
             }
 
@@ -387,7 +386,7 @@ final class NewAttributesSniff extends Sniff
                 continue;
             }
 
-            if (isset(Collections::nameTokens()[$tokens[$i]['code']])) {
+            if (isset(Tokens::NAME_TOKENS[$tokens[$i]['code']])) {
                 $currentName .= $tokens[$i]['content'];
 
                 if (isset($startsAt) === false) {

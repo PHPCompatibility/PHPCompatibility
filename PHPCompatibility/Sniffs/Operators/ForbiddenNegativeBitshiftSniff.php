@@ -89,7 +89,7 @@ final class ForbiddenNegativeBitshiftSniff extends Sniff
 
         // Determine the start and end of the part of the statement we need to examine.
         $start = ($stackPtr + 1);
-        $next  = $phpcsFile->findNext(Tokens::$emptyTokens, $start, null, true);
+        $next  = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $start, null, true);
         if ($next !== false && $tokens[$next]['code'] === \T_OPEN_PARENTHESIS) {
             $start = ($next + 1);
         }

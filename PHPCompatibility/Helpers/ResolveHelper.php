@@ -56,7 +56,7 @@ final class ResolveHelper
             return '';
         }
 
-        $start = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true);
+        $start = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $stackPtr + 1, null, true);
         if ($start === false
             || $tokens[$start]['code'] === \T_VARIABLE
             || $tokens[$start]['code'] === \T_ANON_CLASS
@@ -151,7 +151,7 @@ final class ResolveHelper
 
         // Get the classname from the class declaration if self is used.
         if ($tokens[$stackPtr - 1]['code'] === \T_SELF) {
-            $classDeclarationPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
+            $classDeclarationPtr = Conditions::getLastCondition($phpcsFile, $stackPtr, Tokens::OO_SCOPE_TOKENS);
             if ($classDeclarationPtr === false
                 || $tokens[$classDeclarationPtr]['code'] === \T_ANON_CLASS
                 || $tokens[$classDeclarationPtr]['code'] === \T_TRAIT
@@ -163,7 +163,7 @@ final class ResolveHelper
         }
 
         $find  = Collections::namespacedNameTokens();
-        $find += Tokens::$emptyTokens;
+        $find += Tokens::EMPTY_TOKENS;
 
         $start     = $phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true);
         $start     = ($start + 1);

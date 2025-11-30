@@ -62,7 +62,7 @@ final class ForbiddenThisUseContextsSniff extends Sniff
      *
      * @var array<int|string, true>
      */
-    private $skipOverScopes = [
+    private $skipOverScopes = Tokens::OO_SCOPE_TOKENS + [
         \T_FUNCTION => true,
         \T_CLOSURE  => true,
     ];
@@ -88,8 +88,6 @@ final class ForbiddenThisUseContextsSniff extends Sniff
      */
     public function register()
     {
-        $this->skipOverScopes += Tokens::$ooScopeTokens;
-
         return [
             \T_FUNCTION,
             \T_CLOSURE,
@@ -210,7 +208,7 @@ final class ForbiddenThisUseContextsSniff extends Sniff
                 }
 
                 $afterThis = $phpcsFile->findNext(
-                    Tokens::$emptyTokens,
+                    Tokens::EMPTY_TOKENS,
                     ($valueVarPtr + 1),
                     $tokens[$stackPtr]['parenthesis_closer'],
                     true
@@ -252,7 +250,7 @@ final class ForbiddenThisUseContextsSniff extends Sniff
                         continue;
                     }
 
-                    $afterThis = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), $closeParenthesis, true);
+                    $afterThis = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($i + 1), $closeParenthesis, true);
                     if ($afterThis !== false
                         && (isset(Collections::objectOperators()[$tokens[$afterThis]['code']]) === true
                             || $tokens[$afterThis]['code'] === \T_OPEN_SQUARE_BRACKET)
@@ -288,7 +286,7 @@ final class ForbiddenThisUseContextsSniff extends Sniff
      */
     protected function isThisUsedAsParameter(File $phpcsFile, $stackPtr)
     {
-        if (Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::$ooScopeTokens) !== false) {
+        if (Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::OO_SCOPE_TOKENS) !== false) {
             return;
         }
 
@@ -346,7 +344,7 @@ final class ForbiddenThisUseContextsSniff extends Sniff
             return;
         }
 
-        if (Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::$ooScopeTokens) !== false) {
+        if (Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::OO_SCOPE_TOKENS) !== false) {
             $methodProps = $phpcsFile->getMethodProperties($stackPtr);
             if ($methodProps['is_static'] === false) {
                 return;
@@ -384,7 +382,7 @@ final class ForbiddenThisUseContextsSniff extends Sniff
                 $lastOpenParenthesis   = \array_pop($nestedOpenParenthesis);
 
                 $previousNonEmpty = $phpcsFile->findPrevious(
-                    Tokens::$emptyTokens,
+                    Tokens::EMPTY_TOKENS,
                     ($lastOpenParenthesis - 1),
                     null,
                     true,

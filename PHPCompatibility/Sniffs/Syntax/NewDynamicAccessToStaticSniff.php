@@ -14,7 +14,6 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
-use PHPCSUtils\Tokens\Collections;
 
 /**
  * Detect dynamic access to static methods and properties, as well as class constants.
@@ -65,7 +64,7 @@ final class NewDynamicAccessToStaticSniff extends Sniff
         }
 
         $tokens       = $phpcsFile->getTokens();
-        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
 
         // Disregard `static::` as well. Late static binding is reported by another sniff.
         if ($tokens[$prevNonEmpty]['code'] === \T_SELF
@@ -76,7 +75,7 @@ final class NewDynamicAccessToStaticSniff extends Sniff
         }
 
         if ($tokens[$prevNonEmpty]['code'] === \T_STRING) {
-            $prevPrevNonEmpty = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
+            $prevPrevNonEmpty = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($prevNonEmpty - 1), null, true);
 
             if ($tokens[$prevPrevNonEmpty]['code'] !== \T_OBJECT_OPERATOR
                 && $tokens[$prevPrevNonEmpty]['code'] !== \T_NULLSAFE_OBJECT_OPERATOR
@@ -85,7 +84,7 @@ final class NewDynamicAccessToStaticSniff extends Sniff
             }
         }
 
-        if (isset(Collections::nameTokens()[$tokens[$prevNonEmpty]['code']]) === true
+        if (isset(Tokens::NAME_TOKENS[$tokens[$prevNonEmpty]['code']]) === true
             && $tokens[$prevNonEmpty]['code'] !== \T_STRING
         ) {
             return;

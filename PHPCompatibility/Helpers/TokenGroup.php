@@ -134,7 +134,7 @@ final class TokenGroup
      */
     public static function isNumber(File $phpcsFile, $start, $end, $allowFloats = false)
     {
-        $stringTokens = Tokens::$heredocTokens + Tokens::$stringTokens;
+        $stringTokens = Tokens::HEREDOC_TOKENS + Tokens::STRING_TOKENS;
 
         $validTokens             = [];
         $validTokens[\T_LNUMBER] = true;
@@ -156,7 +156,7 @@ final class TokenGroup
             return false;
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $start, $searchEnd, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $start, $searchEnd, true);
         while ($nextNonEmpty !== false
             && ($tokens[$nextNonEmpty]['code'] === \T_PLUS
             || $tokens[$nextNonEmpty]['code'] === \T_MINUS)
@@ -165,7 +165,7 @@ final class TokenGroup
                 $negativeNumber = ($negativeNumber === false) ? true : false;
             }
 
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), $searchEnd, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($nextNonEmpty + 1), $searchEnd, true);
         }
 
         if ($nextNonEmpty === false || isset($maybeValidTokens[$tokens[$nextNonEmpty]['code']]) === false) {
@@ -264,7 +264,7 @@ final class TokenGroup
         }
 
         // OK, so we have a number, now is there still more code after it ?
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNonEmpty + 1), $searchEnd, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($nextNonEmpty + 1), $searchEnd, true);
         if ($nextNonEmpty !== false) {
             return false;
         }
@@ -304,9 +304,9 @@ final class TokenGroup
      */
     public static function isNumericCalculation(File $phpcsFile, $start, $end)
     {
-        $arithmeticTokens = Tokens::$arithmeticTokens;
+        $arithmeticTokens = Tokens::ARITHMETIC_TOKENS;
 
-        $skipTokens   = Tokens::$emptyTokens;
+        $skipTokens   = Tokens::EMPTY_TOKENS;
         $skipTokens[] = \T_MINUS;
         $skipTokens[] = \T_PLUS;
 
@@ -377,12 +377,12 @@ final class TokenGroup
                 \T_OPEN_PARENTHESIS => \T_OPEN_PARENTHESIS,
                 \T_STRING_CONCAT    => \T_STRING_CONCAT,
             ];
-            $disallowedTokens += Tokens::$assignmentTokens;
-            $disallowedTokens += Tokens::$equalityTokens;
-            $disallowedTokens += Tokens::$comparisonTokens;
-            $disallowedTokens += Tokens::$operators;
-            $disallowedTokens += Tokens::$booleanOperators;
-            $disallowedTokens += Tokens::$castTokens;
+            $disallowedTokens += Tokens::ASSIGNMENT_TOKENS;
+            $disallowedTokens += Tokens::EQUALITY_TOKENS;
+            $disallowedTokens += Tokens::COMPARISON_TOKENS;
+            $disallowedTokens += Tokens::OPERATORS;
+            $disallowedTokens += Tokens::BOOLEAN_OPERATORS;
+            $disallowedTokens += Tokens::CAST_TOKENS;
 
             /*
              * List of brackets which can be part of a variable variable.

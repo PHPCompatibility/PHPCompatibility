@@ -82,7 +82,7 @@ final class RemovedDbaKeySplitNullFalseSniff extends AbstractFunctionCallParamet
         $firstNonEmpty                = null;
 
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
-            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
+            if (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']])) {
                 continue;
             }
 

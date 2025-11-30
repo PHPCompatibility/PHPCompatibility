@@ -110,7 +110,7 @@ final class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCall
             return;
         }
 
-        $targets   = $this->numberTokens + Tokens::$emptyTokens;
+        $targets   = $this->numberTokens + Tokens::EMPTY_TOKENS;
         $nonNumber = $phpcsFile->findNext($targets, $targetParam['start'], ($targetParam['end'] + 1), true);
         if ($nonNumber === false) {
             return;
@@ -123,7 +123,7 @@ final class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCall
         $tokens         = $phpcsFile->getTokens();
         $probablyString = false;
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
-            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
+            if (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']])) {
                 continue;
             }
 
@@ -151,7 +151,7 @@ final class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCall
                 continue;
             }
 
-            if (isset(Tokens::$textStringTokens[$tokens[$i]['code']])
+            if (isset(Tokens::TEXT_STRING_TOKENS[$tokens[$i]['code']])
                 || $tokens[$i]['code'] === \T_STRING_CAST
                 || $tokens[$i]['code'] === \T_STRING_CONCAT
             ) {
@@ -167,7 +167,7 @@ final class RemovedMbStrrposEncodingThirdParamSniff extends AbstractFunctionCall
         $error     = 'Passing the encoding to mb_strrpos() as third parameter is soft deprecated since PHP 5.2';
         $isError   = false;
         $code      = 'Deprecated';
-        $realStart = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
+        $realStart = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $targetParam['start'], ($targetParam['end'] + 1), true);
 
         if (ScannedCode::shouldRunOnOrAbove('8.0') === true) {
             $error  .= ', hard deprecated since PHP 7.4 and removed since PHP 8.0';

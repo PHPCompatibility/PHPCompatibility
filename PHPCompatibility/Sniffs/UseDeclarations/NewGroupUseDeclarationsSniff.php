@@ -84,7 +84,7 @@ final class NewGroupUseDeclarationsSniff extends Sniff
         }
 
         if ($tokens[$stackPtr]['code'] === \T_CLOSE_USE_GROUP) {
-            $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            $prevToken = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
             if ($tokens[$prevToken]['code'] === \T_COMMA) {
                 $phpcsFile->addError(
                     'Trailing commas are not allowed in group use statements in PHP 7.1 or earlier',

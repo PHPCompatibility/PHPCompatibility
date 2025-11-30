@@ -41,13 +41,11 @@ final class RemovedMagicAutoloadSniff extends Sniff
     /**
      * Scopes to look for when testing using validDirectScope.
      *
-     * {@internal More tokens are added on register().}
-     *
      * @since 8.1.0
      *
      * @var array<int|string, int|string>
      */
-    private $checkForScopes = [
+    private $checkForScopes = Tokens::OO_SCOPE_TOKENS + [
         \T_NAMESPACE => \T_NAMESPACE,
     ];
 
@@ -60,8 +58,6 @@ final class RemovedMagicAutoloadSniff extends Sniff
      */
     public function register()
     {
-        $this->checkForScopes += Tokens::$ooScopeTokens;
-
         return [\T_FUNCTION];
     }
 

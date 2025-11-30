@@ -79,7 +79,7 @@ final class ReservedFunctionNamesSniff implements Sniff
             return;
         }
 
-        $ooPtr = Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::$ooScopeTokens);
+        $ooPtr = Scopes::validDirectScope($phpcsFile, $stackPtr, Tokens::OO_SCOPE_TOKENS);
 
         /*
          * Check functions declared in the global namespace or in a namespace.
@@ -139,8 +139,8 @@ final class ReservedFunctionNamesSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $ignore                = Tokens::$methodPrefixes;
-        $ignore               += Tokens::$phpcsCommentTokens;
+        $ignore                = Tokens::METHOD_MODIFIERS;
+        $ignore               += Tokens::PHPCS_ANNOTATION_TOKENS;
         $ignore[\T_WHITESPACE] = \T_WHITESPACE;
         $ignore[\T_COMMENT]    = \T_COMMENT;
 

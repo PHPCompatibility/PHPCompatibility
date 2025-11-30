@@ -81,7 +81,7 @@ final class NewExecutionDirectivesSniff extends Sniff
      *
      * @var array
      */
-    protected $ignoreTokens = [];
+    protected $ignoreTokens = Tokens::EMPTY_TOKENS + [\T_EQUAL => \T_EQUAL];
 
 
     /**
@@ -93,9 +93,6 @@ final class NewExecutionDirectivesSniff extends Sniff
      */
     public function register()
     {
-        $this->ignoreTokens           = Tokens::$emptyTokens;
-        $this->ignoreTokens[\T_EQUAL] = \T_EQUAL;
-
         return [\T_DECLARE];
     }
 
@@ -327,7 +324,7 @@ final class NewExecutionDirectivesSniff extends Sniff
         $tokens = $phpcsFile->getTokens();
 
         $value = $tokens[$stackPtr]['content'];
-        if ($directive === 'encoding' && isset(Tokens::$stringTokens[$tokens[$stackPtr]['code']]) === true) {
+        if ($directive === 'encoding' && isset(Tokens::STRING_TOKENS[$tokens[$stackPtr]['code']]) === true) {
             $value = TextStrings::stripQuotes($value);
         }
 

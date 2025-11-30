@@ -13,7 +13,7 @@ namespace PHPCompatibility\Sniffs\ParameterValues;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
-use PHPCSUtils\Tokens\Collections;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**
@@ -80,7 +80,7 @@ final class NewFopenModesSniff extends AbstractFunctionCallParameterSniff
         $errors = [];
 
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
-            if (isset(Collections::nameTokens()[$tokens[$i]['code']]) === true
+            if (isset(Tokens::NAME_TOKENS[$tokens[$i]['code']]) === true
                 || $tokens[$i]['code'] === \T_VARIABLE
             ) {
                 // Variable, constant, function call. Ignore as undetermined.

@@ -74,7 +74,7 @@ final class NewYieldFromCommentSniff extends Sniff
                     break;
                 }
 
-                if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === false && $tokens[$i]['code'] !== \T_YIELD_FROM) {
+                if (isset(Tokens::EMPTY_TOKENS[$tokens[$i]['code']]) === false && $tokens[$i]['code'] !== \T_YIELD_FROM) {
                     // Shouldn't be possible. Just to be on the safe side.
                     return; // @codeCoverageIgnore
                 }

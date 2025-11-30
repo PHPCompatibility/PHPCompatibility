@@ -39,13 +39,11 @@ final class ForbiddenCallTimePassByReferenceSniff extends Sniff
     /**
      * Tokens that represent assignments or equality comparisons.
      *
-     * Tokens are set via register(). Combines Tokens::$assignmentTokens + Tokens::$equalityTokens.
-     *
      * @since 8.1.0
      *
      * @var array<int|string, int|string>
      */
-    private $assignOrCompare = [];
+    private $assignOrCompare = Tokens::ASSIGNMENT_TOKENS + Tokens::EQUALITY_TOKENS;
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -56,8 +54,6 @@ final class ForbiddenCallTimePassByReferenceSniff extends Sniff
      */
     public function register()
     {
-        $this->assignOrCompare = Tokens::$assignmentTokens + Tokens::$equalityTokens;
-
         return Collections::functionCallTokens();
     }
 
@@ -84,7 +80,7 @@ final class ForbiddenCallTimePassByReferenceSniff extends Sniff
         // within their definitions. For example: function myFunction...
         // "myFunction" is T_STRING but we should skip because it is not a
         // function or method *call*.
-        $findTokens   = Tokens::$emptyTokens;
+        $findTokens   = Tokens::EMPTY_TOKENS;
         $findTokens[] = \T_BITWISE_AND;
 
         $prevNonEmpty = $phpcsFile->findPrevious(
@@ -100,7 +96,7 @@ final class ForbiddenCallTimePassByReferenceSniff extends Sniff
 
         // If the next non-whitespace token after the function or method call
         // is not an opening parenthesis then it can't really be a *call*.
-        $openBracket = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $openBracket = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
 
         if ($openBracket === false || $tokens[$openBracket]['code'] !== \T_OPEN_PARENTHESIS
             || isset($tokens[$openBracket]['parenthesis_closer']) === false
@@ -210,7 +206,7 @@ final class ForbiddenCallTimePassByReferenceSniff extends Sniff
 
             // Checking this: $value = my_function(...[*]$arg...).
             $tokenBefore = $phpcsFile->findPrevious(
-                Tokens::$emptyTokens,
+                Tokens::EMPTY_TOKENS,
                 ($nextVariable - 1),
                 $searchStartToken,
                 true
@@ -227,7 +223,7 @@ final class ForbiddenCallTimePassByReferenceSniff extends Sniff
 
             // Checking this: $value = my_function(...[*]&$arg...).
             $tokenBefore = $phpcsFile->findPrevious(
-                Tokens::$emptyTokens,
+                Tokens::EMPTY_TOKENS,
                 ($tokenBefore - 1),
                 $searchStartToken,
                 true

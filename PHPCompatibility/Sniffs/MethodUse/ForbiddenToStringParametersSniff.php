@@ -64,7 +64,7 @@ final class ForbiddenToStringParametersSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_STRING) {
             /*
              * Not a method call.

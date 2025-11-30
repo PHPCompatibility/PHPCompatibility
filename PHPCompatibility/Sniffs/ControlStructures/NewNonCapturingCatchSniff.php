@@ -66,7 +66,7 @@ final class NewNonCapturingCatchSniff extends Sniff
         }
 
         $lastNonEmptyToken = $phpcsFile->findPrevious(
-            Tokens::$emptyTokens,
+            Tokens::EMPTY_TOKENS,
             ($token['parenthesis_closer'] - 1),
             $token['parenthesis_opener'],
             true

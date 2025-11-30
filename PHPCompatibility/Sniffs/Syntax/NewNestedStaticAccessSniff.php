@@ -69,7 +69,7 @@ final class NewNestedStaticAccessSniff extends Sniff
         $prevOperator = false;
 
         do {
-            $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
+            $prev = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($prev - 1), null, true);
 
             if ($prev === false) {
                 return;
@@ -106,7 +106,7 @@ final class NewNestedStaticAccessSniff extends Sniff
             }
 
             // OK, we have the start of the access, let see if it's nested.
-            $prevOperator = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
+            $prevOperator = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($prev - 1), null, true);
             break;
 
         } while (true);

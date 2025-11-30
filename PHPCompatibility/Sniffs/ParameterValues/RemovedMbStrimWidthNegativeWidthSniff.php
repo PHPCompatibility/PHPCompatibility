@@ -82,7 +82,7 @@ final class RemovedMbStrimWidthNegativeWidthSniff extends AbstractFunctionCallPa
             return;
         }
 
-        $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
+        $firstNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $targetParam['start'], ($targetParam['end'] + 1), true);
 
         $phpcsFile->addWarning(
             'Passing a negative $width to mb_strimwidth() is deprecated since PHP 8.3. Found: %s',

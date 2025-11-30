@@ -74,7 +74,7 @@ final class NewInterpolatedStringDereferencingSniff extends Sniff
         }
 
         // Check whether the string is being dereferenced.
-        $nextNonEmpty     = $phpcsFile->findNext(Tokens::$emptyTokens, $nextAfter, null, true);
+        $nextNonEmpty     = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $nextAfter, null, true);
         $nextNonEmptyCode = $tokens[$nextNonEmpty]['code'];
         if ($nextNonEmptyCode !== \T_OPEN_SQUARE_BRACKET
             && $nextNonEmptyCode !== \T_OBJECT_OPERATOR

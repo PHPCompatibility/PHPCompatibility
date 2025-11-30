@@ -150,7 +150,7 @@ final class RemovedPredefinedGlobalVariablesSniff extends Sniff
         }
 
         // Check for static usage of class properties shadowing the removed global variables.
-        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true, null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true, null, true);
         if ($prevToken !== false && $tokens[$prevToken]['code'] === \T_DOUBLE_COLON) {
             return;
         }
@@ -212,7 +212,7 @@ final class RemovedPredefinedGlobalVariablesSniff extends Sniff
         /*
          * Now, let's do some additional checks.
          */
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
 
         // Is the variable being used as an array ?
         if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_OPEN_SQUARE_BRACKET) {
@@ -223,7 +223,7 @@ final class RemovedPredefinedGlobalVariablesSniff extends Sniff
 
         // Is this a variable assignment ?
         if ($nextNonEmpty !== false
-            && isset(Tokens::$assignmentTokens[$tokens[$nextNonEmpty]['code']]) === true
+            && isset(Tokens::ASSIGNMENT_TOKENS[$tokens[$nextNonEmpty]['code']]) === true
         ) {
             return false;
         }
@@ -244,7 +244,7 @@ final class RemovedPredefinedGlobalVariablesSniff extends Sniff
                 && isset($tokens[$function]['parenthesis_closer'])
             ) {
                 $hasUse = $phpcsFile->findNext(
-                    Tokens::$emptyTokens,
+                    Tokens::EMPTY_TOKENS,
                     ($tokens[$function]['parenthesis_closer'] + 1),
                     null,
                     true
@@ -287,10 +287,10 @@ final class RemovedPredefinedGlobalVariablesSniff extends Sniff
                 continue;
             }
 
-            $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), null, true);
+            $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($i + 1), null, true);
 
             if ($nextNonEmpty !== false
-                && isset(Tokens::$assignmentTokens[$tokens[$nextNonEmpty]['code']]) === true
+                && isset(Tokens::ASSIGNMENT_TOKENS[$tokens[$nextNonEmpty]['code']]) === true
             ) {
                 return false;
             }

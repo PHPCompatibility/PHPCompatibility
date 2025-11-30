@@ -70,7 +70,7 @@ final class NewTrailingCommaSniff extends Sniff
         /*
          * Check for trailing commas in a function declaration parameter list.
          */
-        $lastInParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closer - 1), null, true);
+        $lastInParenthesis = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($closer - 1), null, true);
 
         if ($tokens[$lastInParenthesis]['code'] === \T_COMMA) {
             $phpcsFile->addError(
@@ -89,7 +89,7 @@ final class NewTrailingCommaSniff extends Sniff
             return;
         }
 
-        $usePtr = $phpcsFile->findNext(Tokens::$emptyTokens, ($closer + 1), null, true);
+        $usePtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($closer + 1), null, true);
         if ($usePtr === false
             || $tokens[$usePtr]['code'] !== \T_USE
             || isset($tokens[$usePtr]['parenthesis_closer']) === false
@@ -99,7 +99,7 @@ final class NewTrailingCommaSniff extends Sniff
         }
 
         $closer            = $tokens[$usePtr]['parenthesis_closer'];
-        $lastInParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closer - 1), null, true);
+        $lastInParenthesis = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($closer - 1), null, true);
 
         if ($tokens[$lastInParenthesis]['code'] === \T_COMMA) {
             $phpcsFile->addError(

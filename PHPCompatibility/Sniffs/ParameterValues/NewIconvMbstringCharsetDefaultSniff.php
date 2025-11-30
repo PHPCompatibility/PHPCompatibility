@@ -253,7 +253,7 @@ final class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallPara
         }
 
         $tokens        = $phpcsFile->getTokens();
-        $firstNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $targetParam['start'], ($targetParam['end'] + 1), true);
+        $firstNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $targetParam['start'], ($targetParam['end'] + 1), true);
         if ($firstNonEmpty === false) {
             // Parse error or live coding, but preferences is definitely not set, so throw the error.
             $phpcsFile->addError($errorMsg, $stackPtr, 'PreferencesNotSet', $data);
@@ -274,7 +274,7 @@ final class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallPara
                 $hasInputCharset  += \preg_match('`^\s*([\'"])input-charset\1\s*=>`', $item['clean']);
                 $hasOutputCharset += \preg_match('`^\s*([\'"])output-charset\1\s*=>`', $item['clean']);
 
-                $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, $item['start'], ($item['end'] + 1), true);
+                $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $item['start'], ($item['end'] + 1), true);
                 if ($nextNonEmpty !== false && $tokens[$nextNonEmpty]['code'] === \T_ELLIPSIS) {
                     ++$hasSpreadInArray;
                 }

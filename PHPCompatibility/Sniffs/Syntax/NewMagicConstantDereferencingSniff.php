@@ -36,7 +36,7 @@ final class NewMagicConstantDereferencingSniff extends Sniff
      */
     public function register()
     {
-        return Tokens::$magicConstants;
+        return Tokens::MAGIC_CONSTANTS;
     }
 
     /**
@@ -57,7 +57,7 @@ final class NewMagicConstantDereferencingSniff extends Sniff
         }
 
         $tokens       = $phpcsFile->getTokens();
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false) {
             return;
         }
@@ -72,7 +72,7 @@ final class NewMagicConstantDereferencingSniff extends Sniff
         }
 
         $hasContent = $phpcsFile->findNext(
-            Tokens::$emptyTokens,
+            Tokens::EMPTY_TOKENS,
             ($nextNonEmpty + 1),
             $tokens[$nextNonEmpty]['bracket_closer'],
             true
@@ -89,13 +89,13 @@ final class NewMagicConstantDereferencingSniff extends Sniff
         // Make sure this isn't an array assignment. That would be illegal, i.e. a parse error.
         $nextNext = $tokens[$nextNonEmpty]['bracket_closer'];
         do {
-            $nextNext = $phpcsFile->findNext(Tokens::$emptyTokens, ($nextNext + 1), null, true);
+            $nextNext = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($nextNext + 1), null, true);
             if ($nextNext === false) {
                 break;
             }
 
             // If the next token is an assignment, that's all we need to know.
-            if (isset(Tokens::$assignmentTokens[$tokens[$nextNext]['code']]) === true) {
+            if (isset(Tokens::ASSIGNMENT_TOKENS[$tokens[$nextNext]['code']]) === true) {
                 return;
             }
 

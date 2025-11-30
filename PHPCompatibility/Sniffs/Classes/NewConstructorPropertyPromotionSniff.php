@@ -39,7 +39,7 @@ final class NewConstructorPropertyPromotionSniff extends Sniff
      */
     public function register()
     {
-        return Tokens::$ooScopeTokens;
+        return Tokens::OO_SCOPE_TOKENS;
     }
 
     /**

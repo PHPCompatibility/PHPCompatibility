@@ -118,7 +118,7 @@ final class RemovedTernaryAssociativitySniff extends Sniff
             }
 
             // Check for operators with lower operator precedence.
-            if (isset(Tokens::$assignmentTokens[$tokens[$i]['code']])
+            if (isset(Tokens::ASSIGNMENT_TOKENS[$tokens[$i]['code']])
                 || isset($this->tokensWithLowerPrecedence[$tokens[$i]['code']])
             ) {
                 break;

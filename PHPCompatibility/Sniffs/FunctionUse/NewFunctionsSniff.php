@@ -5307,7 +5307,7 @@ final class NewFunctionsSniff extends Sniff
             return;
         }
 
-        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextToken = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($nextToken === false
             || $tokens[$nextToken]['code'] !== \T_OPEN_PARENTHESIS
             || isset($tokens[$nextToken]['parenthesis_owner']) === true
@@ -5318,7 +5318,7 @@ final class NewFunctionsSniff extends Sniff
         $ignore  = [\T_NEW => true];
         $ignore += Collections::objectOperators();
 
-        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
         if (isset($ignore[$tokens[$prevToken]['code']]) === true) {
             // Not a call to a PHP function.
             return;

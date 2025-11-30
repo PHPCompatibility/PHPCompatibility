@@ -80,26 +80,26 @@ final class NewMagicClassConstantSniff extends Sniff
             return;
         }
 
-        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextToken = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($nextToken !== false && $tokens[$nextToken]['code'] === \T_OPEN_PARENTHESIS) {
             // Function call or declaration for a function called "class".
             return;
         }
 
-        $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prevToken = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
         if ($tokens[$prevToken]['code'] !== \T_DOUBLE_COLON) {
             return;
         }
 
-        $subjectPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true);
+        $subjectPtr = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($prevToken - 1), null, true);
         if ($subjectPtr === false) {
             // Shouldn't be possible.
             return; // @codeCoverageIgnore
         }
 
-        $preSubjectPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($subjectPtr - 1), null, true);
+        $preSubjectPtr = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($subjectPtr - 1), null, true);
         if (isset(Collections::ooHierarchyKeywords()[$tokens[$subjectPtr]['code']]) === true
-            || (isset(Collections::nameTokens()[$tokens[$subjectPtr]['code']]) === true
+            || (isset(Tokens::NAME_TOKENS[$tokens[$subjectPtr]['code']]) === true
                 && isset(Collections::objectOperators()[$tokens[$preSubjectPtr]['code']]) === false)
         ) {
             // This is a syntax which is supported on PHP 5.5 and higher.

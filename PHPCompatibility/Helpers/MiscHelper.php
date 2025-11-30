@@ -84,7 +84,7 @@ final class MiscHelper
             return false;
         }
 
-        $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $next = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($next !== false
             && ($tokens[$next]['code'] === \T_OPEN_PARENTHESIS
                 || $tokens[$next]['code'] === \T_DOUBLE_COLON
@@ -115,11 +115,11 @@ final class MiscHelper
             \T_TYPE_INTERSECTION     => true,
             \T_TYPE_OPEN_PARENTHESIS => true,
         ];
-        $tokensToIgnore += Tokens::$ooScopeTokens;
+        $tokensToIgnore += Tokens::OO_SCOPE_TOKENS;
         $tokensToIgnore += Collections::objectOperators();
-        $tokensToIgnore += Tokens::$scopeModifiers;
+        $tokensToIgnore += Tokens::SCOPE_MODIFIERS;
 
-        $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prev = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
         if (isset($tokensToIgnore[$tokens[$prev]['code']]) === true) {
             // Not the use of a constant.
             return false;
@@ -135,7 +135,7 @@ final class MiscHelper
             }
 
             if ($tokens[$next]['code'] === \T_SEMICOLON) {
-                $prevPrev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
+                $prevPrev = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($prev - 1), null, true);
                 if ($tokens[$prevPrev]['code'] === \T_CLOSE_PARENTHESIS
                     && isset($tokens[$prevPrev]['parenthesis_owner'])
                 ) {
@@ -157,10 +157,10 @@ final class MiscHelper
             \T_OPEN_PARENTHESIS,
         ];
         $endOfPreviousStatement = $phpcsFile->findPrevious($find, ($stackPtr - 1));
-        $startOfThisStatement   = $phpcsFile->findNext(Tokens::$emptyTokens, ($endOfPreviousStatement + 1), null, true);
+        $startOfThisStatement   = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($endOfPreviousStatement + 1), null, true);
 
         if ($tokens[$startOfThisStatement]['code'] === \T_USE) {
-            $nextOnLine = $phpcsFile->findNext(Tokens::$emptyTokens, ($startOfThisStatement + 1), null, true);
+            $nextOnLine = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($startOfThisStatement + 1), null, true);
             if ($nextOnLine !== false) {
                 if (($tokens[$nextOnLine]['code'] === \T_STRING && $tokens[$nextOnLine]['content'] === 'const')) {
                     $hasNsSep = $phpcsFile->findNext(\T_NS_SEPARATOR, ($nextOnLine + 1), $stackPtr);

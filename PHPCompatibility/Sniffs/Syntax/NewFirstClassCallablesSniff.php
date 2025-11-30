@@ -63,12 +63,12 @@ final class NewFirstClassCallablesSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+        $prev = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($stackPtr - 1), null, true);
         if ($tokens[$prev]['code'] !== \T_OPEN_PARENTHESIS) {
             return;
         }
 
-        $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $next = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($next === false || $tokens[$next]['code'] !== \T_CLOSE_PARENTHESIS) {
             return;
         }

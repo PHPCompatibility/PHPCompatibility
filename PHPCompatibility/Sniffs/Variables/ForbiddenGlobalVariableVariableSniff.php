@@ -76,10 +76,10 @@ final class ForbiddenGlobalVariableVariableSniff extends Sniff
 
             if ($variable !== false) {
 
-                $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($variable - 1), $ptr, true);
+                $prev = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, ($variable - 1), $ptr, true);
                 if ($tokens[$prev]['code'] === \T_DOLLAR) {
 
-                    $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($variable + 1), $varEnd, true);
+                    $next = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($variable + 1), $varEnd, true);
                     if ($next !== false
                         && (isset(Collections::objectOperators()[$tokens[$next]['code']]) === true
                             || $tokens[$next]['code'] === \T_OPEN_SQUARE_BRACKET)
@@ -106,7 +106,7 @@ final class ForbiddenGlobalVariableVariableSniff extends Sniff
             if ($errorThrown === false) {
                 $dollar = $phpcsFile->findNext(\T_DOLLAR, $ptr, $varEnd);
                 if ($dollar !== false) {
-                    $next = $phpcsFile->findNext(Tokens::$emptyTokens, ($dollar + 1), $varEnd, true);
+                    $next = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($dollar + 1), $varEnd, true);
                     if ($tokens[$next]['code'] === \T_OPEN_CURLY_BRACKET) {
                         $phpcsFile->addWarning(
                             'Global with anything other than bare variables is discouraged since PHP 7.0. Found %s',

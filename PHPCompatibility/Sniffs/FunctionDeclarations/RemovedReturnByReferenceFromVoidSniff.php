@@ -61,7 +61,7 @@ final class RemovedReturnByReferenceFromVoidSniff extends Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $nextNonEmpty = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, ($stackPtr + 1), null, true);
         if ($nextNonEmpty === false || $tokens[$nextNonEmpty]['code'] !== \T_BITWISE_AND) {
             // Not a function declared to return by reference.
             return;
