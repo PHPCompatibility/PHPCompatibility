@@ -1,0 +1,153 @@
+<?php
+
+/*
+ * OK, not our target.
+ */
+enum NotASwitchCase {
+    case TERMINATED_WITH_SEMICOLON_IS_OKAY;
+}
+
+enum NotASwitchCaseBacked: string
+{
+    case Hearts = 'H';
+}
+
+$match = match($foo) {
+    1 => 10,
+    default => 20,
+};
+
+
+/*
+ * Ok: cross-version compatible.
+ */
+switch ($foo) {
+    case 10:
+        switch ($nested) {
+            case 'nested' /*comment*/ :
+                break;
+            default:
+                break;
+        }
+        break;
+    case 20: {
+        echo $foo;
+        break;
+    }
+    default:
+        echo 'default';
+        break;
+}
+
+switch ($foo):
+    case 10:
+        switch ($nested):
+            case 'nested':
+                break;
+            default:
+                break;
+        endswitch;
+        break;
+    case 20: {
+        echo $foo;
+        break;
+    }
+    default:
+        echo 'default';
+        break;
+endswitch;
+
+switch ($foo):
+    case "bar": ?>
+        <div>Some html</div>
+        <?php break;
+    default: ?>
+        <div>Some html</div>
+<?php endswitch;
+
+
+/*
+ * PHP 8.5 deprecated.
+ */
+switch ($foo) {
+    case 10:
+    case 20   : echo $foo; break;
+    case 'foo':
+        switch ($nested) {
+            case 'nested' /*comment*/ :
+                break;
+            default:
+                break;
+        }
+        // Fall through.
+    case FOO: {
+        echo $foo;
+        break;
+    }
+    case $bar ? 10 : 20:
+        return;
+    default:
+        echo 'default';
+        break;
+}
+
+switch ($foo):
+    case 10:
+    case 20:
+        echo $foo;
+        break;
+    case 'foo':
+        echo $foo;
+        break;
+    case FOO: {
+        switch ($nested) :
+            case 'nested':
+                break;
+            default:
+                break;
+        endswitch;
+        // Fall through.
+    }
+    default:
+        echo 'default';
+        break;
+endswitch;
+
+switch ($foo):
+    case "foo":?>
+        <div>Some html</div>
+        <?php break;
+    case "bar" : ?>
+        <div>Some html</div>
+        <?php break;
+    case "baz": ?>
+        <div>Some html</div>
+        <?php break;
+    case "balls": // Comment.
+    ?>
+        <div>Some html</div>
+        <?php break;
+    default: ?>
+        <div>Some html</div>
+<?php endswitch ?>
+<?php
+
+switch ($foo):
+    default:?>
+        <div>Some html</div><?php
+endswitch;
+
+switch ($foo):
+    default : ?>
+        <div>Some html</div><?php
+endswitch;
+
+switch ($foo):
+    default:     ?>
+        <div>Some html</div><?php
+endswitch;
+
+switch ($foo):
+    default:  /* comment*/   ?>
+        <div>Some html</div><?php
+endswitch;

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed Terminating Case With Semicolon"
+    >
+    <standard>
+    <![CDATA[
+    Terminating a switch `case`/`default` condition statement with a semicolon, instead of a colon, is deprecated since PHP 8.5.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: terminating a case/default statement with a colon.">
+        <![CDATA[
+switch ($value) {
+    case 'foo'<em>:</em>
+    case 'baz'<em>:</em>
+        echo 'foo or baz';
+        break;
+    default<em>:</em>
+        echo 'default';
+        break;
+}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.5: terminating a case/default statement with a semicolon.">
+        <![CDATA[
+switch ($value) {
+    case 'foo'<em>;</em>
+    case 'baz'<em>;</em>
+        echo 'foo or baz';
+        break;
+    default<em>;</em>
+        echo 'default';
+        break;
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>

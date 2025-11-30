@@ -97,12 +97,12 @@ jobs:
 
         include:
           - php: '7.2'
-            phpcs_version: '^4.0.0'
+            phpcs_version: '^4.0.1'
             custom_ini: true
             experimental: false
 
           - php: '8.4'
-            phpcs_version: '^4.0.0'
+            phpcs_version: '^4.0.1'
             custom_ini: true
             experimental: false
 
