@@ -23,9 +23,9 @@ class Example
         <![CDATA[
 class Example
 {
-    <em>public int $a</em>;
-    <em>protected ?string $b</em>;
-    <em>private ClassName $c</em>;
+    public <em>int</em> $a;
+    protected <em>?string</em> $b;
+    private <em>ClassName</em> $c;
 }
         ]]>
         </code>
