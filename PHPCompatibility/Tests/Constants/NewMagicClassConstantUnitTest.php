@@ -101,6 +101,7 @@ final class NewMagicClassConstantUnitTest extends BaseSniffTestCase
         }
 
         $data[] = [67];
+        $data[] = [70];
 
         return $data;
     }

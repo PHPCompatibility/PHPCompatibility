@@ -66,3 +66,5 @@ class_exists($obj?->otherObjectSavedAsProperty::class);
 // Safeguard handling of class resolution found within PHP 8.0+ attribute.
 #[MyAttribute(\Fully\Qualified\Other::class)]
 function hasAttribute() {}
+
+echo $obj->class; // Property called class.
