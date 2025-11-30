@@ -45,7 +45,7 @@ final class NewReadonlyPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testNewReadonlyProperties()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNewReadonlyProperties()
     {
@@ -92,7 +92,7 @@ final class NewReadonlyPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

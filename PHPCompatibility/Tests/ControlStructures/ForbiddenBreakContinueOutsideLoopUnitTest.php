@@ -49,7 +49,7 @@ final class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTestCase
      *
      * @see testBreakContinueOutsideLoop()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataBreakContinueOutsideLoop()
     {
@@ -84,7 +84,7 @@ final class ForbiddenBreakContinueOutsideLoopUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

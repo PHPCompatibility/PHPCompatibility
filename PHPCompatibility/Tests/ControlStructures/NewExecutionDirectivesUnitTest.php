@@ -50,13 +50,13 @@ final class NewExecutionDirectivesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataNewExecutionDirective
      *
-     * @param string $directive          Name of the execution directive.
-     * @param string $lastVersionBefore  The PHP version just *before* the directive was introduced.
-     * @param array  $lines              The line numbers in the test file where the error should occur.
-     * @param string $okVersion          A PHP version in which the directive was ok to be used.
-     * @param string $conditionalVersion Optional. A PHP version in which the directive was conditionaly available.
-     * @param string $condition          The availability condition.
-     * @param bool   $skipNoViolation    Whether to skip the "no violation test".
+     * @param string      $directive          Name of the execution directive.
+     * @param string      $lastVersionBefore  The PHP version just *before* the directive was introduced.
+     * @param array<int>  $lines              The line numbers in the test file where the error should occur.
+     * @param string      $okVersion          A PHP version in which the directive was ok to be used.
+     * @param string|null $conditionalVersion Optional. A PHP version in which the directive was conditionaly available.
+     * @param string|null $condition          The availability condition.
+     * @param bool        $skipNoViolation    Whether to skip the "no violation test".
      *
      * @return void
      */
@@ -98,7 +98,7 @@ final class NewExecutionDirectivesUnitTest extends BaseSniffTestCase
      *
      * @see testNewExecutionDirectivs()
      *
-     * @return array
+     * @return array<array<string|array<int>|bool|null>>
      */
     public static function dataNewExecutionDirective()
     {
@@ -135,7 +135,7 @@ final class NewExecutionDirectivesUnitTest extends BaseSniffTestCase
      *
      * @see testInvalidDirectiveValue()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataInvalidDirectiveValue()
     {
@@ -174,7 +174,7 @@ final class NewExecutionDirectivesUnitTest extends BaseSniffTestCase
      *
      * @see testInvalidEncodingDirectiveValue()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataInvalidEncodingDirectiveValue()
     {
@@ -206,7 +206,7 @@ final class NewExecutionDirectivesUnitTest extends BaseSniffTestCase
      *
      * @see testInvalidDirective()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataInvalidDirective()
     {

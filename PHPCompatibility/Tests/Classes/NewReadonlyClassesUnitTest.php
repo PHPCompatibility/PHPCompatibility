@@ -45,7 +45,7 @@ final class NewReadonlyClassesUnitTest extends BaseSniffTestCase
      *
      * @see testReadonlyClass()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataReadonlyClass()
     {
@@ -83,7 +83,7 @@ final class NewReadonlyClassesUnitTest extends BaseSniffTestCase
      *
      * @see testReadonlyAnonymousClass()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataReadonlyAnonymousClass()
     {
@@ -115,7 +115,7 @@ final class NewReadonlyClassesUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

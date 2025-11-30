@@ -45,7 +45,7 @@ final class NewConstantsInTraitsUnitTest extends BaseSniffTestCase
      *
      * @see testConstantInTrait()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataConstantInTrait()
     {
@@ -77,7 +77,7 @@ final class NewConstantsInTraitsUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

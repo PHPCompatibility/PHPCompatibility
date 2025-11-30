@@ -62,7 +62,7 @@ final class NewAttributesUnitTest extends BaseSniffTestCase
      *
      * @see testMultilineAttributes()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataMultilineAttributes()
     {
@@ -104,7 +104,7 @@ final class NewAttributesUnitTest extends BaseSniffTestCase
      *
      * @see testInlineAttributes()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataInlineAttributes()
     {
@@ -145,7 +145,7 @@ final class NewAttributesUnitTest extends BaseSniffTestCase
      *
      * @see testAttributeContainingStringCloseTag()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataAttributeContainingStringCloseTag()
     {
@@ -184,7 +184,7 @@ final class NewAttributesUnitTest extends BaseSniffTestCase
      *
      * @see testNewAttributes()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataNewAttributes()
     {
@@ -274,7 +274,7 @@ final class NewAttributesUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {
@@ -312,7 +312,7 @@ final class NewAttributesUnitTest extends BaseSniffTestCase
     /**
      * Data provider.
      *
-     * @return array
+     * @return array<array<string>>
      */
     public static function dataNoViolationsInFileOnValidVersion()
     {

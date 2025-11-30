@@ -60,7 +60,7 @@ final class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTes
      *
      * @see testBreakAndContinueVariableArgument()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataBreakAndContinueVariableArgument()
     {
@@ -116,7 +116,7 @@ final class ForbiddenBreakContinueVariableArgumentsUnitTest extends BaseSniffTes
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

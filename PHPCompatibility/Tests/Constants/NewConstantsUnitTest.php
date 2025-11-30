@@ -55,7 +55,7 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
      *
      * @see testNewConstant()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataNewConstant()
     {
@@ -1815,7 +1815,7 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

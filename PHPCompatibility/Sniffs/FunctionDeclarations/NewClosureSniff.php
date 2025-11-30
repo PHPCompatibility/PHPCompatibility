@@ -70,8 +70,7 @@ final class NewClosureSniff extends Sniff
      * @param int                         $stackPtr  The position of the current token
      *                                               in the stack passed in $tokens.
      *
-     * @return int|void Integer stack pointer to skip forward or void to continue
-     *                  normal file processing.
+     * @return void
      */
     public function process(File $phpcsFile, $stackPtr)
     {

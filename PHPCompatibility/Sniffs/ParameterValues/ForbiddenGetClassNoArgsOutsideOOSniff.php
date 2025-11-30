@@ -36,7 +36,7 @@ final class ForbiddenGetClassNoArgsOutsideOOSniff extends AbstractFunctionCallPa
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $targetFunctions = [
         'get_class'        => 'without an argument, ',

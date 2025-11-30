@@ -48,7 +48,7 @@ final class RemovedOrphanedParentUnitTest extends BaseSniffTestCase
      *
      * @see testRemovedOrphanedParentInClass()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataRemovedOrphanedParentInClass()
     {
@@ -105,7 +105,7 @@ final class RemovedOrphanedParentUnitTest extends BaseSniffTestCase
      *
      * @see testRemovedOrphanedParentInInterface()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataRemovedOrphanedParentInInterface()
     {
@@ -138,7 +138,7 @@ final class RemovedOrphanedParentUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

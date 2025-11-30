@@ -45,7 +45,7 @@ final class NewConstructorPropertyPromotionUnitTest extends BaseSniffTestCase
      *
      * @see testNewConstructorPropertyPromotion()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNewConstructorPropertyPromotion()
     {
@@ -89,7 +89,7 @@ final class NewConstructorPropertyPromotionUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {
