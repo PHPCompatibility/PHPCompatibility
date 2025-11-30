@@ -49,7 +49,7 @@ final class NewHeredocSniff extends AbstractInitialValueSniff
      *
      * @var string
      */
-    const ERROR_PHRASE = 'Initializing %s using the Heredoc syntax was not supported in PHP 5.2 or earlier. Found: %s';
+    private const ERROR_PHRASE = 'Initializing %s using the Heredoc syntax was not supported in PHP 5.2 or earlier. Found: %s';
 
     /**
      * Partial error phrases to be used in combination with the error message constant.

@@ -60,6 +60,12 @@
         <exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned"/>
     </rule>
 
+    <!-- Enforce constant visibility.
+          This directive can be removed once PHPCSDevCS drops support for PHPCS 3.x. -->
+    <rule ref="PSR12.Properties.ConstantVisibility">
+        <severity>5</severity>
+    </rule>
+
 
     <!--
     #############################################################################

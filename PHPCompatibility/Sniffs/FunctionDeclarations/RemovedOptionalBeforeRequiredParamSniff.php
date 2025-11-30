@@ -54,35 +54,35 @@ final class RemovedOptionalBeforeRequiredParamSniff extends Sniff
      *
      * @var string
      */
-    const PHP80_MSG = 'Declaring an optional parameter before a required parameter is deprecated since PHP 8.0.';
+    private const PHP80_MSG = 'Declaring an optional parameter before a required parameter is deprecated since PHP 8.0.';
 
     /**
      * Base message for the PHP 8.1 deprecation.
      *
      * @var string
      */
-    const PHP81_MSG = 'Declaring an optional parameter with a nullable type before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.1';
+    private const PHP81_MSG = 'Declaring an optional parameter with a nullable type before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.1';
 
     /**
      * Base message for the PHP 8.3 deprecation.
      *
      * @var string
      */
-    const PHP83_MSG = 'Declaring an optional parameter with a null stand-alone type or a union type including null before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.3';
+    private const PHP83_MSG = 'Declaring an optional parameter with a null stand-alone type or a union type including null before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.3';
 
     /**
      * Base message for the PHP 8.4 deprecation.
      *
      * @var string
      */
-    const PHP84_MSG = 'Declaring an optional parameter with a non-nullable type and a null default value before a required parameter is deprecated since PHP 8.4';
+    private const PHP84_MSG = 'Declaring an optional parameter with a non-nullable type and a null default value before a required parameter is deprecated since PHP 8.4';
 
     /**
      * Message template for detailed information about the deprecation.
      *
      * @var string
      */
-    const MSG_DETAILS = ' Parameter %1$s is optional, while parameter %2$s is required. The %1$s parameter is implicitly treated as a required parameter.';
+    private const MSG_DETAILS = ' Parameter %1$s is optional, while parameter %2$s is required. The %1$s parameter is implicitly treated as a required parameter.';
 
     /**
      * Returns an array of tokens this test wants to listen for.

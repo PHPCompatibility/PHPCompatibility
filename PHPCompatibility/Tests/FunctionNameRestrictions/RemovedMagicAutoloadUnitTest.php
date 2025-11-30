@@ -30,7 +30,7 @@ final class RemovedMagicAutoloadUnitTest extends BaseSniffTestCase
      *
      * @var string
      */
-    const TEST_FILE = 'RemovedMagicAutoloadUnitTest.1.inc';
+    private const TEST_FILE = 'RemovedMagicAutoloadUnitTest.1.inc';
 
     /**
      * The name of a secondary test case file to test against false positives
@@ -38,7 +38,7 @@ final class RemovedMagicAutoloadUnitTest extends BaseSniffTestCase
      *
      * @var string
      */
-    const TEST_FILE_NAMESPACED = 'RemovedMagicAutoloadUnitTest.2.inc';
+    private const TEST_FILE_NAMESPACED = 'RemovedMagicAutoloadUnitTest.2.inc';
 
     /**
      * Test __autoload deprecation not causing issue in 7.1.

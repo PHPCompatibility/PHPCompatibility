@@ -49,7 +49,7 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
      *
      * @var string
      */
-    const ERROR_PHRASE = 'Constant scalar expressions are not allowed %s in PHP 5.5 or earlier.';
+    private const ERROR_PHRASE = 'Constant scalar expressions are not allowed %s in PHP 5.5 or earlier.';
 
     /**
      * Tokens which were allowed to be used in these declarations prior to PHP 5.6.

@@ -30,28 +30,28 @@ final class RemovedOptionalBeforeRequiredParamUnitTest extends BaseSniffTestCase
      *
      * @var string
      */
-    const PHP80_MSG = 'Declaring an optional parameter before a required parameter is deprecated since PHP 8.0.';
+    private const PHP80_MSG = 'Declaring an optional parameter before a required parameter is deprecated since PHP 8.0.';
 
     /**
      * Base message for the PHP 8.1 deprecation.
      *
      * @var string
      */
-    const PHP81_MSG = 'Declaring an optional parameter with a nullable type before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.1';
+    private const PHP81_MSG = 'Declaring an optional parameter with a nullable type before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.1';
 
     /**
      * Base message for the PHP 8.3 deprecation.
      *
      * @var string
      */
-    const PHP83_MSG = 'Declaring an optional parameter with a null stand-alone type or a union type including null before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.3';
+    private const PHP83_MSG = 'Declaring an optional parameter with a null stand-alone type or a union type including null before a required parameter is soft deprecated since PHP 8.0 and hard deprecated since PHP 8.3';
 
     /**
      * Base message for the PHP 8.4 deprecation.
      *
      * @var string
      */
-    const PHP84_MSG = 'Declaring an optional parameter with a non-nullable type and a null default value before a required parameter is deprecated since PHP 8.4';
+    private const PHP84_MSG = 'Declaring an optional parameter with a non-nullable type and a null default value before a required parameter is deprecated since PHP 8.4';
 
     /**
      * Verify that the sniff throws a warning for optional parameters before required.

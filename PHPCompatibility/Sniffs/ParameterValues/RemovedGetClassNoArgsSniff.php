@@ -38,7 +38,7 @@ final class RemovedGetClassNoArgsSniff extends AbstractFunctionCallParameterSnif
      *
      * @var string
      */
-    const ERROR_MSG = 'Calling %s() without the $%s argument is deprecated since PHP 8.3.';
+    private const ERROR_MSG = 'Calling %s() without the $%s argument is deprecated since PHP 8.3.';
 
     /**
      * Functions to check for.
