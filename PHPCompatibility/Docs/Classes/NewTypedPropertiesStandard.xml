@@ -6,6 +6,9 @@
     <standard>
     <![CDATA[
     Typed properties are supported since PHP 7.4.
+
+    At introduction, scalar types, array, object and class/interface name types were supported, including the nullable version of these.
+    Type syntax introduced in later PHP versions, like union types (PHP 8.0) or the `true` type (PHP 8.2), is also supported for typed properties as of the PHP version in which the type syntax was introduced.
     ]]>
     </standard>
     <code_comparison>
