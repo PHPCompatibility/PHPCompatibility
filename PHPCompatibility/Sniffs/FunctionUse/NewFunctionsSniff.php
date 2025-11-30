@@ -5323,16 +5323,6 @@ final class NewFunctionsSniff extends Sniff
             // Not a call to a PHP function.
             return;
 
-        } elseif ($tokens[$stackPtr]['code'] === \T_STRING
-            && $tokens[$prevToken]['code'] === \T_NS_SEPARATOR
-        ) {
-            $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevToken - 1), null, true);
-            if ($tokens[$prevPrevToken]['code'] === \T_STRING
-                || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
-            ) {
-                // Namespaced function.
-                return;
-            }
         }
 
         $itemInfo = [

@@ -101,14 +101,14 @@ final class NewPHPOpenTagEOFSniff extends Sniff
                 break;
 
             case \T_OPEN_TAG_WITH_ECHO:
-                // PHP 5.4+.
+                // PHP 7.2+.
                 if (\rtrim($contents) === '<?=') {
                     $error = true;
                 }
                 break;
 
             case \T_OPEN_TAG:
-                // PHP 5.4+ on PHPCS 3.12.2 or higher.
+                // PHP 7.2+ on PHPCS 3.12.2 or higher.
                 if ($contents === '<?php') {
                     $error = true;
                 }

@@ -78,23 +78,27 @@ final class NewFunctionCallTrailingCommaSniff extends Sniff
             return;
         }
 
-        $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-        if ($tokens[$nextNonEmpty]['code'] !== \T_OPEN_PARENTHESIS
-            || isset($tokens[$nextNonEmpty]['parenthesis_closer']) === false
-        ) {
-            return;
+        if (isset($tokens[$stackPtr]['parenthesis_opener']) === true) {
+            $opener = $tokens[$stackPtr]['parenthesis_opener'];
+        } else {
+            $opener = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            if ($tokens[$opener]['code'] !== \T_OPEN_PARENTHESIS
+                || isset($tokens[$opener]['parenthesis_closer']) === false
+            ) {
+                return;
+            }
         }
 
         if (($tokens[$stackPtr]['code'] === \T_STRING
             || isset(Collections::ooHierarchyKeywords()[$tokens[$stackPtr]['code']]))
-                && isset($tokens[$nextNonEmpty]['parenthesis_owner']) === true
+                && isset($tokens[$opener]['parenthesis_owner']) === true
         ) {
             // Function declaration, not a function call.
             return;
         }
 
-        $closer            = $tokens[$nextNonEmpty]['parenthesis_closer'];
-        $lastInParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closer - 1), $nextNonEmpty, true);
+        $closer            = $tokens[$opener]['parenthesis_closer'];
+        $lastInParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closer - 1), $opener, true);
 
         if ($tokens[$lastInParenthesis]['code'] !== \T_COMMA) {
             return;

@@ -386,16 +386,12 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
                 }
 
                 // Ignore use of any of the passed parameters in isset() or empty().
-                if ($tokens[$j]['code'] === \T_ISSET
-                    || $tokens[$j]['code'] === \T_EMPTY
+                if (($tokens[$j]['code'] === \T_ISSET
+                    || $tokens[$j]['code'] === \T_EMPTY)
+                    && isset($tokens[$j]['parenthesis_closer'])
                 ) {
-                    $nextNonEmpty = $phpcsFile->findNext(Tokens::$emptyTokens, ($j + 1), null, true);
-                    if ($nextNonEmpty !== false
-                        && isset($tokens[$nextNonEmpty]['parenthesis_closer'])
-                    ) {
-                        $j = $tokens[$nextNonEmpty]['parenthesis_closer'];
-                        continue;
-                    }
+                    $j = $tokens[$j]['parenthesis_closer'];
+                    continue;
                 }
 
                 // Keep track of the long/short lists structures seen.
@@ -682,16 +678,6 @@ final class ArgumentFunctionsReportCurrentValueSniff extends Sniff
             || $tokens[$prevNonEmpty]['code'] === \T_FUNCTION
         ) {
             return false;
-        }
-
-        if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR) {
-            $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
-            if ($tokens[$prevPrevToken]['code'] === \T_STRING
-                || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
-            ) {
-                // Namespaced function.
-                return false;
-            }
         }
 
         return true;

@@ -234,15 +234,14 @@ final class ForbiddenThisUseContextsSniff extends Sniff
                 /*
                  * $this can no longer be unset.
                  */
-                $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
-                if ($openParenthesis === false
-                    || $tokens[$openParenthesis]['code'] !== \T_OPEN_PARENTHESIS
-                    || isset($tokens[$openParenthesis]['parenthesis_closer']) === false
-                ) {
+                if (isset($tokens[$stackPtr]['parenthesis_opener'], $tokens[$stackPtr]['parenthesis_closer']) === false) {
                     return;
                 }
 
-                for ($i = ($openParenthesis + 1); $i < $tokens[$openParenthesis]['parenthesis_closer']; $i++) {
+                $openParenthesis  = $tokens[$stackPtr]['parenthesis_opener'];
+                $closeParenthesis = $tokens[$stackPtr]['parenthesis_closer'];
+
+                for ($i = ($openParenthesis + 1); $i < $closeParenthesis; $i++) {
                     // Ignore anything within square brackets (array access keys).
                     if (isset($tokens[$i]['bracket_closer'])) {
                         $i = $tokens[$i]['bracket_closer'];
@@ -253,13 +252,7 @@ final class ForbiddenThisUseContextsSniff extends Sniff
                         continue;
                     }
 
-                    $afterThis = $phpcsFile->findNext(
-                        Tokens::$emptyTokens,
-                        ($i + 1),
-                        $tokens[$openParenthesis]['parenthesis_closer'],
-                        true
-                    );
-
+                    $afterThis = $phpcsFile->findNext(Tokens::$emptyTokens, ($i + 1), $closeParenthesis, true);
                     if ($afterThis !== false
                         && (isset(Collections::objectOperators()[$tokens[$afterThis]['code']]) === true
                             || $tokens[$afterThis]['code'] === \T_OPEN_SQUARE_BRACKET)

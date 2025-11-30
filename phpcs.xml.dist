@@ -56,9 +56,6 @@
         <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose"/>
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
 
-        <!-- Only needed for PHPCS 3.x. This exclusion can be removed when PHPCSDevCS drops support for PHPCS 3.x. -->
-        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
-
         <!-- All nice and good, but too much of a fuss for the outer array of nested arrays. -->
         <exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned"/>
     </rule>

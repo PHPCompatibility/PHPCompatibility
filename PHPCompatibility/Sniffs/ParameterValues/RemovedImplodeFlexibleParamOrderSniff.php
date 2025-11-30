@@ -168,8 +168,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
                 continue;
             }
 
-            if ($tokenCode === \T_NS_SEPARATOR
-                || ($tokenCode === \T_STRING && isset($this->constantStrings[$tokens[$i]['content']]))
+            if (($tokenCode === \T_STRING && isset($this->constantStrings[$tokens[$i]['content']]))
                 || ($tokenCode === \T_NAME_FULLY_QUALIFIED && isset($this->constantStrings[\ltrim($tokens[$i]['content'], '\\')]))
             ) {
                 continue;
@@ -216,13 +215,6 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
                         // Method call, not a call to the PHP native function.
                         continue;
                     }
-
-                    if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR
-                        && $tokens[$prevNonEmpty - 1]['code'] === \T_STRING
-                    ) {
-                        // Namespaced function.
-                        continue;
-                    }
                 }
 
                 // Ok, so we know that there is an array function in the first param.
@@ -267,7 +259,7 @@ final class RemovedImplodeFlexibleParamOrderSniff extends AbstractFunctionCallPa
         for ($i = $start; $i < $end; $i++) {
             $tokenCode = $tokens[$i]['code'];
 
-            if (isset(Tokens::$emptyTokens[$tokenCode]) || $tokenCode === \T_NS_SEPARATOR) {
+            if (isset(Tokens::$emptyTokens[$tokenCode])) {
                 continue;
             }
 

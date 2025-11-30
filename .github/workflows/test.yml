@@ -92,12 +92,12 @@ jobs:
         #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
         php: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
-        phpcs_version: ['lowest', '3.x-dev', '4.0.0', '4.x-dev']
+        phpcs_version: ['lowest', '4.x-dev']
         experimental: [false]
 
         include:
           - php: '7.2'
-            phpcs_version: '^3.13.3'
+            phpcs_version: '^4.0.0'
             custom_ini: true
             experimental: false
 
@@ -107,10 +107,6 @@ jobs:
             experimental: false
 
           # Experimental builds. These are allowed to fail.
-          - php: '8.6' # Nightly.
-            phpcs_version: '3.x-dev'
-            experimental: true
-
           - php: '8.6' # Nightly.
             phpcs_version: '4.x-dev'
             experimental: true
@@ -154,7 +150,7 @@ jobs:
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: none
 
-      # Remove PHPCSDevCS as it would (for now) prevent the tests from being able to run against PHPCS "lowest".
+      # Remove PHPCSDevCS as it could potentially prevent the tests from being able to run against PHPCS "lowest".
       - name: 'Composer: remove PHPCSDevCS'
         run: composer remove --dev phpcsstandards/phpcsdevcs --no-update --no-interaction
 
@@ -220,23 +216,14 @@ jobs:
           - php: '8.5'
             phpcs_version: '4.x-dev'
           - php: '8.5'
-            phpcs_version: '4.0.0'
-          - php: '8.5'
-            phpcs_version: '3.x-dev'
-            custom_ini: true
-          - php: '8.5'
             phpcs_version: 'lowest'
+            custom_ini: true
 
           - php: '7.2'
             phpcs_version: '4.x-dev'
             custom_ini: true
           - php: '7.2'
-            phpcs_version: '4.0.0'
-          - php: '7.2'
-            phpcs_version: '3.x-dev'
-          - php: '7.2'
             phpcs_version: 'lowest'
-            custom_ini: true
 
     name: "Coverage: PHP ${{ matrix.php }}${{ matrix.custom_ini && ' (ini)' || '' }} - PHPCS ${{ matrix.phpcs_version }}"
 
@@ -275,7 +262,7 @@ jobs:
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: xdebug
 
-      # Remove PHPCSDevCS as it would (for now) prevent the tests from being able to run against PHPCS "lowest".
+      # Remove PHPCSDevCS as it could potentially prevent the tests from being able to run against PHPCS "lowest".
       - name: 'Composer: remove PHPCSDevCS'
         run: composer remove --dev phpcsstandards/phpcsdevcs --no-update --no-interaction
 

@@ -73,8 +73,9 @@ final class NewFirstClassCallablesSniff extends Sniff
             return;
         }
 
-        $beforeParens = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prev - 1), null, true);
-        if ($tokens[$beforeParens]['code'] === \T_EXIT) {
+        if (isset($tokens[$prev]['parenthesis_owner']) === true
+            && $tokens[$tokens[$prev]['parenthesis_owner']]['code'] === \T_EXIT
+        ) {
             $phpcsFile->addError(
                 'Using exit/die as a first class callable is not supported in PHP 8.3 or earlier.',
                 $stackPtr,

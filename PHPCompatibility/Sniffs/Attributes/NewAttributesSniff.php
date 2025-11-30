@@ -387,7 +387,7 @@ final class NewAttributesSniff extends Sniff
                 continue;
             }
 
-            if (isset(Collections::namespacedNameTokens()[$tokens[$i]['code']])) {
+            if (isset(Collections::nameTokens()[$tokens[$i]['code']])) {
                 $currentName .= $tokens[$i]['content'];
 
                 if (isset($startsAt) === false) {

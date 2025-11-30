@@ -170,19 +170,7 @@ final class NewExitAsFunctionCallSniff extends AbstractFunctionCallParameterSnif
         }
 
         // Check if this is exit/die used as a fully qualified function call.
-        $isFullyQualified = false;
         if ($tokens[$stackPtr]['content'][0] === '\\') {
-            // PHPCS 4.x.
-            $isFullyQualified = true;
-        } else {
-            // PHPCS 3.x.
-            $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
-            if ($tokens[$prev]['code'] === \T_NS_SEPARATOR) {
-                $isFullyQualified = true;
-            }
-        }
-
-        if ($isFullyQualified === true) {
             $phpcsFile->addError(
                 'Using "%s" as a fully qualified function call is not allowed in PHP 8.3 or earlier.',
                 $stackPtr,
@@ -239,7 +227,7 @@ final class NewExitAsFunctionCallSniff extends AbstractFunctionCallParameterSnif
         $total   = 0;
 
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
-            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) || $tokens[$i]['code'] === \T_NS_SEPARATOR) {
+            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']])) {
                 continue;
             }
 

@@ -104,7 +104,7 @@ final class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterS
          * Get the content of any string tokens in the options parameter and remove the quotes and variables.
          */
         for ($i = $optionsParam['start']; $i <= $optionsParam['end']; $i++) {
-            if (isset(Collections::namespacedNameTokens()[$tokens[$i]['code']]) === true
+            if (isset(Collections::nameTokens()[$tokens[$i]['code']]) === true
                 || $tokens[$i]['code'] === \T_VARIABLE
             ) {
                 // Variable, constant, function call. Ignore as undetermined.

@@ -136,21 +136,9 @@ abstract class AbstractFunctionCallParameterSniff extends Sniff
                     // Not a call to a PHP method.
                     return;
                 }
-            } else {
-                if (isset($this->ignoreTokens[$tokens[$prevNonEmpty]['code']]) === true) {
-                    // Not a call to a PHP function.
-                    return;
-                }
-
-                if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR) {
-                    $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
-                    if ($tokens[$prevPrevToken]['code'] === \T_STRING
-                        || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
-                    ) {
-                        // Namespaced function.
-                        return;
-                    }
-                }
+            } elseif (isset($this->ignoreTokens[$tokens[$prevNonEmpty]['code']]) === true) {
+                // Not a call to a PHP function.
+                return;
             }
         }
 

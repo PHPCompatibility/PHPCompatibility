@@ -113,7 +113,7 @@ final class NewStripTagsAllowableTagsArraySniff extends AbstractFunctionCallPara
 
             foreach ($items as $item) {
                 for ($i = $item['start']; $i <= $item['end']; $i++) {
-                    if (isset(Collections::namespacedNameTokens()[$tokens[$i]['code']]) === true
+                    if (isset(Collections::nameTokens()[$tokens[$i]['code']]) === true
                         || $tokens[$i]['code'] === \T_VARIABLE
                     ) {
                         // Variable, constant, function call. Ignore complete item as undetermined.

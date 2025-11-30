@@ -217,16 +217,6 @@ final class RemovedHexadecimalNumericStringsSniff extends Sniff
             return false;
         }
 
-        if ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR) {
-            $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
-            if ($tokens[$prevPrevToken]['code'] === \T_STRING
-                || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
-            ) {
-                // Namespaced function.
-                return false;
-            }
-        }
-
         return true;
     }
 }

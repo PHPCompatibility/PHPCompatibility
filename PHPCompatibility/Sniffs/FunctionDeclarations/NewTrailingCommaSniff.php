@@ -90,21 +90,15 @@ final class NewTrailingCommaSniff extends Sniff
         }
 
         $usePtr = $phpcsFile->findNext(Tokens::$emptyTokens, ($closer + 1), null, true);
-        if ($usePtr === false || $tokens[$usePtr]['code'] !== \T_USE) {
+        if ($usePtr === false
+            || $tokens[$usePtr]['code'] !== \T_USE
+            || isset($tokens[$usePtr]['parenthesis_closer']) === false
+        ) {
             // Closure without use list or live coding/parse error.
             return;
         }
 
-        $openParens = $phpcsFile->findNext(Tokens::$emptyTokens, ($usePtr + 1), null, true);
-        if ($openParens === false
-            || $tokens[$openParens]['code'] !== \T_OPEN_PARENTHESIS
-            || isset($tokens[$openParens]['parenthesis_closer']) === false
-        ) {
-            // Live coding/parse error.
-            return;
-        }
-
-        $closer            = $tokens[$openParens]['parenthesis_closer'];
+        $closer            = $tokens[$usePtr]['parenthesis_closer'];
         $lastInParenthesis = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($closer - 1), null, true);
 
         if ($tokens[$lastInParenthesis]['code'] === \T_COMMA) {

@@ -124,14 +124,6 @@ final class ArgumentFunctionsUsageSniff extends Sniff
         if (isset($ignore[$tokens[$prevNonEmpty]['code']]) === true) {
             // Not a call to a PHP function.
             return;
-        } elseif ($tokens[$prevNonEmpty]['code'] === \T_NS_SEPARATOR) {
-            $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($prevNonEmpty - 1), null, true);
-            if ($tokens[$prevPrevToken]['code'] === \T_STRING
-                || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
-            ) {
-                // Namespaced function on PHPCS 3.x.
-                return;
-            }
         }
 
         $data = [$tokens[$stackPtr]['content']];

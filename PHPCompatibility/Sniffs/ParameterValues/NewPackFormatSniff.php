@@ -101,7 +101,7 @@ final class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
         $tokens = $phpcsFile->getTokens();
 
         for ($i = $targetParam['start']; $i <= $targetParam['end']; $i++) {
-            if (isset(Collections::namespacedNameTokens()[$tokens[$i]['code']]) === true
+            if (isset(Collections::nameTokens()[$tokens[$i]['code']]) === true
                 || $tokens[$i]['code'] === \T_VARIABLE
             ) {
                 // Variable, constant, function call. Ignore as undetermined.

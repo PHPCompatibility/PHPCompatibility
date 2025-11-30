@@ -68,7 +68,7 @@ final class NewArrayReduceInitialTypeSniff extends AbstractFunctionCallParameter
     public function register()
     {
         // Enrich the variable value tokens array only once.
-        $this->variableValueTokens += Collections::namespacedNameTokens();
+        $this->variableValueTokens += Collections::nameTokens();
         $this->variableValueTokens += Collections::ooHierarchyKeywords();
 
         return parent::register();

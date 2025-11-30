@@ -304,16 +304,6 @@ final class RemovedIndirectModificationOfGlobalsSniff extends Sniff
             return false;
         }
 
-        if ($tokens[$beforeLabel]['code'] === \T_NS_SEPARATOR) {
-            $prevPrevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($beforeLabel - 1), null, true);
-            if ($tokens[$prevPrevToken]['code'] === \T_STRING
-                || $tokens[$prevPrevToken]['code'] === \T_NAMESPACE
-            ) {
-                // Namespaced function call.
-                return false;
-            }
-        }
-
         return $maybeLabel;
     }
 

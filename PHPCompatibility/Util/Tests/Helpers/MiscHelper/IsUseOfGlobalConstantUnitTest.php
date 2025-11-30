@@ -61,16 +61,10 @@ final class IsUseOfGlobalConstantUnitTest extends UtilityMethodTestCase
      *
      * @return void
      */
-    public function testIsUseOfGlobalConstant($commentString, $expected, $targetContent = null)
+    public function testIsUseOfGlobalConstant($commentString, $expected, $targetContent = 'PHP_VERSION_ID')
     {
-        // Work around tokenization difference between PHPCS 3.x/4.x.
-        if (self::usesPhp8NameTokens() === true && $targetContent !== null) {
-            $stackPtr = $this->getTargetToken($commentString, Collections::nameTokens(), $targetContent);
-        } else {
-            $stackPtr = $this->getTargetToken($commentString, \T_STRING, 'PHP_VERSION_ID');
-        }
-
-        $result = MiscHelper::isUseOfGlobalConstant(self::$phpcsFile, $stackPtr);
+        $stackPtr = $this->getTargetToken($commentString, Collections::nameTokens(), $targetContent);
+        $result   = MiscHelper::isUseOfGlobalConstant(self::$phpcsFile, $stackPtr);
         $this->assertSame($expected, $result);
     }
 
