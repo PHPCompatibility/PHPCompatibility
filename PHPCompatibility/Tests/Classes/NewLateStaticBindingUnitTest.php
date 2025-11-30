@@ -48,7 +48,7 @@ final class NewLateStaticBindingUnitTest extends BaseSniffTestCase
      *
      * @see testLateStaticBinding()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataLateStaticBinding()
     {
@@ -85,7 +85,7 @@ final class NewLateStaticBindingUnitTest extends BaseSniffTestCase
      *
      * @see testLateStaticBindingOutsideClassScope()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataLateStaticBindingOutsideClassScope()
     {
@@ -115,7 +115,7 @@ final class NewLateStaticBindingUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

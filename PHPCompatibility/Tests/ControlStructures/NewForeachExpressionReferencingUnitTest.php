@@ -42,11 +42,11 @@ final class NewForeachExpressionReferencingUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * dataNewForeachExpressionReferencing
+     * Data provider.
      *
      * @see testNewForeachExpressionReferencing()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNewForeachExpressionReferencing()
     {
@@ -77,11 +77,11 @@ final class NewForeachExpressionReferencingUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * dataNoFalsePositives
+     * Data provider.
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

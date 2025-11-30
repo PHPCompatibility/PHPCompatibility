@@ -45,7 +45,7 @@ final class DiscouragedSwitchContinueUnitTest extends BaseSniffTestCase
      *
      * @see testDiscouragedSwitchContinue()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataDiscouragedSwitchContinue()
     {
@@ -103,7 +103,7 @@ final class DiscouragedSwitchContinueUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

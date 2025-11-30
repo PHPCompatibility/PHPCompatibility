@@ -45,7 +45,7 @@ final class NewFinalConstantsUnitTest extends BaseSniffTestCase
      *
      * @see testFinalConstants()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataFinalConstants()
     {
@@ -117,7 +117,7 @@ final class NewFinalConstantsUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

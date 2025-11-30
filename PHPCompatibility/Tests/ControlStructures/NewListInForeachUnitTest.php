@@ -41,11 +41,11 @@ final class NewListInForeachUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * dataNewListInForeach
+     * Data provider.
      *
      * @see testNewListInForeach()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNewListInForeach()
     {
@@ -76,11 +76,11 @@ final class NewListInForeachUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * dataNoFalsePositives
+     * Data provider.
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

@@ -45,7 +45,7 @@ final class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTe
      *
      * @see testForbiddenSwitchWithMultipleDefaultBlocks()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataForbiddenSwitchWithMultipleDefaultBlocks()
     {
@@ -81,7 +81,7 @@ final class ForbiddenSwitchWithMultipleDefaultBlocksUnitTest extends BaseSniffTe
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

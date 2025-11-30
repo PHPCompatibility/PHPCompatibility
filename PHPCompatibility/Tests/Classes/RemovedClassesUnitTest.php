@@ -31,12 +31,12 @@ final class RemovedClassesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataRemovedClass
      *
-     * @param string $className      Class name.
-     * @param string $removedIn      The PHP version in which the class was removed.
-     * @param array  $lines          The line numbers in the test file which apply to this class.
-     * @param string $okVersion      A PHP version in which the class was still valid.
-     * @param string $removedVersion Optional PHP version to test removed message with -
-     *                               if different from the $removedIn version.
+     * @param string     $className      Class name.
+     * @param string     $removedIn      The PHP version in which the class was removed.
+     * @param array<int> $lines          The line numbers in the test file which apply to this class.
+     * @param string     $okVersion      A PHP version in which the class was still valid.
+     * @param string     $removedVersion Optional PHP version to test removed message with -
+     *                                   if different from the $removedIn version.
      *
      * @return void
      */
@@ -60,7 +60,7 @@ final class RemovedClassesUnitTest extends BaseSniffTestCase
      *
      * @see testRemovedClass()
      *
-     * @return array
+     * @return array<array<string|array<int>>>
      */
     public static function dataRemovedClass()
     {
@@ -127,7 +127,7 @@ final class RemovedClassesUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

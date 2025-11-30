@@ -46,7 +46,7 @@ final class NewNonCapturingCatchUnitTest extends BaseSniffTestCase
      *
      * @see testNewNonCapturingCatch()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNewNonCapturingCatch()
     {
@@ -79,7 +79,7 @@ final class NewNonCapturingCatchUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

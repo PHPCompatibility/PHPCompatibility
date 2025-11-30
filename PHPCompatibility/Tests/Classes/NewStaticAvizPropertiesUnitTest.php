@@ -45,7 +45,7 @@ final class NewStaticAvizPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testNewStaticAvizProperties()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNewStaticAvizProperties()
     {
@@ -81,7 +81,7 @@ final class NewStaticAvizPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

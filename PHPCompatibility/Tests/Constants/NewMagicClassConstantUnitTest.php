@@ -48,7 +48,7 @@ final class NewMagicClassConstantUnitTest extends BaseSniffTestCase
      *
      * @see testNewMagicClassConstant()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNewMagicClassConstant()
     {
@@ -85,7 +85,7 @@ final class NewMagicClassConstantUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {
@@ -127,7 +127,7 @@ final class NewMagicClassConstantUnitTest extends BaseSniffTestCase
      *
      * @see testNewMagicClassConstantOnObject()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNewMagicClassConstantOnObject()
     {

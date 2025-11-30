@@ -45,7 +45,7 @@ final class RemovedGetClassNoArgsSniff extends AbstractFunctionCallParameterSnif
      *
      * @since 10.0.0
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $targetFunctions = [
         'get_class'        => 'object',

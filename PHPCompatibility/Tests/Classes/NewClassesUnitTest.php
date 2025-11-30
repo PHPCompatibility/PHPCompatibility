@@ -31,12 +31,12 @@ final class NewClassesUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataNewClass
      *
-     * @param string $className         Class name.
-     * @param string $lastVersionBefore The PHP version just *before* the class was introduced.
-     * @param array  $lines             The line numbers in the test file which apply to this class.
-     * @param string $okVersion         A PHP version in which the class was ok to be used.
-     * @param string $testVersion       Optional. A PHP version in which to test for the error if different
-     *                                  from the $lastVersionBefore.
+     * @param string     $className         Class name.
+     * @param string     $lastVersionBefore The PHP version just *before* the class was introduced.
+     * @param array<int> $lines             The line numbers in the test file which apply to this class.
+     * @param string     $okVersion         A PHP version in which the class was ok to be used.
+     * @param string     $testVersion       Optional. A PHP version in which to test for the error if different
+     *                                      from the $lastVersionBefore.
      *
      * @return void
      */
@@ -60,7 +60,7 @@ final class NewClassesUnitTest extends BaseSniffTestCase
      *
      * @see testNewClass()
      *
-     * @return array
+     * @return array<array<string|array<int>>>
      */
     public static function dataNewClass()
     {
@@ -361,7 +361,7 @@ final class NewClassesUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

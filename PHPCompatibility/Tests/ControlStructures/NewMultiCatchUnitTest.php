@@ -46,7 +46,7 @@ final class NewMultiCatchUnitTest extends BaseSniffTestCase
      *
      * @see testNewMultiCatch()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNewMultiCatch()
     {
@@ -77,7 +77,7 @@ final class NewMultiCatchUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

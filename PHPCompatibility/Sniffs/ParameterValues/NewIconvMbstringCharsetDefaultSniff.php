@@ -197,15 +197,15 @@ final class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallPara
      * @param string                      $functionName The token content (function name) which was matched.
      * @param array                       $parameters   Array with information about the parameters.
      *
-     * @return int|void Integer stack pointer to skip forward or void to continue
-     *                  normal file processing.
+     * @return void
      */
     public function processParameters(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {
         $functionLC = \strtolower($functionName);
         if ($functionLC === 'iconv_mime_encode') {
             // Special case the iconv_mime_encode() function.
-            return $this->processIconvMimeEncode($phpcsFile, $stackPtr, $functionName, $parameters);
+            $this->processIconvMimeEncode($phpcsFile, $stackPtr, $functionName, $parameters);
+            return;
         }
 
         $paramInfo   = $this->targetFunctions[$functionLC];
@@ -233,8 +233,7 @@ final class NewIconvMbstringCharsetDefaultSniff extends AbstractFunctionCallPara
      * @param string                      $functionName The token content (function name) which was matched.
      * @param array                       $parameters   Array with information about the parameters.
      *
-     * @return int|void Integer stack pointer to skip forward or void to continue
-     *                  normal file processing.
+     * @return void
      */
     public function processIconvMimeEncode(File $phpcsFile, $stackPtr, $functionName, $parameters)
     {

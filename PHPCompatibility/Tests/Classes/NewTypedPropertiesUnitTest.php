@@ -51,7 +51,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testNewTypedProperties()
      *
-     * @return array
+     * @return array<array<int|bool>>
      */
     public static function dataNewTypedProperties()
     {
@@ -140,7 +140,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {
@@ -184,7 +184,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testInvalidPropertyType()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataInvalidPropertyType()
     {
@@ -220,7 +220,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testInvalidLongType()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataInvalidLongType()
     {
@@ -261,7 +261,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testNewTypedPropertyTypes()
      *
-     * @return array
+     * @return array<array<int|string|bool>>
      */
     public static function dataNewTypedPropertyTypes()
     {
@@ -335,7 +335,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testNewUnionTypes()
      *
-     * @return array
+     * @return array<array<int|string|bool>>
      */
     public static function dataNewUnionTypes()
     {
@@ -380,7 +380,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testInvalidNonUnionNullFalseType()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataInvalidNonUnionNullFalseType()
     {
@@ -413,7 +413,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testInvalidNonUnionNullFalseTypeNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataInvalidNonUnionNullFalseTypeNoFalsePositives()
     {
@@ -449,7 +449,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testNewIntersectionTypes()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataNewIntersectionTypes()
     {
@@ -488,7 +488,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testNewDNFTypes()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataNewDNFTypes()
     {
@@ -524,7 +524,7 @@ final class NewTypedPropertiesUnitTest extends BaseSniffTestCase
      *
      * @see testNewDNFTypesNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNewDNFTypesNoFalsePositives()
     {

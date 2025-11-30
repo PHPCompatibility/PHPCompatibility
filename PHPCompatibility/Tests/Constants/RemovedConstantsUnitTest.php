@@ -55,7 +55,7 @@ final class RemovedConstantsUnitTest extends BaseSniffTestCase
      *
      * @see testDeprecatedConstant()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataDeprecatedConstant()
     {
@@ -176,7 +176,7 @@ final class RemovedConstantsUnitTest extends BaseSniffTestCase
      *
      * @see testDeprecatedConstantWithAlternative()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataDeprecatedConstantWithAlternative()
     {
@@ -217,7 +217,7 @@ final class RemovedConstantsUnitTest extends BaseSniffTestCase
      *
      * @see testRemovedConstant()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataRemovedConstant()
     {
@@ -967,7 +967,7 @@ final class RemovedConstantsUnitTest extends BaseSniffTestCase
      *
      * @see testDeprecatedRemovedConstant()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataDeprecatedRemovedConstant()
     {
@@ -1080,7 +1080,7 @@ final class RemovedConstantsUnitTest extends BaseSniffTestCase
      *
      * @see testDeprecatedRemovedConstantWithAlternative()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataDeprecatedRemovedConstantWithAlternative()
     {
@@ -1113,7 +1113,7 @@ final class RemovedConstantsUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

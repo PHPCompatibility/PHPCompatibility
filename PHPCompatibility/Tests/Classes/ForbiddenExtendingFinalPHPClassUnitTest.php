@@ -51,7 +51,7 @@ final class ForbiddenExtendingFinalPHPClassUnitTest extends BaseSniffTestCase
      *
      * @see testForbiddenExtendingFinalPHPClass()
      *
-     * @return array
+     * @return array<array<string|int>>
      */
     public static function dataForbiddenExtendingFinalPHPClass()
     {
@@ -84,7 +84,7 @@ final class ForbiddenExtendingFinalPHPClassUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int>>
      */
     public static function dataNoFalsePositives()
     {

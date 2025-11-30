@@ -60,7 +60,7 @@ final class ForbiddenThisUseContextsSniff extends Sniff
      *
      * @since 9.1.0
      *
-     * @var array<int|string, true>
+     * @var array<int|string, int|string|true>
      */
     private $skipOverScopes = Tokens::OO_SCOPE_TOKENS + [
         \T_FUNCTION => true,
