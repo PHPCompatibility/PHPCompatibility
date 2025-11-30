@@ -24,7 +24,7 @@ To start contributing, fork the repository, create a new branch in your fork, ma
 Please make sure that your pull request contains unit tests covering what's being addressed by it.
 
 * All new sniffs should be accompanied by an XML documentation file describing the change in PHP.
-* All code should be compatible with PHP_CodeSniffer >= 4.0.0 _(checked in CI)_.
+* All code should be compatible with PHP_CodeSniffer >= 4.0.1 _(checked in CI)_.
 * All code should be compatible with PHP 7.2 to PHP nightly _(checked in CI)_.
 * Try and avoid code duplication by using the utility functions from [PHPCSUtils] whenever relevant.
 * All code should comply with the PHPCompatibility coding standards _(checked in CI)_.
