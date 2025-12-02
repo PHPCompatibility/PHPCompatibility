@@ -16,7 +16,13 @@ function example(
     $arg2
 ) {}
 
-$closure = function ($arg1, $arg2) use ($a, $b) {};
+function (
+    $arg1,
+    $arg2
+) use (
+    $a,
+    $b
+) {};
         ]]>
         </code>
         <code title="PHP &gt;= 8.0: trailing comma.">
@@ -26,7 +32,13 @@ function example(
     $arg2<em>,</em>
 ) {}
 
-$closure = function ($arg1, $arg2<em>,</em>) use ($a, $b<em>,</em>) {};
+function (
+    $arg1,
+    $arg2<em>,</em>
+) use (
+    $a,
+    $b<em>,</em>
+) {};
         ]]>
         </code>
     </code_comparison>
