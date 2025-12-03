@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Function Call Trailing Comma"
+    >
+    <standard>
+    <![CDATA[
+    Since PHP 7.3, function calls, isset() and unset() support trailing commas.
+
+    As of PHP 8.4, exit() and die() also support trailing commas.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: no trailing comma.">
+        <![CDATA[
+example($arg1, $arg2);
+        ]]>
+        </code>
+        <code title="PHP &gt;= 7.3: trailing comma.">
+        <![CDATA[
+example($arg1, $arg2<em>,</em>);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
