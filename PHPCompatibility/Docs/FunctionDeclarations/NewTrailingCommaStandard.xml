@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Trailing Comma"
+    >
+    <standard>
+    <![CDATA[
+    Since PHP 8.0, function parameters and closure use lists support trailing commas.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: no trailing comma.">
+        <![CDATA[
+function example(
+    $arg1,
+    $arg2
+) {}
+
+$cl = function ($arg1, $arg2) use ($a, $b) {};
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.0: trailing comma.">
+        <![CDATA[
+function example(
+    $arg1,
+    $arg2<em>,</em>
+) {}
+
+$cl = function ($arg1, $arg2<em>,</em>) use ($a, $b<em>,</em>) {};
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
