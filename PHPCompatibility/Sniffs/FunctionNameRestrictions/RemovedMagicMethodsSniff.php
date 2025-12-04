@@ -29,9 +29,9 @@ use PHPCSUtils\Utils\Scopes;
  */
 final class RemovedMagicMethodsSniff extends Sniff
 {
-    private const REMOVED         = 'removed';
-    private const DEPRECATED      = 'deprecated';
-    private const SOFT_DEPRECATED = 'softDeprecated';
+    const REMOVED         = 'removed';
+    const DEPRECATED      = 'deprecated';
+    const SOFT_DEPRECATED = 'softDeprecated';
 
     /**
      * List of all violation types and their semantic meaning.
