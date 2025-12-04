@@ -167,7 +167,7 @@ final class RemovedMagicMethodsSniff extends Sniff
             if (!isset($compatibilityMatrix[$violationTypeId])) {
                 continue;
             }
-            if (ScannedCode::shouldRunOnOrAbove($compatibilityMatrix[$violationTypeId])) {
+            if (ScannedCode::shouldRunOnOrAbove($compatibilityMatrix[$violationTypeId]) === true) {
                 return $this->violationTypes[$violationTypeId];
             }
         }
