@@ -30,20 +30,18 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataSoftDeprecations
      *
-     * @param string $version     Target version
      * @param string $method      Method name
      * @param string $alternative Alternative proposed
      * @param int[]  $lineNumbers The line numbers of the violation
      *
      * @return void
      */
-    public function testSoftDeprecations($version, $method, $alternative, $lineNumbers)
+    public function testSoftDeprecations($method, $alternative, $lineNumbers)
     {
-        $file            = $this->sniffFile(__FILE__, $version);
+        $file            = $this->sniffFile(__FILE__, '8.5');
         $expectedMessage = sprintf(
-            'Magic method %s is maintained for backward compatibility since PHP %s. Use %s instead.',
+            'Magic method %s is maintained for backward compatibility since PHP 8.5. Use %s instead.',
             $method,
-            $version,
             $alternative
         );
         foreach ($lineNumbers as $lineNumber) {
@@ -61,32 +59,31 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     public static function dataSoftDeprecations()
     {
         return [
-            ['8.5', '__sleep()', '__serialize', [47, 53, 59, 64]],
-            ['8.5', '__wakeup()', '__unserialize', [48, 54, 60, 65]],
+            ['__sleep()', '__serialize', [47, 53, 59, 64]],
+            ['__wakeup()', '__unserialize', [48, 54, 60, 65]],
         ];
     }
 
     /**
-     * Ensure no false positives due to misleading syntax out excluded scopes.
+     * Verify there are no false positives on valid code.
      *
      * @dataProvider dataNoFalsePositives
      *
-     * @param string $version     Target version
      * @param string $method      Method name
      * @param int[]  $lineNumbers The line numbers of the violation
      *
      * @return void
      */
-    public function testNoFalsePositives($version, $method, $lineNumbers)
+    public function testNoFalsePositives($method, $lineNumbers)
     {
-        $file = $this->sniffFile(__FILE__, $version);
+        $file = $this->sniffFile(__FILE__, '8.5');
         foreach ($lineNumbers as $lineNumber) {
             $this->assertNoViolation($file, $lineNumber);
         }
     }
 
     /**
-     * All versions are invalid for the associated constants, but the snippet should not be picked up by the sniff.
+     * Data provider.
      *
      * @see testNoFalsePositives()
      *
@@ -96,48 +93,22 @@ final class RemovedMagicMethodsUnitTest extends BaseSniffTestCase
     {
         return [
             // misleading syntax
-            ['8.4', '__sleep()', [5, 6, 7]],
+            ['__sleep()', [5, 6, 7]],
 
             // inapplicable contexts
-            ['8.4', '__sleep()', [12, 17, 23, 33, 39]],
-            ['8.4', '__wakeup()', [13, 18, 24, 33, 40]],
-
-            // parse error
-            ['8.4', '__sleep()', [72]],
+            ['__sleep()', [12, 17, 23, 33, 39]],
+            ['__wakeup()', [13, 18, 24, 34, 40]],
         ];
     }
 
     /**
-     * Ensure no messages when found in supported versions.
-     *
-     * @dataProvider dataNoViolationsOnValidVersion
-     *
-     * @param string $version     Target version
-     * @param string $method      Method name
-     * @param int[]  $lineNumbers The line numbers of the violation
+     * Verify no notices are thrown at all on PHP versions on which the syntax is supported.
      *
      * @return void
      */
-    public function testNoViolationsOnValidVersion($version, $method, $lineNumbers)
+    public function testNoViolationsOnValidVersion()
     {
-        $file = $this->sniffFile(__FILE__, $version);
-        foreach ($lineNumbers as $lineNumber) {
-            $this->assertNoViolation($file, $lineNumber);
-        }
-    }
-
-    /**
-     * All versions are valid for the associated magic methods, and the sniff shouldn't flag warnings or errors
-     *
-     * @see testNoViolationsOnValidVersion()
-     *
-     * @return array
-     */
-    public static function dataNoViolationsOnValidVersion()
-    {
-        return [
-            ['8.4', '__sleep()', [47, 53, 59, 64]],
-            ['8.4', '__wakeup()', [48, 54, 60, 65]],
-        ];
+        $file = $this->sniffFile(__FILE__, '8.4');
+        $this->assertNoViolation($file);
     }
 }

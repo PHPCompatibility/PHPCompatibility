@@ -64,10 +64,3 @@ $DeclaredInAnonymousClass = new class {
     function __sleep() {} // soft-deprecated since PHP 8.5
     function __wakeup() {} // soft-deprecated since PHP 8.5
 };
-
-// Parse error / live coding
-// @see RemovedMagicMethodsUnitTest::dataNoFalsePositives
-class Foo
-{
-    function __sleep(
-}
