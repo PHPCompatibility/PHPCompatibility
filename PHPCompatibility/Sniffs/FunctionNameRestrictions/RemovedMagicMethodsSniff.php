@@ -29,9 +29,9 @@ use PHPCSUtils\Utils\Scopes;
  */
 final class RemovedMagicMethodsSniff extends Sniff
 {
-    const REMOVED         = 'removed';
-    const DEPRECATED      = 'deprecated';
-    const SOFT_DEPRECATED = 'softDeprecated';
+    private const REMOVED         = 'removed';
+    private const DEPRECATED      = 'deprecated';
+    private const SOFT_DEPRECATED = 'softDeprecated';
 
     /**
      * List of all violation types and their semantic meaning.
@@ -126,7 +126,7 @@ final class RemovedMagicMethodsSniff extends Sniff
         $scannedMethod = \strtolower(
             FunctionDeclarations::getName($phpcsFile, $stackPtr)
         );
-        if (!isset($this->methodCompatibilityMatrix[$scannedMethod])) {
+        if (isset($this->methodCompatibilityMatrix[$scannedMethod]) === false) {
             return;
         }
 
@@ -164,7 +164,7 @@ final class RemovedMagicMethodsSniff extends Sniff
         $violationTypeIds = array_keys($this->violationTypes);
 
         foreach ($violationTypeIds as $violationTypeId) {
-            if (!isset($compatibilityMatrix[$violationTypeId])) {
+            if (isset($compatibilityMatrix[$violationTypeId]) === false) {
                 continue;
             }
             if (ScannedCode::shouldRunOnOrAbove($compatibilityMatrix[$violationTypeId]) === true) {
