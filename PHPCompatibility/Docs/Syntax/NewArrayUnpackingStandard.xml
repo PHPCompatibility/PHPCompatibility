@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Array Unpacking"
+    >
+    <standard>
+    <![CDATA[
+    Since PHP 7.4, the spread operator can be used to unpack arrays within array declarations.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: using array_merge() or array_splice().">
+        <![CDATA[
+$a = [2, 3];
+
+$b = array_merge([0, 1], <em>$a</em>, [4, 5]);
+
+$c = [0, 1, 4, 5];
+
+array_splice($c, 2, 0, <em>$a</em>);
+        ]]>
+        </code>
+        <code title="PHP &gt;= 7.4: array unpacking with spread operator.">
+        <![CDATA[
+$a = [2, 3];
+
+$b = [0, 1, <em>...$a</em>, 4, 5];
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
