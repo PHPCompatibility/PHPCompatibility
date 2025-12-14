@@ -13,14 +13,14 @@
         <![CDATA[
 $a = [2, 3];
 
-$b = array_merge([0, 1], $a, [4, 5]);
+$b = array_merge([0, 1], <em>$a</em>, [4, 5]);
         ]]>
         </code>
         <code title="PHP &gt;= 7.4: array unpacking with spread operator.">
         <![CDATA[
 $a = [2, 3];
 
-$b = [0, 1, <em>...</em>$a, 4, 5];
+$b = [0, 1, <em>...$a</em>, 4, 5];
         ]]>
         </code>
     </code_comparison>
