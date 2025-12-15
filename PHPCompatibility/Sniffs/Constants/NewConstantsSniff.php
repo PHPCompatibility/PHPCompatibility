@@ -7113,6 +7113,10 @@ final class NewConstantsSniff extends Sniff
             '8.1'       => true,
             'extension' => 'curl',
         ],
+        'IMAGETYPE_AVIF' => [
+            '8.0' => false,
+            '8.1' => true,
+        ],
         'IMG_AVIF' => [
             '8.0'       => false,
             '8.1'       => true,
@@ -8389,6 +8393,10 @@ final class NewConstantsSniff extends Sniff
             'extension' => 'xml',
         ],
 
+        'IMAGETYPE_HEIF' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
         'IMAGETYPE_SVG' => [
             '8.4' => false,
             '8.5' => true,
