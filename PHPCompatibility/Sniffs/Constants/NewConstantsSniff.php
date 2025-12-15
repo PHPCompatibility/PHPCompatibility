@@ -8393,6 +8393,10 @@ final class NewConstantsSniff extends Sniff
             'extension' => 'xml',
         ],
 
+        'IMAGETYPE_HEIF' => [
+            '8.4' => false,
+            '8.5' => true,
+        ],
         'IMAGETYPE_SVG' => [
             '8.4' => false,
             '8.5' => true,
