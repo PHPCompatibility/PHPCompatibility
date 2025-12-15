@@ -1492,6 +1492,7 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURLOPT_PROXY_SSLKEY_BLOB', '8.0', 1419, '8.1'],
             ['CURLOPT_SSLCERT_BLOB', '8.0', 1420, '8.1'],
             ['CURLOPT_SSLKEY_BLOB', '8.0', 1421, '8.1'],
+            ['IMAGETYPE_AVIF', '8.0', 1741, '8.1'],
             ['IMG_AVIF', '8.0', 1422, '8.1'],
             ['IMG_WEBP_LOSSLESS', '8.0', 1423, '8.1'],
             ['MHASH_MURMUR3A', '8.0', 1696, '8.1'],
