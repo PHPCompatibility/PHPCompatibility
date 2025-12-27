@@ -158,11 +158,11 @@ jobs:
 
   markdownlint:
     name: 'Lint Markdown'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@main
+    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@a06ac9fa50dcd1d98cc581e9a4e331363a69ea09 # v1.1.0
 
   yamllint:
     name: 'Lint Yaml'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@main
+    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@a06ac9fa50dcd1d98cc581e9a4e331363a69ea09 # v1.1.0
     with:
       strict: true
 
@@ -170,16 +170,4 @@ jobs:
     # The properties in the PHPCS Tokens class have been deprecated.
     # The code in this repository should always use the constants instead.
     name: 'Find use of Tokens properties'
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-
-      - name: Find uses
-        id: findprops
-        shell: cmd
-        run: |
-          findstr /S /N /C:"Tokens::$" *.php
-          IF %ERRORLEVEL% NEQ 1 (Echo Please use the Tokens constants instead of the properties &Exit /b 1)
-          IF %ERRORLEVEL% EQU 1 (Echo All good &Exit /b 0)
+    uses: PHPCSStandards/.github/.github/workflows/reusable-findtokenprops.yml@a06ac9fa50dcd1d98cc581e9a4e331363a69ea09 # v1.1.0
