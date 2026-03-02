@@ -147,3 +147,8 @@ Partially\Qualified\ClassName::FOO[1][0];
 namespace\callMe()[0];
 \Fully\Qualified\callMe($input)[0];
 Partially\Qualified\callMe($a, $b)[0];
+
+// Safeguard against false positives for PHP 8.4 property hooks.
+interface Thing {
+    public string $id { get; }
+}
