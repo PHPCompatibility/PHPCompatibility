@@ -29,7 +29,7 @@ jobs:
           persist-credentials: false
 
       - name: Install PHP
-        uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1 # 2.36.0
+        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # 2.37.0
         with:
           php-version: 'latest'
           coverage: none
@@ -143,7 +143,7 @@ jobs:
           persist-credentials: false
 
       - name: Install PHP
-        uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1 # 2.36.0
+        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # 2.37.0
         with:
           php-version: 'latest'
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On, display_startup_errors=On
@@ -158,11 +158,11 @@ jobs:
 
   markdownlint:
     name: 'Lint Markdown'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@0d44fe2771ae7bc1254a0a4ec596d8110d16d3dc # v1.1.1
+    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@3d96a6d85381655b6cb0bc4eac175a78f18d9d8f # v1.1.2
 
   yamllint:
     name: 'Lint Yaml'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@0d44fe2771ae7bc1254a0a4ec596d8110d16d3dc # v1.1.1
+    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@3d96a6d85381655b6cb0bc4eac175a78f18d9d8f # v1.1.2
     with:
       strict: true
 
@@ -170,4 +170,4 @@ jobs:
     # The properties in the PHPCS Tokens class have been deprecated.
     # The code in this repository should always use the constants instead.
     name: 'Find use of Tokens properties'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-findtokenprops.yml@0d44fe2771ae7bc1254a0a4ec596d8110d16d3dc # v1.1.1
+    uses: PHPCSStandards/.github/.github/workflows/reusable-findtokenprops.yml@3d96a6d85381655b6cb0bc4eac175a78f18d9d8f # v1.1.2
