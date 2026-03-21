@@ -56,7 +56,7 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: Install Composer dependencies
-        uses: "ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520" # 3.1.1
+        uses: "ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda" # 4.0.0
         with:
           # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies may allow it yet.
           composer-options: ${{ matrix.php == 'nightly' && '--ignore-platform-req=php+' || '' }}
@@ -165,7 +165,7 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: Install Composer dependencies
-        uses: "ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520" # 3.1.1
+        uses: "ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda" # 4.0.0
         with:
           # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies may allow it yet.
           composer-options: ${{ matrix.php == '8.6' && '--ignore-platform-req=php+' || '' }}
@@ -275,7 +275,7 @@ jobs:
         run: composer config --unset lock
 
       - name: Install Composer dependencies
-        uses: "ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520" # 3.1.1
+        uses: "ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda" # 4.0.0
         with:
           # Bust the cache at least once a month - output format: YYYY-MM.
           custom-cache-suffix: $(date -u "+%Y-%m")
