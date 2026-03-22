@@ -17,6 +17,7 @@ use PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff;
 use PHPCompatibility\Sniffs\Syntax\NewFunctionArrayDereferencingSniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Using the curly brace syntax to access array or string offsets has been deprecated in PHP 7.4
@@ -160,6 +161,11 @@ final class RemovedCurlyBraceArrayAccessSniff extends Sniff
 
         // Note: Overwriting braces in each `if` is fine as only one will match anyway.
         if ($tokens[$stackPtr]['code'] === \T_VARIABLE) {
+            if (Scopes::isOOProperty($phpcsFile, $stackPtr) === true) {
+                // This will be a PHP 8.4 property hook, not array access.
+                return;
+            }
+
             $braces = $this->isVariableArrayAccess($phpcsFile, $stackPtr);
         }
 
