@@ -1402,3 +1402,21 @@ curl_close();
 curl_share_close();
 imagedestroy();
 mysqli_execute();
+
+// PHP 8.6.
+mb_ereg();
+mb_ereg_match();
+mb_ereg_replace();
+mb_ereg_replace_callback();
+mb_ereg_search();
+mb_ereg_search_getpos();
+mb_ereg_search_getregs();
+mb_ereg_search_init();
+mb_ereg_search_pos();
+mb_ereg_search_regs();
+mb_ereg_search_setpos();
+mb_eregi();
+mb_eregi_replace();
+mb_regex_encoding();
+mb_regex_set_options();
+mb_split();

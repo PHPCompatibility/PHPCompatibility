@@ -760,6 +760,15 @@ final class RemovedIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             'extension'   => 'intl',
             'alternative' => 'intl.use_exceptions',
         ],
+
+        'mbstring.regex_retry_limit' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mbstring.regex_stack_limit' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
     ];
 
     /**

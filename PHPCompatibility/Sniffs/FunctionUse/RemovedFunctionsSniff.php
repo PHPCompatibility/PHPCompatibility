@@ -5732,6 +5732,71 @@ final class RemovedFunctionsSniff extends Sniff
             '8.5'       => false,
             'extension' => 'xml',
         ],
+
+        'mb_ereg' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_ereg_match' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_ereg_replace' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_ereg_replace_callback' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_ereg_search' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_ereg_search_getpos' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_ereg_search_getregs' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_ereg_search_init' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_ereg_search_pos' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_ereg_search_regs' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_ereg_search_setpos' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_eregi' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_eregi_replace' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_regex_encoding' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_regex_set_options' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
+        'mb_split' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
     ];
 
 

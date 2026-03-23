@@ -3480,6 +3480,11 @@ final class RemovedConstantsSniff extends Sniff
             '8.5'       => false,
             'extension' => 'mhash',
         ],
+
+        'MB_ONIGURUMA_VERSION' => [
+            '8.6'       => false,
+            'extension' => 'mbstring',
+        ],
     ];
 
 
