@@ -29,7 +29,7 @@ jobs:
           persist-credentials: false
 
       - name: Install PHP
-        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # 2.37.0
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
           php-version: 'latest'
           coverage: none
@@ -49,37 +49,37 @@ jobs:
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Validate ruleset XML file against schema
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@3cec20cf1522fd72a88837490a5d987cdeef7fac # v1.0.2
         with:
           pattern: "PHPCompatibility/ruleset.xml"
           xsd-file: "vendor/squizlabs/php_codesniffer/phpcs.xsd"
 
       - name: Validate documentation XML files against schema
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@3cec20cf1522fd72a88837490a5d987cdeef7fac # v1.0.2
         with:
           pattern: "./PHPCompatibility/Docs/*/*Standard.xml"
           xsd-file: "vendor/phpcsstandards/phpcsdevtools/DocsXsd/phpcsdocs.xsd"
 
       - name: Validate Project PHPCS ruleset against schema
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@3cec20cf1522fd72a88837490a5d987cdeef7fac # v1.0.2
         with:
           pattern: "phpcs.xml.dist"
           xsd-file: "vendor/squizlabs/php_codesniffer/phpcs.xsd"
 
       - name: "Validate PHPUnit < 10 config for use with PHPUnit 8"
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@3cec20cf1522fd72a88837490a5d987cdeef7fac # v1.0.2
         with:
           pattern: "phpunit.xml.dist"
           xsd-file: "vendor/phpunit/phpunit/schema/8.5.xsd"
 
       - name: "Validate PHPUnit < 10 config for use with PHPUnit 9"
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@3cec20cf1522fd72a88837490a5d987cdeef7fac # v1.0.2
         with:
           pattern: "phpunit.xml.dist"
           xsd-file: "vendor/phpunit/phpunit/schema/9.2.xsd"
 
       - name: "Validate PHPUnit 10+ config for use with PHPUnit 10"
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@3cec20cf1522fd72a88837490a5d987cdeef7fac # v1.0.2
         with:
           pattern: "phpunit10.xml.dist"
           xsd-file: "vendor/phpunit/phpunit/phpunit.xsd"
@@ -128,7 +128,7 @@ jobs:
 
       # Show XML violations inline in the file diff.
       - name: Enable showing XML issues inline
-        uses: korelstar/xmllint-problem-matcher@1bd292d642ddf3d369d02aaa8b262834d61198c0 # v1.2.0
+        uses: korelstar/xmllint-problem-matcher@dd2ad21bd8a2de0187cb621419537f345e7e509c # v1.3.0
 
       - name: Check XML code style
         run: diff -B ./PHPCompatibility/ruleset.xml <(xmllint --format "./PHPCompatibility/ruleset.xml")
@@ -143,7 +143,7 @@ jobs:
           persist-credentials: false
 
       - name: Install PHP
-        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # 2.37.0
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
           php-version: 'latest'
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On, display_startup_errors=On
@@ -158,11 +158,11 @@ jobs:
 
   markdownlint:
     name: 'Lint Markdown'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@4ed5b7db58f8a2703cb83fdd7cf8a018b3aa974b # v1.1.3
+    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@8ab4abdb86d0a69a15ea85472ab7dd5c44a37759 # v1.2.0
 
   yamllint:
     name: 'Lint Yaml'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@4ed5b7db58f8a2703cb83fdd7cf8a018b3aa974b # v1.1.3
+    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@8ab4abdb86d0a69a15ea85472ab7dd5c44a37759 # v1.2.0
     with:
       strict: true
 
@@ -170,4 +170,4 @@ jobs:
     # The properties in the PHPCS Tokens class have been deprecated.
     # The code in this repository should always use the constants instead.
     name: 'Find use of Tokens properties'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-findtokenprops.yml@4ed5b7db58f8a2703cb83fdd7cf8a018b3aa974b # v1.1.3
+    uses: PHPCSStandards/.github/.github/workflows/reusable-findtokenprops.yml@8ab4abdb86d0a69a15ea85472ab7dd5c44a37759 # v1.2.0
