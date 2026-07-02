@@ -1030,7 +1030,7 @@ final class NewClassesSniff extends Sniff
             '8.4'       => true,
             'extension' => 'odbc',
         ],
-        'Pdo\DbLib' => [
+        'Pdo\Dblib' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'pdo',
