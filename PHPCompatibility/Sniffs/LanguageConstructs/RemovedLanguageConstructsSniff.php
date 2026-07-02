@@ -47,6 +47,11 @@ final class RemovedLanguageConstructsSniff extends Sniff
             'description' => 'The backtick operator',
             'alternative' => 'shell_exec()',
         ],
+        'T_LIST' => [
+            '8.6'         => false,
+            'description' => 'The list keyword',
+            'alternative' => 'short list syntax',
+        ],
     ];
 
 
