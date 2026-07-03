@@ -5732,6 +5732,13 @@ final class RemovedFunctionsSniff extends Sniff
             '8.5'       => false,
             'extension' => 'xml',
         ],
+
+
+        '_' => [
+            '8.6'         => false,
+            'alternative' => 'gettext()',
+            'extension'   => 'gettext',
+        ],
     ];
 
 

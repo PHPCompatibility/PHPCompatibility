@@ -68,6 +68,13 @@ final class ForbiddenClassAliasSniff extends AbstractFunctionCallParameterSniff
         'never'    => '8.1',
         'array'    => '8.5',
         'callable' => '8.5',
+
+        'let'      => '8.6', // Use as name is deprecated.
+        'in'       => '8.6', // Use as name is deprecated.
+        'is'       => '8.6', // Use as name is deprecated.
+        'out'      => '8.6', // Use as name is deprecated.
+        'inout'    => '8.6', // Use as name is deprecated.
+        '_'        => '8.4', // Use as name is deprecated.
     ];
 
     /**
@@ -147,7 +154,7 @@ final class ForbiddenClassAliasSniff extends AbstractFunctionCallParameterSniff
         $phpcsFile->addError(
             'Type keyword "%s" is not allowed as a class alias name since PHP %s.',
             $firstNonEmpty,
-            'Found',
+            MessageHelper::stringToErrorCode($contentLC, true) . 'Found',
             [$contentLC, $this->forbiddenNames[$contentLC]]
         );
     }

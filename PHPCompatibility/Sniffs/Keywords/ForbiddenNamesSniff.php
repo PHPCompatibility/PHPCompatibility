@@ -48,6 +48,7 @@ final class ForbiddenNamesSniff extends Sniff
      * @var array<string, string>
      */
     protected $invalidNames = [
+        '_'           => '8.6', // Use as name is deprecated.
         'abstract'      => '5.0',
         'and'           => 'all',
         'array'         => 'all',
@@ -92,7 +93,12 @@ final class ForbiddenNamesSniff extends Sniff
         'instanceof'    => '5.0',
         'insteadof'     => '5.4',
         'interface'     => '5.0',
+        'in'       => '8.6', // Use as name is deprecated.
+        'is'       => '8.6', // Use as name is deprecated.
+        'out'      => '8.6', // Use as name is deprecated.
+        'inout'    => '8.6', // Use as name is deprecated.
         'isset'         => 'all',
+        'let'           => '8.6', // Use as name is deprecated.
         'list'          => 'all',
         'match'         => '8.0',
         'namespace'     => '5.3',
@@ -568,12 +574,12 @@ final class ForbiddenNamesSniff extends Sniff
 
         /*
          * Deal with `readonly` being a reserved keyword, but still being allowed
-         * as a function name.
+         * as a function name until PHP 8.6, which deprecated this.
          *
          * @link https://github.com/php/php-src/pull/7468 (PHP 8.1)
          * @link https://github.com/php/php-src/pull/9512 (PHP 8.2 follow-up)
          */
-        if ($nameLC === 'readonly') {
+        if ($nameLC === 'readonly' && ScannedCode::shouldRunOnOrAbove('8.6') === false) {
             return;
         }
 
@@ -897,7 +903,7 @@ final class ForbiddenNamesSniff extends Sniff
 
         // Display the magic constants in uppercase.
         $msgName = $name;
-        if ($name[0] === '_' && $name[1] === '_') {
+        if (isset($name[1]) && $name[0] === '_' && $name[1] === '_') {
             $msgName = \strtoupper($name);
         }
 
