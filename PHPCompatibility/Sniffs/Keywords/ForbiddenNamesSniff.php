@@ -49,88 +49,12 @@ final class ForbiddenNamesSniff extends Sniff
      */
     protected $invalidNames = [
         '_'           => '8.6', // Use as name is deprecated.
-        'abstract'      => '5.0',
-        'and'           => 'all',
-        'array'         => 'all',
-        'as'            => 'all',
-        'break'         => 'all',
-        'callable'      => '5.4',
-        'case'          => 'all',
-        'catch'         => '5.0',
-        'class'         => 'all',
-        'clone'         => '5.0',
-        'const'         => 'all',
-        'continue'      => 'all',
-        'declare'       => 'all',
-        'default'       => 'all',
-        'die'           => 'all',
-        'do'            => 'all',
-        'echo'          => 'all',
-        'else'          => 'all',
-        'elseif'        => 'all',
-        'empty'         => 'all',
-        'enddeclare'    => 'all',
-        'endfor'        => 'all',
-        'endforeach'    => 'all',
-        'endif'         => 'all',
-        'endswitch'     => 'all',
-        'endwhile'      => 'all',
-        'eval'          => 'all',
-        'exit'          => 'all',
-        'extends'       => 'all',
-        'final'         => '5.0',
-        'finally'       => '5.5',
-        'fn'            => '7.4',
-        'for'           => 'all',
-        'foreach'       => 'all',
-        'function'      => 'all',
-        'global'        => 'all',
-        'goto'          => '5.3',
-        'if'            => 'all',
-        'implements'    => '5.0',
-        'include'       => 'all',
-        'include_once'  => 'all',
-        'instanceof'    => '5.0',
-        'insteadof'     => '5.4',
-        'interface'     => '5.0',
         'in'       => '8.6', // Use as name is deprecated.
         'is'       => '8.6', // Use as name is deprecated.
         'out'      => '8.6', // Use as name is deprecated.
         'inout'    => '8.6', // Use as name is deprecated.
-        'isset'         => 'all',
         'let'           => '8.6', // Use as name is deprecated.
-        'list'          => 'all',
-        'match'         => '8.0',
-        'namespace'     => '5.3',
-        'new'           => 'all',
-        'or'            => 'all',
-        'print'         => 'all',
-        'private'       => '5.0',
-        'protected'     => '5.0',
-        'public'        => '5.0',
         'readonly'      => '8.1',
-        'require'       => 'all',
-        'require_once'  => 'all',
-        'return'        => 'all',
-        'static'        => 'all',
-        'switch'        => 'all',
-        'throw'         => '5.0',
-        'trait'         => '5.4',
-        'try'           => '5.0',
-        'unset'         => 'all',
-        'use'           => 'all',
-        'var'           => 'all',
-        'while'         => 'all',
-        'xor'           => 'all',
-        'yield'         => '5.5',
-        '__class__'     => 'all',
-        '__dir__'       => '5.3',
-        '__file__'      => 'all',
-        '__function__'  => 'all',
-        '__line__'      => 'all',
-        '__method__'    => 'all',
-        '__namespace__' => '5.3',
-        '__trait__'     => '5.4',
     ];
 
     /**
@@ -145,20 +69,6 @@ final class ForbiddenNamesSniff extends Sniff
      * @var array<string, string>
      */
     protected $otherForbiddenNames = [
-        'parent'   => '5.0',
-        'self'     => '5.0',
-        'null'     => '7.0',
-        'true'     => '7.0',
-        'false'    => '7.0',
-        'bool'     => '7.0',
-        'int'      => '7.0',
-        'float'    => '7.0',
-        'string'   => '7.0',
-        'iterable' => '7.1',
-        'void'     => '7.1',
-        'object'   => '7.2',
-        'mixed'    => '8.0',
-        'never'    => '8.1',
     ];
 
     /**
@@ -173,11 +83,6 @@ final class ForbiddenNamesSniff extends Sniff
      * @var array<string, string>
      */
     protected $softReservedNames = [
-        'resource' => '7.0',
-        'object'   => '7.0',
-        'mixed'    => '7.0',
-        'numeric'  => '7.0',
-        'enum'     => '8.1',
     ];
 
     /**

@@ -51,24 +51,6 @@ final class ForbiddenClassAliasSniff extends AbstractFunctionCallParameterSniff
      * @var array<string, string>
      */
     private $forbiddenNames = [
-        'bool'     => '7.0',
-        'false'    => '7.0',
-        'float'    => '7.0',
-        'int'      => '7.0',
-        'null'     => '7.0',
-        'parent'   => '7.0',
-        'self'     => '7.0',
-        'static'   => '7.0',
-        'string'   => '7.0',
-        'true'     => '7.0',
-        'iterable' => '7.1',
-        'void'     => '7.1',
-        'object'   => '7.2',
-        'mixed'    => '8.0',
-        'never'    => '8.1',
-        'array'    => '8.5',
-        'callable' => '8.5',
-
         'let'      => '8.6', // Use as name is deprecated.
         'in'       => '8.6', // Use as name is deprecated.
         'is'       => '8.6', // Use as name is deprecated.
