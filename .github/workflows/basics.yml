@@ -49,37 +49,37 @@ jobs:
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Validate ruleset XML file against schema
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@5189514594c8d5f4cf21b7e5af50f54d697973d7 # v2.0.0
         with:
           pattern: "PHPCompatibility/ruleset.xml"
           xsd-file: "vendor/squizlabs/php_codesniffer/phpcs.xsd"
 
       - name: Validate documentation XML files against schema
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@5189514594c8d5f4cf21b7e5af50f54d697973d7 # v2.0.0
         with:
           pattern: "./PHPCompatibility/Docs/*/*Standard.xml"
           xsd-file: "vendor/phpcsstandards/phpcsdevtools/DocsXsd/phpcsdocs.xsd"
 
       - name: Validate Project PHPCS ruleset against schema
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@5189514594c8d5f4cf21b7e5af50f54d697973d7 # v2.0.0
         with:
           pattern: "phpcs.xml.dist"
           xsd-file: "vendor/squizlabs/php_codesniffer/phpcs.xsd"
 
       - name: "Validate PHPUnit < 10 config for use with PHPUnit 8"
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@5189514594c8d5f4cf21b7e5af50f54d697973d7 # v2.0.0
         with:
           pattern: "phpunit.xml.dist"
           xsd-file: "vendor/phpunit/phpunit/schema/8.5.xsd"
 
       - name: "Validate PHPUnit < 10 config for use with PHPUnit 9"
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@5189514594c8d5f4cf21b7e5af50f54d697973d7 # v2.0.0
         with:
           pattern: "phpunit.xml.dist"
           xsd-file: "vendor/phpunit/phpunit/schema/9.2.xsd"
 
       - name: "Validate PHPUnit 10+ config for use with PHPUnit 10"
-        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        uses: phpcsstandards/xmllint-validate@5189514594c8d5f4cf21b7e5af50f54d697973d7 # v2.0.0
         with:
           pattern: "phpunit10.xml.dist"
           xsd-file: "vendor/phpunit/phpunit/phpunit.xsd"
