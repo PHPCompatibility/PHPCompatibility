@@ -158,11 +158,11 @@ jobs:
 
   markdownlint:
     name: 'Lint Markdown'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@8ab4abdb86d0a69a15ea85472ab7dd5c44a37759 # v1.2.0
+    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@fcbbdd9495898d68229655147333a910679c33cf # v1.2.1
 
   yamllint:
     name: 'Lint Yaml'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@8ab4abdb86d0a69a15ea85472ab7dd5c44a37759 # v1.2.0
+    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@fcbbdd9495898d68229655147333a910679c33cf # v1.2.1
     with:
       strict: true
 
@@ -170,4 +170,4 @@ jobs:
     # The properties in the PHPCS Tokens class have been deprecated.
     # The code in this repository should always use the constants instead.
     name: 'Find use of Tokens properties'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-findtokenprops.yml@8ab4abdb86d0a69a15ea85472ab7dd5c44a37759 # v1.2.0
+    uses: PHPCSStandards/.github/.github/workflows/reusable-findtokenprops.yml@fcbbdd9495898d68229655147333a910679c33cf # v1.2.1
