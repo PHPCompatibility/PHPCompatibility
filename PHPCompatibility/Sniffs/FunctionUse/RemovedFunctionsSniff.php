@@ -58,6 +58,74 @@ final class RemovedFunctionsSniff extends Sniff
             'alternative' => 'gettext()',
             'extension'   => 'gettext',
         ],
+
+        'is_double' => [
+            '8.6'         => false,
+            'alternative' => 'is_float()',
+        ],
+        'is_integer' => [
+            '8.6'         => false,
+            'alternative' => 'is_int()',
+        ],
+        'is_long' => [
+            '8.6'         => false,
+            'alternative' => 'is_int()',
+        ],
+        'doubleval' => [
+            '8.6'         => false,
+            'alternative' => 'floatval()',
+        ],
+        'strcoll' => [
+            '8.6'         => false,
+            'alternative' => 'Collator::compare()',
+        ],
+        'metaphone' => [
+            '8.6'         => false,
+        ],
+
+        'spl_classes' => [
+            '8.6'         => false,
+            'alternative' => 'ReflectionExtension::getClassNames()',
+            'extension'   => 'spl',
+        ],
+        'spl_object_hash' => [
+            '8.6'         => false,
+            'alternative' => 'spl_object_id()',
+            'extension'   => 'spl',
+        ],
+
+        'mysqli_stmt_init' => [
+            '8.6'         => false,
+            'alternative' => 'mysqli::prepare()',
+            'extension'   => 'mysqli',
+        ],
+        'mysqli_get_charset' => [
+            '8.6'         => false,
+            'extension'   => 'mysqli',
+        ],
+
+// Not properly listed in RFC yet, only in TOC, no text or voting widget
+        'imagegd' => [
+            '8.6'         => false,
+            'extension'   => 'gd',
+        ],
+        'imagegd2' => [
+            '8.6'         => false,
+            'extension'   => 'gd',
+        ],
+        'imagecreatefromgd2' => [
+            '8.6'         => false,
+            'extension'   => 'gd',
+        ],
+        'imagecreatefromgd2part' => [
+            '8.6'         => false,
+            'extension'   => 'gd',
+        ],
+        'imagecreatefromgd' => [
+            '8.6'         => false,
+            'extension'   => 'gd',
+        ],
+
     ];
 
 
