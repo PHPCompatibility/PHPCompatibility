@@ -24,6 +24,7 @@ use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\TextStrings;
 use PHPCSUtils\Utils\UseStatements;
+use PHPCSUtils\Utils\Variables;
 
 /**
  * Detects the use of reserved keywords as class, function, namespace or constant names.
@@ -48,6 +49,7 @@ final class ForbiddenNamesSniff extends Sniff
      * @var array<string, string>
      */
     protected $invalidNames = [
+        'namespace'           => '8.6', // Use as constant or static property name is deprecated.
         '_'           => '8.6', // Use as name is deprecated.
         'in'       => '8.6', // Use as name is deprecated.
         'is'       => '8.6', // Use as name is deprecated.
@@ -139,6 +141,7 @@ final class ForbiddenNamesSniff extends Sniff
         \T_NAME_FULLY_QUALIFIED, // FQN function calls to `define()`.
         \T_USE,
         \T_ANON_CLASS, // Only for a specific tokenizer issue.
+        \T_VARIABLE, // Specifically for namespace keyword.
     ];
 
     /**
@@ -308,6 +311,28 @@ final class ForbiddenNamesSniff extends Sniff
                 }
 
                 $this->checkName($phpcsFile, $stackPtr, $tokens[$nextNonEmpty]['content']);
+                return;
+
+            case \T_VARIABLE:
+                if (ScannedCode::shouldRunOnOrBelow('8.6') === false) {
+                    return;
+                }
+
+                $varNameLC = ltrim(\strtolower($tokens[$stackPtr]['content']), '$');
+                if ($varNameLC !== 'namespace') {
+                    return;
+                }
+
+                if (Scopes::isOOProperty($phpcsFile, $stackPtr) === false) {
+                    return;
+                }
+
+                $propertyInfo = Variables::getMemberProperties($phpcsFile, $stackPtr);
+                if ($propertyInfo['is_static'] === false) {
+                    return;
+                }
+
+                $this->addError($phpcsFile, $stackPtr, $varNameLC);
                 return;
         }
     }
@@ -560,11 +585,20 @@ final class ForbiddenNamesSniff extends Sniff
          * when used as OO constant names, as they are not problematic in PHP < 7.0.
          */
         if ($nameLc !== 'class'
+            && $nameLc !== 'namespace'
             && $isOOConstant === true
             && (ScannedCode::shouldRunOnOrBelow('5.6') === false
                 || ($this->invalidNames[$nameLc] !== 'all'
                 && \version_compare($this->invalidNames[$nameLc], '7.0', '>=')))
         ) {
+            return;
+        }
+
+        if ($nameLc === 'namespace'
+            && $isOOConstant === true
+            && ScannedCode::shouldRunOnOrAbove('8.6') === true
+        ) {
+            $this->addError($phpcsFile, $namePtr, $nameLc);
             return;
         }
 
