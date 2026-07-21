@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
@@ -112,7 +112,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
@@ -138,7 +138,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
@@ -158,11 +158,11 @@ jobs:
 
   markdownlint:
     name: 'Lint Markdown'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@fcbbdd9495898d68229655147333a910679c33cf # v1.2.1
+    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@c535983699986d1c538d4e47f33e813fcfbcc8a0 # v1.2.2
 
   yamllint:
     name: 'Lint Yaml'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@fcbbdd9495898d68229655147333a910679c33cf # v1.2.1
+    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@c535983699986d1c538d4e47f33e813fcfbcc8a0 # v1.2.2
     with:
       strict: true
 
@@ -170,4 +170,4 @@ jobs:
     # The properties in the PHPCS Tokens class have been deprecated.
     # The code in this repository should always use the constants instead.
     name: 'Find use of Tokens properties'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-findtokenprops.yml@fcbbdd9495898d68229655147333a910679c33cf # v1.2.1
+    uses: PHPCSStandards/.github/.github/workflows/reusable-findtokenprops.yml@c535983699986d1c538d4e47f33e813fcfbcc8a0 # v1.2.2
