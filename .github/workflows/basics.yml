@@ -148,6 +148,8 @@ jobs:
           php-version: 'latest'
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On, display_startup_errors=On
           coverage: none
+        env:
+          fail-fast: true
 
       - name: Regenerate the test files for the forbidden names test
         run: php "./bin/generate-forbidden-names-test-files"

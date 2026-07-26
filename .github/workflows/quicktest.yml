@@ -62,6 +62,8 @@ jobs:
           php-version: ${{ matrix.php }}
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: none
+        env:
+          fail-fast: true
 
       # Remove PHPCSDevCS as it could potentially prevent the tests from being able to run against PHPCS "lowest".
       - name: 'Composer: remove PHPCSDevCS'

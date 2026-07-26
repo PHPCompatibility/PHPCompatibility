@@ -48,6 +48,8 @@ jobs:
           ini-values: error_reporting=-1, display_errors=On, display_startup_errors=On, zend.assertions=1
           coverage: none
           tools: cs2pr
+        env:
+          fail-fast: true
 
       - name: 'Composer: adjust dependencies'
         # Remove PHPUnit requirement to save some bandwidth.
@@ -149,6 +151,8 @@ jobs:
           php-version: ${{ matrix.php }}
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: none
+        env:
+          fail-fast: true
 
       # Remove PHPCSDevCS as it could potentially prevent the tests from being able to run against PHPCS "lowest".
       - name: 'Composer: remove PHPCSDevCS'
@@ -261,6 +265,8 @@ jobs:
           php-version: ${{ matrix.php }}
           ini-values: ${{ steps.set_ini.outputs.PHP_INI }}
           coverage: xdebug
+        env:
+          fail-fast: true
 
       # Remove PHPCSDevCS as it could potentially prevent the tests from being able to run against PHPCS "lowest".
       - name: 'Composer: remove PHPCSDevCS'
