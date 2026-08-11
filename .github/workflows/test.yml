@@ -83,7 +83,6 @@ jobs:
       # Keys:
       # - custom_ini: Whether to run with specific custom ini settings to hit very specific
       #   code conditions.
-      # - experimental: Whether the build is "allowed to fail".
       matrix:
         # The GHA matrix works different from Travis.
         # You can define jobs here and then augment them with extra variables in `include`,
@@ -93,27 +92,23 @@ jobs:
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
         php: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
         phpcs_version: ['lowest', '4.x-dev']
-        experimental: [false]
 
         include:
           - php: '7.2'
             phpcs_version: '^4.0.2'
             custom_ini: true
-            experimental: false
 
           - php: '8.4'
             phpcs_version: '^4.0.2'
             custom_ini: true
-            experimental: false
 
           # Experimental builds. These are allowed to fail.
           - php: '8.6' # Nightly.
             phpcs_version: '4.x-dev'
-            experimental: true
 
     name: "Test: PHP ${{ matrix.php }}${{ matrix.custom_ini && ' (ini)' || '' }} - PHPCS ${{ matrix.phpcs_version }}"
 
-    continue-on-error: ${{ matrix.experimental }}
+    continue-on-error: ${{ matrix.php == '8.6' }}
 
     steps:
       - name: Checkout code
