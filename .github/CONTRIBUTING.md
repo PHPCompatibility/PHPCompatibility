@@ -13,7 +13,10 @@ Bug reports containing a minimal code sample which can be used to reproduce the 
 
 The PHPCompatibility standard only concerns itself with cross-version PHP compatibility of code.
 
-When requesting a new feature, please add a link to a relevant page in the [PHP Manual](http://php.net/manual/) / PHP Changelog / [PHP RFC website](https://wiki.php.net/rfc) which illustrates the feature you are requesting.
+When requesting a new feature, please add a link to a relevant page in the [PHP Manual][php-manual] / PHP Changelog / [PHP RFC page][php-wiki-rfc] which illustrates the feature you are requesting.
+
+[php-manual]:   https://www.php.net/manual/
+[php-wiki-rfc]: https://wiki.php.net/rfc
 
 ## Pull requests
 
@@ -66,12 +69,12 @@ Related to ### (PHPCompatibility meta ticket for that PHP version)
 ```
 
 ### Typical sources of information about changes in PHP
-* The [PHP RFC wiki](https://wiki.php.net/rfc)
+* The [PHP RFC wiki][php-wiki-rfc]
 * The [UPGRADING](https://github.com/php/php-src/blob/master/UPGRADING) document of each release
 * The [NEWS](https://github.com/php/php-src/blob/master/NEWS) document of each release
 * The [Migrating from PHP x.x.x to PHP x.x.x section](https://www.php.net/manual/en/appendices.php) in the manual for each release (once published)
 * The [Changelog](https://www.php.net/doc.changelog) in the manual
-* The official [PHP manual](https://www.php.net/manual/) in general
+* The official [PHP manual][php-manual] in general
 * The legacy [PHP 5 manual](https://php-legacy-docs.zend.com/manual/php5/en/index)
 * The legacy [PHP 4 manual](https://php-legacy-docs.zend.com/manual/php4/en/index)
 * The [PHP source code](https://github.com/php/php-src) in general
@@ -178,7 +181,7 @@ All the sniffs are fully tested with PHPUnit tests and have `@group` annotations
 
 In order to run the tests on the sniffs, the following installation steps are required.
 
-1. Install PHP CodeSniffer and PHP Compatibility by following the [installation instructions in the Readme](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/README.md#installating-phpcompatibility).
+1. Install PHP CodeSniffer and PHP Compatibility by following the [installation instructions in the Readme](https://github.com/PHPCompatibility/PHPCompatibility/blob/develop/README.md#installation).
 
     Run `composer install --prefer-source` to get access to the unit tests and other development related files.
 
@@ -189,7 +192,7 @@ In order to run the tests on the sniffs, the following installation steps are re
     Run the tests by running `composer test` (PHP < 8.1) or `composer test10` (PHP 8.1+) in the root directory of PHPCompatibility.
     It will read the appropriate `phpunit.xml.dist` file and execute the tests.
 
-3. Alternatively, you can run the tests using a [PHPUnit PHAR file](https://phpunit.de/getting-started.html), though you would still need to run `composer install` on the project before that will work.
+3. Alternatively, you can run the tests using a [PHPUnit PHAR file](https://docs.phpunit.de/en/11.5/installation.html), though you would still need to run `composer install` on the project before that will work.
 
 4. To get the unit tests running with a non-Composer-based install, you need to set an environment variable so the PHPCompatibility unit test suite will know where to find PHPCS.
 
