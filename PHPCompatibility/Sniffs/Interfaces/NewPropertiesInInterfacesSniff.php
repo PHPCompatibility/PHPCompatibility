@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\Interfaces;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**

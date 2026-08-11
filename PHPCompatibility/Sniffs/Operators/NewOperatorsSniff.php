@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\Operators;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect use of new PHP operators.

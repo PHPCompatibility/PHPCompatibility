@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\UseDeclarations;
 
-use PHPCompatibility\Helpers\ScannedCode;
-use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 
 /**
  * Detect group use declarations as introduced in PHP 7.0.

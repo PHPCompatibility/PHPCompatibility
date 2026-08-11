@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCSUtils\Utils\PassedParameters;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect: Calling get_class() and get_parent_class() without arguments is deprecated as of PHP 8.3.

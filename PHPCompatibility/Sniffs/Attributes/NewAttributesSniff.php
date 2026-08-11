@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\Attributes;
 
-use PHPCompatibility\Helpers\ScannedCode;
-use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 
 /**
  * Attributes as a form of structured, syntactic metadata to declarations of classes, properties,

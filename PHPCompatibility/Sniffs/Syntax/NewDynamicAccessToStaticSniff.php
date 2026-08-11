@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
-use PHPCompatibility\Helpers\ScannedCode;
-use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 
 /**
  * Detect dynamic access to static methods and properties, as well as class constants.

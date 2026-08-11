@@ -10,13 +10,13 @@
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
-use PHPCompatibility\Helpers\ScannedCode;
-use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\FunctionDeclarations;
-use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**
  * Verifies the use of the correct visibility and static properties of magic methods.

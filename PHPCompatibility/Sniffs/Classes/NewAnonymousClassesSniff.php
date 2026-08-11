@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\Classes;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * Anonymous classes are supported since PHP 7.0.

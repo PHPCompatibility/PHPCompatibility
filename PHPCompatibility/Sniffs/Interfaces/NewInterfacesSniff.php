@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\Interfaces;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Exceptions\ValueError;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Constants;

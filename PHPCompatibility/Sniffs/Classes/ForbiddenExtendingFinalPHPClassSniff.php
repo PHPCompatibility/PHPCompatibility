@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\Classes;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ResolveHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect extending of PHP native classes which became final at some point.

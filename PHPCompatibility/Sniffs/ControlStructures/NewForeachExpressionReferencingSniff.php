@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
-use PHPCompatibility\Helpers\ScannedCode;
-use PHPCompatibility\Sniff;
-use PHPCompatibility\Helpers\TokenGroup;
 use PHP_CodeSniffer\Files\File;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\TokenGroup;
+use PHPCompatibility\Sniff;
 
 /**
  * Detect `foreach` expression referencing.

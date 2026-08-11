@@ -10,11 +10,11 @@
 
 namespace PHPCompatibility\Sniffs\Constants;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ComplexVersionDeprecatedRemovedFeatureTrait;
 use PHPCompatibility\Helpers\MiscHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
 
 /**

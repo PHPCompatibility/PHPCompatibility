@@ -10,11 +10,11 @@
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\Scopes;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect: Calling get_[called_]class() without arguments from outside a class will throw an Error since PHP 8.0.

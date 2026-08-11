@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * Switch statements can not have multiple default blocks since PHP 7.0.
