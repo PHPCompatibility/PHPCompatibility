@@ -17,6 +17,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# Permissions should be configured at the job level.
+permissions: {}
+
 jobs:
   #### QUICK TEST STAGE ####
   # This is a much quicker test which only runs the unit tests and linting against the low/high
@@ -24,6 +27,9 @@ jobs:
   # These are basically the same builds as in the Test->Coverage workflow, but then without doing
   # the code-coverage.
   quicktest:
+    permissions:
+      contents: read # To clone the repo.
+
     runs-on: ubuntu-latest
 
     env:

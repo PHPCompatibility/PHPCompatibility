@@ -13,12 +13,18 @@ on:
       - synchronize
       - reopened
 
+# Permissions should be configured at the job level.
+permissions: {}
+
 jobs:
   check-prs:
-    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write # To add and remove PR labels.
+
     if: github.repository_owner == 'PHPCompatibility'
 
     name: Check PRs for merge conflicts
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check PRs for merge conflicts

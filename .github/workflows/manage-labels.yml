@@ -9,12 +9,18 @@ on:
     types:
       - closed
 
+# Permissions should be configured at the job level.
+permissions: {}
+
 jobs:
   on-pr-merge:
-    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write # To remove PR labels.
+
     if: github.repository_owner == 'PHPCompatibility' && github.event.pull_request.merged == true
 
     name: Clean up labels on PR merge
+    runs-on: ubuntu-latest
 
     steps:
       - uses: mondeja/remove-labels-gh-action@b7118e4ba5dca74acf1059b3cb7660378ff9ab1a # v2.0.0
@@ -28,10 +34,13 @@ jobs:
             Status: triage
 
   on-pr-close:
-    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write # To remove PR labels.
+
     if: github.repository_owner == 'PHPCompatibility' && github.event_name == 'pull_request_target' && github.event.pull_request.merged == false
 
     name: Clean up labels on PR close
+    runs-on: ubuntu-latest
 
     steps:
       - uses: mondeja/remove-labels-gh-action@b7118e4ba5dca74acf1059b3cb7660378ff9ab1a # v2.0.0
@@ -44,10 +53,13 @@ jobs:
             Status: triage
 
   on-issue-close:
-    runs-on: ubuntu-latest
+    permissions:
+      issues: write # To remove issue labels.
+
     if: github.repository_owner == 'PHPCompatibility' && github.event.issue.state == 'closed'
 
     name: Clean up labels on issue close
+    runs-on: ubuntu-latest
 
     steps:
       - uses: mondeja/remove-labels-gh-action@b7118e4ba5dca74acf1059b3cb7660378ff9ab1a # v2.0.0
