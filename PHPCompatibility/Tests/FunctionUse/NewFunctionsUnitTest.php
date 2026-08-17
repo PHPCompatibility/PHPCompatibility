@@ -1174,6 +1174,7 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['locale_get_display_keyword_value', '8.5', 1117, '8.6'],
             ['grapheme_strrev', '8.5', 1118, '8.6'],
             ['clamp', '8.5', 1119, '8.6'],
+            ['mysqli_quote_string', '8.5', 1120, '8.6'],
         ];
     }
 
