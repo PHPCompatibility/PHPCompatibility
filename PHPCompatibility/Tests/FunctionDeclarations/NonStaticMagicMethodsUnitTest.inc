@@ -280,7 +280,7 @@ class Nested {
 
 /*
  * Safeguard handling of magic methods in PHP 8.1+ enums.
- * Only `__call()`, `__callStatic()`, and `__invoke()` are allowed in enums, but that's not the concern of this sniff.
+ * Only `__call()`, `__callStatic()`, `__invoke()` and `__debugInfo()` (PHP 8.6+) are allowed in enums, but that's not the concern of this sniff.
  */
 enum PlainEnum
 {
