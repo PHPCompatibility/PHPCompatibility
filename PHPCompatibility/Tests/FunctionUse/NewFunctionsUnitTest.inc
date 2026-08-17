@@ -1113,3 +1113,5 @@ pg_service();
 
 stream_clear_errors();
 \stream_last_errors();
+locale_get_display_keyword();
+locale_get_display_keyword_value();
