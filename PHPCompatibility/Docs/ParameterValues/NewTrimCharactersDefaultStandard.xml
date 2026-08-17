@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New trim() Characters Default"
+    >
+    <standard>
+    <![CDATA[
+    Prior to PHP 8.6, the default value for the `$characters` parameter for the `trim()`, `ltrim()` and `rtrim()` functions was `" \n\r\t\v\x00"`.
+
+    As of PHP 8.6, the default value for the `$characters` parameters now includes the `"\f"` (= ASCII 12, form feed) character, changing the default value to `" \f\n\r\t\v\x00"` and stripping form feeds unless the `$characters` parameter has been overwritten.
+
+    When the `trim()`, `ltrim()` and `rtrim()` functions are used in code which needs to be PHP cross-version compatible with both PHP < 8.6, as well as PHP 8.6+, the `$characters` parameter should be explicitly set to ensure the function return value will be consistent.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: passing the $characters parameter when calling these functions.">
+        <![CDATA[
+echo trim($text, <em>" \f\n\r\t\v\x00"</em>);
+echo rtrim($text, <em>'/'</em>);
+        ]]>
+        </code>
+        <code title="Cross-version INcompatible: calling these functions without passing the $characters parameter.">
+        <![CDATA[
+echo ltrim($text);
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
