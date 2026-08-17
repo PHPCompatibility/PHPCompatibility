@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Debuggable Enums"
+    >
+    <standard>
+    <![CDATA[
+    Prior to PHP 8.6, only the __call(), __callStatic(), and __invoke() magic methods could be declared on an enum.
+
+    As of PHP 8.6, the `__debugInfo()` magic method is also supported on enums.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: enum without a __debugInfo() method.">
+        <![CDATA[
+enum WithoutDebugInfo: string {
+    case Bar = "Baz";
+
+    <em>public function __call()</em> {
+        // Code for the magic method.
+    }
+}
+        ]]>
+        </code>
+        <code title="PHP &gt;= 8.6: enum with a __debugInfo() method.">
+        <![CDATA[
+enum WithDebugInfo: string {
+    case Bar = "Baz";
+
+    <em>public function __debugInfo()</em> {
+        return [
+            __CLASS__ . '::' . $this->name
+            . ' = ' . $this->value
+        ];
+    }
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
