@@ -5749,6 +5749,10 @@ final class RemovedFunctionsSniff extends Sniff
             '8.6'         => false,
             'alternative' => 'floatval()',
         ],
+        'strcoll' => [
+            '8.6'         => false,
+            'alternative' => 'Collator::compare()',
+        ],
         'mb_ereg' => [
             '8.6'       => false,
             'extension' => 'mbstring',
