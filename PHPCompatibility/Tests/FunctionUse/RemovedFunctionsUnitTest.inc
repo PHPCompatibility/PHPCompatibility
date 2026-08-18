@@ -1426,3 +1426,4 @@ is_long();
 doubleval();
 strcoll();
 metaphone();
+spl_classes();
