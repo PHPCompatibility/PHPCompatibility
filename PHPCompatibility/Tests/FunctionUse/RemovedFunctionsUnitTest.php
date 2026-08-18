@@ -201,6 +201,7 @@ final class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['strcoll', '8.6', 'Collator::compare()', 1427, '8.5'],
             ['metaphone', '8.6', 'a userland phonetic matching library', 1428, '8.5'],
             ['spl_classes', '8.6', 'ReflectionExtension::getClassNames()', 1429, '8.5'],
+            ['spl_object_hash', '8.6', 'spl_object_id()', 1430, '8.5'],
         ];
     }
 

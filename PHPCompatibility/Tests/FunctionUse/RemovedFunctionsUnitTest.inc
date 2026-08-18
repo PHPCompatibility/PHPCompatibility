@@ -1427,3 +1427,4 @@ doubleval();
 strcoll();
 metaphone();
 spl_classes();
+spl_object_hash();
