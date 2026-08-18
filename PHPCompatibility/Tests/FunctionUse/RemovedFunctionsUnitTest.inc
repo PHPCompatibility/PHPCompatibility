@@ -1428,3 +1428,4 @@ strcoll();
 metaphone();
 spl_classes();
 spl_object_hash();
+mysqli_get_charset();
