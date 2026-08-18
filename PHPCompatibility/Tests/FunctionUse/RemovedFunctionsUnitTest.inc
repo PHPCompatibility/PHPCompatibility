@@ -1420,3 +1420,7 @@ mb_eregi_replace();
 mb_regex_encoding();
 mb_regex_set_options();
 mb_split();
+is_double();
+is_integer();
+is_long();
+doubleval();

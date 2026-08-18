@@ -193,6 +193,11 @@ final class RemovedFunctionsUnitTest extends BaseSniffTestCase
 
             ['socket_set_timeout', '8.5', 'stream_set_timeout()', 1398, '8.4'],
             ['mysqli_execute', '8.5', 'mysqli_stmt_execute()', 1404, '8.4'],
+
+            ['is_double', '8.6', 'is_float()', 1423, '8.5'],
+            ['is_integer', '8.6', 'is_int()', 1424, '8.5'],
+            ['is_long', '8.6', 'is_int()', 1425, '8.5'],
+            ['doubleval', '8.6', 'floatval()', 1426, '8.5'],
         ];
     }
 
