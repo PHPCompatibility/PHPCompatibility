@@ -980,7 +980,7 @@ final class ForbiddenNamesSniff extends Sniff
         }
 
         if (isset($isError) === true) {
-            $error .= ' and should not be used to name a class, interface or trait or as part of a namespace (%s)';
+            $error .= ' and should not be used to name a class, interface, trait or enum or as part of a namespace (%s)';
             $data[] = $type;
 
             MessageHelper::addMessage($phpcsFile, $error, $stackPtr, $isError, $errorCode, $data);

@@ -103,12 +103,12 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
         if (isset($this->testsForOtherInvalidNames[$usecase]) === true) {
             // The error message for "other" reserved keywords is slightly different.
             for ($i = ($fullReservedLineEnd + 1); $i <= $otherReservedLineEnd; $i++) {
-                $this->assertError($file, $i, ' and should not be used to name a class, interface or trait or as part of a namespace');
+                $this->assertError($file, $i, ' and should not be used to name a class, interface, trait or enum or as part of a namespace');
             }
 
             // Other "soft" reserved are a warning.
             for ($i = ($otherReservedLineEnd + 1); $i <= $lineCount; $i++) {
-                $this->assertWarning($file, $i, ' and should not be used to name a class, interface or trait or as part of a namespace');
+                $this->assertWarning($file, $i, ' and should not be used to name a class, interface, trait or enum or as part of a namespace');
             }
         }
     }
@@ -245,12 +245,12 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
 
         // The error message for "other" reserved keywords is slightly different.
         for ($i = ($fullReservedLineEnd + 1); $i <= $otherReservedLineEnd; $i++) {
-            $this->assertError($file, $i, ' and should not be used to name a class, interface or trait or as part of a namespace');
+            $this->assertError($file, $i, ' and should not be used to name a class, interface, trait or enum or as part of a namespace');
         }
 
         // Other "soft" reserved are a warning.
         for ($i = ($otherReservedLineEnd + 1); $i <= $lineCount; $i++) {
-            $this->assertWarning($file, $i, ' and should not be used to name a class, interface or trait or as part of a namespace');
+            $this->assertWarning($file, $i, ' and should not be used to name a class, interface, trait or enum or as part of a namespace');
         }
     }
 
@@ -359,7 +359,7 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
     public function testSpecificCodeSamplesOtherKeywords($line, $keyword)
     {
         $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.3.inc', '0.0-');
-        $this->assertError($file, $line, 'and should not be used to name a class, interface or trait or as part of a namespace');
+        $this->assertError($file, $line, 'and should not be used to name a class, interface, trait or enum or as part of a namespace');
     }
 
     /**
