@@ -3481,6 +3481,10 @@ final class RemovedConstantsSniff extends Sniff
             'extension' => 'mhash',
         ],
 
+        'SORT_LOCALE_STRING' => [
+            '8.6'         => false,
+            'alternative' => 'one of the Collator::*sort*() methods',
+        ],
         'MB_ONIGURUMA_VERSION' => [
             '8.6'       => false,
             'extension' => 'mbstring',
