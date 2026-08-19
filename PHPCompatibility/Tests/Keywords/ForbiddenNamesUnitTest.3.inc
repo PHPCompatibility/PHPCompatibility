@@ -98,3 +98,11 @@ class TypedConstants {
 // Safeguard handling of variations of function calls to `define()`.
 DEFINE('TRAIT', 'value');
 \define('FINAL', 'value');
+
+// Test readonly as a function name. This is a (temporary) exception.
+// Readonly keyword was introduced in 8.1 with the exception that the keyword
+// could still be used for function names.
+// This exception became a deprecation in PHP 8.6 and is expected to be removed in PHP 9.0.
+function readonly() {}
+function ReadOnly() {}
+function READONLY() {}

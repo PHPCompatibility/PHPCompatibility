@@ -349,9 +349,6 @@ $closure = function () use ($a) {};
 // Test call to define() using named parameters.
 define(value: 'class', constant_name: 'BAR');
 
-// Test readonly as a function name. This is a (temporary) exception.
-function readonly() {}
-
 class ReadonlyFoo {
     public function readonly() {}
 }

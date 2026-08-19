@@ -565,18 +565,6 @@ final class ForbiddenNamesSniff extends Sniff
         }
 
         $nameLC = \strtolower($name);
-
-        /*
-         * Deal with `readonly` being a reserved keyword, but still being allowed
-         * as a function name.
-         *
-         * @link https://github.com/php/php-src/pull/7468 (PHP 8.1)
-         * @link https://github.com/php/php-src/pull/9512 (PHP 8.2 follow-up)
-         */
-        if ($nameLC === 'readonly') {
-            return;
-        }
-
         if (isset($this->invalidNames[$nameLC]) === false) {
             return;
         }
@@ -597,8 +585,30 @@ final class ForbiddenNamesSniff extends Sniff
             return;
         }
 
+        /*
+         * Deal with `readonly` being a reserved keyword, but still being allowed
+         * as a function name between PHP 8.1 < 9.0.
+         *
+         * This exception was deprecated in PHP 8.6 and is expected to be removed in PHP 9.0.
+         *
+         * @link https://github.com/php/php-src/pull/7468 (PHP 8.1)
+         * @link https://github.com/php/php-src/pull/9512 (PHP 8.2 follow-up)
+         * @link https://wiki.php.net/rfc/deprecations_php_8_6#deprecate_the_possibility_to_name_a_function_readonly (PHP 8.6 deprecation)
+         * @link https://github.com/php/php-src/commit/a9ba369abe43a4947e4015171f0111c4a816a630 (PHP 8.6 deprecation)
+         */
+        if ($nameLC === 'readonly') {
+            if (ScannedCode::shouldRunOnOrAbove('8.6') === false) {
+                return;
+            }
+
+            $error = "Using reserved keyword 'readonly' as a function name is deprecated since PHP 8.6";
+            $phpcsFile->addWarning($error, $stackPtr, 'FunctionReadonlyFound');
+            return;
+        }
+
         $this->checkName($phpcsFile, $stackPtr, $name);
     }
+
 
     /**
      * Processes global/class constant declarations using the `const` keyword.
@@ -892,7 +902,13 @@ final class ForbiddenNamesSniff extends Sniff
      */
     protected function addError(File $phpcsFile, $stackPtr, $name)
     {
-        $error     = "Function name, class name, namespace name or constant name can not be reserved keyword '%s' (since version %s)";
+        $error = "Function name, class name, namespace name or constant name can not be reserved keyword '%s' (since version %s)";
+        if ($name === 'readonly') {
+            // Functions named "readonly" are handled separately as this was disallowed in another PHP version,
+            // so listing functions as disallowed context in the error message for other constructs will only confuse users.
+            $error = "Class name, namespace name or constant name can not be reserved keyword '%s' (since version %s)";
+        }
+
         $errorCode = MessageHelper::stringToErrorCode($name, true) . 'Found';
 
         // Display the magic constants in uppercase.
