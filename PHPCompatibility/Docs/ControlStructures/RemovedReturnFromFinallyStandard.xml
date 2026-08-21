@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed Returning From a Finally Block"
+    >
+    <standard>
+    <![CDATA[
+    Including a return statement in a finally block is deprecated since PHP 8.6.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: no return in the finally block.">
+        <![CDATA[
+try {
+    return doSomethingWhichMayreturnOrThrow();
+} catch (Exception $e) {
+    return false;
+} finally {
+    doSomethingMore();
+}
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.6: returning from within a finally block.">
+        <![CDATA[
+try {
+    return doSomethingWhichMayreturnOrThrow();
+} catch (Exception $e) {
+    return false;
+} finally {
+    return doSomethingMore();
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
