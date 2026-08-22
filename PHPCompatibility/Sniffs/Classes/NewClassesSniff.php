@@ -749,12 +749,12 @@ final class NewClassesSniff extends Sniff
             '7.4'       => true,
             'extension' => 'ffi',
         ],
-        'FFI\CData' => [
+        'FFI\\CData' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
         ],
-        'FFI\CType' => [
+        'FFI\\CType' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
@@ -928,7 +928,7 @@ final class NewClassesSniff extends Sniff
             '8.1'       => true,
             'extension' => 'curl',
         ],
-        'FTP\Connection' => [
+        'FTP\\Connection' => [
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'ftp',
@@ -938,124 +938,124 @@ final class NewClassesSniff extends Sniff
             '8.1'       => true,
             'extension' => 'gd',
         ],
-        'IMAP\Connection' => [
+        'IMAP\\Connection' => [
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'imap',
         ],
-        'LDAP\Connection' => [
+        'LDAP\\Connection' => [
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'ldap',
         ],
-        'LDAP\Result' => [
+        'LDAP\\Result' => [
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'ldap',
         ],
-        'LDAP\ResultEntry' => [
+        'LDAP\\ResultEntry' => [
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'ldap',
         ],
-        'PgSql\Connection' => [
+        'PgSql\\Connection' => [
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'pgsql',
         ],
-        'PgSql\Lob' => [
+        'PgSql\\Lob' => [
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'pgsql',
         ],
-        'PgSql\Result' => [
+        'PgSql\\Result' => [
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'pgsql',
         ],
-        'PSpell\Config' => [
+        'PSpell\\Config' => [
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'pspell',
         ],
-        'PSpell\Dictionary' => [
+        'PSpell\\Dictionary' => [
             '8.0'       => false,
             '8.1'       => true,
             'extension' => 'pspell',
         ],
 
-        'Random\Randomizer' => [
+        'Random\\Randomizer' => [
             '8.1'       => false,
             '8.2'       => true,
             'extension' => 'random',
         ],
-        'Random\Engine\Secure' => [
+        'Random\\Engine\\Secure' => [
             '8.1'       => false,
             '8.2'       => true,
             'extension' => 'random',
         ],
-        'Random\Engine\Mt19937' => [
+        'Random\\Engine\\Mt19937' => [
             '8.1'       => false,
             '8.2'       => true,
             'extension' => 'random',
         ],
-        'Random\Engine\PcgOneseq128XslRr64' => [
+        'Random\\Engine\\PcgOneseq128XslRr64' => [
             '8.1'       => false,
             '8.2'       => true,
             'extension' => 'random',
         ],
-        'Random\Engine\Xoshiro256StarStar' => [
+        'Random\\Engine\\Xoshiro256StarStar' => [
             '8.1'       => false,
             '8.2'       => true,
             'extension' => 'random',
         ],
 
-        'BcMath\Number' => [
+        'BcMath\\Number' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'bcmath',
         ],
-        'Dba\Connection' => [
+        'Dba\\Connection' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'dba',
         ],
-        'Odbc\Connection' => [
+        'Odbc\\Connection' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'odbc',
         ],
-        'Odbc\Result' => [
+        'Odbc\\Result' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'odbc',
         ],
-        'Pdo\DbLib' => [
+        'Pdo\\Dblib' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'pdo',
         ],
-        'Pdo\Firebird' => [
+        'Pdo\\Firebird' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'pdo',
         ],
-        'Pdo\Mysql' => [
+        'Pdo\\Mysql' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'pdo',
         ],
-        'Pdo\Odbc' => [
+        'Pdo\\Odbc' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'pdo',
         ],
-        'Pdo\Pgsql' => [
+        'Pdo\\Pgsql' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'pdo',
         ],
-        'Pdo\Sqlite' => [
+        'Pdo\\Sqlite' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'pdo',
@@ -1065,12 +1065,12 @@ final class NewClassesSniff extends Sniff
             '8.4'       => true,
             'extension' => 'reflection',
         ],
-        'Soap\Sdl' => [
+        'Soap\\Sdl' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'soap',
         ],
-        'Soap\Url' => [
+        'Soap\\Url' => [
             '8.3'       => false,
             '8.4'       => true,
             'extension' => 'soap',
@@ -1284,12 +1284,12 @@ final class NewClassesSniff extends Sniff
             'extension' => 'json',
         ],
 
-        'FFI\Exception' => [
+        'FFI\\Exception' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
         ],
-        'FFI\ParserException' => [
+        'FFI\\ParserException' => [
             '7.3'       => false,
             '7.4'       => true,
             'extension' => 'ffi',
@@ -1310,17 +1310,17 @@ final class NewClassesSniff extends Sniff
             'extension' => 'fibers',
         ],
 
-        'Random\RandomError' => [
+        'Random\\RandomError' => [
             '8.1'       => false,
             '8.2'       => true,
             'extension' => 'random',
         ],
-        'Random\BrokenRandomEngineError' => [
+        'Random\\BrokenRandomEngineError' => [
             '8.1'       => false,
             '8.2'       => true,
             'extension' => 'random',
         ],
-        'Random\RandomException' => [
+        'Random\\RandomException' => [
             '8.1'       => false,
             '8.2'       => true,
             'extension' => 'random',
@@ -1382,13 +1382,15 @@ final class NewClassesSniff extends Sniff
             '8.4' => true,
         ],
 
-        'Filter\FilterException' => [
-            '8.4' => false,
-            '8.5' => true,
+        'Filter\\FilterException' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'filter',
         ],
-        'Filter\FilterFailedException' => [
-            '8.4' => false,
-            '8.5' => true,
+        'Filter\\FilterFailedException' => [
+            '8.4'       => false,
+            '8.5'       => true,
+            'extension' => 'filter',
         ],
     ];
 

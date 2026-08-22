@@ -85,8 +85,8 @@ final class NewInterfacesUnitTest extends BaseSniffTestCase
             ['DOMParentNode', '7.4', [196, 204, 210], '8.0'],
             ['UnitEnum', '8.0', [198, 211, 224], '8.1'],
             ['BackedEnum', '8.0', [198, 211, 225], '8.1'],
-            ['Random\Engine', '8.1', [200, 216, 235], '8.2'],
-            ['Random\CryptoSafeEngine', '8.1', [200, 226, 235], '8.2'],
+            ['Random\\Engine', '8.1', [200, 216, 235], '8.2'],
+            ['Random\\CryptoSafeEngine', '8.1', [200, 226, 235], '8.2'],
         ];
     }
 

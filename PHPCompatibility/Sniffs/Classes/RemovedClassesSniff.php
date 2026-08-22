@@ -190,7 +190,7 @@ final class RemovedClassesSniff extends Sniff
         ],
         */
 
-        'IMAP\Connection' => [
+        'IMAP\\Connection' => [
             '8.4'       => true,
             'extension' => 'imap',
         ],
@@ -202,11 +202,11 @@ final class RemovedClassesSniff extends Sniff
             '8.4'       => true,
             'extension' => 'oci8',
         ],
-        'PSpell\Config' => [
+        'PSpell\\Config' => [
             '8.4'       => true,
             'extension' => 'pspell',
         ],
-        'PSpell\Dictionary' => [
+        'PSpell\\Dictionary' => [
             '8.4'       => true,
             'extension' => 'pspell',
         ],

@@ -152,12 +152,12 @@ final class NewInterfacesSniff extends Sniff
             '8.1' => true,
         ],
 
-        'Random\Engine' => [
+        'Random\\Engine' => [
             '8.1'       => false,
             '8.2'       => true,
             'extension' => 'random',
         ],
-        'Random\CryptoSafeEngine' => [
+        'Random\\CryptoSafeEngine' => [
             '8.1'       => false,
             '8.2'       => true,
             'extension' => 'random',
