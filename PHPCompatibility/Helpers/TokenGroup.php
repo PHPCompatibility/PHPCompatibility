@@ -13,6 +13,7 @@ namespace PHPCompatibility\Helpers;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCSUtils\Utils\Numbers;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -238,16 +239,16 @@ final class TokenGroup
 
                     $content = 0.0;
                 } else {
-                    $content = (float) \trim($intMatch[0]);
+                    $content = (float) Utils::trim($intMatch[0]);
                 }
             } elseif ($intString !== 1 && $floatString !== 1) {
                 $content = 0.0;
             } else {
-                $content = ($floatString === 1) ? (float) \trim($floatMatch[0]) : (float) \trim($intMatch[0]);
+                $content = ($floatString === 1) ? (float) Utils::trim($floatMatch[0]) : (float) Utils::trim($intMatch[0]);
             }
 
             // Allow for different behaviour for hex numeric strings between PHP 5 vs PHP 7.
-            if ($intString === 1 && \trim($intMatch[0]) === '0'
+            if ($intString === 1 && Utils::trim($intMatch[0]) === '0'
                 && \preg_match('`^\s*(0x[A-Fa-f0-9]+)`', $stringContent, $hexNumberString) === 1
                 && ScannedCode::shouldRunOnOrBelow('5.6') === true
             ) {

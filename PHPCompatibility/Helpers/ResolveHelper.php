@@ -12,6 +12,7 @@ namespace PHPCompatibility\Helpers;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\Utils;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
 use PHPCSUtils\Utils\GetTokensAsString;
@@ -72,7 +73,7 @@ final class ResolveHelper
 
         $end       = $phpcsFile->findNext($find, ($start + 1), null, true);
         $className = GetTokensAsString::noEmpties($phpcsFile, $start, ($end - 1));
-        $className = \trim($className);
+        $className = Utils::trim($className);
 
         return self::getFQName($phpcsFile, $stackPtr, $className);
     }
@@ -168,7 +169,7 @@ final class ResolveHelper
         $start     = $phpcsFile->findPrevious($find, $stackPtr - 1, null, true, null, true);
         $start     = ($start + 1);
         $className = GetTokensAsString::noEmpties($phpcsFile, $start, ($stackPtr - 1));
-        $className = \trim($className);
+        $className = Utils::trim($className);
 
         return self::getFQName($phpcsFile, $stackPtr, $className);
     }

@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Miscellaneous;
 
 use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCompatibility\Sniff;
 
 /**
@@ -102,7 +103,7 @@ final class NewPHPOpenTagEOFSniff extends Sniff
 
             case \T_OPEN_TAG_WITH_ECHO:
                 // PHP 7.2+.
-                if (\rtrim($contents) === '<?=') {
+                if (Utils::rtrim($contents) === '<?=') {
                     $error = true;
                 }
                 break;

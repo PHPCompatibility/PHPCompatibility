@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\InitialValue;
 use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\AbstractInitialValueSniff;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\MessageHelper;
 
@@ -106,7 +107,7 @@ final class NewHeredocSniff extends AbstractInitialValueSniff
         $error       = self::ERROR_PHRASE;
         $errorCode   = 'Found';
         $phrase      = '';
-        $codeSnippet = \trim(GetTokensAsString::noComments($phpcsFile, $stackPtr, $hasHeredoc));
+        $codeSnippet = Utils::trim(GetTokensAsString::noComments($phpcsFile, $stackPtr, $hasHeredoc));
 
         if (isset($this->initialValueTypes[$type]) === true) {
             $errorCode = MessageHelper::stringToErrorCode($type) . 'Found';

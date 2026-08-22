@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Miscellaneous;
 
 use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
 
@@ -67,7 +68,7 @@ final class RemovedAlternativePHPTagsSniff extends Sniff
 
         $tokens  = $phpcsFile->getTokens();
         $openTag = $tokens[$stackPtr];
-        $content = \trim($openTag['content']);
+        $content = Utils::trim($openTag['content']);
 
         if ($content === '' || $content === '<?php') {
             return;

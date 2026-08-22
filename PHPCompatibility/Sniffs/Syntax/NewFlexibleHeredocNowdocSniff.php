@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\Syntax;
 
 use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCompatibility\Sniff;
 
 /**
@@ -104,7 +105,7 @@ final class NewFlexibleHeredocNowdocSniff extends Sniff
             /*
              * Check for indented closing marker.
              */
-            if (\ltrim($tokens[$stackPtr]['content']) !== $tokens[$stackPtr]['content']) {
+            if (Utils::ltrim($tokens[$stackPtr]['content']) !== $tokens[$stackPtr]['content']) {
                 $phpcsFile->addError($indentError, $stackPtr, $indentErrorCode);
             }
 
@@ -133,7 +134,7 @@ final class NewFlexibleHeredocNowdocSniff extends Sniff
                     continue;
                 }
 
-                $trimmed = \ltrim($tokens[$i]['content']);
+                $trimmed = Utils::ltrim($tokens[$i]['content']);
 
                 if (\strpos($trimmed, $identifier) !== 0) {
                     continue;
@@ -204,7 +205,7 @@ final class NewFlexibleHeredocNowdocSniff extends Sniff
                 $nextHereNowDoc = null;
             }
 
-            $identifier        = \trim($tokens[$stackPtr]['content']);
+            $identifier        = Utils::trim($tokens[$stackPtr]['content']);
             $realClosingMarker = $stackPtr;
 
             while (($realClosingMarker = $phpcsFile->findNext(\T_STRING, ($realClosingMarker + 1), $nextHereNowDoc, false, $identifier)) !== false) {

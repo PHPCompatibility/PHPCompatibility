@@ -12,6 +12,7 @@ namespace PHPCompatibility\Helpers;
 
 use PHPCompatibility\Exceptions\InvalidTestVersion;
 use PHPCompatibility\Exceptions\InvalidTestVersionRange;
+use PHPCompatibility\Helpers\Utils;
 use PHPCSUtils\BackCompat\Helper;
 
 /**
@@ -100,7 +101,7 @@ final class ScannedCode
                 $testVersion = Helper::getConfigData('testversion');
             }
 
-            self::$testVersion = \trim((string) $testVersion);
+            self::$testVersion = Utils::trim((string) $testVersion);
         }
 
         if (empty(self::$testVersion)) {

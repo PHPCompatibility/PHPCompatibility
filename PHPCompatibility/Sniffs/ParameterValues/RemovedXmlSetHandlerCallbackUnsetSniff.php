@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -136,7 +137,7 @@ final class RemovedXmlSetHandlerCallbackUnsetSniff extends AbstractFunctionCallP
 
             // Allow for multi-line empty strings.
             $callback = TextStrings::stripQuotes($callback);
-            $callback = \trim($callback);
+            $callback = Utils::trim($callback);
             if ($callback !== '') {
                 continue;
             }

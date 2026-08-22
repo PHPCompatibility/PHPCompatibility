@@ -13,6 +13,7 @@ namespace PHPCompatibility\Helpers;
 use PHP_CodeSniffer\Exceptions\RuntimeException;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\Utils;
 use PHPCSUtils\Exceptions\ValueError;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Arrays;
@@ -109,8 +110,8 @@ trait PCRERegexTrait
                 }
 
                 $itemInfo['end']   = ($hasKey - 1);
-                $itemInfo['raw']   = \trim(GetTokensAsString::normal($phpcsFile, $itemInfo['start'], $itemInfo['end']));
-                $itemInfo['clean'] = \trim(GetTokensAsString::compact($phpcsFile, $itemInfo['start'], $itemInfo['end'], true));
+                $itemInfo['raw']   = Utils::trim(GetTokensAsString::normal($phpcsFile, $itemInfo['start'], $itemInfo['end']));
+                $itemInfo['clean'] = Utils::trim(GetTokensAsString::compact($phpcsFile, $itemInfo['start'], $itemInfo['end'], true));
                 $patterns[]        = $itemInfo;
             }
 
@@ -123,8 +124,8 @@ trait PCRERegexTrait
             if ($hasKey !== false) {
                 // Param info array only needs adjusting if this was a keyed array item.
                 $itemInfo['start'] = ($hasKey + 1);
-                $itemInfo['raw']   = \trim(GetTokensAsString::normal($phpcsFile, $itemInfo['start'], $itemInfo['end']));
-                $itemInfo['clean'] = \trim(GetTokensAsString::compact($phpcsFile, $itemInfo['start'], $itemInfo['end'], true));
+                $itemInfo['raw']   = Utils::trim(GetTokensAsString::normal($phpcsFile, $itemInfo['start'], $itemInfo['end']));
+                $itemInfo['clean'] = Utils::trim(GetTokensAsString::compact($phpcsFile, $itemInfo['start'], $itemInfo['end'], true));
             }
 
             $patterns[] = $itemInfo;
@@ -192,7 +193,7 @@ trait PCRERegexTrait
                     $content = TextStrings::stripEmbeds($content);
                 }
 
-                $regex .= \trim($content);
+                $regex .= Utils::trim($content);
             } catch (ValueError $e) {
                 // Ignore. Subsequent line of a multi-line double quoted text string.
             }
