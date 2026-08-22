@@ -10,8 +10,9 @@
 
 namespace PHPCompatibility\Util\Tests\Helpers;
 
-use PHPUnit\Framework\TestCase;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
+use PHPUnit\Framework\TestCase;
+use TypeError;
 
 /**
  * Tests for the ComplexVersionNewFeatureTrait sniff helper.
@@ -33,7 +34,7 @@ final class ComplexVersionNewFeatureTraitUnitTest extends TestCase
      */
     public function testGetVersionInfoInvalidParamType()
     {
-        $this->expectException('TypeError');
+        $this->expectException(TypeError::class);
 
         $this->getVersionInfo(null);
     }
@@ -138,7 +139,7 @@ final class ComplexVersionNewFeatureTraitUnitTest extends TestCase
      */
     public function testGetMessageInvalidParamType()
     {
-        $this->expectException('TypeError');
+        $this->expectException(TypeError::class);
 
         $this->getMessageInfo(null, null, null);
     }

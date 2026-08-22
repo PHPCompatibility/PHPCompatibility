@@ -10,6 +10,8 @@
 
 namespace PHPCompatibility\Util\Tests\Helpers;
 
+use PHPCompatibility\Exceptions\InvalidTestVersion;
+use PHPCompatibility\Exceptions\InvalidTestVersionRange;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\TestUtils\ConfigDouble;
@@ -51,7 +53,7 @@ final class ScannedCodeUnitTest extends TestCase
     {
         self::$config = new ConfigDouble();
 
-        self::$reflMethod = new ReflectionMethod('PHPCompatibility\Helpers\ScannedCode', 'getTestVersion');
+        self::$reflMethod = new ReflectionMethod(ScannedCode::class, 'getTestVersion');
         (\PHP_VERSION_ID < 80100) && self::$reflMethod->setAccessible(true);
     }
 
@@ -182,7 +184,7 @@ final class ScannedCodeUnitTest extends TestCase
     {
         $message = \sprintf('Invalid range in provided PHPCompatibility testVersion: \'%s\'', $testVersion);
 
-        $this->expectException('PHPCompatibility\Exceptions\InvalidTestVersionRange');
+        $this->expectException(InvalidTestVersionRange::class);
         $this->expectExceptionMessage($message);
 
         $this->testGetTestVersion($testVersion, [null, null]);
@@ -220,7 +222,7 @@ final class ScannedCodeUnitTest extends TestCase
     {
         $message = \sprintf('Invalid PHPCompatibility testVersion provided: \'%s\'', \trim($testVersion));
 
-        $this->expectException('PHPCompatibility\Exceptions\InvalidTestVersion');
+        $this->expectException(InvalidTestVersion::class);
         $this->expectExceptionMessage($message);
 
         $this->testGetTestVersion($testVersion, [null, null]);

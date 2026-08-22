@@ -117,7 +117,7 @@ abstract class BaseSniffTestCase extends TestCase
      */
     protected function getSniffCode()
     {
-        $className = \get_class($this);
+        $className = static::class;
         $className = \preg_replace('`ParseError[0-9]*UnitTest$`i', 'UnitTest', $className);
 
         return Common::getSniffCode($className);
