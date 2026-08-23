@@ -8600,6 +8600,18 @@ final class NewConstantsSniff extends Sniff
             'extension' => 'tokenizer',
         ],
 
+        'STREAM_CRYPTO_STATUS_NONE' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'STREAM_CRYPTO_STATUS_WANT_READ' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'STREAM_CRYPTO_STATUS_WANT_WRITE' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
         'CURLINFO_SIZE_DELIVERED' => [
             '8.5'       => false,
             '8.6'       => true,

@@ -1120,3 +1120,4 @@ clamp();
 mysqli_quote_string();
 gmp_powm_sec();
 gmp_prevprime();
+stream_socket_get_crypto_status();
