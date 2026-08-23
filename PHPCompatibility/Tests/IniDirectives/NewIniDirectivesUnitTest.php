@@ -302,6 +302,8 @@ final class NewIniDirectivesUnitTest extends BaseSniffTestCase
             ['max_memory_limit', '8.5', [640, 641], '8.4'],
             ['opcache.file_cache_read_only', '8.5', [643, 644], '8.4'],
             ['openssl.libctx', '8.5', [646, 647], '8.4'],
+
+            ['error_include_args', '8.6', [649, 650], '8.5'],
         ];
     }
 

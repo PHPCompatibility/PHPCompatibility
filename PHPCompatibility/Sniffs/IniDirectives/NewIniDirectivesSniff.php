@@ -1100,6 +1100,11 @@ final class NewIniDirectivesSniff extends AbstractFunctionCallParameterSniff
             '8.5'       => true,
             'extension' => 'openssl',
         ],
+
+        'error_include_args' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
     ];
 
     /**
