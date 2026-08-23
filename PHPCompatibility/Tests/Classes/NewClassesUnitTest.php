@@ -280,6 +280,7 @@ final class NewClassesUnitTest extends BaseSniffTestCase
             ['dATeTiMe', '5.1', [148], '5.2'],
 
             ['Openssl\\Session', '8.5', [638], '8.6'],
+            ['Time\\Duration', '8.5', [642], '8.6'],
 
             ['com_exception', '4.4', [343], '5.0'],
             ['DOMException', '4.4', [232, 260], '5.0'],
@@ -342,6 +343,7 @@ final class NewClassesUnitTest extends BaseSniffTestCase
             ['StreamError', '8.5', [635], '8.6'],
             ['StreamException', '8.5', [635], '8.6'],
             ['Openssl\\OpensslException', '8.5', [639], '8.6'],
+            ['Time\\TimeException', '8.5', [643], '8.6'],
         ];
     }
 

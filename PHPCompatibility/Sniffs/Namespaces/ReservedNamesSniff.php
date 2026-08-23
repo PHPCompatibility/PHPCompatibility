@@ -65,6 +65,7 @@ final class ReservedNamesSniff extends Sniff
         'Odbc'    => '8.4',
         'Pdo'     => '8.4',
         'Soap'    => '8.4',
+        'Time'    => '8.6',
     ];
 
     /**

@@ -75,6 +75,7 @@ final class ReservedNamesUnitTest extends BaseSniffTestCase
             [80, 'BcMath', '8.4', '8.3'],
             [83, 'Filter', '8.5', '8.4'],
             [86, 'Openssl', '8.6', '8.5'],
+            [87, 'time', '8.6', '8.5'],
         ];
     }
 
