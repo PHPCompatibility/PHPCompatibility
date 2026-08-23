@@ -1118,3 +1118,5 @@ locale_get_display_keyword_value();
 grapheme_strrev();
 clamp();
 mysqli_quote_string();
+gmp_powm_sec();
+gmp_prevprime();
