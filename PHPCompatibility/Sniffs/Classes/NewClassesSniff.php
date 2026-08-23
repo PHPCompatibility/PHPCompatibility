@@ -1087,6 +1087,18 @@ final class NewClassesSniff extends Sniff
             'extension' => 'curl',
         ],
 
+        'Io\\Poll\\Context' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\Poll\\Watcher' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'StreamPollHandle' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
         'Time\\Duration' => [
             '8.5'       => false,
             '8.6'       => true,
@@ -1409,6 +1421,50 @@ final class NewClassesSniff extends Sniff
             '8.6' => true,
         ],
         'StreamException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\IoException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\Poll\\PollException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\Poll\\FailedPollOperationException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\Poll\\FailedContextInitializationException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\Poll\\FailedHandleAddException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\Poll\\FailedWatcherModificationException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\Poll\\FailedPollWaitException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\Poll\\BackendUnavailableException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\Poll\\InactiveWatcherException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\Poll\\HandleAlreadyWatchedException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'Io\\Poll\\InvalidHandleException' => [
             '8.5' => false,
             '8.6' => true,
         ],

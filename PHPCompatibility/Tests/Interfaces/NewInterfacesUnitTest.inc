@@ -254,3 +254,5 @@ class NamespacedNames {
     ): \Fully\Qualified\Reflector {
     }
 }
+
+$closure = static function (Io\Poll\Handle $handle) {};

@@ -281,6 +281,9 @@ final class NewClassesUnitTest extends BaseSniffTestCase
 
             ['Openssl\\Session', '8.5', [638], '8.6'],
             ['Time\\Duration', '8.5', [642], '8.6'],
+            ['Io\\Poll\\Context', '8.5', [646], '8.6'],
+            ['Io\\Poll\\Watcher', '8.5', [647], '8.6'],
+            ['StreamPollHandle', '8.5', [647], '8.6'],
 
             ['com_exception', '4.4', [343], '5.0'],
             ['DOMException', '4.4', [232, 260], '5.0'],
@@ -344,6 +347,17 @@ final class NewClassesUnitTest extends BaseSniffTestCase
             ['StreamException', '8.5', [635], '8.6'],
             ['Openssl\\OpensslException', '8.5', [639], '8.6'],
             ['Time\\TimeException', '8.5', [643], '8.6'],
+            ['Io\\IoException', '8.5', [648], '8.6'],
+            ['Io\\Poll\\PollException', '8.5', [648], '8.6'],
+            ['Io\\Poll\\FailedPollOperationException', '8.5', [648], '8.6'],
+            ['Io\\Poll\\FailedContextInitializationException', '8.5', [649], '8.6'],
+            ['Io\\Poll\\FailedHandleAddException', '8.5', [649], '8.6'],
+            ['Io\\Poll\\FailedWatcherModificationException', '8.5', [649], '8.6'],
+            ['Io\\Poll\\FailedPollWaitException', '8.5', [650], '8.6'],
+            ['Io\\Poll\\BackendUnavailableException', '8.5', [650], '8.6'],
+            ['Io\\Poll\\InactiveWatcherException', '8.5', [650], '8.6'],
+            ['Io\\Poll\\HandleAlreadyWatchedException', '8.5', [651], '8.6'],
+            ['Io\\Poll\\InvalidHandleException', '8.5', [651], '8.6'],
         ];
     }
 

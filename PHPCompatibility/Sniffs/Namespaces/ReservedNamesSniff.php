@@ -56,6 +56,7 @@ final class ReservedNamesSniff extends Sniff
         'Filter'  => '8.5',
         'FTP'     => '8.1',
         'IMAP'    => '8.1', // Unbundled from PHP in PHP 8.4.
+        'Io'      => '8.6',
         'LDAP'    => '8.1',
         'Openssl' => '8.6',
         'PgSql'   => '8.1',
