@@ -81,3 +81,6 @@ namespace BcMath;
 
 // Error PHP 8.5+.
 namespace Filter;
+
+// Error PHP 8.6+.
+namespace Openssl;

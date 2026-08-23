@@ -48,22 +48,23 @@ final class ReservedNamesSniff extends Sniff
          * The top-level namespace name "PHP" is reserved by PHP since the introduction
          * of namespaces in PHP 5.3, but not yet in use.
          */
-        'PHP'    => '5.3',
+        'PHP'     => '5.3',
 
         // Top-level namespace names in use in bundled extensions.
-        'BcMath' => '8.4',
-        'FFI'    => '7.4',
-        'Filter' => '8.5',
-        'FTP'    => '8.1',
-        'IMAP'   => '8.1', // Unbundled from PHP in PHP 8.4.
-        'LDAP'   => '8.1',
-        'PgSql'  => '8.1',
-        'PSpell' => '8.1', // Unbundled from PHP in PHP 8.4.
-        'Random' => '8.2',
-        'Dba'    => '8.4',
-        'Odbc'   => '8.4',
-        'Pdo'    => '8.4',
-        'Soap'   => '8.4',
+        'BcMath'  => '8.4',
+        'FFI'     => '7.4',
+        'Filter'  => '8.5',
+        'FTP'     => '8.1',
+        'IMAP'    => '8.1', // Unbundled from PHP in PHP 8.4.
+        'LDAP'    => '8.1',
+        'Openssl' => '8.6',
+        'PgSql'   => '8.1',
+        'PSpell'  => '8.1', // Unbundled from PHP in PHP 8.4.
+        'Random'  => '8.2',
+        'Dba'     => '8.4',
+        'Odbc'    => '8.4',
+        'Pdo'     => '8.4',
+        'Soap'    => '8.4',
     ];
 
     /**
