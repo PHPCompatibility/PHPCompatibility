@@ -780,6 +780,11 @@ final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSnif
                 '8.4'  => false,
                 '8.5'  => true,
             ],
+            6 => [
+                'name' => 'salt_length',
+                '8.5'  => false,
+                '8.6'  => true,
+            ],
         ],
         'openssl_verify' => [
             4 => [
@@ -791,6 +796,11 @@ final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSnif
                 'name' => 'padding',
                 '8.4'  => false,
                 '8.5'  => true,
+            ],
+            6 => [
+                'name' => 'salt_length',
+                '8.5'  => false,
+                '8.6'  => true,
             ],
         ],
         'parse_ini_file' => [

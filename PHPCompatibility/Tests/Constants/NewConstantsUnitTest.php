@@ -1794,6 +1794,10 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['IMAGETYPE_HEIF', '8.4', 1742, '8.5'],
             ['IMAGETYPE_SVG', '8.4', 1739, '8.5'],
             ['T_VOID_CAST', '8.4', 1743, '8.5'],
+
+            ['OPENSSL_RSA_PSS_SALTLEN_DIGEST', '8.5', 1745, '8.6'],
+            ['OPENSSL_RSA_PSS_SALTLEN_AUTO', '8.5', 1746, '8.6'],
+            ['OPENSSL_RSA_PSS_SALTLEN_MAX', '8.5', 1747, '8.6'],
         ];
     }
 

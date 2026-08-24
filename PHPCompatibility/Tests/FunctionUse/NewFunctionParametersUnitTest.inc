@@ -170,8 +170,8 @@ grapheme_stristr( $haystack, $needle, $beforeNeedle, $locale );
 openssl_private_decrypt($data, $decrypted_data, $private_key, $padding, $digest_algo);
 \openssl_public_encrypt($data, $encrypted_data, $public_key, digest_algo: $digest_algo);
 
-\openssl_sign($data, $signature, $private_key, $algorithm, $padding);
-openssl_verify($data, $signature, $public_key, padding: $padding);
+\openssl_sign($data, $signature, $private_key, $algorithm, $padding, $salt_length);
+openssl_verify($data, $signature, $public_key, padding: $padding, salt_length: $salt_length);
 
 pcntl_waitid($idtype, $id, $info, $flags); // OK.
 pcntl_waitid($idtype, $id, $info, $flags, $resource_usage); // Error.

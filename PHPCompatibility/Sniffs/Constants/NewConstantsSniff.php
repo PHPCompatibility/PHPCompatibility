@@ -8599,6 +8599,22 @@ final class NewConstantsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'tokenizer',
         ],
+
+        'OPENSSL_RSA_PSS_SALTLEN_DIGEST' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'openssl',
+        ],
+        'OPENSSL_RSA_PSS_SALTLEN_AUTO' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'openssl',
+        ],
+        'OPENSSL_RSA_PSS_SALTLEN_MAX' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'openssl',
+        ],
     ];
 
 
