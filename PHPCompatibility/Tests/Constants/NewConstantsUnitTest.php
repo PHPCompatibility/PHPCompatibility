@@ -1818,6 +1818,12 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['EAI_INTR', '8.5', 1765, '8.6'],
             ['EAI_IDN_ENCODE', '8.5', 1766, '8.6'],
             ['SO_DETACH_REUSEPORT_BPF', '8.5', 1767, '8.6'],
+            ['CURLINFO_SIZE_DELIVERED', '8.5', 1768, '8.6'],
+            ['CURLOPT_SEEKFUNCTION', '8.5', 1769, '8.6'],
+            ['CURL_SEEKFUNC_OK', '8.5', 1770, '8.6'],
+            ['CURL_SEEKFUNC_FAIL', '8.5', 1771, '8.6'],
+            ['CURL_SEEKFUNC_CANTSEEK', '8.5', 1772, '8.6'],
+            ['CURL_READFUNC_ABORT', '8.5', 1773, '8.6'],
         ];
     }
 

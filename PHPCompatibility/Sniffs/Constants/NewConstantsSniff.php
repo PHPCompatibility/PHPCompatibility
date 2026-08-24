@@ -8600,6 +8600,36 @@ final class NewConstantsSniff extends Sniff
             'extension' => 'tokenizer',
         ],
 
+        'CURLINFO_SIZE_DELIVERED' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'curl',
+        ],
+        'CURLOPT_SEEKFUNCTION' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_SEEKFUNC_OK' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_SEEKFUNC_FAIL' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_SEEKFUNC_CANTSEEK' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'curl',
+        ],
+        'CURL_READFUNC_ABORT' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'curl',
+        ],
         'OPENSSL_RSA_PSS_SALTLEN_DIGEST' => [
             '8.5'       => false,
             '8.6'       => true,
