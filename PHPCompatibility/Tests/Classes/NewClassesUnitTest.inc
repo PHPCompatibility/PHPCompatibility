@@ -651,3 +651,4 @@ try {
 } catch (Io\Poll\HandleAlreadyWatchedException | Io\Poll\InvalidHandleException $e) {}
 
 $obj = new IntlNumberRangeFormatter();
+function handleOpensslPsk(\Openssl\Psk $psk) {}
