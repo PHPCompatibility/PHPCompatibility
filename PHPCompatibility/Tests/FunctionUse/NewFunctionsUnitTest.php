@@ -1166,6 +1166,8 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['opcache_is_script_cached_in_file_cache', '8.4', 1110, '8.5'],
             ['pg_close_stmt', '8.4', 1111, '8.5'],
             ['pg_service', '8.4', 1112, '8.5'],
+            ['stream_clear_errors', '8.5', 1114, '8.6'],
+            ['stream_last_errors', '8.5', 1115, '8.6'],
         ];
     }
 

@@ -630,3 +630,6 @@ try {
 } catch (Filter\FilterException) {}
 
 function doSomethingWithCurl(CurlSharePersistentHandle $curlHandle) {}
+
+try {
+} catch ( StreamError|StreamException $e) {}

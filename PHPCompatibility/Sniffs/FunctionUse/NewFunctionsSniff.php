@@ -5264,6 +5264,15 @@ final class NewFunctionsSniff extends Sniff
             '8.5'       => true,
             'extension' => 'pgsql',
         ],
+
+        'stream_clear_errors' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'stream_last_errors' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
     ];
 
 

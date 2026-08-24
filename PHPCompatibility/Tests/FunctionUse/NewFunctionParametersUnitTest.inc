@@ -176,3 +176,9 @@ openssl_verify($data, $signature, $public_key, padding: $padding);
 pcntl_waitid($idtype, $id, $info, $flags); // OK.
 pcntl_waitid($idtype, $id, $info, $flags, $resource_usage); // Error.
 pcntl_waitid($idtype, resource_usage: $resource_usage); // Error.
+
+stream_select( context: $context, $read, $write, $except, $seconds, );
+\stream_select($read, $write, $except, $seconds, $microseconds, $context);
+stream_copy_to_stream( $from, $to, context: $context );
+stream_socket_pair($domain, $type, $protocol, $context);
+stream_is_local($stream, $context);

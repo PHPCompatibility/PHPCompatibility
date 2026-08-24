@@ -1110,3 +1110,6 @@ locale_is_right_to_left();
 opcache_is_script_cached_in_file_cache();
 pg_close_stmt();
 pg_service();
+
+stream_clear_errors();
+\stream_last_errors();
