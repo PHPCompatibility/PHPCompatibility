@@ -182,3 +182,5 @@ stream_select( context: $context, $read, $write, $except, $seconds, );
 stream_copy_to_stream( $from, $to, context: $context );
 stream_socket_pair($domain, $type, $protocol, $context);
 stream_is_local($stream, $context);
+
+socket_addrinfo_lookup($host, null, [], $error_code);

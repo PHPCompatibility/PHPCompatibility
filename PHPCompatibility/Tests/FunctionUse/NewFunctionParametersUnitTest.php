@@ -207,6 +207,7 @@ final class NewFunctionParametersUnitTest extends BaseSniffTestCase
             ['setrawcookie', 'httponly', '5.1', [77], '5.2'],
             ['simplexml_load_file', 'is_prefix', '5.1', [78], '5.2'],
             ['simplexml_load_string', 'is_prefix', '5.1', [79], '5.2'],
+            ['socket_addrinfo_lookup', 'error_code', '8.5', [186], '8.6'],
             ['spl_autoload_register', 'prepend', '5.2', [80], '5.3'],
             ['stream_context_create', 'params', '5.2', [81], '5.3'],
             ['stream_copy_to_stream', 'offset', '5.0', [82], '5.1'],
