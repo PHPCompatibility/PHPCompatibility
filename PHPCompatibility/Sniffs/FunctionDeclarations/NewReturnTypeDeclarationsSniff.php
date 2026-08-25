@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\TypeString;

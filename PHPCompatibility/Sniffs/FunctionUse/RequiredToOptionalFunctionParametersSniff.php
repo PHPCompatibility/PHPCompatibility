@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\FunctionUse;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
-use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
 

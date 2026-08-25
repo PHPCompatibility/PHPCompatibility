@@ -10,11 +10,11 @@
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\PassedParameters;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect function calls to ldap_connect() using deprecated function signatures.

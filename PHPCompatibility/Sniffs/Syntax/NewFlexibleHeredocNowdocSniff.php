@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect usage of flexible heredoc/nowdoc and related cross-version incompatibilities.

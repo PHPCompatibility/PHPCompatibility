@@ -10,13 +10,13 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCompatibility\Sniffs\Syntax\NewArrayStringDereferencingSniff;
 use PHPCompatibility\Sniffs\Syntax\NewClassMemberAccessSniff;
 use PHPCompatibility\Sniffs\Syntax\NewFunctionArrayDereferencingSniff;
-use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\Scopes;
 
 /**

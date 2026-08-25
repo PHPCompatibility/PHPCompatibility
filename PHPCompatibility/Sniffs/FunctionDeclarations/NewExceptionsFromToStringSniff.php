@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\FunctionDeclarations;
 
-use PHPCompatibility\Helpers\ScannedCode;
-use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\ObjectDeclarations;
 
 /**

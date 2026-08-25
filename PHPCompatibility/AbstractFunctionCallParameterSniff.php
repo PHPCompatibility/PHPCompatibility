@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility;
 
-use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\PassedParameters;

@@ -10,11 +10,11 @@
 
 namespace PHPCompatibility\Sniffs\InitialValue;
 
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractInitialValueSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
-use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\MessageHelper;

@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
-use PHPCompatibility\Helpers\ScannedCode;
-use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Sniff;
 
 /**
  * Detect use of a semicolon to terminate a switch case/default statement.

@@ -10,12 +10,12 @@
 
 namespace PHPCompatibility\Sniffs\Namespaces;
 
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Namespaces;
-use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect declarations of namespace names reserved for, or in use by, PHP.

@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\PCRERegexTrait;
 use PHPCompatibility\Helpers\ScannedCode;
-use PHP_CodeSniffer\Files\File;
 use PHPCSUtils\Utils\PassedParameters;
 
 /**

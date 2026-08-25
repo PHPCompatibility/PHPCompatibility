@@ -10,12 +10,12 @@
 
 namespace PHPCompatibility\Sniffs\Syntax;
 
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\TextStrings;
-use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Detect dereferencing of interpolated strings.

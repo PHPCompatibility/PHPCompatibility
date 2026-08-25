@@ -10,11 +10,11 @@
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\MiscHelper;
 use PHPCompatibility\Helpers\ScannedCode;
-use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\PassedParameters;
 

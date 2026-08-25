@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\Miscellaneous;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * PHP 7.4 now supports stand-alone PHP tags at the end of a file (without new line).

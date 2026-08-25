@@ -10,10 +10,10 @@
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
-use PHPCompatibility\AbstractFunctionCallParameterSniff;
-use PHPCompatibility\Helpers\ScannedCode;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCompatibility\AbstractFunctionCallParameterSniff;
+use PHPCompatibility\Helpers\ScannedCode;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\MessageHelper;

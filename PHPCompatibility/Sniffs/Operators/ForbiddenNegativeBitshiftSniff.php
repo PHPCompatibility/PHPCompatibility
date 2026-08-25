@@ -10,11 +10,11 @@
 
 namespace PHPCompatibility\Sniffs\Operators;
 
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\BackCompat\BCFile;
 use PHPCSUtils\Utils\GetTokensAsString;
 

@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect unpacking nested arrays with `list()` in a `foreach()` as available since PHP 5.5.

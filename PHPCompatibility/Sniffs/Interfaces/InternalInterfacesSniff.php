@@ -10,8 +10,8 @@
 
 namespace PHPCompatibility\Sniffs\Interfaces;
 
-use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\ObjectDeclarations;

@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\ParameterValues;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * Detect: Calling mb_check_encoding() without any arguments is deprecated as of PHP 8.1.

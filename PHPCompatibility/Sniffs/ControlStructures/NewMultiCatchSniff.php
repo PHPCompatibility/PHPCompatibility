@@ -10,9 +10,9 @@
 
 namespace PHPCompatibility\Sniffs\ControlStructures;
 
+use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
-use PHP_CodeSniffer\Files\File;
 
 /**
  * Catching multiple exception types in one statement is available since PHP 7.1.

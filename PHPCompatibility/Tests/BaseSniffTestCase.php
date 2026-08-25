@@ -10,7 +10,6 @@
 
 namespace PHPCompatibility\Tests;
 
-use PHPUnit\Framework\TestCase;
 use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Files\LocalFile;
@@ -20,6 +19,7 @@ use PHPCSUtils\BackCompat\Helper;
 use PHPUnit\Framework\Attributes\After;
 use PHPUnit\Framework\Attributes\AfterClass;
 use PHPUnit\Framework\Attributes\BeforeClass;
+use PHPUnit\Framework\TestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
