@@ -2,17 +2,21 @@
 
 <div aria-hidden="true">
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/phpcompatibility/php-compatibility?label=stable)](https://packagist.org/packages/phpcompatibility/php-compatibility)
-[![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcompatibility/php-compatibility#dev-develop)
+[![Latest Stable Version](https://img.shields.io/packagist/v/phpcompatibility/php-compatibility?label=stable)][phpcompat-packagist]
+[![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)][phpcompat-packagist-develop]
 ![Awesome](https://img.shields.io/badge/awesome%3F-yes!-brightgreen.svg)
 [![License](https://img.shields.io/github/license/PHPCompatibility/PHPCompatibility?color=00a7a7)](https://github.com/PHPCompatibility/PHPCompatibility/blob/master/LICENSE)
 
 [![CS Build Status](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/basics.yml/badge.svg?branch=develop)](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/basics.yml)
-[![Test Build Status](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/test.yml/badge.svg?branch=develop)](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/test.yml)
+[![Test Build Status](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/test.yml/badge.svg?branch=develop)][phpcompat-gha-tests]
 [![Coverage Status](https://coveralls.io/repos/github/PHPCompatibility/PHPCompatibility/badge.svg?branch=develop)](https://coveralls.io/github/PHPCompatibility/PHPCompatibility?branch=develop)
 
-[![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcompatibility/php-compatibility.svg?maxAge=3600)](https://packagist.org/packages/phpcompatibility/php-compatibility)
-[![Tested on PHP 7.2 to nightly](https://img.shields.io/badge/tested%20on-PHP%207.2%20|%207.3%20|%207.4%20|%208.0%20|%208.1%20|%208.2%20|%208.3%20|%208.4%20|%208.5%20|%20nightly%20-brightgreen.svg?maxAge=2419200)](https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/test.yml)
+[![Minimum PHP Version](https://img.shields.io/packagist/dependency-v/phpcompatibility/php-compatibility/php.svg?maxAge=3600)][phpcompat-packagist]
+[![Tested on PHP 7.2 to nightly](https://img.shields.io/badge/tested%20on-PHP%207.2%20|%207.3%20|%207.4%20|%208.0%20|%208.1%20|%208.2%20|%208.3%20|%208.4%20|%208.5%20|%20nightly%20-brightgreen.svg?maxAge=2419200)][phpcompat-gha-tests]
+
+[phpcompat-packagist]:         https://packagist.org/packages/phpcompatibility/php-compatibility
+[phpcompat-packagist-develop]: https://packagist.org/packages/phpcompatibility/php-compatibility#dev-develop
+[phpcompat-gha-tests]:         https://github.com/PHPCompatibility/PHPCompatibility/actions/workflows/test.yml
 
 </div>
 
@@ -221,8 +225,8 @@ There are hundreds of public projects using PHPCompatibility or extending on top
 * [adamculp/php-code-quality](https://github.com/adamculp/php-code-quality) - a Docker image doing a lot of code quality checks
 * PHPCompatibility Checker WordPress plugin : [Wordpress site](https://wordpress.org/plugins/php-compatibility-checker/) and [Github](https://github.com/wpengine/phpcompat/)
 * [WordPress Tide project](https://wptide.org/)
-* [PHPStorm has built-in support for PHPCompatibility](https://www.jetbrains.com/help/phpstorm/using-php-code-sniffer.html#788c81b6)
-* [Moodle codechecker](https://github.com/moodlehq/moodle-local_codechecker) - A [plugin](https://moodle.org/plugins/local_codechecker) for Moodle [coding style](https://docs.moodle.org/dev/Coding_style), including PHPCompatibility.
+* [PHPStorm has built-in support for PHPCompatibility](https://www.jetbrains.com/help/phpstorm/using-php-code-sniffer.html#configure-tool-inspection-composer)
+* [Moodle codechecker](https://github.com/moodlehq/moodle-local_codechecker) - A [plugin](https://moodle.org/plugins/local_codechecker) for Moodle [coding style](https://moodledev.io/general/development/policies/codingstyle), including PHPCompatibility.
 * [Github Action](https://github.com/marketplace/actions/php-compatibility) - A Github Action that runs this PHPCS standard on your source code.
 
 ## Contributing
@@ -231,4 +235,4 @@ Contributions are very welcome. Please read the [CONTRIBUTING](.github/CONTRIBUT
 
 ## License
 
-This code is released under the GNU Lesser General Public License (LGPL). For more information, visit <http://www.gnu.org/copyleft/lesser.html>
+This code is released under the GNU Lesser General Public License (LGPL). For more information, visit <https://www.gnu.org/licenses/lgpl-3.0.html>

@@ -13,6 +13,8 @@
 .gitattributes                export-ignore
 .gitignore                    export-ignore
 .markdownlint-cli2.yaml       export-ignore
+.remarkignore                 export-ignore
+.remarkrc                     export-ignore
 .yamllint.yml                 export-ignore
 phpcs.xml.dist                export-ignore
 phpunit.xml.dist              export-ignore

@@ -184,7 +184,7 @@ If you use any of the framework/CMS/polyfill specific rulesets, please use the c
     Installation using git clones or with the PHP_CodeSniffer PHAR files is still possible, but no support will be provided for this.
 - New runtime dependencies:
     * The Composer plugin to register the standard with PHP_CodeSniffer.
-    * [PHPCSUtils][phpcsutils], a library of utility function for PHP_CodeSniffer.
+    * [PHPCSUtils], a library of utility function for PHP_CodeSniffer.
 - All PHPCompatibility sniffs are now `final` classes.
     * This prevents issues with sniff autoloading.
 - All sniffs are now compatible with PHP_CodeSniffer 3.x as well as 4.0.
@@ -199,7 +199,7 @@ See all related issues and PRs in the [10.0.0-alpha1 milestone].
 ### Added
 - New dependencies:
     * The Composer PHPCS installer plugin (`DealerDirect/phpcodesniffer-composer-installer`).
-    * [PHPCSUtils][phpcsutils] at "^1.1.2". [#979], [#1362], [#1714], [#1806], [#1900]
+    * [PHPCSUtils] at "^1.1.2". [#979], [#1362], [#1714], [#1806], [#1900]
 - PHP cross-version:
     * :star2: New `PHPCompatibility.Classes.RemovedClasses` sniff. [#1062], [#1705]
 - PHP 5.3:
@@ -1535,6 +1535,7 @@ Additionally thanks go out to everyone who has been testing the `develop` branch
 [#1248]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1248
 [#1249]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1249
 [#1250]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1250
+[#1251]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1251
 [#1252]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1252
 [#1253]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1253
 [#1254]: https://github.com/PHPCompatibility/PHPCompatibility/pull/1254
@@ -2559,9 +2560,9 @@ Thanks go out to [Jonathan Champ] for his contribution to this version. :clap:
 
 All sniffs have been placed in meaningful categories and a number of sniffs have been renamed to have more consistent, meaningful and future-proof names.
 
-Both the `PHPCompatibilityJoomla` [[GH][gh-phpcompat-joomla] | [Packagist][packagist-phpcompat-joomla]] as well as the `PHPCompatibilityWP` [[GH][gh-phpcompat-wp] | [Packagist][packagist-phpcompat-wp]] rulesets have already been adjusted for this change and have released a new version which is compatible with this version of PHPCompatibility.
+Both the `PHPCompatibilityJoomla` ([GH][gh-phpcompat-joomla] | [Packagist][packagist-phpcompat-joomla]) as well as the `PHPCompatibilityWP` ([GH][gh-phpcompat-wp] | [Packagist][packagist-phpcompat-wp]) rulesets have already been adjusted for this change and have released a new version which is compatible with this version of PHPCompatibility.
 
-Aside from those CMS-based rulesets, this project now also offers a number of polyfill-library specific rulesets, such as `PHPCompatibilityPasswordCompat` [[GH][gh-phpcompat-passwordcompat] | [Packagist][packagist-phpcompat-passwordcompat]] for @ircmaxell's [`password_compat`][polyfills-password_compat] libary, `PHPCompatibilityParagonieRandomCompat` and `PHPCompatibilityParagonieSodiumCompat` [[GH][gh-phpcompat-paragonie] | [Packagist][packagist-phpcompat-paragonie]] for the [Paragonie polyfills][polyfills-paragonie] and a number of rulesets related to various [polyfills offered by the Symfony project][polyfills-symfony] [[GH][gh-phpcompat-symfony] | [Packagist][packagist-phpcompat-symfony]].
+Aside from those CMS-based rulesets, this project now also offers a number of polyfill-library specific rulesets, such as `PHPCompatibilityPasswordCompat` ([GH][gh-phpcompat-passwordcompat] | [Packagist][packagist-phpcompat-passwordcompat]) for @ircmaxell's [`password_compat`][polyfills-password_compat] libary, `PHPCompatibilityParagonieRandomCompat` and `PHPCompatibilityParagonieSodiumCompat` ([GH][gh-phpcompat-paragonie] | [Packagist][packagist-phpcompat-paragonie]) for the [Paragonie polyfills][polyfills-paragonie] and a number of rulesets related to various [polyfills offered by the Symfony project][polyfills-symfony] ([GH][gh-phpcompat-symfony] | [Packagist][packagist-phpcompat-symfony]).
 
 If your project uses one of these polyfills, please consider using these special polyfill rulesets to prevent false positives.
 
@@ -2910,6 +2911,7 @@ Thanks go out to [Michael Babker] and [Juliette Reinders Folmer] for their contr
 [#648]: https://github.com/PHPCompatibility/PHPCompatibility/pull/648
 [#650]: https://github.com/PHPCompatibility/PHPCompatibility/pull/650
 [#651]: https://github.com/PHPCompatibility/PHPCompatibility/pull/651
+[#652]: https://github.com/PHPCompatibility/PHPCompatibility/pull/652
 [#653]: https://github.com/PHPCompatibility/PHPCompatibility/pull/653
 [#667]: https://github.com/PHPCompatibility/PHPCompatibility/pull/667
 [#668]: https://github.com/PHPCompatibility/PHPCompatibility/pull/668

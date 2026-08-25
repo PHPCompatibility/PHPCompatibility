@@ -1,22 +1,22 @@
 # Release checklist
 
-Use the below text for a release PR to merge `develop` into `master` and adjust the placeholders between [square brackets] to the correct information for that release:
+Use the below text for a release PR to merge `develop` into `master` and adjust the placeholders between \[square brackets\] to the correct information for that release:
 
 ---
 
 :warning: **DO NOT MERGE (YET)** :warning:
 
-PR for tracking changes for the [x.x.x] release. Target release date: **[Weekday Month Day Year]**.
+PR for tracking changes for the \[x.x.x\] release. Target release date: **\[Weekday Month Day Year\]**.
 
 ## Release checklist
 
 ### Release preparation
 
 - [ ] Check the wiki against vandalism.
-- [ ] Verify, and if necessary, update the allowed version ranges for various dependencies in the `composer.json` - PR #[#]
-- [ ] [Major releases only] Update the aliases in `extra -> branch-alias` in the `composer.json` file
-- [ ] [Major releases only] Update the `COMPOSER_ROOT_VERSION` in the GH Actions files
-- [ ] Add changelog for the release - PR #[#]
+- [ ] Verify, and if necessary, update the allowed version ranges for various dependencies in the `composer.json` - PR #...
+- [ ] \[Major releases only\] Update the aliases in `extra -> branch-alias` in the `composer.json` file
+- [ ] \[Major releases only\] Update the `COMPOSER_ROOT_VERSION` in the GH Actions files
+- [ ] Add changelog for the release - PR #...
     :pencil2: _Remember to create a link to the milestone and to the diff at the bottom of the file._
 
 ### Release
