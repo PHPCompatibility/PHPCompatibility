@@ -15,7 +15,7 @@
 <em>die</em>;
         ]]>
         </code>
-        <code title="PHP &lt; 8.4: using exit()/die() as a fully qualified function call.">
+        <code title="PHP &gt;= 8.4: using exit()/die() as a fully qualified function call.">
         <![CDATA[
 <em>\exit()</em>;
 <em>\die()</em>;
