@@ -35,7 +35,7 @@ final class RemovedTerminatingCaseWithSemicolonUnitTest extends BaseSniffTestCas
      *
      * @return void
      */
-    public function testRemovedTerminatingCaseWithSemicolonn($line, $insert = '')
+    public function testRemovedTerminatingCaseWithSemicolon($line, $insert = '')
     {
         $file = $this->sniffFile(__FILE__, '8.5');
         $this->assertWarning($file, $line, "Terminating a switch case statement with a{$insert} semicolon is deprecated since PHP 8.5.");
