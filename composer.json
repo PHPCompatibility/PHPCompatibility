@@ -3,17 +3,22 @@
   "description": "A set of sniffs for PHP_CodeSniffer that checks for PHP cross-version compatibility.",
   "license": "LGPL-3.0-or-later",
   "type": "phpcodesniffer-standard",
-  "keywords": [ "compatibility", "phpcs", "standards", "static analysis" ],
+  "keywords": [
+    "compatibility",
+    "phpcs",
+    "standards",
+    "static analysis"
+  ],
   "authors": [
     {
       "name": "Wim Godden",
-      "role": "lead",
-      "homepage": "https://github.com/wimg"
+      "homepage": "https://github.com/wimg",
+      "role": "lead"
     },
     {
       "name": "Juliette Reinders Folmer",
-      "role": "lead",
-      "homepage": "https://github.com/jrfnl"
+      "homepage": "https://github.com/jrfnl",
+      "role": "lead"
     },
     {
       "name": "Contributors",
@@ -28,15 +33,15 @@
   },
   "require": {
     "php": ">=7.2",
-    "squizlabs/php_codesniffer": "^4.0.2",
-    "phpcsstandards/phpcsutils": "^1.1.2"
+    "phpcsstandards/phpcsutils": "^1.1.2",
+    "squizlabs/php_codesniffer": "^4.0.2"
   },
   "require-dev": {
-    "php-parallel-lint/php-parallel-lint": "^1.4.0",
     "php-parallel-lint/php-console-highlighter": "^1.0.0",
-    "phpunit/phpunit": "^8.0 || ^9.3.4 || ^10.5.32 || ^11.3.3",
+    "php-parallel-lint/php-parallel-lint": "^1.4.0",
     "phpcsstandards/phpcsdevcs": "^1.2.0",
     "phpcsstandards/phpcsdevtools": "^1.2.3",
+    "phpunit/phpunit": "^8.0 || ^9.3.4 || ^10.5.32 || ^11.3.3",
     "yoast/phpunit-polyfills": "^1.1.5 || ^2.0.5 || ^3.1.0"
   },
   "replace": {
@@ -50,8 +55,8 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "9.x-dev",
-      "dev-develop": "10.x-dev"
+      "dev-develop": "10.x-dev",
+      "dev-master": "9.x-dev"
     }
   },
   "scripts": {
