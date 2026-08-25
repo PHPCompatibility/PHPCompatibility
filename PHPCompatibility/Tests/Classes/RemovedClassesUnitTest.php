@@ -98,11 +98,11 @@ final class RemovedClassesUnitTest extends BaseSniffTestCase
 
             ['XmlRpcServer', '8.0', [71, 74], '7.4'],
 
-            ['IMAP\Connection', '8.4', [118, 153], '8.3'],
+            ['IMAP\\Connection', '8.4', [118, 153], '8.3'],
             ['OCICollection', '8.4', [120, 136, 152], '8.3'],
             ['OCILob', '8.4', [121, 129], '8.3'],
-            ['PSpell\Config', '8.4', [124, 137, 162], '8.3'],
-            ['PSpell\Dictionary', '8.4', [125, 137, 162], '8.3'],
+            ['PSpell\\Config', '8.4', [124, 137, 162], '8.3'],
+            ['PSpell\\Dictionary', '8.4', [125, 137, 162], '8.3'],
         ];
     }
 
