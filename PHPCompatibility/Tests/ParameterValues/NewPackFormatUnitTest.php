@@ -32,6 +32,7 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
      *
      * @param int    $line           Line number where the error should occur.
      * @param string $code           Format code which should be detected.
+     * @param string $functionName   Name of the function found.
      * @param string $errorVersion   The PHP version to use to test for the error.
      * @param string $okVersion      A PHP version in which the code is valid.
      * @param string $displayVersion Optional PHP version which is shown in the error message
@@ -39,12 +40,13 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
      *
      * @return void
      */
-    public function testNewPackFormat($line, $code, $errorVersion, $okVersion, $displayVersion = null)
+    public function testNewPackFormat($line, $code, $functionName, $errorVersion, $okVersion, $displayVersion = null)
     {
         $file  = $this->sniffFile(__FILE__, $errorVersion);
         $error = \sprintf(
-            'Passing the $format(s) "%s" to pack() is not supported in PHP %s or lower.',
+            'Passing the $format(s) "%s" to %s() is not supported in PHP %s or lower.',
             $code,
+            $functionName,
             isset($displayVersion) ? $displayVersion : $errorVersion
         );
         $this->assertError($file, $line, $error);
@@ -63,19 +65,19 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
     public static function dataNewPackFormat()
     {
         return [
-            [8, 'Z', '5.4', '5.5'],
-            [9, 'q', '5.6', '7.0', '5.6.2'],
-            [10, 'Q', '5.6', '7.0', '5.6.2'],
-            [11, 'J', '5.6', '7.0', '5.6.2'],
-            [12, 'P', '5.6', '7.0', '5.6.2'],
-            [13, 'e', '7.0', '7.1', '7.0.14'],
-            [14, 'E', '7.0', '7.1', '7.0.14'],
-            [15, 'g', '7.0', '7.1', '7.0.14'],
-            [16, 'G', '7.0', '7.1', '7.0.14'],
-            [18, 'Z', '5.4', '7.1'], // OK version set to beyond last error.
-            [18, 'J', '5.6', '7.1', '5.6.2'], // OK version set to beyond last error.
-            [18, 'E', '7.0', '7.1', '7.0.14'],
-            [20, 'P', '5.6', '7.0', '5.6.2'],
+            [8, 'Z', 'unpack', '5.4', '5.5'],
+            [9, 'q', 'pack', '5.6', '7.0', '5.6.2'],
+            [10, 'Q', 'pack', '5.6', '7.0', '5.6.2'],
+            [11, 'J', 'unpack', '5.6', '7.0', '5.6.2'],
+            [12, 'P', 'pack', '5.6', '7.0', '5.6.2'],
+            [13, 'e', 'unpack', '7.0', '7.1', '7.0.14'],
+            [14, 'E', 'pack', '7.0', '7.1', '7.0.14'],
+            [15, 'g', 'pack', '7.0', '7.1', '7.0.14'],
+            [16, 'G', 'unpack', '7.0', '7.1', '7.0.14'],
+            [18, 'Z', 'pack', '5.4', '7.1'], // OK version set to beyond last error.
+            [18, 'J', 'pack', '5.6', '7.1', '5.6.2'], // OK version set to beyond last error.
+            [18, 'E', 'pack', '7.0', '7.1', '7.0.14'],
+            [20, 'P', 'unpack', '5.6', '7.0', '5.6.2'],
         ];
     }
 

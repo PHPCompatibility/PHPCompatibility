@@ -18,11 +18,12 @@ use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
 /**
- * Check for valid values for the `$format` passed to `pack()`.
+ * Check for valid values for the `$format` passed to `(un)pack()`.
  *
  * PHP version 5.4+
  *
  * @link https://www.php.net/manual/en/function.pack.php#refsect1-function.pack-changelog
+ * @link https://www.php.net/manual/en/function.unpack.php
  *
  * @since 9.0.0
  * @since 10.0.0 This class is now `final`.
@@ -38,7 +39,8 @@ final class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
      * @var array<string, true>
      */
     protected $targetFunctions = [
-        'pack' => true,
+        'pack'   => true,
+        'unpack' => true,
     ];
 
     /**
@@ -123,11 +125,12 @@ final class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
                 foreach ($versionArray as $version => $present) {
                     if ($present === false && ScannedCode::shouldRunOnOrBelow($version) === true) {
                         $phpcsFile->addError(
-                            'Passing the $format(s) "%s" to pack() is not supported in PHP %s or lower. Found: %s',
+                            'Passing the $format(s) "%s" to %s() is not supported in PHP %s or lower. Found: %s',
                             $targetParam['start'],
                             'NewFormatFound',
                             [
                                 $matches[1],
+                                \strtolower($functionName),
                                 $version,
                                 $targetParam['clean'],
                             ]
