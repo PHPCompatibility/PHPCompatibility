@@ -35,7 +35,7 @@ gzdeflate($compressed, 9, ZLIB_ENCODING_GZIP);
 htmlentities($str, ENT_QUOTES, 'UTF-8', false);
 htmlspecialchars('<a href="test">Test</a>', ENT_QUOTES, 'UTF-8', false);
 http_build_query($data, '', '&amp;', PHP_QUERY_RFC1738); // NB: 2 new params
-idn_to_ascii('t‰st.de', IDNA_CHECK_BIDI,  INTL_IDNA_VARIANT_UTS46, $result); // NB: 2 new params
+idn_to_ascii('t√§st.de', IDNA_CHECK_BIDI,  INTL_IDNA_VARIANT_UTS46, $result); // NB: 2 new params
 idn_to_utf8($domain, IDNA_CHECK_BIDI,  INTL_IDNA_VARIANT_UTS46, $result); // NB: 2 new params
 imagecolorset($im, $bg, 0, 0, 255, 0);
 imagepng ( $image, $to, 7, PNG_ALL_FILTERS ); // NB: 2 new params
@@ -84,7 +84,7 @@ stream_get_contents( $handle, 1024, 1024 );
 stream_wrapper_register("var", "VariableStream", STREAM_IS_URL);
 stristr('a', 'bla', true);
 strstr('a', 'bla', true);
-str_word_count($str, 1, '‡·„Á3');
+str_word_count($str, 1, '√†√°√£√ß3');
 substr_count($text, 'is', 2, 3); // NB: 2 new params
 sybase_connect('SYBASE', '', '', 'utf-8', '', true);
 timezone_transitions_get( $dtzObject, $timestamp_begin, $timestamp_end ); // NB: 2 new params
