@@ -26,7 +26,7 @@ use PHPCSUtils\Utils\TextStrings;
 use PHPCSUtils\Utils\UseStatements;
 
 /**
- * Detects the use of reserved keywords as class, function, namespace or constant names.
+ * Detects the use of reserved keywords as class, interface, trait, enum, function, namespace or constant names.
  *
  * PHP version All
  *
@@ -40,7 +40,7 @@ final class ForbiddenNamesSniff extends Sniff
 {
 
     /**
-     * A list of keywords that can not be used as function, class and namespace name or constant name.
+     * A list of keywords that can not be used as function, class, interface, trait, enum and namespace name or constant name.
      * Mentions since which version it's not allowed.
      *
      * @since 5.5
@@ -130,7 +130,7 @@ final class ForbiddenNamesSniff extends Sniff
     /**
      * Other keywords to recognize as forbidden names.
      *
-     * These keywords cannot be used to name a class, interface or trait.
+     * These keywords cannot be used to name a class, interface, trait or enum.
      * Prior to PHP 8.0, they were also prohibited from being used in namespaces.
      *
      * @since 7.0.8
@@ -158,7 +158,7 @@ final class ForbiddenNamesSniff extends Sniff
     /**
      * Keywords to recognize as soft reserved names.
      *
-     * Using any of these keywords to name a class, interface, trait or namespace
+     * Using any of these keywords to name a class, interface, trait, enum or namespace
      * is highly discouraged since they may be used in future versions of PHP.
      *
      * @since 7.0.8
