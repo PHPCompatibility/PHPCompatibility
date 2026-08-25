@@ -16,6 +16,7 @@ use PHPCompatibility\Sniff;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Scopes;
 
 /**
  * Detect use of new PHP keywords.
@@ -75,7 +76,7 @@ final class NewKeywordsSniff extends Sniff
             '5.2'         => false,
             '5.3'         => true,
             'description' => '"const" keyword',
-            'callback'    => '\PHPCSUtils\Utils\Scopes::isOOConstant', // Keyword is only new when not in class context.
+            'callback'    => [Scopes::class, 'isOOConstant'], // Keyword is only new when not in class context.
         ],
         'T_CALLABLE' => [
             '5.3'         => false,
@@ -126,7 +127,7 @@ final class NewKeywordsSniff extends Sniff
             '5.2'         => false,
             '5.3'         => true,
             'description' => '(Double) quoted Heredoc identifier',
-            'callback'    => [__CLASS__, 'isNotQuoted'], // Heredoc is only new with quoted identifier.
+            'callback'    => [self::class, 'isNotQuoted'], // Heredoc is only new with quoted identifier.
         ],
         'T_TRAIT' => [
             '5.3'         => false,

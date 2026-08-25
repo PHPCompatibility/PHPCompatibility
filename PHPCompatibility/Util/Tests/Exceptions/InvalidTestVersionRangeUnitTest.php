@@ -30,7 +30,7 @@ final class InvalidTestVersionRangeUnitTest extends TestCase
      */
     public function testCreate()
     {
-        $this->expectException('PHPCompatibility\Exceptions\InvalidTestVersionRange');
+        $this->expectException(InvalidTestVersionRange::class);
         $this->expectExceptionMessage('Invalid range in provided PHPCompatibility testVersion: \'7.0-5.6\'');
 
         throw InvalidTestVersionRange::create('7.0-5.6');

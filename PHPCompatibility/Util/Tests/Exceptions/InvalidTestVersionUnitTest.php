@@ -30,7 +30,7 @@ final class InvalidTestVersionUnitTest extends TestCase
      */
     public function testCreate()
     {
-        $this->expectException('PHPCompatibility\Exceptions\InvalidTestVersion');
+        $this->expectException(InvalidTestVersion::class);
         $this->expectExceptionMessage('Invalid PHPCompatibility testVersion provided: \'invalid\'');
 
         throw InvalidTestVersion::create('invalid');
