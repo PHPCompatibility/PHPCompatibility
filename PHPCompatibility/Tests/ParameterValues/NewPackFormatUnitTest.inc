@@ -72,3 +72,6 @@ pack('g<', 3.14); // ValueError: Endianness modifier '<' cannot be applied to fo
 pack('G>', 3.14); // ValueError: Endianness modifier '>' cannot be applied to format code 'G' which already has inherent endianness.
 pack('e<', 3.14); // ValueError: Endianness modifier '<' cannot be applied to format code 'e' which already has inherent endianness.
 pack('E>', 3.14); // ValueError: Endianness modifier '>' cannot be applied to format code 'E' which already has inherent endianness.
+
+// Safeguard handling of live coding/missing target parameter.
+$data = pack(formatcode: 'Z'); // Wrong parameter name. Also named params not supported as function takes variable nr of arguments.

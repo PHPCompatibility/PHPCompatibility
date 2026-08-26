@@ -148,7 +148,7 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
         }
 
         // The float codes with inherent endianness were introduced in PHP 7.0/7.1, so test with a higher version.
-        for ($line = 71; $line <= 74; $line++) {
+        for ($line = 71; $line <= 77; $line++) {
             $data[] = [$line, '7.2'];
         }
 
