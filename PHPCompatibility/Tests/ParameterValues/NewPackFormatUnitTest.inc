@@ -38,3 +38,22 @@ MyClass::pack("nZc*", 0x1234, 0x5678, 65, 66);
 \Fully\Qualified\unpack("nZc*", 0x1234, 0x5678, 65, 66);
 Partially\Qualified\pack("nZc*", 0x1234, 0x5678, 65, 66);
 namespace\unpack("nZc*", 0x1234, 0x5678, 65, 66);
+
+/*
+ * PHP 8.6: endianness modifiers on integers.
+ */
+// Examples taken straight from the RFC.
+// These should all be flagged.
+$data = pack('s<l<q<', -258, -16909060, -72340172838076673); // Little-endian signed integers.
+$data = pack('s>l>q>', -258, -16909060, -72340172838076673); // Big-endian signed integers.
+$data = pack('S<L>Q<', 258, 16909060, 72340172838076673); // Unsigned integers with explicit endianness.
+$data = pack('s<2l>2', 258, -2, 16909060, -16909060); // Mixed endianness (little-endian 16-bit, big-endian 32-bit).
+[$int16_le, $int32_le] = array_values(unpack('s<a/l<b', $data));
+[$uint16_be, $uint32_le] = array_values(unpack('S>a/L<b', $data));
+
+// Prevent false positives for unsupported format letters or inherent endianness.
+// These should *not* be flagged.
+pack('a<', 'test'); // ValueError: Endianness modifier '<' is not supported for format code 'a'.
+pack('H>', 'test'); // ValueError: Endianness modifier '>' is not supported for format code 'H'.
+pack('v<', 42); // ValueError: Endianness modifier '<' cannot be applied to format code 'v' which already has inherent endianness.
+pack('N>', 42); // ValueError: Endianness modifier '>' cannot be applied to format code 'N' which already has inherent endianness.

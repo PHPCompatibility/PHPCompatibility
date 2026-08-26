@@ -56,11 +56,11 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
     }
 
     /**
-     * dataNewPackFormat
+     * Data provider.
      *
      * @see testNewPackFormat()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataNewPackFormat()
     {
@@ -78,12 +78,29 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
             [18, 'J', 'pack', '5.6', '7.1', '5.6.2'], // OK version set to beyond last error.
             [18, 'E', 'pack', '7.0', '7.1', '7.0.14'],
             [20, 'P', 'unpack', '5.6', '7.0', '5.6.2'],
+
+            // Endianness modifiers on integers.
+            [47, 's<', 'pack', '8.5', '8.6'],
+            [47, 'l<', 'pack', '8.5', '8.6'],
+            [47, 'q<', 'pack', '8.5', '8.6'],
+            [48, 's>', 'pack', '8.5', '8.6'],
+            [48, 'l>', 'pack', '8.5', '8.6'],
+            [48, 'q>', 'pack', '8.5', '8.6'],
+            [49, 'S<', 'pack', '8.5', '8.6'],
+            [49, 'L>', 'pack', '8.5', '8.6'],
+            [49, 'Q<', 'pack', '8.5', '8.6'],
+            [50, 's<', 'pack', '8.5', '8.6'],
+            [50, 'l>', 'pack', '8.5', '8.6'],
+            [51, 's<', 'unpack', '8.5', '8.6'],
+            [51, 'l<', 'unpack', '8.5', '8.6'],
+            [52, 'S>', 'unpack', '8.5', '8.6'],
+            [52, 'L<', 'unpack', '8.5', '8.6'],
         ];
     }
 
 
     /**
-     * testNoFalsePositives
+     * Test that there are no false positives.
      *
      * @dataProvider dataNoFalsePositives
      *
@@ -102,7 +119,7 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
      *
      * @see testNoFalsePositives()
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataNoFalsePositives()
     {
@@ -117,6 +134,10 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
             $data[] = [$line];
         }
 
+        for ($line = 56; $line <= 59; $line++) {
+            $data[] = [$line];
+        }
+
         return $data;
     }
 
@@ -128,7 +149,7 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
      */
     public function testNoViolationsInFileOnValidVersion()
     {
-        $file = $this->sniffFile(__FILE__, '7.1');
+        $file = $this->sniffFile(__FILE__, '8.6');
         $this->assertNoViolation($file);
     }
 }
