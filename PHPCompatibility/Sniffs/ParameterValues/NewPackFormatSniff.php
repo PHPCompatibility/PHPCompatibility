@@ -68,6 +68,11 @@ final class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
             '8.5' => false,
             '8.6' => true,
         ],
+        // Endianness modifiers on floats.
+        '`([fd][<>])`' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
     ];
 
 

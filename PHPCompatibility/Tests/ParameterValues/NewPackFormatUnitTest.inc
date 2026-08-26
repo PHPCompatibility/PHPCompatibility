@@ -57,3 +57,18 @@ pack('a<', 'test'); // ValueError: Endianness modifier '<' is not supported for 
 pack('H>', 'test'); // ValueError: Endianness modifier '>' is not supported for format code 'H'.
 pack('v<', 42); // ValueError: Endianness modifier '<' cannot be applied to format code 'v' which already has inherent endianness.
 pack('N>', 42); // ValueError: Endianness modifier '>' cannot be applied to format code 'N' which already has inherent endianness.
+
+/*
+ * PHP 8.6: endianness modifiers on floats.
+ */
+// Examples taken straight from the RFC.
+$data = pack('f<d<', 3.14159, 2.71828); // Little endian.
+$data = pack('f>d>', 3.14159, 2.71828); // Big endian.
+[$float, $double] = array_values(unpack('f<a/d<b', $data));
+
+// Prevent false positives for unsupported format letters.
+// These should *not* be flagged.
+pack('g<', 3.14); // ValueError: Endianness modifier '<' cannot be applied to format code 'g' which already has inherent endianness.
+pack('G>', 3.14); // ValueError: Endianness modifier '>' cannot be applied to format code 'G' which already has inherent endianness.
+pack('e<', 3.14); // ValueError: Endianness modifier '<' cannot be applied to format code 'e' which already has inherent endianness.
+pack('E>', 3.14); // ValueError: Endianness modifier '>' cannot be applied to format code 'E' which already has inherent endianness.

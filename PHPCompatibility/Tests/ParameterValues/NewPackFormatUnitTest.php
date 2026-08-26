@@ -95,6 +95,14 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
             [51, 'l<', 'unpack', '8.5', '8.6'],
             [52, 'S>', 'unpack', '8.5', '8.6'],
             [52, 'L<', 'unpack', '8.5', '8.6'],
+
+            // Endianness modifiers on floats.
+            [65, 'f<', 'pack', '8.5', '8.6'],
+            [65, 'd<', 'pack', '8.5', '8.6'],
+            [66, 'f>', 'pack', '8.5', '8.6'],
+            [66, 'd>', 'pack', '8.5', '8.6'],
+            [67, 'f<', 'unpack', '8.5', '8.6'],
+            [67, 'd<', 'unpack', '8.5', '8.6'],
         ];
     }
 
@@ -104,13 +112,14 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
      *
      * @dataProvider dataNoFalsePositives
      *
-     * @param int $line Line number.
+     * @param int    $line        Line number.
+     * @param string $testVersion TestVersion to verify there are no false positives..
      *
      * @return void
      */
-    public function testNoFalsePositives($line)
+    public function testNoFalsePositives($line, $testVersion = '5.4')
     {
-        $file = $this->sniffFile(__FILE__, '5.4');
+        $file = $this->sniffFile(__FILE__, $testVersion);
         $this->assertNoViolation($file, $line);
     }
 
@@ -136,6 +145,11 @@ final class NewPackFormatUnitTest extends BaseSniffTestCase
 
         for ($line = 56; $line <= 59; $line++) {
             $data[] = [$line];
+        }
+
+        // The float codes with inherent endianness were introduced in PHP 7.0/7.1, so test with a higher version.
+        for ($line = 71; $line <= 74; $line++) {
+            $data[] = [$line, '7.2'];
         }
 
         return $data;
