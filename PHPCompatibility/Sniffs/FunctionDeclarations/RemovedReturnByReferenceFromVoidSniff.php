@@ -23,7 +23,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  * PHP version 8.1
  *
  * @link https://wiki.php.net/rfc/deprecations_php_8_1#return_by_reference_with_void_type
- * @link https://www.php.net/manual/en/migration81.deprecated.php#migration81.deprecated.core.void-by-ref
+ * @link https://www.php.net/migration81.deprecated#migration81.deprecated.core.void-by-ref
  *
  * @since 10.0.0
  */

@@ -27,8 +27,8 @@ use PHPCSUtils\Tokens\Collections;
  * PHP version 5.4
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/language.types.array.php#example-63
- * @link https://www.php.net/manual/en/migration54.new-features.php
+ * @link https://www.php.net/types.array#example-63
+ * @link https://www.php.net/migration54.new-features
  * @link https://wiki.php.net/rfc/functionarraydereferencing
  * @link https://wiki.php.net/rfc/uniform_variable_syntax
  *

@@ -33,9 +33,9 @@ use PHPCSUtils\Utils\ObjectDeclarations;
  * PHP version 7.0
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/migration70.deprecated.php#migration70.deprecated.php4-constructors
+ * @link https://www.php.net/migration70.deprecated#migration70.deprecated.php4-constructors
  * @link https://wiki.php.net/rfc/remove_php4_constructors
- * @link https://www.php.net/manual/en/language.oop5.decon.php
+ * @link https://www.php.net/oop5.decon
  *
  * @since 7.0.0
  * @since 7.0.8  This sniff now throws a warning instead of an error as the functionality is

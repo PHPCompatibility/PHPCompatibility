@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 7.4
  *
- * @link https://www.php.net/manual/en/migration74.incompatible.php#migration74.incompatible.core.password-algorithm-constants
+ * @link https://www.php.net/migration74.incompatible#migration74.incompatible.core.password-algorithm-constants
  * @link https://wiki.php.net/rfc/password_registry
  *
  * @since 9.3.0

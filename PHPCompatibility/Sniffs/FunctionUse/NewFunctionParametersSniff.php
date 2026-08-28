@@ -22,7 +22,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version All
  *
- * @link https://www.php.net/manual/en/doc.changelog.php
+ * @link https://www.php.net/doc.changelog
  *
  * @since 7.0.0
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..

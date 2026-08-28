@@ -22,7 +22,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 8.1
  *
- * @link https://www.php.net/manual/en/migration81.new-features.php#migration81.new-features.core.new-in-initializer
+ * @link https://www.php.net/migration81.new-features#migration81.new-features.core.new-in-initializer
  *
  * @since 10.0.0
  */

@@ -22,9 +22,9 @@ use PHPCSUtils\Utils\Lists;
  *
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.variable-handling.list.empty
+ * @link https://www.php.net/migration70.incompatible#migration70.incompatible.variable-handling.list.empty
  * @link https://wiki.php.net/rfc/abstract_syntax_tree#changes_to_list
- * @link https://www.php.net/manual/en/function.list.php
+ * @link https://www.php.net/list
  *
  * @since 7.0.0
  * @since 10.0.0 This class is now `final`.

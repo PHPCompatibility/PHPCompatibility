@@ -26,7 +26,7 @@ use PHPCSUtils\Tokens\Collections;
  * PHP version 7.0
  *
  * @link https://wiki.php.net/rfc/abstract_syntax_tree#directly_calling_clone_is_allowed
- * @link https://www.php.net/manual/en/language.oop5.cloning.php
+ * @link https://www.php.net/oop5.cloning
  *
  * @since 9.1.0
  * @since 10.0.0 This class is now `final`.

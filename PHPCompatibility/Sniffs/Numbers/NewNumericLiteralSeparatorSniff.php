@@ -21,7 +21,7 @@ use PHPCSUtils\Utils\Numbers;
  *
  * PHP version 7.4
  *
- * @link https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.numeric-literal-separator
+ * @link https://www.php.net/migration74.new-features#migration74.new-features.core.numeric-literal-separator
  * @link https://wiki.php.net/rfc/numeric_literal_separator
  *
  * @since 10.0.0

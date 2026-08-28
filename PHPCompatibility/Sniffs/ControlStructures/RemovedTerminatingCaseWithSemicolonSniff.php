@@ -23,7 +23,7 @@ use PHPCompatibility\Sniff;
  * PHP version 8.5
  *
  * @link https://wiki.php.net/rfc/deprecations_php_8_5#deprecate_semicolon_after_case_in_switch_statement
- * @link https://www.php.net/manual/en/control-structures.switch.php
+ * @link https://www.php.net/control-structures.switch
  *
  * @since 10.0.0
  */

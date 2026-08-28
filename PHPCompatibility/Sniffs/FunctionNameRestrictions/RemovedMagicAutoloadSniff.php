@@ -27,9 +27,9 @@ use PHPCSUtils\Utils\Scopes;
  * PHP version 7.2
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/migration72.deprecated.php#migration72.deprecated.__autoload-method
+ * @link https://www.php.net/migration72.deprecated#migration72.deprecated.__autoload-method
  * @link https://wiki.php.net/rfc/deprecations_php_7_2#autoload
- * @link https://www.php.net/manual/en/function.autoload.php
+ * @link https://www.php.net/autoload
  *
  * @since 8.1.0
  * @since 9.0.0  Renamed from `DeprecatedMagicAutoloadSniff` to `RemovedMagicAutoloadSniff`.

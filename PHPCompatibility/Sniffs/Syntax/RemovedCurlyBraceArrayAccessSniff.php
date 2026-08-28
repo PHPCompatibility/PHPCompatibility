@@ -26,7 +26,7 @@ use PHPCSUtils\Utils\Scopes;
  * PHP version 7.4
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.array-string-access-curly-brace
+ * @link https://www.php.net/migration74.deprecated#migration74.deprecated.core.array-string-access-curly-brace
  * @link https://wiki.php.net/rfc/deprecate_curly_braces_array_access
  *
  * @since 9.3.0

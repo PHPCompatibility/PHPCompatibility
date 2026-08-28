@@ -23,7 +23,7 @@ use PHPCompatibility\Sniff;
  * PHP version 5.5
  *
  * @link https://wiki.php.net/rfc/empty_isset_exprs
- * @link https://www.php.net/manual/en/function.empty.php
+ * @link https://www.php.net/empty
  *
  * @since 7.0.4
  * @since 9.0.0  The "is the parameter a variable" determination has been abstracted out

@@ -22,9 +22,9 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  *
  * PHP version 7.1
  *
- * @link https://www.php.net/manual/en/migration71.new-features.php#migration71.new-features.nullable-types
+ * @link https://www.php.net/migration71.new-features#migration71.new-features.nullable-types
  * @link https://wiki.php.net/rfc/nullable_types
- * @link https://www.php.net/manual/en/functions.arguments.php#example-146
+ * @link https://www.php.net/functions.arguments#example-146
  *
  * @since 7.0.7
  * @since 10.0.0 This class is now `final`.

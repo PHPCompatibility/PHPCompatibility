@@ -24,10 +24,10 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/migration70.new-features.php#migration70.new-features.unicode-codepoint-escape-syntax
- * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.strings.unicode-escapes
+ * @link https://www.php.net/migration70.new-features#migration70.new-features.unicode-codepoint-escape-syntax
+ * @link https://www.php.net/migration70.incompatible#migration70.incompatible.strings.unicode-escapes
  * @link https://wiki.php.net/rfc/unicode_escape
- * @link https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
+ * @link https://www.php.net/types.string#language.types.string.syntax.double
  *
  * @since 9.3.0
  * @since 10.0.0 This class is now `final`.

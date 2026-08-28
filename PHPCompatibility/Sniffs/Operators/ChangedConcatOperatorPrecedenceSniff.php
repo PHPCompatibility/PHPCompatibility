@@ -32,7 +32,7 @@ use PHPCSUtils\Utils\Operators;
  * PHP version 8.0
  *
  * @link https://wiki.php.net/rfc/concatenation_precedence
- * @link https://www.php.net/manual/en/language.operators.precedence.php
+ * @link https://www.php.net/operators.precedence
  *
  * @since 9.2.0
  * @since 10.0.0 This class is now `final`.

@@ -23,7 +23,7 @@ use PHPCSUtils\Utils\Lists;
  * PHP version 7.1
  *
  * @link https://wiki.php.net/rfc/list_keys
- * @link https://www.php.net/manual/en/function.list.php
+ * @link https://www.php.net/list
  *
  * @since 9.0.0
  * @since 10.0.0 - Complete rewrite.

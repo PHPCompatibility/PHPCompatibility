@@ -24,7 +24,7 @@ use PHPCSUtils\Utils\TypeString;
  *
  * PHP version 8.3+
  *
- * @link https://www.php.net/manual/en/migration83.new-features.php#migration83.new-features.core.typed-class-constants
+ * @link https://www.php.net/migration83.new-features#migration83.new-features.core.typed-class-constants
  * @link https://wiki.php.net/rfc/typed_class_constants
  *
  * @since 10.0.0

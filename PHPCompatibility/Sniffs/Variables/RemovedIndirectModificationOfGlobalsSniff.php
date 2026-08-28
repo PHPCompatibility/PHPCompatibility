@@ -40,7 +40,7 @@ use ReflectionFunction;
  *
  * PHP version 8.1
  *
- * @link https://www.php.net/manual/en/migration81.incompatible.php#migration81.incompatible.core.globals-access
+ * @link https://www.php.net/migration81.incompatible#migration81.incompatible.core.globals-access
  * @link https://wiki.php.net/rfc/restrict_globals_usage
  *
  * @since 10.0.0

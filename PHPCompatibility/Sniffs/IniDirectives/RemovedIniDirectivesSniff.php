@@ -23,8 +23,8 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * PHP version All
  *
- * @link https://www.php.net/manual/en/ini.list.php
- * @link https://www.php.net/manual/en/ini.core.php
+ * @link https://www.php.net/ini.list
+ * @link https://www.php.net/ini.core
  *
  * @since 5.5
  * @since 7.0.0  This sniff now throws a warning (deprecated) or an error (removed) depending

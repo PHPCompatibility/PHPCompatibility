@@ -47,7 +47,7 @@ use PHPCSUtils\Utils\TypeString;
  *
  * PHP version 5.0+
  *
- * @link https://www.php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration
+ * @link https://www.php.net/functions.arguments#functions.arguments.type-declaration
  * @link https://wiki.php.net/rfc/callable
  * @link https://wiki.php.net/rfc/scalar_type_hints_v5
  * @link https://wiki.php.net/rfc/iterable

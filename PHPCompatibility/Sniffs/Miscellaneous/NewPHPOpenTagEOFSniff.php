@@ -24,7 +24,7 @@ use PHPCompatibility\Sniff;
  *
  * PHP version 7.4
  *
- * @link https://www.php.net/manual/en/migration74.incompatible.php#migration74.incompatible.core.php-tag
+ * @link https://www.php.net/migration74.incompatible#migration74.incompatible.core.php-tag
  * @link https://github.com/php/php-src/blob/30de357fa14480468132bbc22a272aeb91789ba8/UPGRADING#L37-L40
  *
  * @since 9.3.0

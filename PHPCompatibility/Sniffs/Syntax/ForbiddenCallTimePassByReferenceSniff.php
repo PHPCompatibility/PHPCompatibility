@@ -26,7 +26,7 @@ use PHPCSUtils\Utils\PassedParameters;
  * PHP version 5.4
  *
  * @link https://wiki.php.net/rfc/calltimebyref
- * @link https://www.php.net/manual/en/language.references.pass.php
+ * @link https://www.php.net/references.pass
  *
  * @since 5.5
  * @since 7.0.8  This sniff now throws a warning (deprecated) or an error (removed) depending

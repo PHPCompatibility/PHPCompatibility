@@ -31,9 +31,9 @@ use PHPCSUtils\Utils\Scopes;
  * PHP version 7.3
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/migration73.deprecated.php#migration73.deprecated.core.assert
+ * @link https://www.php.net/migration73.deprecated#migration73.deprecated.core.assert
  * @link https://wiki.php.net/rfc/deprecations_php_7_3#defining_a_free-standing_assert_function
- * @link https://www.php.net/manual/en/function.assert.php
+ * @link https://www.php.net/assert
  *
  * @since 9.0.0
  * @since 10.0.0 This class is now `final`.

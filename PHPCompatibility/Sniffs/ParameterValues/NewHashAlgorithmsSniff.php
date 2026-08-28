@@ -21,7 +21,7 @@ use PHPCompatibility\Helpers\ScannedCode;
  *
  * PHP version 5.2+
  *
- * @link https://www.php.net/manual/en/function.hash-algos.php#refsect1-function.hash-algos-changelog
+ * @link https://www.php.net/hash-algos#refsect1-function.hash-algos-changelog
  *
  * @since 7.0.7
  * @since 7.1.0  Now extends the `AbstractNewFeatureSniff` instead of the base `Sniff` class..

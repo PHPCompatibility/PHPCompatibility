@@ -23,7 +23,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version All
  *
- * @link https://www.php.net/manual/en/doc.changelog.php
+ * @link https://www.php.net/doc.changelog
  *
  * @since 8.1.0
  * @since 9.0.0  Renamed from `OptionalRequiredFunctionParametersSniff` to `OptionalToRequiredFunctionParametersSniff`.

@@ -34,9 +34,9 @@ use PHPCSUtils\Utils\PassedParameters;
  * PHP version 7.4
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.mbstring
+ * @link https://www.php.net/migration74.deprecated#migration74.deprecated.mbstring
  * @link https://wiki.php.net/rfc/deprecations_php_7_4#mb_strrpos_with_encoding_as_3rd_argument
- * @link https://www.php.net/manual/en/function.mb-strrpos.php
+ * @link https://www.php.net/mb-strrpos
  *
  * @since 9.3.0
  * @since 10.0.0 This class is now `final`.

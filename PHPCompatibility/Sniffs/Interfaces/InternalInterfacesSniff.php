@@ -22,9 +22,9 @@ use PHPCSUtils\Utils\UseStatements;
  *
  * PHP version 5.0+
  *
- * @link https://www.php.net/manual/en/class.traversable.php
- * @link https://www.php.net/manual/en/class.throwable.php
- * @link https://www.php.net/manual/en/class.datetimeinterface.php
+ * @link https://www.php.net/traversable
+ * @link https://www.php.net/throwable
+ * @link https://www.php.net/datetimeinterface
  *
  * @since 7.0.3
  * @since 10.0.0 This class is now `final`.

@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\Conditions;
  *
  * PHP version 5.3
  *
- * @link https://www.php.net/manual/en/language.oop5.late-static-bindings.php
+ * @link https://www.php.net/oop5.late-static-bindings
  * @link https://wiki.php.net/rfc/lsb_parentself_forwarding
  *
  * @since 7.0.3

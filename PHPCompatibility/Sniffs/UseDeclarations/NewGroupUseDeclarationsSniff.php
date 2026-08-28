@@ -25,11 +25,11 @@ use PHPCompatibility\Sniff;
  * PHP version 7.0
  * PHP version 7.2
  *
- * @link https://www.php.net/manual/en/migration70.new-features.php#migration70.new-features.group-use-declarations
- * @link https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.trailing-comma-in-grouped-namespaces
+ * @link https://www.php.net/migration70.new-features#migration70.new-features.group-use-declarations
+ * @link https://www.php.net/migration72.new-features#migration72.new-features.trailing-comma-in-grouped-namespaces
  * @link https://wiki.php.net/rfc/group_use_declarations
  * @link https://wiki.php.net/rfc/list-syntax-trailing-commas
- * @link https://www.php.net/manual/en/language.namespaces.importing.php#language.namespaces.importing.group
+ * @link https://www.php.net/namespaces.importing#language.namespaces.importing.group
  *
  * @since 7.0.0
  * @since 8.0.1  Now also checks for trailing commas in group `use` declarations.

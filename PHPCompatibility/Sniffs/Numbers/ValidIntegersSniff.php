@@ -28,7 +28,7 @@ use PHPCSUtils\Utils\Numbers;
  * PHP version 5.4+
  *
  * @link https://wiki.php.net/rfc/binnotation4ints
- * @link https://www.php.net/manual/en/language.types.integer.php
+ * @link https://www.php.net/types.integer
  *
  * @since 7.0.3
  * @since 7.0.8  This sniff now throws a warning instead of an error for invalid binary integers.

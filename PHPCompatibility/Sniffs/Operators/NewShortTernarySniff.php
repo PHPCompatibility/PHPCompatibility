@@ -23,8 +23,8 @@ use PHPCSUtils\Utils\Operators;
  *
  * PHP version 5.3
  *
- * @link https://www.php.net/manual/en/migration53.new-features.php
- * @link https://www.php.net/manual/en/language.operators.comparison.php#language.operators.comparison.ternary
+ * @link https://www.php.net/migration53.new-features
+ * @link https://www.php.net/operators.comparison#language.operators.comparison.ternary
  *
  * @since 7.0.0
  * @since 7.0.8  This sniff now throws an error instead of a warning.

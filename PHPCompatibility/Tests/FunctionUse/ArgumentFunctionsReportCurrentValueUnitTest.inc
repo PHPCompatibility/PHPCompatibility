@@ -286,7 +286,7 @@ function usingFQNconstant($a,) {
     debug_backtrace(Partially\Qualified\DEBUG_BACKTRACE_IGNORE_ARGS);    // Error, not the global constant being passed, value unknown.
 }
 
-// Ref: https://www.php.net/manual/en/function.debug-backtrace.php#refsect1-function.debug-backtrace-parameters
+// Ref: https://www.php.net/debug-backtrace#refsect1-function.debug-backtrace-parameters
 function backtraceOptionsByTheNumber($a) {
     $a = 'foo';
     debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT); // Error, args index will be populated.

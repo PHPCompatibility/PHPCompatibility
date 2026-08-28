@@ -22,7 +22,7 @@ use PHPCSUtils\Utils\ObjectDeclarations;
  *
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/language.oop5.decon.php#language.oop5.decon.constructor.promotion
+ * @link https://www.php.net/oop5.decon#language.oop5.decon.constructor.promotion
  * @link https://wiki.php.net/rfc/constructor_promotion
  *
  * @since 10.0.0

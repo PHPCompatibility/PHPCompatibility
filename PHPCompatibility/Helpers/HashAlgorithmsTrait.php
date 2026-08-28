@@ -23,7 +23,7 @@ use PHPCSUtils\Utils\TextStrings;
  * This also means that it has no promise of backward compatibility. Use at your own risk.
  * ---------------------------------------------------------------------------------------------
  *
- * @link https://www.php.net/manual/en/function.hash-algos.php#refsect1-function.hash-algos-changelog
+ * @link https://www.php.net/hash-algos#refsect1-function.hash-algos-changelog
  *
  * @since 5.5
  * @since 7.0.7  Logic moved from the `RemovedHashAlgorithms` sniff to the generic `Sniff` class.

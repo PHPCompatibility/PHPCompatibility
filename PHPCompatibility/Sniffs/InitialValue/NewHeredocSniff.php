@@ -29,8 +29,8 @@ use PHPCSUtils\Utils\MessageHelper;
  *
  * PHP version 5.3
  *
- * @link https://www.php.net/manual/en/migration53.new-features.php
- * @link https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc
+ * @link https://www.php.net/migration53.new-features
+ * @link https://www.php.net/types.string#language.types.string.syntax.heredoc
  *
  * @since 7.1.4
  * @since 8.2.0  Now extends the NewConstantScalarExpressionsSniff instead of the base Sniff class.

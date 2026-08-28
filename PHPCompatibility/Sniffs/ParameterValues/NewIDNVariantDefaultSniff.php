@@ -21,10 +21,10 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 7.4
  *
- * @link https://www.php.net/manual/en/migration74.incompatible.php#migration74.incompatible.intl
+ * @link https://www.php.net/migration74.incompatible#migration74.incompatible.intl
  * @link https://wiki.php.net/rfc/deprecate-and-remove-intl_idna_variant_2003
- * @link https://www.php.net/manual/en/function.idn-to-ascii.php
- * @link https://www.php.net/manual/en/function.idn-to-utf8.php
+ * @link https://www.php.net/idn-to-ascii
+ * @link https://www.php.net/idn-to-utf8
  *
  * @since 9.3.0
  * @since 10.0.0 This class is now `final`.

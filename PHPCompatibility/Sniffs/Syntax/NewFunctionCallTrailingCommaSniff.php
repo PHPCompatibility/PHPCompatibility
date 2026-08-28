@@ -25,7 +25,7 @@ use PHPCSUtils\Tokens\Collections;
  * PHP version 7.3
  * PHP version 8.4
  *
- * @link https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.trailing-commas
+ * @link https://www.php.net/migration73.new-features#migration73.new-features.core.trailing-commas
  * @link https://wiki.php.net/rfc/trailing-comma-function-calls
  * @link https://wiki.php.net/rfc/exit-as-function
  *

@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\Variables;
  *
  * PHP version 8.1
  *
- * @link https://www.php.net/manual/en/migration81.new-features.php#migration81.new-features.core.readonly
+ * @link https://www.php.net/migration81.new-features#migration81.new-features.core.readonly
  * @link https://wiki.php.net/rfc/readonly_properties_v2
  *
  * @since 10.0.0

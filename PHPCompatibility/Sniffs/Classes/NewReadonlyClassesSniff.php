@@ -23,9 +23,9 @@ use PHPCSUtils\Utils\ObjectDeclarations;
  * PHP version 8.3
  *
  * @link https://wiki.php.net/rfc/readonly_classes
- * @link https://www.php.net/manual/en/migration82.new-features.php#migration82.new-features.core.readonly-classes
- * @link https://www.php.net/manual/en/language.oop5.basic.php#language.oop5.basic.class.readonly
- * @link https://www.php.net/manual/en/migration83.new-features.php#migration83.new-features.core.readonly-modifier-improvements
+ * @link https://www.php.net/migration82.new-features#migration82.new-features.core.readonly-classes
+ * @link https://www.php.net/oop5.basic#language.oop5.basic.class.readonly
+ * @link https://www.php.net/migration83.new-features#migration83.new-features.core.readonly-modifier-improvements
  *
  * @since 10.0.0
  */

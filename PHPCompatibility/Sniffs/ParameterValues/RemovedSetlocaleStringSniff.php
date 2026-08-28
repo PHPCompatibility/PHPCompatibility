@@ -27,7 +27,7 @@ use PHPCSUtils\Utils\PassedParameters;
  * PHP version 7.0
  *
  * @link https://wiki.php.net/rfc/remove_deprecated_functionality_in_php7
- * @link https://www.php.net/manual/en/function.setlocale.php#refsect1-function.setlocale-changelog
+ * @link https://www.php.net/setlocale#refsect1-function.setlocale-changelog
  *
  * @since 9.0.0
  * @since 10.0.0 This class is now `final`.

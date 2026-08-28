@@ -35,7 +35,7 @@ use PHPCSUtils\Utils\Variables;
  *
  * PHP version 7.4+
  *
- * @link https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.typed-properties
+ * @link https://www.php.net/migration74.new-features#migration74.new-features.core.typed-properties
  * @link https://wiki.php.net/rfc/typed_properties_v2
  * @link https://wiki.php.net/rfc/mixed_type_v2
  * @link https://wiki.php.net/rfc/union_types_v2

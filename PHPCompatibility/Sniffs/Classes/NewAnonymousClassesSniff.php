@@ -19,7 +19,7 @@ use PHPCompatibility\Sniff;
  *
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/language.oop5.anonymous.php
+ * @link https://www.php.net/oop5.anonymous
  * @link https://wiki.php.net/rfc/anonymous_classes
  *
  * @since 7.0.0

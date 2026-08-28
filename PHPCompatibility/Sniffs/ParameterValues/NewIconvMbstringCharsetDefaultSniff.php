@@ -31,8 +31,8 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 5.6
  *
- * @link https://www.php.net/manual/en/migration56.new-features.php#migration56.new-features.default-encoding
- * @link https://www.php.net/manual/en/migration56.deprecated.php#migration56.deprecated.iconv-mbstring-encoding
+ * @link https://www.php.net/migration56.new-features#migration56.new-features.default-encoding
+ * @link https://www.php.net/migration56.deprecated#migration56.deprecated.iconv-mbstring-encoding
  * @link https://wiki.php.net/rfc/default_encoding
  *
  * @since 9.3.0

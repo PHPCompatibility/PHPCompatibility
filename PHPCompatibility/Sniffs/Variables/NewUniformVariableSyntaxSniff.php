@@ -21,7 +21,7 @@ use PHPCSUtils\Tokens\Collections;
  *
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.variable-handling.indirect
+ * @link https://www.php.net/migration70.incompatible#migration70.incompatible.variable-handling.indirect
  * @link https://wiki.php.net/rfc/uniform_variable_syntax
  *
  * @since 7.1.2

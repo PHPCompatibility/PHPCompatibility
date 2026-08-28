@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * PHP version 5.4
  *
- * @link https://www.php.net/manual/en/function.number-format.php#refsect1-function.number-format-changelog
+ * @link https://www.php.net/number-format#refsect1-function.number-format-changelog
  *
  * @since 10.0.0
  */

@@ -25,11 +25,11 @@ use PHPCSUtils\Utils\Numbers;
  *
  * PHP version 7.3
  *
- * @link https://www.php.net/manual/en/migration73.incompatible.php#migration73.incompatible.core.continue-targeting-switch
+ * @link https://www.php.net/migration73.incompatible#migration73.incompatible.core.continue-targeting-switch
  * @link https://wiki.php.net/rfc/continue_on_switch_deprecation
  * @link https://github.com/php/php-src/commit/04e3523b7d095341f65ed5e71a3cac82fca690e4
  *       (actual implementation which is different from the RFC).
- * @link https://www.php.net/manual/en/control-structures.switch.php
+ * @link https://www.php.net/control-structures.switch
  *
  * @since 8.2.0
  * @since 10.0.0 This class is now `final`.

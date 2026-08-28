@@ -21,9 +21,9 @@ use PHPCSUtils\Utils\MessageHelper;
  *
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.other.break-continue
- * @link https://www.php.net/manual/en/control-structures.break.php
- * @link https://www.php.net/manual/en/control-structures.continue.php
+ * @link https://www.php.net/migration70.incompatible#migration70.incompatible.other.break-continue
+ * @link https://www.php.net/control-structures.break
+ * @link https://www.php.net/control-structures.continue
  *
  * @since 7.0.7
  * @since 10.0.0 This class is now `final`.

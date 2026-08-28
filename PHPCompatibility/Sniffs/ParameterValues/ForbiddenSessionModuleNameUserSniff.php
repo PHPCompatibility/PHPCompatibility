@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * PHP version 7.2
  *
- * @link https://www.php.net/manual/en/function.session-module-name.php#refsect1-function.session-module-name-changelog
+ * @link https://www.php.net/session-module-name#refsect1-function.session-module-name-changelog
  *
  * @since 10.0.0
  */

@@ -23,7 +23,7 @@ use PHPCSUtils\Utils\TextStrings;
  * PHP version 8.0
  *
  * @link https://wiki.php.net/rfc/variable_syntax_tweaks#interpolated_and_non-interpolated_strings
- * @link https://www.php.net/manual/en/language.types.string.php#language.types.string.parsing
+ * @link https://www.php.net/types.string#language.types.string.parsing
  *
  * @since 10.0.0
  */

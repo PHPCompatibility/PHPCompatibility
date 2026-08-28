@@ -19,9 +19,9 @@ use PHPCompatibility\Sniff;
  *
  * PHP version 5.5
  *
- * @link https://www.php.net/manual/en/migration55.new-features.php#migration55.new-features.foreach-list
+ * @link https://www.php.net/migration55.new-features#migration55.new-features.foreach-list
  * @link https://wiki.php.net/rfc/foreachlist
- * @link https://www.php.net/manual/en/control-structures.foreach.php#control-structures.foreach.list
+ * @link https://www.php.net/control-structures.foreach#control-structures.foreach.list
  *
  * @since 9.0.0
  * @since 10.0.0 This class is now `final`.

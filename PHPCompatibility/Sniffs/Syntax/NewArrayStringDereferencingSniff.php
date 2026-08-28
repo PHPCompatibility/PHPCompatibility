@@ -27,10 +27,10 @@ use PHPCompatibility\Sniff;
  * PHP version 5.5
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/migration55.new-features.php#migration55.new-features.const-dereferencing
+ * @link https://www.php.net/migration55.new-features#migration55.new-features.const-dereferencing
  * @link https://wiki.php.net/rfc/constdereference
  * @link https://wiki.php.net/rfc/uniform_variable_syntax
- * @link https://www.php.net/manual/en/language.types.array.php#example-63
+ * @link https://www.php.net/types.array#example-63
  *
  * {@internal The reason for splitting the logic of this sniff into different methods is
  *            to allow re-use of the logic by the PHP 7.4 `RemovedCurlyBraceArrayAccess` sniff.}

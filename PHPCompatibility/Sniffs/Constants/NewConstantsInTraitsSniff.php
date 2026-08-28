@@ -21,8 +21,8 @@ use PHPCSUtils\Utils\Scopes;
  * PHP version 8.2
  *
  * @link https://wiki.php.net/rfc/constants_in_traits
- * @link https://www.php.net/manual/en/migration82.new-features.php#migration82.new-features.core.constant-in-traits
- * @link https://www.php.net/manual/en/language.oop5.traits.php#language.oop5.traits.constants
+ * @link https://www.php.net/migration82.new-features#migration82.new-features.core.constant-in-traits
+ * @link https://www.php.net/oop5.traits#language.oop5.traits.constants
  *
  * @since 10.0.0
  */

@@ -33,7 +33,7 @@ use PHPCSUtils\Utils\Parentheses;
  *
  * PHP version 5.3
  *
- * @link https://www.php.net/manual/en/migration53.incompatible.php
+ * @link https://www.php.net/migration53.incompatible
  *
  * @since 8.2.0
  * @since 10.0.0 This class is now `final`.
