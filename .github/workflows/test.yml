@@ -20,20 +20,28 @@ env:
   # - COMPOSER_ROOT_VERSION is needed to get round the recursive dependency when using CI.
   COMPOSER_ROOT_VERSION: '10.99.99'
 
+# Permissions should be configured at the job level.
+permissions: {}
+
 jobs:
   #### PHP LINT STAGE ####
   # Linting against high/low of each PHP major should catch everything.
   # If needs be, we can always add interim versions back at a later point in time.
   lint:
+    permissions:
+      contents: read # To clone the repo.
+
     if: ${{ github.ref != 'refs/heads/develop' }}
+
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         php: ['7.2', '7.4', '8.0', '8.5', 'nightly']
 
-    name: "Lint: PHP ${{ matrix.php }}"
     continue-on-error: ${{ matrix.php == 'nightly' }}
+
+    name: "Lint: PHP ${{ matrix.php }}"
 
     steps:
       - name: Checkout code
@@ -75,9 +83,13 @@ jobs:
 
   #### TEST STAGE ####
   test:
-    if: ${{ github.ref != 'refs/heads/develop' }}
     # No use running the tests if there is a linting error somewhere as they would fail anyway.
     needs: lint
+
+    permissions:
+      contents: read # To clone the repo.
+
+    if: ${{ github.ref != 'refs/heads/develop' }}
 
     runs-on: ubuntu-latest
 
@@ -108,9 +120,9 @@ jobs:
           - php: '8.6' # Nightly.
             phpcs_version: '4.x-dev'
 
-    name: "Test: PHP ${{ matrix.php }}${{ matrix.custom_ini && ' (ini)' || '' }} - PHPCS ${{ matrix.phpcs_version }}"
-
     continue-on-error: ${{ matrix.php == '8.6' }}
+
+    name: "Test: PHP ${{ matrix.php }}${{ matrix.custom_ini && ' (ini)' || '' }} - PHPCS ${{ matrix.phpcs_version }}"
 
     steps:
       - name: Checkout code
@@ -201,6 +213,10 @@ jobs:
   coverage:
     # No use running the coverage builds if there are failing test builds.
     needs: test
+
+    permissions:
+      contents: read # To clone the repo.
+
     # The default condition is success(), but this is false when one of the previous jobs is skipped (but don't run on forks).
     if: always() && github.repository_owner == 'PHPCompatibility' && (needs.test.result == 'success' || needs.test.result == 'skipped')
 
