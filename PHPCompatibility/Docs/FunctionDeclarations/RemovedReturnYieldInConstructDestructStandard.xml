@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed Return or Yield In Constructor Destructor"
+    >
+    <standard>
+    <![CDATA[
+    An OO constructor/destructor should not return a value.
+    The constructor will always return a valid object instance, so an explicit return statement returning a value from a constructor is confusing.
+
+    As this never worked as expected anyhow, returning from a OO constructor or destructor is deprecated since PHP 8.6.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: constructor/destructor doesn't return a value.">
+        <![CDATA[
+class Foo {
+    public function __construct() {
+        // Do something.
+    }
+
+
+    public function __destruct() {
+        // Do something.
+        return;
+    }
+}
+        ]]>
+        </code>
+        <code title="PHP &lt;= 8.5: constructor/destructor returns a value.">
+        <![CDATA[
+class Foo {
+    public function __construct() {
+        // Do something.
+        return <em>$this</em>;
+    }
+
+    public function __destruct() {
+        // Do something.
+        return <em>false</em>;
+    }
+}
+        ]]>
+        </code>
+    </code_comparison>
+
+    <standard>
+    <![CDATA[
+    An OO constructor/destructor cannot be a Generator yielding values.
+    Generators effectively return a new Generator object, which conflicts with an OO constructor returning an instance of the current class.
+
+    Making a constructor/destructor a Generator is deprecated since PHP 8.6.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: Non-Generator constructor/destructor.">
+        <![CDATA[
+class Foo {
+    public function __construct() {
+        // Do something.
+    }
+
+    public function __destruct() {
+        // Do something.
+        return;
+    }
+}
+        ]]>
+        </code>
+        <code title="PHP &lt;= 8.5: constructor/destructor is a Generator.">
+        <![CDATA[
+class Foo {
+    public function __construct() {
+        yield 123;
+    }
+
+    public function __destruct() {
+        yield from [4, 5, 6];
+    }
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
