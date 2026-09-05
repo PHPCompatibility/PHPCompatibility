@@ -51,7 +51,7 @@ final class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
      * @var array<string, array<string, bool>> Regex pattern => Version array.
      */
     protected $newFormats = [
-        '`([Z])`'    => [
+        '`([Z])`' => [
             '5.4' => false,
             '5.5' => true,
         ],
@@ -62,6 +62,16 @@ final class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
         '`([eEgG])`' => [
             '7.0.14' => false,
             '7.0.15' => true, // And 7.1.1.
+        ],
+        // Endianness modifiers on integers.
+        '`([slqSLQ][<>])`' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        // Endianness modifiers on floats.
+        '`([fd][<>])`' => [
+            '8.5' => false,
+            '8.6' => true,
         ],
     ];
 
@@ -75,7 +85,7 @@ final class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
      */
     protected function bowOutEarly()
     {
-        return (ScannedCode::shouldRunOnOrBelow('7.1') === false);
+        return (ScannedCode::shouldRunOnOrBelow('8.6') === false);
     }
 
 
@@ -118,23 +128,26 @@ final class NewPackFormatSniff extends AbstractFunctionCallParameterSniff
             }
 
             foreach ($this->newFormats as $pattern => $versionArray) {
-                if (\preg_match($pattern, $content, $matches) !== 1) {
+                if (\preg_match_all($pattern, $content, $matches) < 1) {
                     continue;
                 }
 
                 foreach ($versionArray as $version => $present) {
                     if ($present === false && ScannedCode::shouldRunOnOrBelow($version) === true) {
-                        $phpcsFile->addError(
-                            'Passing the $format(s) "%s" to %s() is not supported in PHP %s or lower. Found: %s',
-                            $targetParam['start'],
-                            'NewFormatFound',
-                            [
-                                $matches[1],
-                                \strtolower($functionName),
-                                $version,
-                                $targetParam['clean'],
-                            ]
-                        );
+                        foreach ($matches[1] as $match) {
+                            $phpcsFile->addError(
+                                'Passing the $format(s) "%s" to %s() is not supported in PHP %s or lower. Found: %s',
+                                $targetParam['start'],
+                                'NewFormatFound',
+                                [
+                                    $match,
+                                    \strtolower($functionName),
+                                    $version,
+                                    $targetParam['clean'],
+                                ]
+                            );
+                        }
+
                         continue 2;
                     }
                 }
