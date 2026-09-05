@@ -13,6 +13,7 @@ namespace PHPCompatibility\Util\Tests\Helpers;
 use PHPCompatibility\Exceptions\InvalidTestVersion;
 use PHPCompatibility\Exceptions\InvalidTestVersionRange;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\TestUtils\ConfigDouble;
 use ReflectionMethod;
@@ -220,7 +221,7 @@ final class ScannedCodeUnitTest extends TestCase
      */
     public function testGetTestVersionInvalidVersion($testVersion)
     {
-        $message = \sprintf('Invalid PHPCompatibility testVersion provided: \'%s\'', \trim($testVersion));
+        $message = \sprintf('Invalid PHPCompatibility testVersion provided: \'%s\'', Utils::trim($testVersion));
 
         $this->expectException(InvalidTestVersion::class);
         $this->expectExceptionMessage($message);

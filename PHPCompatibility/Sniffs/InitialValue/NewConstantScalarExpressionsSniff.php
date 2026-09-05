@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractInitialValueSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
+use PHPCompatibility\Helpers\Utils;
 use PHPCSUtils\Utils\Arrays;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\MessageHelper;
@@ -285,7 +286,7 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
         $tokenCount = ($end - $stackPtr);
         if ($tokenCount < 20) {
             // Prevent large arrays from being added to the error message.
-            $content = \trim(GetTokensAsString::noComments($phpcsFile, $stackPtr, $end));
+            $content = Utils::trim(GetTokensAsString::noComments($phpcsFile, $stackPtr, $end));
         }
 
         if (empty($content) === false) {

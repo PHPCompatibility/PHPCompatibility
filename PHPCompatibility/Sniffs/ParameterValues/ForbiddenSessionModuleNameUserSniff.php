@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCSUtils\Utils\PassedParameters;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -94,7 +95,7 @@ final class ForbiddenSessionModuleNameUserSniff extends AbstractFunctionCallPara
         $content   = TextStrings::getCompleteTextString($phpcsFile, $firstNonEmpty);
         $contentLC = \strtolower($content);
 
-        if (\trim($contentLC) !== 'user') {
+        if (Utils::trim($contentLC) !== 'user') {
             return;
         }
 

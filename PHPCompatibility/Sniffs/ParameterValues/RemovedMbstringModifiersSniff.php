@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\AbstractFunctionCallParameterSniff;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -117,7 +118,7 @@ final class RemovedMbstringModifiersSniff extends AbstractFunctionCallParameterS
             if ($tokens[$i]['code'] === \T_DOUBLE_QUOTED_STRING) {
                 $content = TextStrings::stripEmbeds($content);
             }
-            $content = \trim($content);
+            $content = Utils::trim($content);
 
             if (empty($content) === false) {
                 $options .= $content;

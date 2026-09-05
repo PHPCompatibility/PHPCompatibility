@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Scopes;
@@ -270,7 +271,7 @@ final class NewKeywordsSniff extends Sniff
             && \preg_match('`yield\s+from`i', $tokens[$stackPtr]['content']) !== 1
         ) {
             for ($i = ($stackPtr + 1); $i < $phpcsFile->numTokens; $i++) {
-                if ($tokens[$i]['code'] === \T_YIELD_FROM && \strtolower(\trim($tokens[$i]['content'])) === 'from') {
+                if ($tokens[$i]['code'] === \T_YIELD_FROM && \strtolower(Utils::trim($tokens[$i]['content'])) === 'from') {
                     $end = ($i + 1);
                     break;
                 }

@@ -12,6 +12,7 @@ namespace PHPCompatibility\Sniffs\TextStrings;
 
 use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\TextStrings;
@@ -137,7 +138,7 @@ final class NewUnicodeEscapeSequenceSniff extends Sniff
      */
     protected function isValidUnicodeEscapeSequence($codepoint)
     {
-        if (\trim($codepoint) === '') {
+        if (Utils::trim($codepoint) === '') {
             return false;
         }
 

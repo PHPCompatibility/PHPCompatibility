@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Generators;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
+use PHPCompatibility\Helpers\Utils;
 use PHPCompatibility\Sniff;
 
 /**
@@ -66,9 +67,9 @@ final class NewYieldFromCommentSniff extends Sniff
         /*
          * Handle potentially multi-token "yield from" expressions.
          */
-        if (\strtolower(\trim($content)) === 'yield') {
+        if (\strtolower(Utils::trim($content)) === 'yield') {
             for ($i = ($stackPtr + 1); $i < $phpcsFile->numTokens; $i++) {
-                if ($tokens[$i]['code'] === \T_YIELD_FROM && \strtolower(\trim($tokens[$i]['content'])) === 'from') {
+                if ($tokens[$i]['code'] === \T_YIELD_FROM && \strtolower(Utils::trim($tokens[$i]['content'])) === 'from') {
                     $content     .= $tokens[$i]['content'];
                     $yieldFromEnd = $i;
                     break;
@@ -85,7 +86,7 @@ final class NewYieldFromCommentSniff extends Sniff
 
         $contentSansKeywords = \substr($content, 5, -4);
 
-        if (\trim($contentSansKeywords) === '') {
+        if (Utils::trim($contentSansKeywords) === '') {
             return ($yieldFromEnd + 1);
         }
 
