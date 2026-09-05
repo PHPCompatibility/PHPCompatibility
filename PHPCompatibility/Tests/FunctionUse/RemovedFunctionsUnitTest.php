@@ -75,6 +75,22 @@ final class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['curl_close', '8.5', 1401, '8.4'],
             ['curl_share_close', '8.5', 1402, '8.4'],
             ['imagedestroy', '8.5', 1403, '8.4'],
+            ['mb_ereg', '8.6', 1407, '8.5'],
+            ['mb_ereg_match', '8.6', 1408, '8.5'],
+            ['mb_ereg_replace', '8.6', 1409, '8.5'],
+            ['mb_ereg_replace_callback', '8.6', 1410, '8.5'],
+            ['mb_ereg_search', '8.6', 1411, '8.5'],
+            ['mb_ereg_search_getpos', '8.6', 1412, '8.5'],
+            ['mb_ereg_search_getregs', '8.6', 1413, '8.5'],
+            ['mb_ereg_search_init', '8.6', 1414, '8.5'],
+            ['mb_ereg_search_pos', '8.6', 1415, '8.5'],
+            ['mb_ereg_search_regs', '8.6', 1416, '8.5'],
+            ['mb_ereg_search_setpos', '8.6', 1417, '8.5'],
+            ['mb_eregi', '8.6', 1418, '8.5'],
+            ['mb_eregi_replace', '8.6', 1419, '8.5'],
+            ['mb_regex_encoding', '8.6', 1420, '8.5'],
+            ['mb_regex_set_options', '8.6', 1421, '8.5'],
+            ['mb_split', '8.6', 1422, '8.5'],
         ];
     }
 

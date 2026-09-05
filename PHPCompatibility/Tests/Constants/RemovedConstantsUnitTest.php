@@ -142,6 +142,7 @@ final class RemovedConstantsUnitTest extends BaseSniffTestCase
             ['MHASH_XXH64', '8.5', 874, '8.4'],
             ['MHASH_XXH3', '8.5', 875, '8.4'],
             ['MHASH_XXH128', '8.5', 876, '8.4'],
+            ['MB_ONIGURUMA_VERSION', '8.6', 878, '8.5'],
         ];
     }
 

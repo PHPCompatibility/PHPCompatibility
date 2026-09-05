@@ -168,6 +168,9 @@ final class RemovedIniDirectivesUnitTest extends BaseSniffTestCase
 
             ['report_memleaks', '8.5', [529, 530], '8.4'],
             ['register_argc_argv', '8.5', [531, 532], '8.4'],
+
+            ['mbstring.regex_retry_limit', '8.6', [538, 539], '8.5'],
+            ['mbstring.regex_stack_limit', '8.6', [540, 541], '8.5'],
         ];
     }
 

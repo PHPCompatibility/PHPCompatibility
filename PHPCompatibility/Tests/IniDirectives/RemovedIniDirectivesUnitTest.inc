@@ -534,3 +534,8 @@ ini_set('disable_classes', 1);
 $test = ini_get('disable_classes');
 ini_set('intl.error_level', 1);
 $test = ini_get('intl.error_level');
+
+ini_set('mbstring.regex_retry_limit', 1);
+$test = ini_get('mbstring.regex_retry_limit');
+ini_set('mbstring.regex_stack_limit', 1);
+$test = ini_get('mbstring.regex_stack_limit');
