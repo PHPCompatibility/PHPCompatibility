@@ -27,7 +27,7 @@ use PHPCSUtils\Utils\PassedParameters;
  * PHP version 9.0
  *
  * @link https://wiki.php.net/rfc/deprecations_php_8_3#passing_negative_widths_to_mb_strimwidth
- * @link https://www.php.net/manual/en/function.mb-strimwidth.php
+ * @link https://www.php.net/mb-strimwidth
  *
  * @since 10.0.0
  */

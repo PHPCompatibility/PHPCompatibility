@@ -22,8 +22,8 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * PHP version 5.4+
  *
- * @link https://www.php.net/manual/en/function.pack.php#refsect1-function.pack-changelog
- * @link https://www.php.net/manual/en/function.unpack.php
+ * @link https://www.php.net/pack#refsect1-function.pack-changelog
+ * @link https://www.php.net/unpack
  *
  * @since 9.0.0
  * @since 10.0.0 This class is now `final`.

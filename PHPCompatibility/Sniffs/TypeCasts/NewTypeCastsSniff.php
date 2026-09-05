@@ -20,7 +20,7 @@ use PHPCompatibility\Sniff;
  *
  * PHP version All
  *
- * @link https://www.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting
+ * @link https://www.php.net/types.type-juggling#language.types.typecasting
  *
  * @since 8.0.1
  * @since 10.0.0 - Now extends the base `Sniff` class and uses the `ComplexVersionNewFeatureTrait`.

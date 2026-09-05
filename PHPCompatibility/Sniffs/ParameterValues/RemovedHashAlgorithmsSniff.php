@@ -22,7 +22,7 @@ use PHPCSUtils\Utils\MessageHelper;
  *
  * PHP version 5.4
  *
- * @link https://www.php.net/manual/en/function.hash-algos.php#refsect1-function.hash-algos-changelog
+ * @link https://www.php.net/hash-algos#refsect1-function.hash-algos-changelog
  *
  * @since 5.5
  * @since 7.1.0  Now extends the `AbstractRemovedFeatureSniff` instead of the base `Sniff` class.

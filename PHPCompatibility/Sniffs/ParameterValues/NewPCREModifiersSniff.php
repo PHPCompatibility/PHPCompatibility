@@ -24,8 +24,8 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 7.2+
  *
- * @link https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php
- * @link https://www.php.net/manual/en/migration72.new-features.php#migration72.new-features.pcre
+ * @link https://www.php.net/reference.pcre.pattern.modifiers
+ * @link https://www.php.net/migration72.new-features#migration72.new-features.pcre
  *
  * @since 8.2.0
  * @since 9.0.0  Renamed from `PCRENewModifiersSniff` to `NewPCREModifiersSniff`.

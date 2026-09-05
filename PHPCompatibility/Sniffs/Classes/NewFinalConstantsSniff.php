@@ -22,7 +22,7 @@ use PHPCSUtils\Utils\Constants;
  * PHP version 8.1
  *
  * @link https://wiki.php.net/rfc/final_class_const
- * @link https://www.php.net/manual/en/language.oop5.final.php#language.oop5.final.example.php81
+ * @link https://www.php.net/oop5.final#language.oop5.final.example.php81
  *
  * @since 10.0.0
  */

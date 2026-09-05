@@ -21,10 +21,10 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 5.4
  *
- * @link https://www.php.net/manual/en/migration54.other.php
- * @link https://www.php.net/manual/en/function.html-entity-decode.php#refsect1-function.html-entity-decode-changelog
- * @link https://www.php.net/manual/en/function.htmlentities.php#refsect1-function.htmlentities-changelog
- * @link https://www.php.net/manual/en/function.htmlspecialchars.php#refsect1-function.htmlspecialchars-changelog
+ * @link https://www.php.net/migration54.other
+ * @link https://www.php.net/html-entity-decode#refsect1-function.html-entity-decode-changelog
+ * @link https://www.php.net/htmlentities#refsect1-function.htmlentities-changelog
+ * @link https://www.php.net/htmlspecialchars#refsect1-function.htmlspecialchars-changelog
  *
  * @since 9.3.0
  * @since 10.0.0 This class is now `final`.

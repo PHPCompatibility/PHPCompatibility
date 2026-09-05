@@ -22,9 +22,9 @@ use PHPCSUtils\Utils\Lists;
  *
  * PHP version 7.3
  *
- * @link https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.destruct-reference
+ * @link https://www.php.net/migration73.new-features#migration73.new-features.core.destruct-reference
  * @link https://wiki.php.net/rfc/list_reference_assignment
- * @link https://www.php.net/manual/en/function.list.php
+ * @link https://www.php.net/list
  *
  * @since 9.0.0
  * @since 10.0.0 - Complete rewrite. No longer extends the `NewKeyedListSniff`.

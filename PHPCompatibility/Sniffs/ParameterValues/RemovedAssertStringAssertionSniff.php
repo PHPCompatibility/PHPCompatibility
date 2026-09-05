@@ -32,7 +32,7 @@ use PHPCSUtils\Utils\MessageHelper;
  *
  * @link https://wiki.php.net/rfc/deprecations_php_7_2#assert_with_string_argument
  * @link https://github.com/php/php-src/blob/69888c3ff1f2301ead8e37b23ff8481d475e29d2/UPGRADING#L350-L354
- * @link https://www.php.net/manual/en/function.assert.php#refsect1-function.assert-changelog
+ * @link https://www.php.net/assert#refsect1-function.assert-changelog
  *
  * @since 10.0.0
  */

@@ -24,7 +24,7 @@ use PHPCSUtils\Utils\GetTokensAsString;
  * PHP version 7.0
  *
  * @link https://wiki.php.net/rfc/integer_semantics
- * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.integers.negative-bitshift
+ * @link https://www.php.net/migration70.incompatible#migration70.incompatible.integers.negative-bitshift
  *
  * @since 7.0.0
  * @since 10.0.0 This class is now `final`.

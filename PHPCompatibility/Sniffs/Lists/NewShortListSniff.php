@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\Lists;
  *
  * PHP version 7.1
  *
- * @link https://www.php.net/manual/en/migration71.new-features.php#migration71.new-features.symmetric-array-destructuring
+ * @link https://www.php.net/migration71.new-features#migration71.new-features.symmetric-array-destructuring
  * @link https://wiki.php.net/rfc/short_list_syntax
  *
  * @since 9.0.0

@@ -28,9 +28,9 @@ use PHPCSUtils\Utils\Parentheses;
  * PHP version 5.4
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/language.oop5.basic.php#example-177
- * @link https://www.php.net/manual/en/language.oop5.cloning.php#language.oop5.traits.properties.example
- * @link https://www.php.net/manual/en/migration54.new-features.php
+ * @link https://www.php.net/oop5.basic#example-177
+ * @link https://www.php.net/oop5.cloning#language.oop5.traits.properties.example
+ * @link https://www.php.net/migration54.new-features
  * @link https://wiki.php.net/rfc/instance-method-call
  * @link https://wiki.php.net/rfc/uniform_variable_syntax
  *

@@ -29,7 +29,7 @@ use PHPCSUtils\Utils\ObjectDeclarations;
  * PHP version 5.3
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/language.oop5.magic.php
+ * @link https://www.php.net/oop5.magic
  *
  * @since 5.5
  * @since 5.6    Now extends the base `Sniff` class.

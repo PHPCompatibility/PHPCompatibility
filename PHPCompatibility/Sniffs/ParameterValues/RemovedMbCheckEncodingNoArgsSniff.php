@@ -22,8 +22,8 @@ use PHPCompatibility\Helpers\ScannedCode;
  * PHP version 9.0
  *
  * @link https://wiki.php.net/rfc/deprecations_php_8_1#mb_check_encoding_without_argument
- * @link https://www.php.net/manual/en/migration81.deprecated.php#migration81.deprecated.mbstring
- * @link https://www.php.net/manual/en/function.mb-check-encoding.php
+ * @link https://www.php.net/migration81.deprecated#migration81.deprecated.mbstring
+ * @link https://www.php.net/mb-check-encoding
  *
  * @since 10.0.0
  */

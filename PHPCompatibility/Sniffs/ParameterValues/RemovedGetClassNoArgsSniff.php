@@ -23,8 +23,8 @@ use PHPCSUtils\Utils\PassedParameters;
  * PHP version 9.0
  *
  * @link https://wiki.php.net/rfc/deprecate_functions_with_overloaded_signatures#get_class_and_get_parent_class
- * @link https://www.php.net/manual/en/function.get-class.php
- * @link https://www.php.net/manual/en/function.get-parent-class.php
+ * @link https://www.php.net/get-class
+ * @link https://www.php.net/get-parent-class
  *
  * @since 10.0.0
  */

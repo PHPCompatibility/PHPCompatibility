@@ -21,7 +21,7 @@ use PHPCompatibility\Sniff;
  * PHP version 8.0
  *
  * @link https://wiki.php.net/rfc/non-capturing_catches
- * @link https://www.php.net/manual/en/language.exceptions.php#language.exceptions.catch
+ * @link https://www.php.net/exceptions#language.exceptions.catch
  *
  * @since 10.0.0
  */

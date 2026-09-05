@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * PHP version 7.2
  *
- * @link https://www.php.net/manual/en/migration72.incompatible.php#migration72.incompatible.hash-functions
+ * @link https://www.php.net/migration72.incompatible#migration72.incompatible.hash-functions
  *
  * @since 9.0.0
  * @since 10.0.0 This class is now `final`.

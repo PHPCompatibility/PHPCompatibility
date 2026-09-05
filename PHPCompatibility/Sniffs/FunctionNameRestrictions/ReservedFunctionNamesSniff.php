@@ -22,7 +22,7 @@ use PHPCSUtils\Utils\Scopes;
  *
  * PHP version All
  *
- * @link https://www.php.net/manual/en/language.oop5.magic.php
+ * @link https://www.php.net/oop5.magic
  *
  * @since 8.2.0  This was previously, since 7.0.3, checked by the upstream sniff.
  * @since 9.3.2  The sniff will now ignore functions marked as `@deprecated` by design.

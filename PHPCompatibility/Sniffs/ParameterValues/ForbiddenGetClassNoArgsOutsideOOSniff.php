@@ -23,8 +23,8 @@ use PHPCSUtils\Utils\Scopes;
  *
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/function.get-class.php#refsect1-function.get-class-changelog
- * @link https://www.php.net/manual/en/function.get-called-class.php#refsect1-function.get-called-class-changelog
+ * @link https://www.php.net/get-class#refsect1-function.get-class-changelog
+ * @link https://www.php.net/get-called-class#refsect1-function.get-called-class-changelog
  *
  * @since 10.0.0
  */

@@ -21,7 +21,7 @@ use PHPCSUtils\Utils\FunctionDeclarations;
  *
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.other.func-parameters
+ * @link https://www.php.net/migration70.incompatible#migration70.incompatible.other.func-parameters
  *
  * @since 7.0.0
  * @since 10.0.0 This class is now `final`.

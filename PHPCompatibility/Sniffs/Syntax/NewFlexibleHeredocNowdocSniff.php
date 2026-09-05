@@ -26,7 +26,7 @@ use PHPCompatibility\Sniff;
  *
  * PHP version 7.3
  *
- * @link https://www.php.net/manual/en/migration73.new-features.php#migration73.new-features.core.heredoc
+ * @link https://www.php.net/migration73.new-features#migration73.new-features.core.heredoc
  * @link https://wiki.php.net/rfc/flexible_heredoc_nowdoc_syntaxes
  *
  * @since 9.0.0

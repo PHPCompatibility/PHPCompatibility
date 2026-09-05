@@ -20,7 +20,7 @@ use PHPCSUtils\Utils\Numbers;
  *
  * PHP version 8.1
  *
- * @link https://www.php.net/manual/en/migration81.new-features.php#migration81.new-features.core.octal-literal-prefix
+ * @link https://www.php.net/migration81.new-features#migration81.new-features.core.octal-literal-prefix
  * @link https://wiki.php.net/rfc/explicit_octal_notation
  *
  * @since 10.0.0

@@ -21,9 +21,9 @@ use PHPCSUtils\Utils\Conditions;
  *
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/migration70.new-features.php#migration70.new-features.generator-return-expressions
+ * @link https://www.php.net/migration70.new-features#migration70.new-features.generator-return-expressions
  * @link https://wiki.php.net/rfc/generator-return-expressions
- * @link https://www.php.net/manual/en/language.generators.syntax.php
+ * @link https://www.php.net/generators.syntax
  *
  * @since 8.2.0
  * @since 10.0.0 This class is now `final`.

@@ -20,7 +20,7 @@ use PHPCompatibility\Sniff;
  *
  * PHP version 8.3
  *
- * @link https://www.php.net/releases/8.3/en.php#dynamic_class_constant_fetch
+ * @link https://www.php.net/releases/8.3/#dynamic_class_constant_fetch
  * @link https://wiki.php.net/rfc/dynamic_class_constant_fetch
  *
  * @since 10.0.0

@@ -26,7 +26,7 @@ use PHPCSUtils\Utils\TextStrings;
  * PHP version 7.1+
  *
  * @link https://wiki.php.net/rfc/deprecate_mb_ereg_replace_eval_option
- * @link https://www.php.net/manual/en/function.mb-regex-set-options.php
+ * @link https://www.php.net/mb-regex-set-options
  *
  * @since 7.0.5
  * @since 7.0.8  This sniff now throws a warning instead of an error as the functionality is

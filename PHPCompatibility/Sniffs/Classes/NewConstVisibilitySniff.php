@@ -22,7 +22,7 @@ use PHPCSUtils\Utils\Constants;
  * PHP version 7.1
  *
  * @link https://wiki.php.net/rfc/class_const_visibility
- * @link https://www.php.net/manual/en/language.oop5.constants.php#language.oop5.basic.class.this
+ * @link https://www.php.net/oop5.constants#language.oop5.basic.class.this
  *
  * @since 7.0.7
  * @since 10.0.0 This class is now `final`.

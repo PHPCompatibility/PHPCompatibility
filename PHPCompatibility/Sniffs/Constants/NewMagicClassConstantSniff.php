@@ -29,7 +29,7 @@ use PHPCSUtils\Utils\Context;
  * PHP version 8.0
  *
  * @link https://wiki.php.net/rfc/class_name_scalars
- * @link https://www.php.net/manual/en/language.oop5.constants.php#example-186
+ * @link https://www.php.net/oop5.constants#example-186
  * @link https://wiki.php.net/rfc/class_name_literal_on_object
  *
  * @since 7.1.4

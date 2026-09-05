@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\Scopes;
  *
  * PHP version 5.0+
  *
- * @link https://www.php.net/manual/en/language.oop5.magic.php
+ * @link https://www.php.net/oop5.magic
  * @link https://wiki.php.net/rfc/closures#additional_goodyinvoke
  * @link https://wiki.php.net/rfc/debug-info
  * @link https://wiki.php.net/rfc/phase_out_serializable Special casing of the __[un]serialize methods.

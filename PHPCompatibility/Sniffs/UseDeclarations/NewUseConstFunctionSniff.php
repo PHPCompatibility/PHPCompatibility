@@ -25,9 +25,9 @@ use PHPCSUtils\Utils\UseStatements;
  *
  * PHP version 5.6
  *
- * @link https://www.php.net/manual/en/migration56.new-features.php#migration56.new-features.use
+ * @link https://www.php.net/migration56.new-features#migration56.new-features.use
  * @link https://wiki.php.net/rfc/use_function
- * @link https://www.php.net/manual/en/language.namespaces.importing.php
+ * @link https://www.php.net/namespaces.importing
  *
  * @since 7.1.4
  * @since 10.0.0 This class is now `final`.

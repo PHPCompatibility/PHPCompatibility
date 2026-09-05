@@ -21,7 +21,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 5.2+
  *
- * @link https://www.php.net/manual/en/function.fopen.php#refsect1-function.fopen-changelog
+ * @link https://www.php.net/fopen#refsect1-function.fopen-changelog
  *
  * @since 9.0.0
  * @since 10.0.0 This class is now `final`.

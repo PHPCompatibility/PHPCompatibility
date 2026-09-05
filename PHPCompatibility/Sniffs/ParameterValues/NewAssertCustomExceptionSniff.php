@@ -24,7 +24,7 @@ use PHPCompatibility\Helpers\ScannedCode;
  * PHP version 7.0
  *
  * @link https://wiki.php.net/rfc/expectations
- * @link https://www.php.net/manual/en/function.assert.php#refsect1-function.assert-changelog
+ * @link https://www.php.net/assert#refsect1-function.assert-changelog
  *
  * @since 10.0.0
  */

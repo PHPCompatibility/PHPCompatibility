@@ -24,9 +24,9 @@ use PHPCSUtils\Utils\MessageHelper;
  * PHP version 7.4
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.implode-reverse-parameters
+ * @link https://www.php.net/migration74.deprecated#migration74.deprecated.core.implode-reverse-parameters
  * @link https://wiki.php.net/rfc/deprecations_php_7_4#implode_parameter_order_mix
- * @link https://php.net/manual/en/function.implode.php
+ * @link https://php.net/implode
  *
  * @since 9.3.0
  * @since 10.0.0 This class is now `final`.

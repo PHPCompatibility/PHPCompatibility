@@ -36,7 +36,7 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/migration70.incompatible.php#migration70.incompatible.other.func-parameter-modified
+ * @link https://www.php.net/migration70.incompatible#migration70.incompatible.other.func-parameter-modified
  *
  * @since 9.1.0
  * @since 10.0.0 This class is now `final`.

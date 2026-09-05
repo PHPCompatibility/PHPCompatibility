@@ -31,7 +31,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 5.6
  *
- * @link https://www.php.net/manual/en/migration56.new-features.php#migration56.new-features.const-scalar-exprs
+ * @link https://www.php.net/migration56.new-features#migration56.new-features.const-scalar-exprs
  * @link https://wiki.php.net/rfc/const_scalar_exprs
  *
  * @since 8.2.0

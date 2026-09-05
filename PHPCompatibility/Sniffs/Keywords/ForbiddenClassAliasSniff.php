@@ -22,7 +22,7 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * PHP version All
  *
- * @link https://www.php.net/manual/en/function.class-alias.php
+ * @link https://www.php.net/class-alias
  *
  * @since 10.0.0
  */

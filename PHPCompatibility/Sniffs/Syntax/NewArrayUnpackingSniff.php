@@ -24,7 +24,7 @@ use PHPCSUtils\Utils\GetTokensAsString;
  *
  * PHP version 7.4
  *
- * @link https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.core.unpack-inside-array
+ * @link https://www.php.net/migration74.new-features#migration74.new-features.core.unpack-inside-array
  * @link https://wiki.php.net/rfc/spread_operator_for_array
  *
  * @since 9.2.0

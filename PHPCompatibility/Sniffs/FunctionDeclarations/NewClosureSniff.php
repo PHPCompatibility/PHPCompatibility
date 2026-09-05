@@ -34,7 +34,7 @@ use PHPCSUtils\Utils\Conditions;
  * PHP version 5.3
  * PHP version 5.4
  *
- * @link https://www.php.net/manual/en/functions.anonymous.php
+ * @link https://www.php.net/functions.anonymous
  * @link https://wiki.php.net/rfc/closures
  * @link https://wiki.php.net/rfc/closures/object-extension
  *

@@ -29,7 +29,7 @@ use PHPCSUtils\Utils\ObjectDeclarations;
  * PHP version 5.1
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/migration51.oop.php#migration51.oop-methods
+ * @link https://www.php.net/migration51.oop#migration51.oop-methods
  * @link https://wiki.php.net/rfc/abstract_trait_method_validation
  *
  * @since 9.2.0

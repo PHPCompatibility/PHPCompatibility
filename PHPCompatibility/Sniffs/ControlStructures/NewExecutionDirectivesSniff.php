@@ -32,7 +32,7 @@ use PHPCSUtils\Utils\TextStrings;
  *
  * PHP version All
  *
- * @link https://www.php.net/manual/en/control-structures.declare.php
+ * @link https://www.php.net/control-structures.declare
  * @link https://wiki.php.net/rfc/scalar_type_hints_v5#strict_types_declare_directive
  *
  * @since 7.0.3

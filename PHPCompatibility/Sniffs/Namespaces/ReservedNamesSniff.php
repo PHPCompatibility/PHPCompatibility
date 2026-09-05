@@ -27,7 +27,7 @@ use PHPCSUtils\Utils\Namespaces;
  *
  * PHP version 5.3+
  *
- * @link https://www.php.net/manual/en/language.namespaces.rationale.php
+ * @link https://www.php.net/namespaces.rationale
  * @link https://wiki.php.net/rfc/namespaces_in_bundled_extensions
  *
  * @since 10.0.0

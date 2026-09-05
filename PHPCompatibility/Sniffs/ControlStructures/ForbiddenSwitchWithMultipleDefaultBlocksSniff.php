@@ -20,7 +20,7 @@ use PHPCompatibility\Sniff;
  * PHP version 7.0
  *
  * @link https://wiki.php.net/rfc/switch.default.multiple
- * @link https://www.php.net/manual/en/control-structures.switch.php
+ * @link https://www.php.net/control-structures.switch
  *
  * @since 7.0.0
  * @since 10.0.0 This class is now `final`.

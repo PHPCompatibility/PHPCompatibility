@@ -30,7 +30,7 @@ use PHPCSUtils\Utils\UseStatements;
  *
  * PHP version All
  *
- * @link https://www.php.net/manual/en/reserved.keywords.php
+ * @link https://www.php.net/reserved.keywords
  *
  * @since 5.5
  * @since 10.0.0 - Strictly checks declarations and aliases only.

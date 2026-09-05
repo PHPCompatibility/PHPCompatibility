@@ -19,9 +19,9 @@ use PHPCompatibility\Sniff;
  *
  * PHP version 7.1
  *
- * @link https://www.php.net/manual/en/migration71.new-features.php#migration71.new-features.mulit-catch-exception-handling
+ * @link https://www.php.net/migration71.new-features#migration71.new-features.mulit-catch-exception-handling
  * @link https://wiki.php.net/rfc/multiple-catch
- * @link https://www.php.net/manual/en/language.exceptions.php#language.exceptions.catch
+ * @link https://www.php.net/exceptions#language.exceptions.catch
  *
  * @since 7.0.7
  * @since 10.0.0 This class is now `final`.

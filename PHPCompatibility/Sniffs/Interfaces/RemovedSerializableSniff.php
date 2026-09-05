@@ -35,10 +35,10 @@ use PHPCSUtils\Utils\ObjectDeclarations;
  * PHP version 8.1
  * PHP version 9.0
  *
- * @link https://www.php.net/manual/en/migration81.deprecated.php#migration81.deprecated.core.serialize-interface
+ * @link https://www.php.net/migration81.deprecated#migration81.deprecated.core.serialize-interface
  * @link https://wiki.php.net/rfc/phase_out_serializable
- * @link https://www.php.net/manual/en/class.serializable.php
- * @link https://www.php.net/manual/en/language.oop5.magic.php#object.serialize
+ * @link https://www.php.net/serializable
+ * @link https://www.php.net/oop5.magic#object.serialize
  *
  * @since 10.0.0
  */

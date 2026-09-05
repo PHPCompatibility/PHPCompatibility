@@ -25,7 +25,7 @@ use PHPCSUtils\Utils\Operators;
  * PHP version 7.4
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.nested-ternary
+ * @link https://www.php.net/migration74.deprecated#migration74.deprecated.core.nested-ternary
  * @link https://wiki.php.net/rfc/ternary_associativity
  * @link https://github.com/php/php-src/pull/4017
  *

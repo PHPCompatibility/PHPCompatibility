@@ -22,7 +22,7 @@ use PHPCSUtils\Utils\PassedParameters;
  * PHP version 7.2
  *
  * @link https://wiki.php.net/rfc/get_class_disallow_null_parameter
- * @link https://www.php.net/manual/en/function.get-class.php#refsect1-function.get-class-changelog
+ * @link https://www.php.net/get-class#refsect1-function.get-class-changelog
  *
  * @since 9.0.0
  * @since 10.0.0 This class is now `final`.

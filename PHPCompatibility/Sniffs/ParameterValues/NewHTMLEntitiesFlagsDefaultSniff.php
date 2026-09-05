@@ -23,7 +23,7 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 8.1
  *
- * @link https://www.php.net/manual/en/function.html-entity-decode#refsect1-function.html-entity-decode-changelog
+ * @link https://www.php.net/html-entity-decode#refsect1-function.html-entity-decode-changelog
  * @link https://github.com/php/php-src/commit/50eca61f68815005f3b0f808578cc1ce3b4297f0
  *
  * @since 10.0.0

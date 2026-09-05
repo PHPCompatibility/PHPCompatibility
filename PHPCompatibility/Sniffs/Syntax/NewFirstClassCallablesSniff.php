@@ -23,7 +23,7 @@ use PHPCompatibility\Sniff;
  * PHP version 8.1
  * PHP version 8.4
  *
- * @link https://www.php.net/manual/en/migration81.new-features.php#migration81.new-features.core.callable-syntax
+ * @link https://www.php.net/migration81.new-features#migration81.new-features.core.callable-syntax
  * @link https://wiki.php.net/rfc/first_class_callable_syntax
  * @link https://wiki.php.net/rfc/exit-as-function
  *

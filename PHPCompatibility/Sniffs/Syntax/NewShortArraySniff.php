@@ -22,7 +22,7 @@ use PHPCSUtils\Utils\Arrays;
  * PHP version 5.4
  *
  * @link https://wiki.php.net/rfc/shortsyntaxforarrays
- * @link https://www.php.net/manual/en/language.types.array.php#language.types.array.syntax
+ * @link https://www.php.net/types.array#language.types.array.syntax
  *
  * @since 7.0.0
  * @since 9.0.0  Renamed from `ShortArraySniff` to `NewShortArraySniff`.

@@ -221,7 +221,7 @@ final class TokenGroup
 
             /*
              * Regexes based on the formats outlined in the manual, created by JRF.
-             * @link https://www.php.net/manual/en/language.types.float.php
+             * @link https://www.php.net/types.float
              */
             $regexInt   = '`^\s*[0-9]+`';
             $regexFloat = '`^\s*(?:[+-]?(?:(?:(?P<LNUM>[0-9]+)|(?P<DNUM>([0-9]*\.(?P>LNUM)|(?P>LNUM)\.[0-9]*)))[eE][+-]?(?P>LNUM))|(?P>DNUM))`';

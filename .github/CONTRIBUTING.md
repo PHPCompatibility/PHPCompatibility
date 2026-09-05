@@ -72,7 +72,7 @@ Related to ### (PHPCompatibility meta ticket for that PHP version)
 * The [PHP RFC wiki][php-wiki-rfc]
 * The [UPGRADING](https://github.com/php/php-src/blob/master/UPGRADING) document of each release
 * The [NEWS](https://github.com/php/php-src/blob/master/NEWS) document of each release
-* The [Migrating from PHP x.x.x to PHP x.x.x section](https://www.php.net/manual/en/appendices.php) in the manual for each release (once published)
+* The [Migrating from PHP x.x.x to PHP x.x.x section](https://www.php.net/appendices) in the manual for each release (once published)
 * The [Changelog](https://www.php.net/doc.changelog) in the manual
 * The official [PHP manual][php-manual] in general
 * The legacy [PHP 5 manual](https://php-legacy-docs.zend.com/manual/php5/en/index)

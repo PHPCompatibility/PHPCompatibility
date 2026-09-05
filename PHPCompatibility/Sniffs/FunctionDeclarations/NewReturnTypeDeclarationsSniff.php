@@ -35,8 +35,8 @@ use PHPCSUtils\Utils\TypeString;
  *
  * PHP version 7.0+
  *
- * @link https://www.php.net/manual/en/migration70.new-features.php#migration70.new-features.return-type-declarations
- * @link https://www.php.net/manual/en/functions.returning-values.php#functions.returning-values.type-declaration
+ * @link https://www.php.net/migration70.new-features#migration70.new-features.return-type-declarations
+ * @link https://www.php.net/functions.returning-values#functions.returning-values.type-declaration
  * @link https://wiki.php.net/rfc/return_types
  * @link https://wiki.php.net/rfc/iterable
  * @link https://wiki.php.net/rfc/void_return_type

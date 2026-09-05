@@ -29,7 +29,7 @@ use ReflectionClass;
  *
  * PHP version 8.3
  *
- * @link https://www.php.net/manual/en/function.class-alias.php
+ * @link https://www.php.net/class-alias
  *
  * @since 10.0.0
  */

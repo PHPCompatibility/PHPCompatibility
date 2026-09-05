@@ -27,8 +27,8 @@ use PHPCSUtils\Utils\Variables;
  *
  * PHP version 7.1
  *
- * @link https://www.php.net/manual/en/migration71.incompatible.php#migration71.incompatible.lexical-names
- * @link https://www.php.net/manual/en/functions.anonymous.php
+ * @link https://www.php.net/migration71.incompatible#migration71.incompatible.lexical-names
+ * @link https://www.php.net/functions.anonymous
  *
  * @since 7.1.4
  * @since 10.0.0 This class is now `final`.

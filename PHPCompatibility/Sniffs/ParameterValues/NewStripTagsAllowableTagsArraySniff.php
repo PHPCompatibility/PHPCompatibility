@@ -21,8 +21,8 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 7.4
  *
- * @link https://www.php.net/manual/en/migration74.new-features.php#migration74.new-features.standard.strip-tags
- * @link https://www.php.net/manual/en/function.strip-tags.php
+ * @link https://www.php.net/migration74.new-features#migration74.new-features.standard.strip-tags
+ * @link https://www.php.net/strip-tags
  *
  * @since 9.3.0
  * @since 10.0.0 This class is now `final`.

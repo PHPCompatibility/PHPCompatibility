@@ -23,8 +23,8 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 7.0
  *
- * @link https://www.php.net/manual/en/migration70.new-features.php#migration70.new-features.define-array
- * @link https://www.php.net/manual/en/language.constants.syntax.php
+ * @link https://www.php.net/migration70.new-features#migration70.new-features.define-array
+ * @link https://www.php.net/constants.syntax
  *
  * @since 7.0.0
  * @since 9.0.0  Renamed from `ConstantArraysUsingDefineSniff` to `NewConstantArraysUsingDefineSniff`.

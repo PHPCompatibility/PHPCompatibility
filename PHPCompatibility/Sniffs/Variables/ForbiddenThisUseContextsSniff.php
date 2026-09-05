@@ -46,7 +46,7 @@ use PHPCSUtils\Utils\Scopes;
  *
  * PHP version 7.1
  *
- * @link https://www.php.net/manual/en/migration71.other-changes.php#migration71.other-changes.inconsistency-fixes-to-this
+ * @link https://www.php.net/migration71.other-changes#migration71.other-changes.inconsistency-fixes-to-this
  * @link https://wiki.php.net/rfc/this_var
  *
  * @since 9.1.0

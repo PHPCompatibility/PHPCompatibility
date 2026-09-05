@@ -40,7 +40,7 @@ use PHPCompatibility\Sniff;
  * @link https://wiki.php.net/rfc/attribute_amendments
  * @link https://wiki.php.net/rfc/shorter_attribute_syntax
  * @link https://wiki.php.net/rfc/shorter_attribute_syntax_change
- * @link https://www.php.net/manual/en/language.attributes.php
+ * @link https://www.php.net/attributes
  *
  * @since 10.0.0
  */
@@ -66,7 +66,7 @@ final class NewAttributesSniff extends Sniff
      *
      * These attributes will be bundled into one error code to allow for easily selectively ignoring them.
      *
-     * Source of the attributes list: https://www.php.net/manual/en/reserved.attributes.php
+     * Source of the attributes list: https://www.php.net/reserved.attributes
      *
      * @since 10.0.0
      *

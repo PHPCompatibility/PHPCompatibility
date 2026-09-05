@@ -23,8 +23,8 @@ use PHPCSUtils\Utils\PassedParameters;
  *
  * PHP version 5.3
  *
- * @link https://www.php.net/manual/en/migration53.other.php#migration53.other
- * @link https://www.php.net/manual/en/function.array-reduce.php#refsect1-function.array-reduce-changelog
+ * @link https://www.php.net/migration53.other#migration53.other
+ * @link https://www.php.net/array-reduce#refsect1-function.array-reduce-changelog
  *
  * @since 9.0.0
  * @since 10.0.0 This class is now `final`.

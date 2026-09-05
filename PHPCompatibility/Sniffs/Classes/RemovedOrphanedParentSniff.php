@@ -26,7 +26,7 @@ use PHPCSUtils\Utils\MessageHelper;
  * PHP version 7.4
  * PHP version 8.0
  *
- * @link https://www.php.net/manual/en/migration74.deprecated.php#migration74.deprecated.core.parent
+ * @link https://www.php.net/migration74.deprecated#migration74.deprecated.core.parent
  *
  * @since 9.2.0
  * @since 10.0.0 This class is now `final`.
