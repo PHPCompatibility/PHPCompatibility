@@ -1028,12 +1028,38 @@ final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSnif
                 '5.0'  => false,
                 '5.1'  => true,
             ],
+            5 => [
+                'name' => 'context',
+                '8.5'  => false,
+                '8.6'  => true,
+            ],
         ],
         'stream_get_contents' => [
             3 => [
                 'name' => 'offset',
                 '5.0'  => false,
                 '5.1'  => true,
+            ],
+        ],
+        'stream_is_local' => [
+            2 => [
+                'name' => 'context',
+                '8.5'  => false,
+                '8.6'  => true,
+            ],
+        ],
+        'stream_select' => [
+            6 => [
+                'name' => 'context',
+                '8.5'  => false,
+                '8.6'  => true,
+            ],
+        ],
+        'stream_socket_pair' => [
+            4 => [
+                'name' => 'context',
+                '8.5'  => false,
+                '8.6'  => true,
             ],
         ],
         'stream_wrapper_register' => [

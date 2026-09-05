@@ -1392,6 +1392,15 @@ final class NewClassesSniff extends Sniff
             '8.5'       => true,
             'extension' => 'filter',
         ],
+
+        'StreamError' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
+        'StreamException' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
     ];
 
     /**

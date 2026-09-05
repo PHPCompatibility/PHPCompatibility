@@ -337,6 +337,8 @@ final class NewClassesUnitTest extends BaseSniffTestCase
             ['RequestParseBodyException', '8.3', [559], '8.4'],
             ['Filter\\FilterFailedException', '8.4', [629], '8.5'],
             ['Filter\\FilterException', '8.4', [630], '8.5'],
+            ['StreamError', '8.5', [635], '8.6'],
+            ['StreamException', '8.5', [635], '8.6'],
         ];
     }
 
