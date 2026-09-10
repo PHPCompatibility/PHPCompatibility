@@ -5311,6 +5311,156 @@ final class NewFunctionsSniff extends Sniff
             '8.6'       => true,
             'extension' => 'mysqli',
         ],
+        'sodium_crypto_ipcrypt_keygen' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_ipcrypt_encrypt' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_ipcrypt_decrypt' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_ipcrypt_nd_keygen' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_ipcrypt_nd_encrypt' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_ipcrypt_nd_decrypt' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_ipcrypt_ndx_keygen' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_ipcrypt_ndx_encrypt' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_ipcrypt_ndx_decrypt' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_ipcrypt_pfx_keygen' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_ipcrypt_pfx_encrypt' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_ipcrypt_pfx_decrypt' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_bin2ip' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_ip2bin' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_shake128' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_shake128_init' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_shake128_update' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_shake128_squeeze' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_shake256' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_shake256_init' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_shake256_update' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_shake256_squeeze' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_turboshake128' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_turboshake128_init' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_turboshake128_update' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_turboshake128_squeeze' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_turboshake256' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_turboshake256_init' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_turboshake256_update' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_xof_turboshake256_squeeze' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
     ];
 
 
