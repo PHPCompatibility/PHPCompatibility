@@ -5461,6 +5461,66 @@ final class NewFunctionsSniff extends Sniff
             '8.6'       => true,
             'extension' => 'sodium',
         ],
+        'sodium_crypto_kem_keypair' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_kem_seed_keypair' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_kem_secretkey' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_kem_publickey' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_kem_enc' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_kem_dec' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_kem_mlkem768_keypair' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_kem_mlkem768_seed_keypair' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_kem_mlkem768_secretkey' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_kem_mlkem768_publickey' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_kem_mlkem768_enc' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'sodium_crypto_kem_mlkem768_dec' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
     ];
 
 

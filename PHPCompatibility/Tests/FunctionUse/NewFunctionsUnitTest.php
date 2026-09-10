@@ -1208,6 +1208,18 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['sodium_crypto_xof_turboshake256_init', '8.5', 1151, '8.6'],
             ['sodium_crypto_xof_turboshake256_update', '8.5', 1152, '8.6'],
             ['sodium_crypto_xof_turboshake256_squeeze', '8.5', 1153, '8.6'],
+            ['sodium_crypto_kem_keypair', '8.5', 1154, '8.6'],
+            ['sodium_crypto_kem_seed_keypair', '8.5', 1155, '8.6'],
+            ['sodium_crypto_kem_secretkey', '8.5', 1156, '8.6'],
+            ['sodium_crypto_kem_publickey', '8.5', 1157, '8.6'],
+            ['sodium_crypto_kem_enc', '8.5', 1158, '8.6'],
+            ['sodium_crypto_kem_dec', '8.5', 1159, '8.6'],
+            ['sodium_crypto_kem_mlkem768_keypair', '8.5', 1160, '8.6'],
+            ['sodium_crypto_kem_mlkem768_seed_keypair', '8.5', 1161, '8.6'],
+            ['sodium_crypto_kem_mlkem768_secretkey', '8.5', 1162, '8.6'],
+            ['sodium_crypto_kem_mlkem768_publickey', '8.5', 1163, '8.6'],
+            ['sodium_crypto_kem_mlkem768_enc', '8.5', 1164, '8.6'],
+            ['sodium_crypto_kem_mlkem768_dec', '8.5', 1165, '8.6'],
         ];
     }
 

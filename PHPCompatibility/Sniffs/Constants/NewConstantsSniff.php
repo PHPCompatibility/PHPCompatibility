@@ -8862,6 +8862,66 @@ final class NewConstantsSniff extends Sniff
             '8.6'       => true,
             'extension' => 'sodium',
         ],
+        'SODIUM_CRYPTO_KEM_PUBLICKEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_SECRETKEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_CIPHERTEXTBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_SHAREDSECRETBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_SEEDBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_KEYPAIRBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_PUBLICKEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_SECRETKEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_CIPHERTEXTBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_SHAREDSECRETBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_SEEDBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_KEYPAIRBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
     ];
 
 
