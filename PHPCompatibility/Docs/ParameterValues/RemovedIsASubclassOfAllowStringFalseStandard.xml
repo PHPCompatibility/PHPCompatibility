@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed is_a()/is_subclass_of() Allow_String False"
+    >
+    <standard>
+    <![CDATA[
+    The `$object_or_class` (first) parameter passed to `is_a()` and `is_subclass_of()` can be either an object, or a class name as a text string.
+    The third parameter, `$allow_string`, controls whether passing a class name as a text string in the first parameter is allowed.
+    For `is_a()`, the default value for `$allow_string` is `false`, while for `is_subclass_of()`, the default value is `true` (= allowed).
+    If the `$allow_string` parameter is `false`, PHP is also prevented from calling a registered autoloader if the class does not exist.
+
+    Since PHP 8.6, passing a class name as a string as the `$object_or_class` parameter, while the `$allow_string` parameter is `false`, will result in a deprecation notice, as the function call would always result in a `false` return value, even if the class would not need to be autoloaded.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible is_a(): Not passing a text string to the `$object_or_class` parameter when `$allow_string` is `false` or passing a text string, but with the `$allow_string` parameter explicitly set to `true`.">
+        <![CDATA[
+if (is_a($obj, Bar::class)) {}
+
+if (is_a('\My\Foo', '\My\Bar', true)) {}
+
+// To check, but also prevent auto-loading:
+if (class_exists(Foo::class, false)
+    && is_a(Foo::class, Bar::class, true)
+) {}
+        ]]>
+        </code>
+        <code title="PHP 8.6 deprecated is_a(): Passing a text string to the `$object_or_class` parameter when `$allow_string` is `false`.">
+        <![CDATA[
+if (is_a(Foo::class, Bar::class))
+{
+    // Unreachable code as is_a()
+    // will always return `false`.
+}
+        ]]>
+        </code>
+    </code_comparison>
+    <code_comparison>
+        <code title="Cross-version compatible is_subclass_of(): Not passing a text string to the `$object_or_class` parameter when `$allow_string` is explicitly `false` or passing a text string, but with the `$allow_string` parameter set to `true`.">
+        <![CDATA[
+if (is_subclass_of($obj, Bar::class, false)) {}
+
+if (is_subclass_of('\My\Foo', '\My\Bar')) {}
+
+// To check, but also prevent auto-loading:
+if (class_exists(Foo::class, false)
+    && is_subclass_of(Foo::class, Bar::class)
+) {}
+        ]]>
+        </code>
+        <code title="PHP 8.6 deprecated is_subclass_of(): Passing a text string to the `$object_or_class` parameter when `$allow_string` is `false`.">
+        <![CDATA[
+if (is_subclass_of('Foo', 'Bar', false))
+{
+    // Unreachable code as is_subclass_of()
+    // will always return `false`.
+}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
