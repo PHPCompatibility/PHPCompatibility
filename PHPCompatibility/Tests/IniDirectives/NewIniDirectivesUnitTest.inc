@@ -645,3 +645,6 @@ $test = ini_get('opcache.file_cache_read_only');
 
 ini_set('openssl.libctx', 1);
 $test = ini_get('openssl.libctx');
+
+ini_set('error_include_args', 1);
+$test = ini_get('error_include_args');
