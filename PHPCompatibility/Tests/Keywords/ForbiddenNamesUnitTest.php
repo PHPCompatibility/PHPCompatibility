@@ -97,7 +97,8 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
 
         // Each line of the use case files (starting at line 3) exhibits an error.
         for ($i = 3; $i <= $fullReservedLineEnd; $i++) {
-            $this->assertError($file, $i, 'Function name, class name, namespace name or constant name can not be reserved keyword');
+            // Not a typo. The `c` in `class` can be upper- or lowercase depending on the keyword. This allows us to match both.
+            $this->assertError($file, $i, 'lass name, namespace name or constant name can not be reserved keyword');
         }
 
         if (isset($this->testsForOtherInvalidNames[$usecase]) === true) {
@@ -304,7 +305,7 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
     /**
      * Data provider.
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataSpecificCodeSamples()
     {
@@ -365,7 +366,7 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
     /**
      * Data provider.
      *
-     * @return array
+     * @return array<array<int|string>>
      */
     public static function dataSpecificCodeSamplesOtherKeywords()
     {
@@ -408,6 +409,39 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
 
 
     /**
+     * Test handling of the PHP 8.6 deprecation of the exception to allow "readonly" as a function name.
+     *
+     * @dataProvider dataReadonlyAsFunctionName
+     *
+     * @param int $line Line number on which to expect a warning.
+     *
+     * @return void
+     */
+    public function testReadonlyAsFunctionName($line)
+    {
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.3.inc', '-8.5');
+        $this->assertNoViolation($file, $line);
+
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.3.inc', '8.6-');
+        $this->assertWarning($file, $line, "Using reserved keyword 'readonly' as a function name is deprecated since PHP 8.6");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array<array<int>>
+     */
+    public static function dataReadonlyAsFunctionName()
+    {
+        return [
+            [106],
+            [107],
+            [108],
+        ];
+    }
+
+
+    /**
      * Test that correct use of the keywords doesn't trigger false positives, as well as
      * use of incorrectly named constructs.
      *
@@ -426,7 +460,7 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
     /**
      * Data provider.
      *
-     * @return array
+     * @return array<string, array<string>>
      */
     public static function dataCorrectUsageOfKeywords()
     {
