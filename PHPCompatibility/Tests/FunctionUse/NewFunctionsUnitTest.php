@@ -1153,6 +1153,7 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['openssl_password_verify', '8.3', 1092, '8.4'],
             ['bcdivmod', '8.3', 1093, '8.4'],
             ['opcache_jit_blacklist', '8.3', 1094, '8.4'],
+
             ['curl_share_init_persistent', '8.4', 1100, '8.5'],
             ['grapheme_levenshtein', '8.4', 1101, '8.5'],
             ['get_error_handler', '8.4', 1102, '8.5'],
@@ -1166,8 +1167,11 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['opcache_is_script_cached_in_file_cache', '8.4', 1110, '8.5'],
             ['pg_close_stmt', '8.4', 1111, '8.5'],
             ['pg_service', '8.4', 1112, '8.5'],
+
             ['stream_clear_errors', '8.5', 1114, '8.6'],
             ['stream_last_errors', '8.5', 1115, '8.6'],
+            ['locale_get_display_keyword', '8.5', 1116, '8.6'],
+            ['locale_get_display_keyword_value', '8.5', 1117, '8.6'],
         ];
     }
 

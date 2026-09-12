@@ -5273,6 +5273,16 @@ final class NewFunctionsSniff extends Sniff
             '8.5' => false,
             '8.6' => true,
         ],
+        'locale_get_display_keyword' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'intl',
+        ],
+        'locale_get_display_keyword_value' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'intl',
+        ],
     ];
 
 
