@@ -5733,6 +5733,22 @@ final class RemovedFunctionsSniff extends Sniff
             'extension' => 'xml',
         ],
 
+        'is_double' => [
+            '8.6'         => false,
+            'alternative' => 'is_float()',
+        ],
+        'is_integer' => [
+            '8.6'         => false,
+            'alternative' => 'is_int()',
+        ],
+        'is_long' => [
+            '8.6'         => false,
+            'alternative' => 'is_int()',
+        ],
+        'doubleval' => [
+            '8.6'         => false,
+            'alternative' => 'floatval()',
+        ],
         'mb_ereg' => [
             '8.6'       => false,
             'extension' => 'mbstring',
