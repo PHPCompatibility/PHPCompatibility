@@ -633,3 +633,7 @@ function doSomethingWithCurl(CurlSharePersistentHandle $curlHandle) {}
 
 try {
 } catch ( StreamError|StreamException $e) {}
+
+try {
+    $session = new Openssl\Session();
+} catch (Openssl\OpensslException $e) {}
