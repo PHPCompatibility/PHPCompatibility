@@ -8615,6 +8615,106 @@ final class NewConstantsSniff extends Sniff
             '8.6'       => true,
             'extension' => 'openssl',
         ],
+        'AF_UNSPEC' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_BADFLAGS' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_NONAME' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_AGAIN' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_FAIL' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_NODATA' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_FAMILY' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_SOCKTYPE' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_SERVICE' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_ADDRFAMILY' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_SYSTEM' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_OVERFLOW' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_INPROGRESS' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_CANCELED' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_NOTCANCELED' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_ALLDONE' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_INTR' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'EAI_IDN_ENCODE' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'SO_DETACH_REUSEPORT_BPF' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
+        'TCP_USER_TIMEOUT' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sockets',
+        ],
     ];
 
 

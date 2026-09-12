@@ -1008,6 +1008,13 @@ final class NewFunctionParametersSniff extends AbstractFunctionCallParameterSnif
                 '5.2'  => true,
             ],
         ],
+        'socket_addrinfo_lookup' => [
+            4 => [
+                'name' => 'error_code',
+                '8.5'  => false,
+                '8.6'  => true,
+            ],
+        ],
         'spl_autoload_register' => [
             3 => [
                 'name' => 'prepend',
