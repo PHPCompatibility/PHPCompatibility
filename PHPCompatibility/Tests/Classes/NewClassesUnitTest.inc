@@ -649,3 +649,5 @@ try {
 } catch (Io\Poll\FailedContextInitializationException | Io\Poll\FailedHandleAddException | Io\Poll\FailedWatcherModificationException $e) [
 } catch (Io\Poll\FailedPollWaitException | Io\Poll\BackendUnavailableException | Io\Poll\InactiveWatcherException) {
 } catch (Io\Poll\HandleAlreadyWatchedException | Io\Poll\InvalidHandleException $e) {}
+
+$obj = new IntlNumberRangeFormatter();

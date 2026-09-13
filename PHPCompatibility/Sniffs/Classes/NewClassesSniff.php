@@ -1473,6 +1473,11 @@ final class NewClassesSniff extends Sniff
             '8.6'       => true,
             'extension' => 'datetime',
         ],
+        'IntlNumberRangeFormatter' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'intl',
+        ],
         'Openssl\\OpensslException' => [
             '8.5'       => false,
             '8.6'       => true,
