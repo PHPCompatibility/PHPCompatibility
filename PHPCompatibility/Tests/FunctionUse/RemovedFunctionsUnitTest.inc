@@ -1424,3 +1424,4 @@ is_double();
 is_integer();
 is_long();
 doubleval();
+strcoll();

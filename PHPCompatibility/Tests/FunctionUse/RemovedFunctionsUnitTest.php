@@ -198,6 +198,7 @@ final class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['is_integer', '8.6', 'is_int()', 1424, '8.5'],
             ['is_long', '8.6', 'is_int()', 1425, '8.5'],
             ['doubleval', '8.6', 'floatval()', 1426, '8.5'],
+            ['strcoll', '8.6', 'Collator::compare()', 1427, '8.5'],
         ];
     }
 
