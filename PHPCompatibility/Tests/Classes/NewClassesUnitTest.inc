@@ -637,3 +637,7 @@ try {
 try {
     $session = new Openssl\Session();
 } catch (Openssl\OpensslException $e) {}
+
+try {
+    $duration = new Time\Duration();
+} catch (Time\TimeException $e) {}

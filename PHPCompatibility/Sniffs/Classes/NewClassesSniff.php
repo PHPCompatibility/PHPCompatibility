@@ -1087,6 +1087,11 @@ final class NewClassesSniff extends Sniff
             'extension' => 'curl',
         ],
 
+        'Time\\Duration' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'datetime',
+        ],
         'Openssl\\Session' => [
             '8.5'       => false,
             '8.6'       => true,
@@ -1406,6 +1411,11 @@ final class NewClassesSniff extends Sniff
         'StreamException' => [
             '8.5' => false,
             '8.6' => true,
+        ],
+        'Time\\TimeException' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'datetime',
         ],
         'Openssl\\OpensslException' => [
             '8.5'       => false,

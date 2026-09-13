@@ -84,3 +84,4 @@ namespace Filter;
 
 // Error PHP 8.6+.
 namespace Openssl;
+namespace time;
