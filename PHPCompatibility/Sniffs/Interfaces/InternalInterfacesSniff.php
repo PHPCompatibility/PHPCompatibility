@@ -47,6 +47,7 @@ final class InternalInterfacesSniff extends Sniff
         'Throwable'         => 'cannot be implemented directly, extend the Exception class instead.',
         'UnitEnum'          => 'is intended for type hints only and is not implementable or extendable.',
         'BackedEnum'        => 'is intended for type hints only and is not implementable or extendable.',
+        'Io\\Poll\\Handle'  => 'is intended for type hints only and is not implementable.',
     ];
 
     /**

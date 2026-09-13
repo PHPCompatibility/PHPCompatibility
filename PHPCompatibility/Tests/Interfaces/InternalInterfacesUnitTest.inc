@@ -50,3 +50,6 @@ class FullyQualified implements \Fully\Qualified\Throwable {}
 interface MyNamespaceRelative extends namespace\UnitEnum {}
 interface MyPartiallyQualified extends Partially\Qualified\BackedEnum {}
 interface MyFullyQualified extends \Fully\Qualified\UnitEnum {}
+
+// New PHP 8.6 interface which cannot be implemented. Only for use in type declarations.
+class MyHandle implements Io\Poll\Handle {}

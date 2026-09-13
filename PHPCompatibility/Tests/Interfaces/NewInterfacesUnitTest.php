@@ -87,6 +87,7 @@ final class NewInterfacesUnitTest extends BaseSniffTestCase
             ['BackedEnum', '8.0', [198, 211, 225], '8.1'],
             ['Random\\Engine', '8.1', [200, 216, 235], '8.2'],
             ['Random\\CryptoSafeEngine', '8.1', [200, 226, 235], '8.2'],
+            ['Io\\Poll\\Handle', '8.5', [258], '8.6'],
         ];
     }
 

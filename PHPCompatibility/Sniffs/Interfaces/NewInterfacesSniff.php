@@ -162,6 +162,11 @@ final class NewInterfacesSniff extends Sniff
             '8.2'       => true,
             'extension' => 'random',
         ],
+
+        'Io\\Poll\\Handle' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
     ];
 
     /**

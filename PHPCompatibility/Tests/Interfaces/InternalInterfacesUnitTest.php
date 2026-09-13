@@ -44,6 +44,7 @@ final class InternalInterfacesUnitTest extends BaseSniffTestCase
         'Throwable'         => 'The interface Throwable cannot be implemented directly, extend the Exception class instead.',
         'UnitEnum'          => 'is intended for type hints only and is not implementable or extendable.',
         'BackedEnum'        => 'is intended for type hints only and is not implementable or extendable.',
+        'Io\\Poll\\Handle'  => 'is intended for type hints only and is not implementable.',
     ];
 
     /**
@@ -111,6 +112,8 @@ final class InternalInterfacesUnitTest extends BaseSniffTestCase
             ['UnitEnum', 41],
             ['BackedEnum', 42],
             ['BackedEnum', 43],
+
+            ['Io\\Poll\\Handle', 55],
         ];
     }
 

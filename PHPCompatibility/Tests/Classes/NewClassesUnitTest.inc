@@ -641,3 +641,11 @@ try {
 try {
     $duration = new Time\Duration();
 } catch (Time\TimeException $e) {}
+
+try {
+    $context = new Io\Poll\Context();
+    $closure = static function (StreamPollHandle $handle): Io\Poll\Watcher {};
+} catch (Io\IoException | Io\Poll\PollException | Io\Poll\FailedPollOperationException) {
+} catch (Io\Poll\FailedContextInitializationException | Io\Poll\FailedHandleAddException | Io\Poll\FailedWatcherModificationException $e) [
+} catch (Io\Poll\FailedPollWaitException | Io\Poll\BackendUnavailableException | Io\Poll\InactiveWatcherException) {
+} catch (Io\Poll\HandleAlreadyWatchedException | Io\Poll\InvalidHandleException $e) {}
