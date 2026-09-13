@@ -1172,6 +1172,7 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['stream_last_errors', '8.5', 1115, '8.6'],
             ['locale_get_display_keyword', '8.5', 1116, '8.6'],
             ['locale_get_display_keyword_value', '8.5', 1117, '8.6'],
+            ['grapheme_strrev', '8.5', 1118, '8.6'],
         ];
     }
 
