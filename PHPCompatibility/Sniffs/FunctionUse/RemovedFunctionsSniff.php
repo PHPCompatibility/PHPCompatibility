@@ -5749,6 +5749,10 @@ final class RemovedFunctionsSniff extends Sniff
             '8.6'         => false,
             'alternative' => 'floatval()',
         ],
+        'metaphone' => [
+            '8.6'         => false,
+            'alternative' => 'a userland phonetic matching library',
+        ],
         'strcoll' => [
             '8.6'         => false,
             'alternative' => 'Collator::compare()',

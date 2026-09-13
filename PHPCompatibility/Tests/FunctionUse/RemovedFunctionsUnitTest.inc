@@ -1425,3 +1425,4 @@ is_integer();
 is_long();
 doubleval();
 strcoll();
+metaphone();
