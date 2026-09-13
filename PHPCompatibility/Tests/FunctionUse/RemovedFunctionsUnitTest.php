@@ -200,6 +200,7 @@ final class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['doubleval', '8.6', 'floatval()', 1426, '8.5'],
             ['strcoll', '8.6', 'Collator::compare()', 1427, '8.5'],
             ['metaphone', '8.6', 'a userland phonetic matching library', 1428, '8.5'],
+            ['spl_classes', '8.6', 'ReflectionExtension::getClassNames()', 1429, '8.5'],
         ];
     }
 

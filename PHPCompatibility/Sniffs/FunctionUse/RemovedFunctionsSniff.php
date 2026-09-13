@@ -5821,6 +5821,11 @@ final class RemovedFunctionsSniff extends Sniff
             '8.6'       => false,
             'extension' => 'mbstring',
         ],
+        'spl_classes' => [
+            '8.6'         => false,
+            'alternative' => 'ReflectionExtension::getClassNames()',
+            'extension'   => 'spl',
+        ],
     ];
 
 
