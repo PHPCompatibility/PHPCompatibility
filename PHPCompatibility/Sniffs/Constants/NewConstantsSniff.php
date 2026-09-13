@@ -8630,6 +8630,11 @@ final class NewConstantsSniff extends Sniff
             '8.6'       => true,
             'extension' => 'curl',
         ],
+        'MYSQLI_OPT_COMPRESS' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'mysqli',
+        ],
         'OPENSSL_RSA_PSS_SALTLEN_DIGEST' => [
             '8.5'       => false,
             '8.6'       => true,
