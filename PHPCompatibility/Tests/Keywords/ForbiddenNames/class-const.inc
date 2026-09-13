@@ -44,7 +44,6 @@ class Foobar { const INSTEADOF = 1; }
 class Foobar { const INTERFACE = 1; }
 class Foobar { const ISSET = 1; }
 class Foobar { const LIST = 1; }
-class Foobar { const NAMESPACE = 1; }
 class Foobar { const NEW = 1; }
 class Foobar { const OR = 1; }
 class Foobar { const PRINT = 1; }

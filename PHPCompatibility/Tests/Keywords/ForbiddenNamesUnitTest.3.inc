@@ -106,3 +106,20 @@ DEFINE('TRAIT', 'value');
 function readonly() {}
 function ReadOnly() {}
 function READONLY() {}
+
+// Calling an OO constant "namespace" is deprecated since PHP 8.6 and support is expected to be removed in PHP 9.0.
+class ClassConstant {
+    const namespace = 10;
+}
+interface InterfaceConstant {
+    public const int NAMESPACE = 10;
+}
+trait TraitConstant {
+    protected const array NameSpace = ['NameA', 'Name\B'];
+}
+enum EnumConstant {
+    const NAMESPACE = '';
+}
+$anon = new class {
+    private const MyEnum|TypeB namespace = MyEnum::Baz;
+};

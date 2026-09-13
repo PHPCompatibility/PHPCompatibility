@@ -651,6 +651,23 @@ final class ForbiddenNamesSniff extends Sniff
         }
 
         /*
+         * The `namespace` keyword became a reserved keyword in PHP 5.3.
+         * Since PHP 7.0, it could be freely used as a class constant, however this use is now being
+         * deprecated as of PHP 8.6 and is expected to be disallowed in PHP 9.0.
+         *
+         * @link https://wiki.php.net/rfc/deprecations_php_8_6#deprecate_using_namespace_as_a_class_constant_name (PHP 8.6 deprecation)
+         * @link https://github.com/php/php-src/commit/c383b8cae02338f32d2fa460f003223003df1acb (PHP 8.6 deprecation)
+         */
+        if ($nameLc === 'namespace'
+            && $isOOConstant === true
+            && ScannedCode::shouldRunOnOrAbove('8.6') === true
+        ) {
+            $error = "Using reserved keyword 'namespace' as an OO constant name is deprecated since PHP 8.6";
+            $phpcsFile->addWarning($error, $namePtr, 'OOConstNamespaceFound');
+            return;
+        }
+
+        /*
          * Deal with PHP 7 relaxing the rules.
          * "As of PHP 7.0.0 these keywords are allowed as property, constant, and method names
          * of classes, interfaces and traits, except that class may not be used as constant name."

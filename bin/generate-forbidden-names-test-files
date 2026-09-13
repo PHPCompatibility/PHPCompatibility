@@ -226,7 +226,7 @@ $tests = [
     },
     // Only pre-PHP 7!
     'class-const'                            => function ($name) use ($invalidNames) {
-        if ($name === 'class') {
+        if ($name === 'class' || $name === 'namespace') {
             return '';
         }
 

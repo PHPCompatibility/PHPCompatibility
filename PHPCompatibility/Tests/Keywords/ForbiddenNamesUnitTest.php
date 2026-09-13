@@ -442,6 +442,47 @@ final class ForbiddenNamesUnitTest extends BaseSniffTestCase
 
 
     /**
+     * Test handling of the PHP 8.6 deprecation of the exception to allow "readonly" as a function name.
+     *
+     * @dataProvider dataNamespaceAsOOConstantName
+     *
+     * @param int $line Line number on which to expect a warning.
+     *
+     * @return void
+     */
+    public function testNamespaceAsOOConstantName($line)
+    {
+        // Reserved keywords could not be used for class constant names prior to PHP 7.0.
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.3.inc', '-5.6');
+        $this->assertError($file, $line, 'Function name, class name, namespace name or constant name can not be reserved keyword');
+
+        // PHP 7.0 relaxed the rules.
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.3.inc', '7.0-8.5');
+        $this->assertNoViolation($file, $line);
+
+        // But as of PHP 8.6, using the `namespace` keyword for an OO constant name is deprecated.
+        $file = $this->sniffFile(__DIR__ . '/ForbiddenNamesUnitTest.3.inc', '8.6-');
+        $this->assertWarning($file, $line, "Using reserved keyword 'namespace' as an OO constant name is deprecated since PHP 8.6");
+    }
+
+    /**
+     * Data provider.
+     *
+     * @return array<array<int>>
+     */
+    public static function dataNamespaceAsOOConstantName()
+    {
+        return [
+            [112],
+            [115],
+            [118],
+            [121],
+            [124],
+        ];
+    }
+
+
+    /**
      * Test that correct use of the keywords doesn't trigger false positives, as well as
      * use of incorrectly named constructs.
      *
