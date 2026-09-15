@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Classes"
+    >
+    <standard>
+    <![CDATA[
+    Classes were introduced in PHP 4 and since then, PHP has added a number of PHP native classes.
+
+    These classes are not available in all PHP versions, so should only be used when the minimum supported PHP version of a project is equal to or higher than the PHP version in which the PHP native class was introduced.
+    ]]>
+    </standard>
+</documentation>
