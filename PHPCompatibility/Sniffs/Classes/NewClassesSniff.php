@@ -1104,6 +1104,11 @@ final class NewClassesSniff extends Sniff
             '8.6'       => true,
             'extension' => 'datetime',
         ],
+        'Openssl\\Psk' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'openssl',
+        ],
         'Openssl\\Session' => [
             '8.5'       => false,
             '8.6'       => true,

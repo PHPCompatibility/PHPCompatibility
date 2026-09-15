@@ -285,6 +285,7 @@ final class NewClassesUnitTest extends BaseSniffTestCase
             ['Io\\Poll\\Watcher', '8.5', [647], '8.6'],
             ['StreamPollHandle', '8.5', [647], '8.6'],
             ['IntlNumberRangeFormatter', '8.5', [653], '8.6'],
+            ['Openssl\\Psk', '8.5', [654], '8.6'],
 
             ['com_exception', '4.4', [343], '5.0'],
             ['DOMException', '4.4', [232, 260], '5.0'],
