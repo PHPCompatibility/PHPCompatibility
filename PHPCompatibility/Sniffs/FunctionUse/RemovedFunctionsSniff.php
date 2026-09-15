@@ -5821,6 +5821,10 @@ final class RemovedFunctionsSniff extends Sniff
             '8.6'       => false,
             'extension' => 'mbstring',
         ],
+        'mysqli_get_charset' => [
+            '8.6'       => false,
+            'extension' => 'mysqli',
+        ],
         'spl_classes' => [
             '8.6'         => false,
             'alternative' => 'ReflectionExtension::getClassNames()',

@@ -91,6 +91,7 @@ final class RemovedFunctionsUnitTest extends BaseSniffTestCase
             ['mb_regex_encoding', '8.6', 1420, '8.5'],
             ['mb_regex_set_options', '8.6', 1421, '8.5'],
             ['mb_split', '8.6', 1422, '8.5'],
+            ['mysqli_get_charset', '8.6', 1431, '8.5'],
         ];
     }
 
