@@ -15,7 +15,8 @@
                 "^https?://github\\.com/PHPCompatibility/PHPCompatibility/compare/[0-9\\.]+?\\.{3}[0-9\\.]+",
                 "^https?://github\\.com/[A-Za-z0-9-]+",
                 "^https?://packagist\\.org/packages/phpcompatibility/php-compatibility#dev-develop",
-                "^https?://coveralls\\.io/github/PHPCompatibility/PHPCompatibility"
+                "^https?://coveralls\\.io/github/PHPCompatibility/PHPCompatibility",
+                "^https?://www\\.gnu\\.org/licenses/lgpl-3\\.0\\.html"
             ],
             "deadOrAliveOptions": {
                 "maxRetries": 3
