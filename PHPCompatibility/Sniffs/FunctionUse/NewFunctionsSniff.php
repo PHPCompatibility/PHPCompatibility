@@ -5277,6 +5277,16 @@ final class NewFunctionsSniff extends Sniff
             '8.5' => false,
             '8.6' => true,
         ],
+        'gmp_powm_sec' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'gmp',
+        ],
+        'gmp_prevprime' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'gmp',
+        ],
         'grapheme_strrev' => [
             '8.5'       => false,
             '8.6'       => true,

@@ -1175,6 +1175,8 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['grapheme_strrev', '8.5', 1118, '8.6'],
             ['clamp', '8.5', 1119, '8.6'],
             ['mysqli_quote_string', '8.5', 1120, '8.6'],
+            ['gmp_powm_sec', '8.5', 1121, '8.6'],
+            ['gmp_prevprime', '8.5', 1122, '8.6'],
         ];
     }
 
