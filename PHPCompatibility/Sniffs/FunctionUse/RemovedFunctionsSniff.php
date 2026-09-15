@@ -5826,6 +5826,11 @@ final class RemovedFunctionsSniff extends Sniff
             'alternative' => 'ReflectionExtension::getClassNames()',
             'extension'   => 'spl',
         ],
+        'spl_object_hash' => [
+            '8.6'         => false,
+            'alternative' => 'spl_object_id()',
+            'extension'   => 'spl',
+        ],
     ];
 
 
