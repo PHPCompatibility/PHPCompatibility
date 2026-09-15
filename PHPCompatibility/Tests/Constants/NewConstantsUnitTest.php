@@ -1825,6 +1825,9 @@ final class NewConstantsUnitTest extends BaseSniffTestCase
             ['CURL_SEEKFUNC_CANTSEEK', '8.5', 1772, '8.6'],
             ['CURL_READFUNC_ABORT', '8.5', 1773, '8.6'],
             ['MYSQLI_OPT_COMPRESS', '8.5', 1774, '8.6'],
+            ['STREAM_CRYPTO_STATUS_NONE', '8.5', 1775, '8.6'],
+            ['STREAM_CRYPTO_STATUS_WANT_READ', '8.5', 1776, '8.6'],
+            ['STREAM_CRYPTO_STATUS_WANT_WRITE', '8.5', 1777, '8.6'],
         ];
     }
 

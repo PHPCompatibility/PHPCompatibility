@@ -1177,6 +1177,7 @@ final class NewFunctionsUnitTest extends BaseSniffTestCase
             ['mysqli_quote_string', '8.5', 1120, '8.6'],
             ['gmp_powm_sec', '8.5', 1121, '8.6'],
             ['gmp_prevprime', '8.5', 1122, '8.6'],
+            ['stream_socket_get_crypto_status', '8.5', 1123, '8.6'],
         ];
     }
 
