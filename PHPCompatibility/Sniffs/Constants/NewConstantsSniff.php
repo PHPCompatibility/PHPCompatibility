@@ -8762,6 +8762,166 @@ final class NewConstantsSniff extends Sniff
             '8.6'       => true,
             'extension' => 'sockets',
         ],
+        'SODIUM_CRYPTO_IPCRYPT_BYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_IPCRYPT_KEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_IPCRYPT_ND_KEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_IPCRYPT_ND_TWEAKBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_IPCRYPT_ND_INPUTBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_IPCRYPT_ND_OUTPUTBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_IPCRYPT_NDX_KEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_IPCRYPT_NDX_TWEAKBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_IPCRYPT_NDX_INPUTBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_IPCRYPT_NDX_OUTPUTBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_IPCRYPT_PFX_KEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_IPCRYPT_PFX_BYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_XOF_SHAKE128_BLOCKBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_XOF_SHAKE128_STATEBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_XOF_SHAKE256_BLOCKBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_XOF_SHAKE256_STATEBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_XOF_TURBOSHAKE128_BLOCKBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_XOF_TURBOSHAKE128_STATEBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_XOF_TURBOSHAKE256_BLOCKBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_XOF_TURBOSHAKE256_STATEBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_PUBLICKEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_SECRETKEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_CIPHERTEXTBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_SHAREDSECRETBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_SEEDBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_KEYPAIRBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_PUBLICKEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_SECRETKEYBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_CIPHERTEXTBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_SHAREDSECRETBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_SEEDBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
+        'SODIUM_CRYPTO_KEM_MLKEM768_KEYPAIRBYTES' => [
+            '8.5'       => false,
+            '8.6'       => true,
+            'extension' => 'sodium',
+        ],
     ];
 
 
