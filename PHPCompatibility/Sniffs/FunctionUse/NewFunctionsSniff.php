@@ -5277,6 +5277,10 @@ final class NewFunctionsSniff extends Sniff
             '8.5' => false,
             '8.6' => true,
         ],
+        'stream_socket_get_crypto_status' => [
+            '8.5' => false,
+            '8.6' => true,
+        ],
         'gmp_powm_sec' => [
             '8.5'       => false,
             '8.6'       => true,
