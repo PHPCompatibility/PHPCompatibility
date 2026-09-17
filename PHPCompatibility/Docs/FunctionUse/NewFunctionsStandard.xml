@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="New Functions"
+    >
+    <standard>
+    <![CDATA[
+    PHP contains a large range of PHP native functions.
+
+    These functions are not always available in all PHP versions, so should only be used when the minimum supported PHP version of a project is equal to or higher than the PHP version in which the PHP native function was introduced.
+    ]]>
+    </standard>
+</documentation>
