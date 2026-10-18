@@ -37,7 +37,7 @@ jobs:
 
     strategy:
       matrix:
-        php: ['7.2', '7.4', '8.0', '8.5', 'nightly']
+        php: ['7.2', '7.4', '8.0', '8.6', 'nightly']
 
     continue-on-error: ${{ matrix.php == 'nightly' }}
 
@@ -74,11 +74,11 @@ jobs:
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Lint against parse errors
-        if: ${{ matrix.php != '7.2' && matrix.php != '8.5' }}
+        if: ${{ matrix.php != '7.2' && matrix.php != '8.6' }}
         run: composer lint
 
       - name: Lint against parse errors
-        if: ${{ matrix.php == '7.2' || matrix.php == '8.5' }}
+        if: ${{ matrix.php == '7.2' || matrix.php == '8.6' }}
         run: composer lint -- --checkstyle | cs2pr
 
   #### TEST STAGE ####
@@ -104,7 +104,7 @@ jobs:
         # @link https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
         #
         # The matrix is set up so as not to duplicate the builds which are run for code coverage.
-        php: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+        php: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
         phpcs_version: ['lowest', '4.x-dev']
 
         include:
@@ -112,15 +112,15 @@ jobs:
             phpcs_version: '^4.0.2'
             custom_ini: true
 
-          - php: '8.4'
+          - php: '8.5'
             phpcs_version: '^4.0.2'
             custom_ini: true
 
           # Experimental builds. These are allowed to fail.
-          - php: '8.6' # Nightly.
+          - php: '8.7' # Nightly.
             phpcs_version: '4.x-dev'
 
-    continue-on-error: ${{ matrix.php == '8.6' }}
+    continue-on-error: ${{ matrix.php == '8.7' }}
 
     name: "Test: PHP ${{ matrix.php }}${{ matrix.custom_ini && ' (ini)' || '' }} - PHPCS ${{ matrix.phpcs_version }}"
 
@@ -179,7 +179,7 @@ jobs:
         uses: "ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda" # 4.0.0
         with:
           # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies may allow it yet.
-          composer-options: ${{ matrix.php == '8.6' && '--ignore-platform-req=php+' || '' }}
+          composer-options: ${{ matrix.php == '8.7' && '--ignore-platform-req=php+' || '' }}
           # Bust the cache at least once a month - output format: YYYY-MM.
           custom-cache-suffix: $(date -u "+%Y-%m")
 
@@ -228,9 +228,9 @@ jobs:
       #   code conditions.
       matrix:
         include:
-          - php: '8.5'
+          - php: '8.6'
             phpcs_version: '4.x-dev'
-          - php: '8.5'
+          - php: '8.6'
             phpcs_version: 'lowest'
             custom_ini: true
 
