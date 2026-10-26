@@ -59,3 +59,19 @@ echo "\u{202E}Reversed text";
 var_dump(bin2hex("\u{D801}"));
 var_dump(bin2hex("\u{DC00}"));
 var_dump(bin2hex("\u{D801}\u{DC00}")); // CESU-8 encoding of U+10400
+
+// Valid Unicode escapes in attributes are comments before PHP 8.0.
+#[Example("\u{1F602}")]
+class SingleLineUnicodeAttribute {}
+
+#[Example(
+    "\u{00F1}"
+)]
+class MultiLineUnicodeAttribute {}
+
+// Ordinary code must still be checked.
+$ordinary = "\u{1F602}";
+
+// Invalid escapes remain fatal on PHP versions that interpret attributes.
+#[Example("\u{110000}")]
+class InvalidUnicodeAttribute {}
