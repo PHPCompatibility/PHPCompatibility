@@ -57,6 +57,7 @@ final class NewShortArrayUnitTest extends BaseSniffTestCase
             [14, 14],
             [16, 19],
             [22, 22],
+            [39, 39],
         ];
     }
 
@@ -90,6 +91,10 @@ final class NewShortArrayUnitTest extends BaseSniffTestCase
             [6],
             [7],
             [25],
+            [28],
+            [32],
+            [33],
+            [34],
         ];
     }
 
@@ -103,5 +108,20 @@ final class NewShortArrayUnitTest extends BaseSniffTestCase
     {
         $file = $this->sniffFile(__FILE__, '5.4');
         $this->assertNoViolation($file);
+    }
+
+    /**
+     * Verify attribute arguments stay valid for a mixed legacy/modern target range.
+     *
+     * @return void
+     */
+    public function testNoFalsePositivesInAttributesAcrossVersions()
+    {
+        foreach (['5.3-8.4', '8.0'] as $version) {
+            $file = $this->sniffFile(__FILE__, $version);
+            foreach ([28, 32, 33, 34] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
     }
 }
