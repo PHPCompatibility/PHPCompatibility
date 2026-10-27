@@ -42,3 +42,17 @@ $a = 0xCAFE_F00D_.892;
 
 // PHP 8.1 explicit octal notation.
 $octal = 0o137_041;
+
+// Numeric separators inside attributes are comments before PHP 8.0.
+#[Example(1_000, 1.2_3, 0xCAFE_F00D, [0b0101_1111, 0137_041])]
+class SingleLineAttribute {}
+
+#[Example(
+    1_000,
+    1.2_3
+)]
+class MultiLineAttribute {}
+
+// Code outside attributes must still be checked.
+#[Example(1_000)]
+function example() { return 2_000; }
