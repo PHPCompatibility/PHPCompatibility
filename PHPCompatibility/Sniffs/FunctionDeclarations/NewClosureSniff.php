@@ -16,6 +16,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
+use PHPCSUtils\Utils\Context;
 
 /**
  * Detect closures and verify that the features used are supported.
@@ -74,7 +75,9 @@ final class NewClosureSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if (ScannedCode::shouldRunOnOrBelow('5.2') === true) {
+        $inAttribute = Context::inAttribute($phpcsFile, $stackPtr);
+
+        if ($inAttribute === false && ScannedCode::shouldRunOnOrBelow('5.2') === true) {
             $phpcsFile->addError(
                 'Closures / anonymous functions are not available in PHP 5.2 or earlier',
                 $stackPtr,
@@ -86,7 +89,7 @@ final class NewClosureSniff extends Sniff
          * Closures can only be declared as static since PHP 5.4.
          */
         $isStatic = $this->isClosureStatic($phpcsFile, $stackPtr);
-        if (ScannedCode::shouldRunOnOrBelow('5.3') === true && $isStatic === true) {
+        if ($inAttribute === false && ScannedCode::shouldRunOnOrBelow('5.3') === true && $isStatic === true) {
             $phpcsFile->addError(
                 'Closures / anonymous functions could not be declared as static in PHP 5.3 or earlier',
                 $stackPtr,
@@ -105,7 +108,7 @@ final class NewClosureSniff extends Sniff
         $scopeEnd   = $tokens[$stackPtr]['scope_closer'];
         $usesThis   = $this->findThisUsageInClosure($phpcsFile, $scopeStart, $scopeEnd);
 
-        if (ScannedCode::shouldRunOnOrBelow('5.3') === true) {
+        if ($inAttribute === false && ScannedCode::shouldRunOnOrBelow('5.3') === true) {
             /*
              * Closures declared within classes only have access to $this since PHP 5.4.
              */
