@@ -315,4 +315,68 @@ final class NewClosureUnitTest extends BaseSniffTestCase
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw warnings/errors
      * about the use of closures in PHP < 5.3 and about invalid usage of $this in closures for PHP 5.4+.
      */
+
+    /**
+     * Ignore legacy feature diagnostics inside attributes, including mixed targets.
+     *
+     * @return void
+     */
+    public function testAttributeLegacyFeatures()
+    {
+        $fileName = __DIR__ . '/NewClosureUnitTest.1.inc';
+
+        foreach (['5.2', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([3] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
+    }
+
+    /**
+     * Retain the corresponding diagnostics in ordinary executable code.
+     *
+     * @return void
+     */
+    public function testExecutableLegacyFeaturesRemainReported()
+    {
+        $fileName = __DIR__ . '/NewClosureUnitTest.1.inc';
+
+        foreach (['5.2', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([8] as $line) {
+                $this->assertError($file, $line, 'Closures / anonymous functions are not available');
+            }
+        }
+    }
+
+    /**
+     * Accept the clean examples on PHP 8.5, where attribute closures are available.
+     *
+     * @return void
+     */
+    public function testAttributeExamplesOnModernVersion()
+    {
+        $fileName = __DIR__ . '/NewClosureUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '8.5');
+        foreach ([3, 8] as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Preserve diagnostics for newer features or invalid usage inside attributes.
+     *
+     * @return void
+     */
+    public function testAttributeDiagnosticsArePreserved1()
+    {
+        $fileName = __DIR__ . '/NewClosureUnitTest.1.inc';
+
+        foreach (['8.5', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            $this->assertError($file, 11, 'Closures / anonymous functions declared as static do not have access to $this');
+        }
+    }
 }
