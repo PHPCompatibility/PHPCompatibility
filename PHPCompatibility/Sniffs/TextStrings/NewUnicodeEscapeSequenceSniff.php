@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\Utils;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\TextStrings;
 
@@ -103,7 +104,10 @@ final class NewUnicodeEscapeSequenceSniff extends Sniff
                     $valid = $this->isValidUnicodeEscapeSequence($match[1]);
                 }
 
-                if (ScannedCode::shouldRunOnOrBelow('5.6') === true && $valid === true) {
+                if (ScannedCode::shouldRunOnOrBelow('5.6') === true
+                    && $valid === true
+                    && Context::inAttribute($phpcsFile, $stackPtr) === false
+                ) {
                     $phpcsFile->addError(
                         'Unicode codepoint escape sequences are not supported in PHP 5.6 or earlier. Found: %s',
                         $i,
