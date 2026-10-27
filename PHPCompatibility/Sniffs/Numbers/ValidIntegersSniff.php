@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Numbers;
 use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Numbers;
@@ -71,7 +72,9 @@ final class ValidIntegersSniff extends Sniff
         $numberInfo = Numbers::getCompleteNumber($phpcsFile, $stackPtr);
 
         if (Numbers::isBinaryInt($numberInfo['content']) === true) {
-            if (ScannedCode::shouldRunOnOrBelow('5.3') === true) {
+            if (ScannedCode::shouldRunOnOrBelow('5.3') === true
+                && Context::inAttribute($phpcsFile, $stackPtr) === false
+            ) {
                 $error = 'Binary integer literals were not present in PHP version 5.3 or earlier. Found: %s';
                 $data  = [$numberInfo['orig_content']];
                 $phpcsFile->addError($error, $stackPtr, 'BinaryIntegerFound', $data);
