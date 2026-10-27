@@ -17,6 +17,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHPCompatibility\Helpers\Utils;
 use PHPCSUtils\Utils\Arrays;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\PassedParameters;
@@ -113,6 +114,10 @@ final class NewConstantScalarExpressionsSniff extends AbstractInitialValueSniff
      */
     protected function processInitialValue(File $phpcsFile, $stackPtr, $start, $end, $type)
     {
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            return;
+        }
+
         $isStaticValue = $this->isStaticValue($phpcsFile, $start, ($end - 1));
         if ($isStaticValue === true) {
             // Not a constant scalar expression, nothing to do.
