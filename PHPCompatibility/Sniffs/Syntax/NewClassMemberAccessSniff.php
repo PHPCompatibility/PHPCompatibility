@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\Parentheses;
 
 /**
@@ -72,6 +73,10 @@ final class NewClassMemberAccessSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            return;
+        }
+
         if (ScannedCode::shouldRunOnOrBelow('5.6') === false) {
             return;
         }
