@@ -155,6 +155,7 @@ final class RemovedTypeCastsUnitTest extends BaseSniffTestCase
             [5],
             [26],
             [27],
+            [28],
         ];
     }
 
