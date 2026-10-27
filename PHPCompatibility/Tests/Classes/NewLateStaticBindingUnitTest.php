@@ -141,4 +141,68 @@ final class NewLateStaticBindingUnitTest extends BaseSniffTestCase
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw an error
      * independently of PHP version when late static binding is used outside of class scope.
      */
+
+    /**
+     * Ignore legacy feature diagnostics inside attributes, including mixed targets.
+     *
+     * @return void
+     */
+    public function testAttributeLegacyFeatures()
+    {
+        $fileName = __DIR__ . '/NewLateStaticBindingUnitTest.1.inc';
+
+        foreach (['5.2', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([6] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
+    }
+
+    /**
+     * Retain the corresponding diagnostics in ordinary executable code.
+     *
+     * @return void
+     */
+    public function testExecutableLegacyFeaturesRemainReported()
+    {
+        $fileName = __DIR__ . '/NewLateStaticBindingUnitTest.1.inc';
+
+        foreach (['5.2', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([11] as $line) {
+                $this->assertError($file, $line, 'Late static binding is not supported in PHP 5.2 or earlier.');
+            }
+        }
+    }
+
+    /**
+     * Accept the clean examples on PHP 8.5, where attribute closures are available.
+     *
+     * @return void
+     */
+    public function testAttributeExamplesOnModernVersion()
+    {
+        $fileName = __DIR__ . '/NewLateStaticBindingUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '8.5');
+        foreach ([6, 11] as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Preserve diagnostics for newer features or invalid usage inside attributes.
+     *
+     * @return void
+     */
+    public function testAttributeDiagnosticsArePreserved1()
+    {
+        $fileName = __DIR__ . '/NewLateStaticBindingUnitTest.1.inc';
+
+        foreach (['8.5', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            $this->assertError($file, 15, 'Late static binding is not supported outside of class scope.');
+        }
+    }
 }
