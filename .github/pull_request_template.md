@@ -41,5 +41,7 @@ PRs which are failing their CI checks will likely be ignored by the maintainers.
 
 Small PRs using atomic, descriptive commits are hugely appreciated as it will make
 reviewing your changes easier for the maintainers.
+
+PRs created with GenAI assistance are NOT WELCOME.
 ============================================================================================
 -->

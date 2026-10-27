@@ -20,12 +20,13 @@ When requesting a new feature, please add a link to a relevant page in the [PHP 
 
 ## Pull requests
 
-Contributions in the form of pull requests are very welcome.
+Human created contributions in the form of pull requests are very welcome.
 
 To start contributing, fork the repository, create a new branch in your fork, make your intended changes and pull the branch against the `develop` branch of this repository.
 
 Please make sure that your pull request contains unit tests covering what's being addressed by it.
 
+* PRs created with GenAI assistance are NOT WELCOME.
 * All new sniffs should be accompanied by an XML documentation file describing the change in PHP.
 * All code should be compatible with PHP_CodeSniffer >= 4.0.2 _(checked in CI)_.
 * All code should be compatible with PHP 7.2 to PHP nightly _(checked in CI)_.
