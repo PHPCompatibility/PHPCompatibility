@@ -752,4 +752,97 @@ final class NewParamTypeDeclarationsUnitTest extends BaseSniffTestCase
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw errors
      * for invalid type hints and incorrect usage.
      */
+
+    /**
+     * Ignore legacy feature diagnostics inside attributes, including mixed targets.
+     *
+     * @return void
+     */
+    public function testAttributeLegacyFeatures()
+    {
+        $fileName = __DIR__ . '/NewParamTypeDeclarationsUnitTest.1.inc';
+
+        foreach (['5.0', '5.0-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([3] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
+    }
+
+    /**
+     * Retain the corresponding diagnostics in ordinary executable code.
+     *
+     * @return void
+     */
+    public function testExecutableLegacyFeaturesRemainReported()
+    {
+        $fileName = __DIR__ . '/NewParamTypeDeclarationsUnitTest.1.inc';
+
+        foreach (['5.0', '5.0-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([8] as $line) {
+                $this->assertError($file, $line, '\'array\' type declaration is not present');
+            }
+        }
+    }
+
+    /**
+     * Accept the clean examples on PHP 8.5, where attribute closures are available.
+     *
+     * @return void
+     */
+    public function testAttributeExamplesOnModernVersion()
+    {
+        $fileName = __DIR__ . '/NewParamTypeDeclarationsUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '8.5');
+        foreach ([3, 8] as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Preserve diagnostics for newer features or invalid usage inside attributes.
+     *
+     * @return void
+     */
+    public function testAttributeDiagnosticsArePreserved1()
+    {
+        $fileName = __DIR__ . '/NewParamTypeDeclarationsUnitTest.1.inc';
+
+        foreach (['7.4', '5.0-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            $this->assertError($file, 10, 'Union types are not present');
+        }
+    }
+
+    /**
+     * Preserve diagnostics for newer features or invalid usage inside attributes.
+     *
+     * @return void
+     */
+    public function testAttributeDiagnosticsArePreserved2()
+    {
+        $fileName = __DIR__ . '/NewParamTypeDeclarationsUnitTest.1.inc';
+
+        foreach (['8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            $this->assertError($file, 15, 'Mixed types cannot be nullable, null is already part of the mixed type');
+        }
+    }
+
+    /**
+     * Ignore the generic pre-PHP-5 type-hint diagnostic only inside attributes.
+     *
+     * @return void
+     */
+    public function testAttributeTypesOnPhpFourTarget()
+    {
+        $fileName = __DIR__ . '/NewParamTypeDeclarationsUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '4.4');
+        $this->assertNoViolation($file, 3);
+        $this->assertError($file, 8, 'Type declarations were not present in PHP 4.4 or earlier.');
+    }
 }
