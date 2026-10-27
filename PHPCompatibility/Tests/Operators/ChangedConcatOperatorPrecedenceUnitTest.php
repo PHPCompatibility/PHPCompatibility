@@ -90,4 +90,57 @@ final class ChangedConcatOperatorPrecedenceUnitTest extends BaseSniffTestCase
         $file = $this->sniffFile(__FILE__, '7.3');
         $this->assertNoViolation($file);
     }
+
+    /**
+     * Ignore legacy feature diagnostics inside attributes, including mixed targets.
+     *
+     * @return void
+     */
+    public function testAttributeLegacyFeatures()
+    {
+        $fileName = __DIR__ . '/ChangedConcatOperatorPrecedenceUnitTest.1.inc';
+
+        foreach (['7.4', '7.4-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([3, 7] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
+    }
+
+    /**
+     * Retain the corresponding diagnostics in ordinary executable code.
+     *
+     * @return void
+     */
+    public function testExecutableLegacyFeaturesRemainReported()
+    {
+        $fileName = __DIR__ . '/ChangedConcatOperatorPrecedenceUnitTest.1.inc';
+
+        foreach (['7.4', '7.4-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([11] as $line) {
+                if ($version === '7.4') {
+                    $this->assertWarning($file, $line, 'Using an unparenthesized expression containing a "." before a "+" or "-"');
+                } else {
+                    $this->assertError($file, $line, 'Using an unparenthesized expression containing a "." before a "+" or "-"');
+                }
+            }
+        }
+    }
+
+    /**
+     * Accept the clean examples on PHP 8.5, where attribute closures are available.
+     *
+     * @return void
+     */
+    public function testAttributeExamplesOnModernVersion()
+    {
+        $fileName = __DIR__ . '/ChangedConcatOperatorPrecedenceUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '8.5');
+        foreach ([3, 7] as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
 }
