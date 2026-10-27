@@ -120,4 +120,36 @@ final class NewOperatorsUnitTest extends BaseSniffTestCase
         $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
+
+    /**
+     * Ignore legacy operators only inside attributes, including mixed target ranges.
+     *
+     * @return void
+     */
+    public function testAttributeOperators()
+    {
+        foreach (['5.5', '5.5-8.0'] as $version) {
+            $file = $this->sniffFile(__FILE__, $version);
+            foreach ([14, 18, 19, 27] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+            $this->assertError($file, 29, 'power operator (**) is not present in PHP version 5.5 or earlier');
+        }
+    }
+
+    /**
+     * Retain the PHP 8.0 nullsafe operator diagnostic in attributes.
+     *
+     * @return void
+     */
+    public function testAttributeNullsafeOperatorRemainsReported()
+    {
+        foreach (['7.4', '5.5-8.0'] as $version) {
+            $file = $this->sniffFile(__FILE__, $version);
+            $this->assertError($file, 24, 'nullsafe object operator (?->) is not present in PHP version 7.4 or earlier');
+        }
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertNoViolation($file, 24);
+    }
 }
