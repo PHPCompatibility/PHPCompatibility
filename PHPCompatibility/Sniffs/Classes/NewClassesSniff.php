@@ -18,6 +18,7 @@ use PHPCompatibility\Sniff;
 use PHPCSUtils\Exceptions\ValueError;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Constants;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\ControlStructures;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\ObjectDeclarations;
@@ -1921,6 +1922,13 @@ final class NewClassesSniff extends Sniff
 
         if (empty($versionInfo['not_in_version'])
             || ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === false
+        ) {
+            return;
+        }
+
+        // Attributes are comments before PHP 8.0; retain diagnostics for newer features.
+        if (\version_compare($versionInfo['not_in_version'], '7.4', '<') === true
+            && Context::inAttribute($phpcsFile, $stackPtr) === true
         ) {
             return;
         }
