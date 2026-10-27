@@ -74,7 +74,6 @@ final class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTestCase
             [98],
             [99],
             [105],
-            [108],
             [112],
             [115],
             [116],
@@ -148,6 +147,7 @@ final class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTestCase
         $data[] = [51];
         $data[] = [58];
         $data[] = [59];
+        $data[] = [108];
 
         for ($line = 66; $line <= 93; $line++) {
             $data[] = [$line];
@@ -174,5 +174,37 @@ final class NewFunctionCallTrailingCommaUnitTest extends BaseSniffTestCase
     {
         $file = $this->sniffFile(__FILE__, '8.4');
         $this->assertNoViolation($file);
+    }
+
+    /**
+     * Ignore trailing attribute argument commas, including the existing regression fixture.
+     *
+     * @return void
+     */
+    public function testAttributeTrailingCommas()
+    {
+        foreach (['7.2', '7.2-8.0'] as $version) {
+            $file = $this->sniffFile(__FILE__, $version);
+            foreach ([108, 130, 133, 134, 135, 138] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+            $this->assertError($file, 140, 'Trailing commas are not allowed in function calls in PHP 7.2 or earlier');
+        }
+    }
+
+    /**
+     * Preserve diagnostics for trailing commas introduced in PHP 8.4.
+     *
+     * @return void
+     */
+    public function testAttributeExitTrailingCommaRemainsReported()
+    {
+        foreach (['8.3', '7.2-8.4'] as $version) {
+            $file = $this->sniffFile(__FILE__, $version);
+            $this->assertError($file, 144, 'Trailing commas are not allowed in calls to exit() or die() in PHP 8.3 or earlier');
+        }
+
+        $file = $this->sniffFile(__FILE__, '8.4');
+        $this->assertNoViolation($file, 144);
     }
 }
