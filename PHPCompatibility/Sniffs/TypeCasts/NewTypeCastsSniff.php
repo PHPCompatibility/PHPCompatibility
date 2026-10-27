@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\Context;
 
 /**
  * Detect use of newly introduced type casts.
@@ -123,6 +124,13 @@ final class NewTypeCastsSniff extends Sniff
 
         if (empty($versionInfo['not_in_version'])
             || ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === false
+        ) {
+            return;
+        }
+
+        // Attributes are comments before PHP 8.0; retain diagnostics for newer features.
+        if (\version_compare($versionInfo['not_in_version'], '7.4', '<') === true
+            && Context::inAttribute($phpcsFile, $stackPtr) === true
         ) {
             return;
         }
