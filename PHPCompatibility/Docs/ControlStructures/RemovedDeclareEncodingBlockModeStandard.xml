@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Removed declare encoding block mode"
+    >
+    <standard>
+    <![CDATA[
+    Prior to PHP 8.7, it was possible to declare the encoding of a file using block mode when the file did not use a namespace. This wasn't working correctly and support for using block mode for encoding directives has been removed in PHP 8.7.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Cross-version compatible: declaring encoding as a stand-alone statement.">
+        <![CDATA[
+declare(encoding='ISO-8859-15');
+        ]]>
+        </code>
+        <code title="PHP &lt; 8.7: declaring encoding using block mode.">
+        <![CDATA[
+declare(encoding="ISO-8859-15") {
+    echo "ok\n";
+}
+
+declare(encoding="UTF-8") :
+    echo "ok\n";
+enddeclare;
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>
