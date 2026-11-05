@@ -227,4 +227,44 @@ final class NewFlexibleHeredocNowdocUnitTest extends BaseSniffTestCase
         $file = $this->sniffFile($fileName, '7.3');
         $this->assertNoViolation($file);
     }
+
+    /**
+     * Ignore PHP 7.3 string syntax in attributes while preserving ordinary diagnostics.
+     *
+     * @return void
+     */
+    public function testFlexibleStringsInAttributes()
+    {
+        $fileName = __DIR__ . '/' . \sprintf(self::TEST_FILE, 10);
+
+        foreach (['7.2', '7.2-8.0'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            for ($line = 3; $line <= 17; $line++) {
+                $this->assertNoViolation($file, $line);
+            }
+            $this->assertError($file, 23, 'Heredoc/nowdoc with an indented closing marker is not supported in PHP 7.2 or earlier.');
+            $this->assertError($file, 26, 'Heredoc/nowdoc with an indented closing marker is not supported in PHP 7.2 or earlier.');
+            $this->assertError($file, 29, 'Having code - other than a semi-colon or new line - after the closing marker of a heredoc/nowdoc is not supported in PHP 7.2 or earlier.');
+        }
+
+        $file = $this->sniffFile($fileName, '8.0');
+        $this->assertNoViolation($file);
+    }
+
+    /**
+     * Retain invalid closing-marker diagnostics on modern and mixed targets.
+     *
+     * @return void
+     */
+    public function testInvalidClosingMarkersRemainReported()
+    {
+        $fileName = __DIR__ . '/' . \sprintf(self::TEST_FILE, 2);
+
+        foreach (['8.0', '7.2-8.0'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([12, 18, 23, 30, 38] as $line) {
+                $this->assertError($file, $line, 'The body of a heredoc/nowdoc can not contain the heredoc/nowdoc closing marker as text at the start of a line since PHP 7.3.');
+            }
+        }
+    }
 }
