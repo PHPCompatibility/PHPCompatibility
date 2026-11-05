@@ -65,6 +65,7 @@ final class NewUnicodeEscapeSequenceUnitTest extends BaseSniffTestCase
             [60, '\u{DC00}'],
             [61, '\u{D801}'],
             [61, '\u{DC00}'],
+            [73, '\u{1F602}'],
         ];
     }
 
@@ -82,6 +83,8 @@ final class NewUnicodeEscapeSequenceUnitTest extends BaseSniffTestCase
         for ($line = 1; $line <= 40; $line++) {
             $this->assertNoViolation($file, $line);
         }
+        $this->assertNoViolation($file, 64);
+        $this->assertNoViolation($file, 68);
     }
 
 
@@ -142,6 +145,27 @@ final class NewUnicodeEscapeSequenceUnitTest extends BaseSniffTestCase
         for ($line = 40; $line <= 62; $line++) {
             $this->assertNoViolation($file, $line);
         }
+    }
+
+    /**
+     * Verify valid attribute escapes are ignored without suppressing fatal diagnostics.
+     *
+     * @return void
+     */
+    public function testAttributeEscapeSequencesAcrossVersions()
+    {
+        foreach (['5.6', '5.6-8.4', '8.0'] as $version) {
+            $file = $this->sniffFile(__FILE__, $version);
+            $this->assertNoViolation($file, 64);
+            $this->assertNoViolation($file, 68);
+        }
+
+        $file = $this->sniffFile(__FILE__, '8.0');
+        $this->assertError(
+            $file,
+            76,
+            'Strings containing a literal \u{ followed by an invalid unicode codepoint escape sequence will cause a fatal error'
+        );
     }
 
 
