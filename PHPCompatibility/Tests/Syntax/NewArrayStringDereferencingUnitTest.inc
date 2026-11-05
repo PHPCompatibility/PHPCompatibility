@@ -26,3 +26,18 @@ echo "PHP"{0};
 // Mixing access with square brackets and curly braces.
 echo [1, [20, 21, 22], 3][1]{1}; // Should give two errors (depending on supported PHP version).
 echo [1, [20, 21, 22], 3]{1}[1]; // Should give two errors (depending on supported PHP version).
+
+// Literal dereferencing within attribute arguments is ignored by legacy PHP.
+#[Example(array(10, 20)[0], [30, 40][1], 'PHP'[0], "PHP"[1])]
+function literalAttributeArguments() {}
+
+#[Example(
+    [array('value')][0][0],
+    'PHP' /* first character */ [0]
+)]
+function nestedLiteralAttributeArguments() {}
+
+#[Example('PHP'[0])]
+function dereferenceOutsideAttribute() {
+    return 'PHP'[0];
+}
