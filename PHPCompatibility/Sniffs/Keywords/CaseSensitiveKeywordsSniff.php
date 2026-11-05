@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Context;
 
 /**
  * Detect usage of `self`, `parent` and `static` and verify they are lowercase.
@@ -56,6 +57,10 @@ final class CaseSensitiveKeywordsSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            return;
+        }
+
         if (ScannedCode::shouldRunOnOrBelow('5.4') === false) {
             return;
         }
