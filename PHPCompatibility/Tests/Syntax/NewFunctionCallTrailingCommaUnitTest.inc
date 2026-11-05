@@ -104,7 +104,7 @@ $arrow = fn ($a, $b,) => $a * $b;
 // Safeguard that trailing commas in method calls using PHP 8.0+ nullsafe object operator are flagged correctly.
 $foo?->bar( 'method', 'bar', );
 
-// Safeguard that trailing commas in class instantiations in PHP 8.0+ attributes are flagged correctly.
+// Trailing commas in attribute arguments must not be flagged for legacy PHP targets.
 #[Foo( 'constructor', 'bar', )]
 function bar() {}
 
@@ -125,3 +125,21 @@ die($status);
 // Only allowed since PHP 8.4.
 exit($status,); // Error with PHP < 8.4.
 \die /*comment*/  ( 2, /*comment*/ ); // Error with PHP < 8.4.
+
+// Namespaced/grouped attributes with nested argument lists and trailing comments.
+#[\Vendor\Example('value', /* trailing */)]
+function namespacedAttributeComma() {}
+
+#[First(1,), Second(
+    [1, 2],
+)]
+function groupedAttributeCommas() {}
+
+#[Example('value',)]
+function commaOutsideAttribute() {
+    ordinary_call('value',);
+}
+
+// exit()/die() trailing commas remain a PHP 8.4 concern, even inside attributes.
+#[Example(exit('stop',))]
+function attributeExitComma() {}
