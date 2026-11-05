@@ -182,4 +182,83 @@ final class ValidIntegersUnitTest extends BaseSniffTestCase
      * `testNoViolationsInFileOnValidVersion` test omitted as this sniff will throw warnings/errors
      * about invalid integers independently of the testVersion.
      */
+
+    /**
+     * Ignore legacy feature diagnostics inside attributes, including mixed targets.
+     *
+     * @return void
+     */
+    public function testAttributeLegacyFeatures()
+    {
+        $fileName = __DIR__ . '/ValidIntegersUnitTest.1.inc';
+
+        foreach (['5.3', '5.3-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([3, 7] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
+    }
+
+    /**
+     * Retain the corresponding diagnostics in ordinary executable code.
+     *
+     * @return void
+     */
+    public function testExecutableLegacyFeaturesRemainReported()
+    {
+        $fileName = __DIR__ . '/ValidIntegersUnitTest.1.inc';
+
+        foreach (['5.3', '5.3-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([11] as $line) {
+                $this->assertError($file, $line, 'Binary integer literals were not present');
+            }
+        }
+    }
+
+    /**
+     * Accept the clean examples on PHP 8.5, where attribute closures are available.
+     *
+     * @return void
+     */
+    public function testAttributeExamplesOnModernVersion()
+    {
+        $fileName = __DIR__ . '/ValidIntegersUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '8.5');
+        foreach ([3, 7, 11] as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Preserve diagnostics for newer features or invalid usage inside attributes.
+     *
+     * @return void
+     */
+    public function testAttributeDiagnosticsArePreserved1()
+    {
+        $fileName = __DIR__ . '/ValidIntegersUnitTest.1.inc';
+
+        foreach (['5.3', '8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            $this->assertWarning($file, 13, 'Invalid binary integer detected.');
+        }
+    }
+
+    /**
+     * Preserve diagnostics for newer features or invalid usage inside attributes.
+     *
+     * @return void
+     */
+    public function testAttributeDiagnosticsArePreserved2()
+    {
+        $fileName = __DIR__ . '/ValidIntegersUnitTest.1.inc';
+
+        foreach (['8.5', '5.3-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            $this->assertError($file, 16, 'Invalid octal integer detected.');
+        }
+    }
 }
