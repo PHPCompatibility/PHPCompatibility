@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Numbers;
 use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\Numbers;
 
 /**
@@ -59,6 +60,11 @@ final class NewNumericLiteralSeparatorSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         if (ScannedCode::shouldRunOnOrBelow('7.3') === false) {
+            return;
+        }
+
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            // Attributes are comments before PHP 8.0, where numeric separators are already supported.
             return;
         }
 

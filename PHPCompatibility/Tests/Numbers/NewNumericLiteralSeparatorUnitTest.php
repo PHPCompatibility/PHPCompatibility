@@ -61,6 +61,7 @@ final class NewNumericLiteralSeparatorUnitTest extends BaseSniffTestCase
             [23],
             [26],
             [44],
+            [58],
         ];
 
         // The test case on line 39 is half a valid numeric literal with underscore, half parse error.
@@ -114,6 +115,12 @@ final class NewNumericLiteralSeparatorUnitTest extends BaseSniffTestCase
         $data[] = [37];
         $data[] = [38];
 
+        // The NewAttributes sniff handles attribute compatibility itself.
+        $data[] = [47];
+        $data[] = [51];
+        $data[] = [52];
+        $data[] = [57];
+
         // The test case on line 39 is half a valid numeric literal with underscore, half parse error.
         // The sniff will behave differently on PHP 7.4 vs PHP < 7.4.
         if (\PHP_VERSION_ID < 70400) {
@@ -133,5 +140,20 @@ final class NewNumericLiteralSeparatorUnitTest extends BaseSniffTestCase
     {
         $file = $this->sniffFile(__FILE__, '7.4');
         $this->assertNoViolation($file);
+    }
+
+    /**
+     * Verify attribute arguments stay valid for a mixed legacy/modern target range.
+     *
+     * @return void
+     */
+    public function testNoFalsePositivesInAttributesAcrossVersions()
+    {
+        foreach (['7.3-8.4', '8.0'] as $version) {
+            $file = $this->sniffFile(__FILE__, $version);
+            foreach ([47, 51, 52, 57] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
     }
 }
