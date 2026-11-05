@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\MessageHelper;
 use PHPCSUtils\Utils\Operators;
 
@@ -87,6 +88,10 @@ final class ChangedConcatOperatorPrecedenceSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            return;
+        }
+
         if (ScannedCode::shouldRunOnOrAbove('7.4') === false) {
             return;
         }
