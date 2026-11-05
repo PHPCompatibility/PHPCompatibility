@@ -151,4 +151,53 @@ final class NewFunctionArrayDereferencingUnitTest extends BaseSniffTestCase
         $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file);
     }
+
+    /**
+     * Ignore legacy feature diagnostics inside attributes, including mixed targets.
+     *
+     * @return void
+     */
+    public function testAttributeLegacyFeatures()
+    {
+        $fileName = __DIR__ . '/NewFunctionArrayDereferencingUnitTest.1.inc';
+
+        foreach (['5.3', '5.3-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([4] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
+    }
+
+    /**
+     * Retain the corresponding diagnostics in ordinary executable code.
+     *
+     * @return void
+     */
+    public function testExecutableLegacyFeaturesRemainReported()
+    {
+        $fileName = __DIR__ . '/NewFunctionArrayDereferencingUnitTest.1.inc';
+
+        foreach (['5.3', '5.3-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([9] as $line) {
+                $this->assertError($file, $line, 'Function array dereferencing is not present');
+            }
+        }
+    }
+
+    /**
+     * Accept the clean examples on PHP 8.5, where attribute closures are available.
+     *
+     * @return void
+     */
+    public function testAttributeExamplesOnModernVersion()
+    {
+        $fileName = __DIR__ . '/NewFunctionArrayDereferencingUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '8.5');
+        foreach ([4, 9] as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
 }
