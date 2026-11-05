@@ -25,3 +25,4 @@ $a = (binary) '15';
 // More false positives safeguards.
 $a = (int) '15';
 $a = (Bool) 1;
+$a = b'binary string';
