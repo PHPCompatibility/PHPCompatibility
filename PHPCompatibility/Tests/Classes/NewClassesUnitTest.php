@@ -458,4 +458,68 @@ final class NewClassesUnitTest extends BaseSniffTestCase
             'The built-in class ArrayObject is not present in PHP version 4.4 or earlier'
         );
     }
+
+    /**
+     * Ignore legacy feature diagnostics inside attributes, including mixed targets.
+     *
+     * @return void
+     */
+    public function testAttributeLegacyFeatures()
+    {
+        $fileName = __DIR__ . '/NewClassesUnitTest.1.inc';
+
+        foreach (['5.4', '5.4-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([3, 7] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
+    }
+
+    /**
+     * Retain the corresponding diagnostics in ordinary executable code.
+     *
+     * @return void
+     */
+    public function testExecutableLegacyFeaturesRemainReported()
+    {
+        $fileName = __DIR__ . '/NewClassesUnitTest.1.inc';
+
+        foreach (['5.4', '5.4-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([11] as $line) {
+                $this->assertError($file, $line, 'The built-in class DateTimeImmutable is not present');
+            }
+        }
+    }
+
+    /**
+     * Accept the clean examples on PHP 8.5, where attribute closures are available.
+     *
+     * @return void
+     */
+    public function testAttributeExamplesOnModernVersion()
+    {
+        $fileName = __DIR__ . '/NewClassesUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '8.5');
+        foreach ([3, 7, 11] as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Preserve diagnostics for newer features or invalid usage inside attributes.
+     *
+     * @return void
+     */
+    public function testAttributeDiagnosticsArePreserved1()
+    {
+        $fileName = __DIR__ . '/NewClassesUnitTest.1.inc';
+
+        foreach (['7.4', '7.4-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            $this->assertError($file, 13, 'The built-in class ValueError is not present');
+        }
+    }
 }
