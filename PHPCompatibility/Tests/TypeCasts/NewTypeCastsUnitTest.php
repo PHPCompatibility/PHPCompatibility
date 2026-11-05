@@ -113,4 +113,68 @@ final class NewTypeCastsUnitTest extends BaseSniffTestCase
         $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
+
+    /**
+     * Ignore legacy feature diagnostics inside attributes, including mixed targets.
+     *
+     * @return void
+     */
+    public function testAttributeLegacyFeatures()
+    {
+        $fileName = __DIR__ . '/NewTypeCastsUnitTest.1.inc';
+
+        foreach (['5.2', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([4] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
+    }
+
+    /**
+     * Retain the corresponding diagnostics in ordinary executable code.
+     *
+     * @return void
+     */
+    public function testExecutableLegacyFeaturesRemainReported()
+    {
+        $fileName = __DIR__ . '/NewTypeCastsUnitTest.1.inc';
+
+        foreach (['5.2', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([8] as $line) {
+                $this->assertError($file, $line, 'The binary cast is not present');
+            }
+        }
+    }
+
+    /**
+     * Accept the clean examples on PHP 8.5, where attribute closures are available.
+     *
+     * @return void
+     */
+    public function testAttributeExamplesOnModernVersion()
+    {
+        $fileName = __DIR__ . '/NewTypeCastsUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '8.5');
+        foreach ([4, 8] as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Preserve diagnostics for newer features or invalid usage inside attributes.
+     *
+     * @return void
+     */
+    public function testAttributeDiagnosticsArePreserved1()
+    {
+        $fileName = __DIR__ . '/NewTypeCastsUnitTest.1.inc';
+
+        foreach (['8.4', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            $this->assertError($file, 11, 'The void cast is not present');
+        }
+    }
 }
