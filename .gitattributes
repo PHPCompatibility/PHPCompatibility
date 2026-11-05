@@ -13,6 +13,7 @@
 .gitattributes                export-ignore
 .gitignore                    export-ignore
 .markdownlint-cli2.yaml       export-ignore
+.pinact.yaml                  export-ignore
 .remarkignore                 export-ignore
 .remarkrc                     export-ignore
 .yamllint.yml                 export-ignore
