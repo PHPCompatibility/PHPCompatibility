@@ -41,6 +41,251 @@ Legend to the icons used: https://github.com/PHPCompatibility/PHPCompatibility/p
 _Nothing yet._
 
 
+## [10.0.0-alpha3] - 2026-11-18
+
+**IMPORTANT**: This release contains **breaking changes**. Please read and follow the [Upgrade guide in the wiki][wiki-upgrade-to-10.0] carefully before upgrading!
+
+This release includes all improvements and bugfixes from PHPCompatibility [10.0.0-alpha1] and  [10.0.0-alpha2].
+
+See all related issues and PRs in the [10.0.0-alpha3 milestone].
+
+### Added
+-
+- PHP 8.5:
+    * :star2: New `PHPCompatibility.ControlStructures.RemovedTerminatingCaseWithSemicolon` sniff. [#2014]
+- PHP 8.6:
+    * :star2: New `PHPCompatibility.ControlStructures.RemovedReturnFromFinally` sniff. [#2063]
+    * :star2: New `PHPCompatibility.FunctionDeclarations.RemovedReturnYieldInConstructDestruct` sniff. [#2064]
+    * :star2: New `PHPCompatibility.FunctionNameRestrictions.NewDebuggableEnums` sniff. [#2067]
+    * :star2: New `PHPCompatibility.ParameterValues.NewTrimCharactersDefault` sniff. [#2068]
+    * :star2: New `PHPCompatibility.ParameterValues.RemovedIsASubclassOfAllowStringFalse` sniff. [#2078]
+
+-
+- :star: `PHPCompatibility.ParameterValues.NewPackFormat` sniff: detect usage of the endianness modifiers for integers and floats as introduced in PHP 8.6. [#2071]
+- :star: `PHPCompatibility.TypeCasts.NewTypeCasts` sniff: detect usage of the `(void)` type cast which was introduced in PHP 8.5. [#2050]
+- :star: `IMAGETYPE_AVIF` (PHP 8.1), `IMAGETYPE_HEIF` (PHP 8.5) and `T_VOID_CAST` (PHP 8.5) to the constants detected via the `PHPCompatibility.Constants.NewConstants` sniff. [#2022], [#2050]
+
+- :star: Various "list based" sniffs, like `NewFunctions`, `RemovedIniDirectives`, `ForbiddenNames` etc, have received updates to account for new/deprecated/removed PHP keywords, classes, constants, functions, function parameters, ini directives and reserved namespaces as per PHP 8.6.
+    <details>
+    <summary>Associated PRs</summary>
+
+    [#2065],
+    [#2066],
+    [#2069],
+    [#2070],
+    [#2072],
+    [#2073],
+    [#2074],
+    [#2075],
+    [#2076],
+    [#2077],
+    [#2079],
+    [#2080],
+    [#2082],
+    [#2083],
+    [#2084],
+    [#2085],
+    [#2086],
+    [#2087],
+    [#2088],
+    [#2089],
+    [#2090],
+    [#2091],
+    [#2092],
+    [#2093],
+    [#2094],
+    [#2095],
+    [#2096],
+    [#2099],
+
+    </details>
+
+- :books: Documentation for the following sniffs:
+    * PHPCompatibility.Classes.NewClasses [#2097]
+    * PHPCompatibility.Classes.NewTypedProperties [#2001]
+    * PHPCompatibility.Constants.NewConstants [#2097]
+    * PHPCompatibility.FunctionDeclarations.NewTrailingComma [#2016]
+    * PHPCompatibility.FunctionUse.NewFunctions [#2097]
+    * PHPCompatibility.Interfaces.NewInterfaces [#2097]
+    * PHPCompatibility.Syntax.NewArrayUnpacking [#2021]
+    * PHPCompatibility.Syntax.NewFunctionCallTrailingComma [#2018]
+    * PHPCompatibility.Syntax.RemovedCurlyBraceArrayAccess [#2002]
+
+### Changed
+- :pushpin: The `PHPCompatibility.ParameterValues.NewPackFormat` sniff will now also detect the new format codes when used with the `unpack()` function. [#2060]
+-
+- :pencil2: `PHPCompatibility.Keywords.ForbiddenNames`: minor improvements to the error message texts. [#2055]
+- :wrench: :umbrella: Various housekeeping, including general maintenance, improvements to speed up the sniffs, code modernizations, improvements to CI, the tests and documentation.
+    <details>
+    <summary>Associated PRs</summary>
+
+    [#2003],
+    [#2004],
+    [#2005],
+    [#2006],
+    [#2007],
+    [#2008],
+    [#2010],
+    [#2011],
+    [#2012],
+    [#2013],
+    [#2015],
+    [#2019],
+    [#2020],
+    [#2024],
+    [#2025],
+    [#2027],
+    [#2029],
+    [#2030],
+    [#2032],
+    [#2038],
+    [#2039],
+    [#2040],
+    [#2041],
+    [#2042],
+    [#2043],
+    [#2044],
+    [#2046],
+    [#2047],
+    [#2048],
+    [#2049],
+    [#2053],
+    [#2054],
+    [#2056],
+    [#2057],
+    [#2058],
+    [#2059],
+    [#2061],
+    [#2062],
+    [#2098],
+    [#2101],
+    [#2111],
+    [#2112],
+    [#2113],
+    [#2114],
+    [#2115],
+    [#2136],
+    [#2137],
+    [#2138],
+    [#2139],
+
+    </details>
+
+### Removed
+- :no_entry_sign: Support for PHP < 7.2. [#2003]
+- :no_entry_sign: Support for PHP_CodeSniffer < 4.0.2. [#2009], [#2014], [#2045]
+- :no_entry_sign: `PHPCompatibility.Upgrade.LowPHP` sniff. [#2003]
+- :no_entry_sign: `PHPCompatibility.Miscellaneous.RemovedAlternativePHPTags.ASPOpenTagFound` error code. [#2003]
+    Potentially detected ASP open tags will now always be reported under the `MaybeASPOpenTagFound` error code.
+-
+
+### Fixed
+- :bug: PHPCompatibility.Syntax.RemovedCurlyBraceArrayAccess: false positive on PHP 8.4 property hook declarations. [#2026]
+-
+-
+
+### Credits
+Thanks go out to [Rodrigo Primo] and [Shota Okunaka] for their contributions to this version. :clap:
+
+[#2001]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2001
+[#2002]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2002
+[#2003]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2003
+[#2004]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2004
+[#2005]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2005
+[#2006]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2006
+[#2007]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2007
+[#2008]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2008
+[#2009]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2009
+[#2010]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2010
+[#2011]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2011
+[#2012]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2012
+[#2013]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2013
+[#2014]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2014
+[#2015]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2015
+[#2016]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2016
+[#2018]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2018
+[#2019]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2019
+[#2020]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2020
+[#2021]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2021
+[#2022]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2022
+[#2024]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2024
+[#2025]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2025
+[#2026]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2026
+[#2027]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2027
+[#2029]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2029
+[#2030]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2030
+[#2032]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2032
+[#2038]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2038
+[#2039]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2039
+[#2040]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2040
+[#2041]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2041
+[#2042]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2042
+[#2043]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2043
+[#2044]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2044
+[#2045]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2045
+[#2046]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2046
+[#2047]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2047
+[#2048]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2048
+[#2049]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2049
+[#2050]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2050
+[#2053]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2053
+[#2054]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2054
+[#2055]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2055
+[#2056]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2056
+[#2057]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2057
+[#2058]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2058
+[#2059]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2059
+[#2060]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2060
+[#2061]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2061
+[#2062]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2062
+[#2063]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2063
+[#2064]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2064
+[#2065]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2065
+[#2066]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2066
+[#2067]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2067
+[#2068]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2068
+[#2069]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2069
+[#2070]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2070
+[#2071]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2071
+[#2072]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2072
+[#2073]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2073
+[#2074]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2074
+[#2075]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2075
+[#2076]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2076
+[#2077]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2077
+[#2078]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2078
+[#2079]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2079
+[#2080]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2080
+[#2082]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2082
+[#2083]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2083
+[#2084]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2084
+[#2085]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2085
+[#2086]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2086
+[#2087]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2087
+[#2088]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2088
+[#2089]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2089
+[#2090]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2090
+[#2091]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2091
+[#2092]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2092
+[#2093]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2093
+[#2094]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2094
+[#2095]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2095
+[#2096]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2096
+[#2097]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2097
+[#2098]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2098
+[#2099]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2099
+[#2101]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2101
+[#2111]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2111
+[#2112]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2112
+[#2113]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2113
+[#2114]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2114
+[#2115]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2115
+[#2136]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2136
+[#2137]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2137
+[#2138]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2138
+[#2139]: https://github.com/PHPCompatibility/PHPCompatibility/pull/2139
+
+
 ## [10.0.0-alpha2] - 2025-11-28
 
 **IMPORTANT**: This release contains **breaking changes**. Please read and follow the [Upgrade guide in the wiki][wiki-upgrade-to-10.0] carefully before upgrading!
@@ -4098,6 +4343,7 @@ See all related issues and PRs in the [5.5 milestone].
 
 
 [Unreleased]:    https://github.com/PHPCompatibility/PHPCompatibility/compare/master...HEAD
+[10.0.0-alpha3]: https://github.com/PHPCompatibility/PHPCompatibility/compare/10.0.0-alpha2...10.0.0-alpha3
 [10.0.0-alpha2]: https://github.com/PHPCompatibility/PHPCompatibility/compare/10.0.0-alpha1...10.0.0-alpha2
 [10.0.0-alpha1]: https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.5...10.0.0-alpha1
 [9.3.5]:         https://github.com/PHPCompatibility/PHPCompatibility/compare/9.3.4...9.3.5
@@ -4131,6 +4377,7 @@ See all related issues and PRs in the [5.5 milestone].
 [7.0]:           https://github.com/PHPCompatibility/PHPCompatibility/compare/5.6...7.0
 [5.6]:           https://github.com/PHPCompatibility/PHPCompatibility/compare/5.5...5.6
 
+[10.0.0-alpha3 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/36
 [10.0.0-alpha2 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/35
 [10.0.0-alpha1 milestone]: https://github.com/PHPCompatibility/PHPCompatibility/milestone/26
 [9.3.5 milestone]:         https://github.com/PHPCompatibility/PHPCompatibility/milestone/34
@@ -4198,6 +4445,7 @@ See all related issues and PRs in the [5.5 milestone].
 [Nikhil]:                   https://github.com/Nikschavan
 [Oliver Klee]:              https://github.com/oliverklee
 [Remko van Bezooijen]:      https://github.com/emkookmer
+[Rodrigo Primo]:            https://github.com/rodrigoprimo
 [Rowan Collins]:            https://github.com/IMSoP
 [Ryan Neufeld]:             https://github.com/ryanneufeld
 [Sam Van der Borght]:       https://github.com/samvdb
