@@ -185,6 +185,13 @@ jobs:
     name: 'QA Markdown'
     uses: PHPCSStandards/.github/.github/workflows/reusable-remark.yml@5a8a6fcf1ac33b3ec6d7b826c0f319eaa83581ff # v1.3.1
 
+  pinact:
+    permissions:
+      contents: read # To clone the repo.
+
+    name: 'Run Pinact'
+    uses: PHPCSStandards/.github/.github/workflows/reusable-pinact.yml@559f40470dbce9f7faeab31f82c0be7dfb93228e # v1.3.0
+
   yamllint:
     permissions:
       contents: read # To clone the repo.
