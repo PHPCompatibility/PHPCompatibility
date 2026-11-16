@@ -226,7 +226,7 @@ There are hundreds of public projects using PHPCompatibility or extending on top
 * PHPCompatibility Checker WordPress plugin : [Wordpress site](https://wordpress.org/plugins/php-compatibility-checker/) and [Github](https://github.com/wpengine/phpcompat/)
 * [WordPress Tide project](https://wptide.org/)
 * [PHPStorm has built-in support for PHPCompatibility](https://www.jetbrains.com/help/phpstorm/using-php-code-sniffer.html#configure-tool-inspection-composer)
-* [Moodle codechecker](https://github.com/moodlehq/moodle-local_codechecker) - A [plugin](https://moodle.org/plugins/local_codechecker) for Moodle [coding style](https://moodledev.io/general/development/policies/codingstyle), including PHPCompatibility.
+* [Moodle codechecker](https://github.com/moodlehq/moodle-local_codechecker) - A [plugin](https://marketplace.moodle.com/plugins/local_codechecker) for Moodle [coding style](https://moodledev.io/general/development/policies/codingstyle), including PHPCompatibility.
 * [Github Action](https://github.com/marketplace/actions/php-compatibility) - A Github Action that runs this PHPCS standard on your source code.
 
 ## Contributing
