@@ -41,7 +41,7 @@ Legend to the icons used: https://github.com/PHPCompatibility/PHPCompatibility/p
 _Nothing yet._
 
 
-## [10.0.0-alpha3] - 2026-11-18
+## [10.0.0-alpha3] - 2026-11-17
 
 **IMPORTANT**: This release contains **breaking changes**. Please read and follow the [Upgrade guide in the wiki][wiki-upgrade-to-10.0] carefully before upgrading!
 
@@ -50,7 +50,6 @@ This release includes all improvements and bugfixes from PHPCompatibility [10.0.
 See all related issues and PRs in the [10.0.0-alpha3 milestone].
 
 ### Added
--
 - PHP 8.5:
     * :star2: New `PHPCompatibility.ControlStructures.RemovedTerminatingCaseWithSemicolon` sniff. [#2014]
 - PHP 8.6:
@@ -59,12 +58,9 @@ See all related issues and PRs in the [10.0.0-alpha3 milestone].
     * :star2: New `PHPCompatibility.FunctionNameRestrictions.NewDebuggableEnums` sniff. [#2067]
     * :star2: New `PHPCompatibility.ParameterValues.NewTrimCharactersDefault` sniff. [#2068]
     * :star2: New `PHPCompatibility.ParameterValues.RemovedIsASubclassOfAllowStringFalse` sniff. [#2078]
-
--
 - :star: `PHPCompatibility.ParameterValues.NewPackFormat` sniff: detect usage of the endianness modifiers for integers and floats as introduced in PHP 8.6. [#2071]
 - :star: `PHPCompatibility.TypeCasts.NewTypeCasts` sniff: detect usage of the `(void)` type cast which was introduced in PHP 8.5. [#2050]
 - :star: `IMAGETYPE_AVIF` (PHP 8.1), `IMAGETYPE_HEIF` (PHP 8.5) and `T_VOID_CAST` (PHP 8.5) to the constants detected via the `PHPCompatibility.Constants.NewConstants` sniff. [#2022], [#2050]
-
 - :star: Various "list based" sniffs, like `NewFunctions`, `RemovedIniDirectives`, `ForbiddenNames` etc, have received updates to account for new/deprecated/removed PHP keywords, classes, constants, functions, function parameters, ini directives and reserved namespaces as per PHP 8.6.
     <details>
     <summary>Associated PRs</summary>
@@ -99,7 +95,6 @@ See all related issues and PRs in the [10.0.0-alpha3 milestone].
     [#2099],
 
     </details>
-
 - :books: Documentation for the following sniffs:
     * PHPCompatibility.Classes.NewClasses [#2097]
     * PHPCompatibility.Classes.NewTypedProperties [#2001]
@@ -113,7 +108,6 @@ See all related issues and PRs in the [10.0.0-alpha3 milestone].
 
 ### Changed
 - :pushpin: The `PHPCompatibility.ParameterValues.NewPackFormat` sniff will now also detect the new format codes when used with the `unpack()` function. [#2060]
--
 - :pencil2: `PHPCompatibility.Keywords.ForbiddenNames`: minor improvements to the error message texts. [#2055]
 - :wrench: :umbrella: Various housekeeping, including general maintenance, improvements to speed up the sniffs, code modernizations, improvements to CI, the tests and documentation.
     <details>
@@ -177,12 +171,9 @@ See all related issues and PRs in the [10.0.0-alpha3 milestone].
 - :no_entry_sign: `PHPCompatibility.Upgrade.LowPHP` sniff. [#2003]
 - :no_entry_sign: `PHPCompatibility.Miscellaneous.RemovedAlternativePHPTags.ASPOpenTagFound` error code. [#2003]
     Potentially detected ASP open tags will now always be reported under the `MaybeASPOpenTagFound` error code.
--
 
 ### Fixed
 - :bug: PHPCompatibility.Syntax.RemovedCurlyBraceArrayAccess: false positive on PHP 8.4 property hook declarations. [#2026]
--
--
 
 ### Credits
 Thanks go out to [Rodrigo Primo] and [Shota Okunaka] for their contributions to this version. :clap:
