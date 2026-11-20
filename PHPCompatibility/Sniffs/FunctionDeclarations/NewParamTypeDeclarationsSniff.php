@@ -17,6 +17,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\Conditions;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\Scopes;
 use PHPCSUtils\Utils\TypeString;
@@ -236,7 +237,7 @@ final class NewParamTypeDeclarationsSniff extends Sniff
                 continue;
             }
 
-            if ($supportsPHP4 === true) {
+            if ($supportsPHP4 === true && Context::inAttribute($phpcsFile, $stackPtr) === false) {
                 $phpcsFile->addError(
                     'Type declarations were not present in PHP 4.4 or earlier.',
                     $param['token'],
@@ -378,6 +379,13 @@ final class NewParamTypeDeclarationsSniff extends Sniff
 
         if (empty($versionInfo['not_in_version'])
             || ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === false
+        ) {
+            return;
+        }
+
+        // Attributes are comments before PHP 8.0; retain diagnostics for newer features.
+        if (\version_compare($versionInfo['not_in_version'], '7.4', '<') === true
+            && Context::inAttribute($phpcsFile, $stackPtr) === true
         ) {
             return;
         }
