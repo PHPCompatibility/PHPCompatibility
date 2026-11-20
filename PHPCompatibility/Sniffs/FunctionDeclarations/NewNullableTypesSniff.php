@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\FunctionDeclarations;
 
 /**
@@ -63,6 +64,10 @@ final class NewNullableTypesSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            return;
+        }
+
         if (ScannedCode::shouldRunOnOrBelow('7.0') === false) {
             return;
         }
