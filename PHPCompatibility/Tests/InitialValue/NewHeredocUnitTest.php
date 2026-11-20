@@ -131,4 +131,53 @@ final class NewHeredocUnitTest extends BaseSniffTestCase
         $file = $this->sniffFile(__FILE__, '5.3');
         $this->assertNoViolation($file);
     }
+
+    /**
+     * Ignore legacy feature diagnostics inside attributes, including mixed targets.
+     *
+     * @return void
+     */
+    public function testAttributeLegacyFeatures()
+    {
+        $fileName = __DIR__ . '/NewHeredocUnitTest.1.inc';
+
+        foreach (['5.2', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([3, 7] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
+    }
+
+    /**
+     * Retain the corresponding diagnostics in ordinary executable code.
+     *
+     * @return void
+     */
+    public function testExecutableLegacyFeaturesRemainReported()
+    {
+        $fileName = __DIR__ . '/NewHeredocUnitTest.1.inc';
+
+        foreach (['5.2', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([14] as $line) {
+                $this->assertError($file, $line, 'Initializing');
+            }
+        }
+    }
+
+    /**
+     * Accept the clean examples on PHP 8.5, where attribute closures are available.
+     *
+     * @return void
+     */
+    public function testAttributeExamplesOnModernVersion()
+    {
+        $fileName = __DIR__ . '/NewHeredocUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '8.5');
+        foreach ([3, 7, 14] as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
 }

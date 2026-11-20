@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\AbstractInitialValueSniff;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\Utils;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\GetTokensAsString;
 use PHPCSUtils\Utils\MessageHelper;
 
@@ -98,6 +99,10 @@ final class NewHeredocSniff extends AbstractInitialValueSniff
      */
     protected function processInitialValue(File $phpcsFile, $stackPtr, $start, $end, $type)
     {
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            return;
+        }
+
         $hasHeredoc = $phpcsFile->findNext(\T_START_HEREDOC, $start, $end);
         if ($hasHeredoc === false) {
             // Initial value doesn't contain a heredoc, nothing to do.
