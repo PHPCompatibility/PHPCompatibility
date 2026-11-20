@@ -17,6 +17,7 @@ use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\Utils;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\Scopes;
 
 /**
@@ -380,6 +381,13 @@ final class NewKeywordsSniff extends Sniff
 
         if (empty($versionInfo['not_in_version'])
             || ScannedCode::shouldRunOnOrBelow($versionInfo['not_in_version']) === false
+        ) {
+            return;
+        }
+
+        // Attributes are comments before PHP 8.0; retain diagnostics for newer features.
+        if (\version_compare($versionInfo['not_in_version'], '7.4', '<') === true
+            && Context::inAttribute($phpcsFile, $stackPtr) === true
         ) {
             return;
         }

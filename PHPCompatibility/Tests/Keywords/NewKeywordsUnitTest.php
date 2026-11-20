@@ -708,4 +708,68 @@ final class NewKeywordsUnitTest extends BaseSniffTestCase
         $file = $this->sniffFile(__FILE__, '99.0'); // High version beyond newest addition.
         $this->assertNoViolation($file);
     }
+
+    /**
+     * Ignore legacy feature diagnostics inside attributes, including mixed targets.
+     *
+     * @return void
+     */
+    public function testAttributeLegacyFeatures()
+    {
+        $fileName = __DIR__ . '/NewKeywordsUnitTest.1.inc';
+
+        foreach (['5.2', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([3, 7] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
+    }
+
+    /**
+     * Retain the corresponding diagnostics in ordinary executable code.
+     *
+     * @return void
+     */
+    public function testExecutableLegacyFeaturesRemainReported()
+    {
+        $fileName = __DIR__ . '/NewKeywordsUnitTest.1.inc';
+
+        foreach (['5.2', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([11] as $line) {
+                $this->assertError($file, $line, '__DIR__ magic constant is not present');
+            }
+        }
+    }
+
+    /**
+     * Accept the clean examples on PHP 8.5, where attribute closures are available.
+     *
+     * @return void
+     */
+    public function testAttributeExamplesOnModernVersion()
+    {
+        $fileName = __DIR__ . '/NewKeywordsUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '8.5');
+        foreach ([3, 7, 11] as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Preserve diagnostics for newer features or invalid usage inside attributes.
+     *
+     * @return void
+     */
+    public function testAttributeDiagnosticsArePreserved1()
+    {
+        $fileName = __DIR__ . '/NewKeywordsUnitTest.1.inc';
+
+        foreach (['7.4', '5.2-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            $this->assertError($file, 14, 'The "match" keyword is not present');
+        }
+    }
 }
