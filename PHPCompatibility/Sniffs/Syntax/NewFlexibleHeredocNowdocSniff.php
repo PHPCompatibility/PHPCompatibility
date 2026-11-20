@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\Utils;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\Context;
 
 /**
  * Detect usage of flexible heredoc/nowdoc and related cross-version incompatibilities.
@@ -71,7 +72,9 @@ final class NewFlexibleHeredocNowdocSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if (ScannedCode::shouldRunOnOrBelow('7.2') === true) {
+        if (ScannedCode::shouldRunOnOrBelow('7.2') === true
+            && Context::inAttribute($phpcsFile, $stackPtr) === false
+        ) {
             $this->detectIndentedNonStandAloneClosingMarker($phpcsFile, $stackPtr);
         }
 
