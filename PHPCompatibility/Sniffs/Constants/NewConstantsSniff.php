@@ -15,6 +15,7 @@ use PHPCompatibility\Helpers\ComplexVersionNewFeatureTrait;
 use PHPCompatibility\Helpers\MiscHelper;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\Context;
 
 /**
  * Detect use of new PHP native global constants.
@@ -9005,6 +9006,13 @@ final class NewConstantsSniff extends Sniff
                 $phpcsFile->addError($message, $stackPtr, $msgInfo['errorcode'], $msgInfo['data']);
             }
 
+            return;
+        }
+
+        // Attributes are comments before PHP 8.0; retain diagnostics for newer features.
+        if (\version_compare($versionInfo['not_in_version'], '7.4', '<') === true
+            && Context::inAttribute($phpcsFile, $stackPtr) === true
+        ) {
             return;
         }
 
