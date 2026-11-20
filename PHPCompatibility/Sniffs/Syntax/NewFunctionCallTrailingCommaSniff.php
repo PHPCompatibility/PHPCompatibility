@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Context;
 
 /**
  * Detect trailing commas in function calls, `isset()` and `unset()` as allowed since PHP 7.3.
@@ -71,6 +72,13 @@ final class NewFunctionCallTrailingCommaSniff extends Sniff
         }
 
         $tokens = $phpcsFile->getTokens();
+
+        if ($tokens[$stackPtr]['code'] !== \T_EXIT
+            && Context::inAttribute($phpcsFile, $stackPtr) === true
+        ) {
+            return;
+        }
+
         if ($tokens[$stackPtr]['code'] !== \T_EXIT
             && ScannedCode::shouldRunOnOrBelow('7.2') === false
         ) {
