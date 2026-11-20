@@ -13,6 +13,7 @@ namespace PHPCompatibility\Sniffs\Operators;
 use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\Context;
 use PHPCSUtils\Utils\Operators;
 
 /**
@@ -60,6 +61,11 @@ final class NewShortTernarySniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         if (ScannedCode::shouldRunOnOrBelow('5.2') === false) {
+            return;
+        }
+
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            // Attributes are comments before PHP 8.0, where short ternaries are already supported.
             return;
         }
 
