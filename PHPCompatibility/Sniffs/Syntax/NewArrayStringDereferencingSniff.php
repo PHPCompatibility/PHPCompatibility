@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\Context;
 
 /**
  * Detect array and string literal dereferencing.
@@ -72,6 +73,10 @@ final class NewArrayStringDereferencingSniff extends Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         if (ScannedCode::shouldRunOnOrBelow('5.6') === false) {
+            return;
+        }
+
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
             return;
         }
 

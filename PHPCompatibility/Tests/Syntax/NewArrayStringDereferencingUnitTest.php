@@ -151,4 +151,20 @@ final class NewArrayStringDereferencingUnitTest extends BaseSniffTestCase
         $file = $this->sniffFile(__FILE__, '7.0');
         $this->assertNoViolation($file);
     }
+
+    /**
+     * Ignore nested literal accesses in attributes and retain accesses in executable code.
+     *
+     * @return void
+     */
+    public function testAttributeLiteralDereferencing()
+    {
+        foreach (['5.4', '5.4-8.0'] as $version) {
+            $file = $this->sniffFile(__FILE__, $version);
+            foreach ([31, 35, 36, 40] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+            $this->assertError($file, 42, 'Direct array dereferencing of string literals is not present in PHP version 5.4 or earlier');
+        }
+    }
 }
