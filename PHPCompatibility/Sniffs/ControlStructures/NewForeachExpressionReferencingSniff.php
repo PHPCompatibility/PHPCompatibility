@@ -14,6 +14,7 @@ use PHP_CodeSniffer\Files\File;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Helpers\TokenGroup;
 use PHPCompatibility\Sniff;
+use PHPCSUtils\Utils\Context;
 
 /**
  * Detect `foreach` expression referencing.
@@ -56,6 +57,10 @@ final class NewForeachExpressionReferencingSniff extends Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
+        if (Context::inAttribute($phpcsFile, $stackPtr) === true) {
+            return;
+        }
+
         if (ScannedCode::shouldRunOnOrBelow('5.4') === false) {
             return;
         }
