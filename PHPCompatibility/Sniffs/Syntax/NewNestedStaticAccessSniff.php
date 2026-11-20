@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Util\Tokens;
 use PHPCompatibility\Helpers\ScannedCode;
 use PHPCompatibility\Sniff;
 use PHPCSUtils\Tokens\Collections;
+use PHPCSUtils\Utils\Context;
 
 /**
  * (Nested) Static property and constant fetches as well as method calls can be applied to
@@ -132,7 +133,9 @@ final class NewNestedStaticAccessSniff extends Sniff
         }
 
         // This is nested static access.
-        if (ScannedCode::shouldRunOnOrBelow('5.6') === true) {
+        if (ScannedCode::shouldRunOnOrBelow('5.6') === true
+            && Context::inAttribute($phpcsFile, $stackPtr) === false
+        ) {
             $phpcsFile->addError(
                 'Nested access to static properties, constants and methods was not supported in PHP 5.6 or earlier.',
                 $stackPtr,

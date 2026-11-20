@@ -153,4 +153,68 @@ final class NewNestedStaticAccessUnitTest extends BaseSniffTestCase
         $file = $this->sniffFile(__FILE__, '8.0');
         $this->assertNoViolation($file);
     }
+
+    /**
+     * Ignore legacy feature diagnostics inside attributes, including mixed targets.
+     *
+     * @return void
+     */
+    public function testAttributeLegacyFeatures()
+    {
+        $fileName = __DIR__ . '/NewNestedStaticAccessUnitTest.1.inc';
+
+        foreach (['5.6', '5.6-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([4] as $line) {
+                $this->assertNoViolation($file, $line);
+            }
+        }
+    }
+
+    /**
+     * Retain the corresponding diagnostics in ordinary executable code.
+     *
+     * @return void
+     */
+    public function testExecutableLegacyFeaturesRemainReported()
+    {
+        $fileName = __DIR__ . '/NewNestedStaticAccessUnitTest.1.inc';
+
+        foreach (['5.6', '5.6-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            foreach ([9] as $line) {
+                $this->assertError($file, $line, 'Nested access to static properties, constants and methods was not supported');
+            }
+        }
+    }
+
+    /**
+     * Accept the clean examples on PHP 8.5, where attribute closures are available.
+     *
+     * @return void
+     */
+    public function testAttributeExamplesOnModernVersion()
+    {
+        $fileName = __DIR__ . '/NewNestedStaticAccessUnitTest.1.inc';
+
+        $file = $this->sniffFile($fileName, '8.5');
+        foreach ([4, 9] as $line) {
+            $this->assertNoViolation($file, $line);
+        }
+    }
+
+    /**
+     * Preserve diagnostics for newer features or invalid usage inside attributes.
+     *
+     * @return void
+     */
+    public function testAttributeDiagnosticsArePreserved1()
+    {
+        $fileName = __DIR__ . '/NewNestedStaticAccessUnitTest.1.inc';
+
+        foreach (['7.4', '5.6-8.5'] as $version) {
+            $file = $this->sniffFile($fileName, $version);
+            $this->assertError($file, 13, 'Dereferencing class constants was not supported in PHP 7.4 or earlier.');
+        }
+    }
 }
